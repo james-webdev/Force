@@ -26,7 +26,7 @@
               : 'text-indigo-300 group-hover:text-white'
           "
         >
-          Organizations
+          Accounts
         </div>
       </inertia-link>
     </div>
@@ -43,22 +43,6 @@
           "
         >
           Contacts
-        </div>
-      </inertia-link>
-    </div>
-    <div class="mb-4">
-      <inertia-link
-        class="flex items-center group py-3"
-        :href="route('reports')"
-      >
-        <div
-          :class="
-            isUrl('reports')
-              ? 'text-white'
-              : 'text-indigo-300 group-hover:text-white'
-          "
-        >
-          Reports
         </div>
       </inertia-link>
     </div>

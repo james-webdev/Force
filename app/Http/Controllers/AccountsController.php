@@ -16,8 +16,18 @@ class AccountsController extends Controller
     public function index()
     {
         $accounts = Accounts::all();
-        dd($accounts);
-        return Inertia::render('Accounts/Index', compact('accounts'));
+        // dd($accounts);
+        return Inertia::render('Accounts/Index', [
+            'accounts' => Accounts::all()->map(function ($account) {
+                return [
+                    'id' => $account->id,
+                    'name' => $account->name,
+                    'email' => $account->email,
+                ];
+            }),
+        ]);
+
+
     }
 
     /**

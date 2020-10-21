@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>A component</p>
+    <p>A component - here I am!!</p>
   </div>
 </template>
 

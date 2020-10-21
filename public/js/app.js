@@ -2604,22 +2604,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   props: {},
@@ -3573,7 +3557,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    accounts: Object
+  }
+});
 
 /***/ }),
 
@@ -23951,7 +23941,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("A component")])])
+    return _c("div", [_c("p", [_vm._v("A component - here I am!!")])])
   }
 ]
 render._withStripped = true
@@ -24948,7 +24938,7 @@ var render = function() {
                   ? "text-white"
                   : "text-indigo-300 group-hover:text-white"
               },
-              [_vm._v("\n        Organizations\n      ")]
+              [_vm._v("\n        Accounts\n      ")]
             )
           ]
         )
@@ -24975,32 +24965,6 @@ var render = function() {
                   : "text-indigo-300 group-hover:text-white"
               },
               [_vm._v("\n        Contacts\n      ")]
-            )
-          ]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "mb-4" },
-      [
-        _c(
-          "inertia-link",
-          {
-            staticClass: "flex items-center group py-3",
-            attrs: { href: _vm.route("reports") }
-          },
-          [
-            _c(
-              "div",
-              {
-                class: _vm.isUrl("reports")
-                  ? "text-white"
-                  : "text-indigo-300 group-hover:text-white"
-              },
-              [_vm._v("\n        Reports\n      ")]
             )
           ]
         )
@@ -26741,21 +26705,8 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("Accounts show here")])])
-  }
-]
-render._withStripped = true
+var render = function () {}
+var staticRenderFns = []
 
 
 
