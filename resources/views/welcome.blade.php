@@ -18,12 +18,23 @@
             body {
                 font-family: 'Nunito';
             }
+
+            p{
+                margin-top: 220px;
+            }
+            .welcome{
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                 font-size: 80px;
+            }
+
         </style>
     </head>
-    <div>
-    <p>
-       Welcome to your OKOS FORCE app!!
-    </p>
+    <div class="welcome">
+        <p>
+        Welcome to OKOS FORCE.
+        </p>
     </div>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
@@ -35,7 +46,7 @@
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="hidden ml-4 text-sm text-gray-700 underline">Register</a>
                         @endif
                     @endif
                 </div>

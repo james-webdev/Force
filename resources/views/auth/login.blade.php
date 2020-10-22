@@ -4,6 +4,9 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
+        <!-- <img src="./../../..public/images/OkosLogo.png" alt=""> -->
+
+
         <x-jet-validation-errors class="mb-4" />
 
         @if (session('status'))
