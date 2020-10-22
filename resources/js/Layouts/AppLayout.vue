@@ -8,7 +8,8 @@
             <!-- Logo -->
             <div class="flex-shrink-0 flex items-center">
               <inertia-link :href="route('dashboard')">
-                <jet-application-mark class="block h-9 w-auto" />
+                <jet-application-mark class="hidden block h-9 w-auto" />
+                <img src="./../../../public/images/OkosLogo.png" class="h-10" />
               </inertia-link>
             </div>
 
@@ -19,6 +20,18 @@
                 :active="$page.currentRouteName == 'dashboard'"
               >
                 Dashboard
+              </jet-nav-link>
+              <jet-nav-link
+                :href="route('dashboard')"
+                :active="$page.currentRouteName == ''"
+              >
+                Accounts
+              </jet-nav-link>
+              <jet-nav-link
+                :href="route('dashboard')"
+                :active="$page.currentRouteName == ''"
+              >
+                Contacts
               </jet-nav-link>
             </div>
           </div>
@@ -64,7 +77,7 @@
                 <template #content>
                   <!-- Account Management -->
                   <div class="block px-4 py-2 text-xs text-gray-400">
-                    Manage Account
+                    Manage Acunt
                   </div>
 
                   <jet-dropdown-link :href="route('profile.show')">
@@ -83,7 +96,7 @@
                   <!-- Team Management -->
                   <template v-if="$page.jetstream.hasTeamFeatures">
                     <div class="block px-4 py-2 text-xs text-gray-400">
-                      Manage Team
+                      Manage Teamsssssssssssssssss!!!!!!!!
                     </div>
 
                     <!-- Team Settings -->
@@ -306,16 +319,13 @@
     <!-- Page Heading -->
     <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <slot name="header">Something goes here</slot>
+        <slot name="header"></slot>
       </div>
     </header>
 
     <!-- Page Content -->
     <main>
-      <slot>
-        <a-component />
-        <main-menu />
-      </slot>
+      <slot> </slot>
     </main>
 
     <!-- Modal Portal -->
@@ -330,8 +340,6 @@ import JetDropdown from "./../Jetstream/Dropdown";
 import JetDropdownLink from "./../Jetstream/DropdownLink";
 import JetNavLink from "./../Jetstream/NavLink";
 import JetResponsiveNavLink from "./../Jetstream/ResponsiveNavLink";
-import MainMenu from "./../Jetstream/MainMenu";
-import AComponent from "./../Jetstream/AComponent";
 
 export default {
   components: {
@@ -341,8 +349,6 @@ export default {
     JetDropdownLink,
     JetNavLink,
     JetResponsiveNavLink,
-    MainMenu,
-    AComponent,
   },
 
   data() {

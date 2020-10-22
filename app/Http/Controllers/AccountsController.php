@@ -23,6 +23,7 @@ class AccountsController extends Controller
                     'id' => $account->id,
                     'name' => $account->name,
                     'email' => $account->email,
+                    'address' => $account->address,
                 ];
             }),
         ]);
