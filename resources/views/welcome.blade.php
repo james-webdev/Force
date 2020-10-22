@@ -27,6 +27,7 @@
                 flex-direction: column;
                 height: 100vh;
                  font-size: 80px;
+                 margin-left: 60px;
             }
 
         </style>

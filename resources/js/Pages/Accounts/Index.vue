@@ -1,12 +1,19 @@
 <template>
   <app-layout>
-    <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-      <p>Accounts shown here:</p>
-      <ul v-for="account in accounts">
-        <li>{{ account.name }}</li>
-        <li>{{ account.address }}</li>
-        <li>{{ account.email }}</li>
-      </ul>
+    <template #header>
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Accounts
+      </h2>
+    </template>
+
+    <div>
+      <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+        <ul v-for="account in accounts">
+          <li>{{ account.name }}</li>
+          <li>{{ account.address }}</li>
+          <li>{{ account.email }}</li>
+        </ul>
+      </div>
     </div>
   </app-layout>
 </template>

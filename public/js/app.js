@@ -3470,6 +3470,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -26507,26 +26514,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("app-layout", [
-    _c(
-      "div",
-      { staticClass: "p-6 sm:px-20 bg-white border-b border-gray-200" },
-      [
-        _c("p", [_vm._v("Accounts shown here:")]),
-        _vm._v(" "),
-        _vm._l(_vm.accounts, function(account) {
-          return _c("ul", [
-            _c("li", [_vm._v(_vm._s(account.name))]),
-            _vm._v(" "),
-            _c("li", [_vm._v(_vm._s(account.address))]),
-            _vm._v(" "),
-            _c("li", [_vm._v(_vm._s(account.email))])
-          ])
-        })
-      ],
-      2
-    )
-  ])
+  return _c(
+    "app-layout",
+    {
+      scopedSlots: _vm._u([
+        {
+          key: "header",
+          fn: function() {
+            return [
+              _c(
+                "h2",
+                {
+                  staticClass:
+                    "font-semibold text-xl text-gray-800 leading-tight"
+                },
+                [_vm._v("\n      Accounts\n    ")]
+              )
+            ]
+          },
+          proxy: true
+        }
+      ])
+    },
+    [
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "div",
+          { staticClass: "p-6 sm:px-20 bg-white border-b border-gray-200" },
+          _vm._l(_vm.accounts, function(account) {
+            return _c("ul", [
+              _c("li", [_vm._v(_vm._s(account.name))]),
+              _vm._v(" "),
+              _c("li", [_vm._v(_vm._s(account.address))]),
+              _vm._v(" "),
+              _c("li", [_vm._v(_vm._s(account.email))])
+            ])
+          }),
+          0
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
