@@ -25,6 +25,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 // Route::get('accounts', [AccountsController::class, 'index']);
 
-Route::resource('accounts','AccountsController');
-;
+// Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
+
+Route::resource('/accounts','AccountsController');
+
+Route::resource('/contacts','ContactsController');
+
 

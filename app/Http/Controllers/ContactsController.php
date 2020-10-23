@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Accounts;
+use App\Models\Contacts;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AccountsController extends Controller
+class ContactsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,20 +15,18 @@ class AccountsController extends Controller
      */
     public function index()
     {
-        $accounts = Accounts::all();
+        $contact = Contacts::all();
         // dd($accounts);
-        return Inertia::render('Accounts/Index', [
-            'accounts' => Accounts::all()->map(function ($account) {
+        return Inertia::render('Contacts/Index', [
+            'contacts' => Contacts::all()->map(function ($contact) {
                 return [
-                    'phone' => $account->phone,
-                    'name' => $account->name,
-                    'email' => $account->email,
-                    'address' => $account->address,
+                    'id' => $contact->id,
+                    'name' => $contact->name,
+                    'city' => $contact->city,
+                    'phone' => $contact->phone,
                 ];
             }),
         ]);
-
-
     }
 
     /**
@@ -55,10 +53,10 @@ class AccountsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Accounts  $accounts
+     * @param  \App\Models\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function show(Accounts $accounts)
+    public function show(Contacts $contacts)
     {
         //
     }
@@ -66,10 +64,10 @@ class AccountsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Accounts  $accounts
+     * @param  \App\Models\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Accounts $accounts)
+    public function edit(Contacts $contacts)
     {
         //
     }
@@ -78,10 +76,10 @@ class AccountsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Accounts  $accounts
+     * @param  \App\Models\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Accounts $accounts)
+    public function update(Request $request, Contacts $contacts)
     {
         //
     }
@@ -89,10 +87,10 @@ class AccountsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Accounts  $accounts
+     * @param  \App\Models\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Accounts $accounts)
+    public function destroy(Contacts $contacts)
     {
         //
     }
