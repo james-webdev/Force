@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Accounts;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Imports\AccountsImport;
+use Excel;
+
 
 class AccountsController extends Controller
 {
@@ -18,12 +21,13 @@ class AccountsController extends Controller
         $accounts = Accounts::all();
         // dd($accounts);
         return Inertia::render('Accounts/Index', [
-            'accounts' => Accounts::all()->map(function ($account) {
+            'accounts' => Accounts::withCount('contacts')->get()->map(function ($account) {
                 return [
                     'phone' => $account->phone,
                     'name' => $account->name,
                     'email' => $account->email,
                     'address' => $account->address,
+                    'contactcount' => $account->contacts_count,
                 ];
             }),
         ]);
@@ -95,5 +99,17 @@ class AccountsController extends Controller
     public function destroy(Accounts $accounts)
     {
         //
+    }
+
+
+
+    public function importForm(){
+
+        return Inertia::render('Accounts/Import');
+    }
+
+    public function import(Request $request){
+        dd($request);
+        Excel::import(new AccountImport, $request->file);
     }
 }

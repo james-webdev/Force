@@ -31,4 +31,7 @@ Route::resource('/accounts','AccountsController');
 
 Route::resource('/contacts','ContactsController');
 
+Route::get('/import','AccountsController@importForm');
+Route::post('/import','AccountsController@import');
 
+// Route::get('import-form', 'AccountsController@importForm');

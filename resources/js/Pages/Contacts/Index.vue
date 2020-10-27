@@ -19,7 +19,7 @@
       <table class="w-full whitespace-no-wrap">
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Name</th>
-          <th class="px-6 pt-6 pb-4">Organization</th>
+          <th class="px-6 pt-6 pb-4">Account</th>
           <th class="px-6 pt-6 pb-4">City</th>
           <th class="px-6 pt-6 pb-4" colspan="2">Phone</th>
         </tr>
@@ -28,7 +28,7 @@
            <div>{{ contact.name }}</div>
           </td>
           <td class="px-6 pt-6 pb-4 border-t">
-            <div>{{ contact.name }}</div>
+            <div>{{ contact.account }}</div>
           </td>
           <td class="px-6 pt-6 pb-4 border-t">
             <div>{{ contact.city }}</div>

@@ -15,13 +15,14 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $contact = Contacts::all();
-        // dd($accounts);
+
+
         return Inertia::render('Contacts/Index', [
-            'contacts' => Contacts::all()->map(function ($contact) {
+            'contacts' => Contacts::with('accounts')->get()->map(function ($contact) {
                 return [
                     'id' => $contact->id,
                     'name' => $contact->name,
+                    'account' =>$contact->accounts->name,
                     'city' => $contact->city,
                     'phone' => $contact->phone,
                 ];

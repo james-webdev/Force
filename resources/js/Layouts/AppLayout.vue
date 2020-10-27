@@ -8,8 +8,8 @@
             <!-- Logo -->
             <div class="flex-shrink-0 flex items-center">
               <inertia-link :href="route('dashboard')">
-                <jet-application-mark class="hidden block h-9 w-auto" />
-                <img src="./../../../public/images/OkosLogo.png" class="h-10" />
+                <jet-application-mark class="block h-9 w-auto" />
+
               </inertia-link>
             </div>
 

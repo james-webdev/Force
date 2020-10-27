@@ -18,7 +18,8 @@
           <th class="px-6 pt-6 pb-4">Name</th>
           <th class="px-6 pt-6 pb-4">Email</th>
           <th class="px-6 pt-6 pb-4">Address</th>
-          <th class="px-6 pt-6 pb-4" colspan="2">Phone</th>
+          <th class="px-6 pt-6 pb-4"># Contacts</th>
+          <th class="px-6 pt-6 pb-4">Phone</th>
         </tr>
         <tr v-for="account in accounts" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="px-6 pt-6 pb-4 border-t">
@@ -29,6 +30,9 @@
           </td>
           <td class="px-6 pt-6 pb-4 border-t">
             <div>{{ account.address }}</div>
+          </td>
+           <td class="px-6 pt-6 pb-4 border-t">
+            <div>{{ account.contactcount }}</div>
           </td>
           <td class=" px-6 pt-6 pb-4 border-t">
            <div>{{ account.phone }}</div>
