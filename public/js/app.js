@@ -3490,7 +3490,10 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.import_file);
     },
     submit: function submit() {
-      this.$inertia.post('accounts/import', this.import_file);
+      console.log("clicked");
+      this.$inertia.post('import', {
+        file: this.import_file
+      });
     }
   },
   components: {
@@ -26663,7 +26666,8 @@ var render = function() {
           {
             staticClass:
               "bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
-            attrs: { type: "submit" }
+            attrs: { type: "submit" },
+            on: { click: _vm.submit }
           },
           [_vm._v("Submit")]
         )

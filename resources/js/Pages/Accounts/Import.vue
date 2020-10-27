@@ -7,7 +7,7 @@
 
       <label class="form-control-label"  for="input-file-import">Upload Excel File</label>
           <input type="file" class="form-control" :class="{ ' is-invalid' : error.message }" id="input-file-import" name="file_import" ref="import_file"  @change="onFileChange">
-<button class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15" type="submit">Submit</button>
+<button @click="submit" class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15" type="submit">Submit</button>
         </div>
   </app-layout>
 </template>
@@ -31,7 +31,8 @@ data() {
         },
 
         submit() {
-      this.$inertia.post('accounts/import', this.import_file)
+        console.log("clicked");
+      this.$inertia.post('import', { file: this.import_file,})
     },
     },
 
