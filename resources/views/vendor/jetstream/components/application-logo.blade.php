@@ -1,1 +1,1 @@
-<img src="./../../../images/OkosLogo.png" alt="">
+<img class="rounded" src="./../../../images/OkosLogo.png" alt="">

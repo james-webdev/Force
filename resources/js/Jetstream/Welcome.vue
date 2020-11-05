@@ -13,7 +13,7 @@
        <p class="mt-4 text-2xl"> Import your Excel files to Force here:</p>
 
      <inertia-link href="/import">
-        <button class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">IMPORT</button>
+        <button class="bg-teal-400  hover:bg-teal-700 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">IMPORT</button>
         </inertia-link>
        </form>
         </div>

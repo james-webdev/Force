@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Accounts;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Imports\AccountsImport;
 use Excel;
+use URL;
 
 
 class AccountsController extends Controller
@@ -18,16 +19,18 @@ class AccountsController extends Controller
      */
     public function index()
     {
-        $accounts = Accounts::all();
+        $accounts = Account::all();
         // dd($accounts);
         return Inertia::render('Accounts/Index', [
-            'accounts' => Accounts::withCount('contacts')->get()->map(function ($account) {
+            'accounts' => Account::withCount('contacts')->get()->map(function ($account) {
                 return [
+                    'id' => $account->id,
                     'phone' => $account->phone,
                     'name' => $account->name,
                     'email' => $account->email,
                     'address' => $account->address,
                     'contactcount' => $account->contacts_count,
+                    'edit_url' => URL::route('account.edit', $account),
                 ];
             }),
         ]);
@@ -62,9 +65,9 @@ class AccountsController extends Controller
      * @param  \App\Models\Accounts  $accounts
      * @return \Illuminate\Http\Response
      */
-    public function show(Accounts $accounts)
+    public function show(Account $account)
     {
-        //
+        dd($account);
     }
 
     /**
@@ -73,9 +76,13 @@ class AccountsController extends Controller
      * @param  \App\Models\Accounts  $accounts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Accounts $accounts)
+    public function edit(Account $account)
     {
-        //
+
+        return Inertia::render('Accounts/Edit', [
+            'account' => $account,
+            'update_url' => URL::route('account.edit', $account),
+        ]);
     }
 
     /**
@@ -85,9 +92,11 @@ class AccountsController extends Controller
      * @param  \App\Models\Accounts  $accounts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Accounts $accounts)
+    public function update(Account $account, Request $request)
     {
-        //
+
+        $account->update(request()->all());
+        return redirect()->route('account.index');
     }
 
     /**
@@ -96,20 +105,24 @@ class AccountsController extends Controller
      * @param  \App\Models\Accounts  $accounts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Accounts $accounts)
+    public function destroy(Account $account, Request $request)
     {
-        //
+        // dd($request->id);
+
+        $account->delete();
+        return redirect()->route('account.index');
     }
 
 
-
-    public function importForm(){
-
+    public function importForm()
+    {
         return Inertia::render('Accounts/Import');
     }
 
-    public function import(Request $request){
-        dd($request);
-        Excel::import(new AccountImport, $request->file);
+    public function import(Request $request)
+    {
+       $path = $request->file('import_file');
+       $data = Excel::import(new AccountsImport, $path);
+       return redirect()->route('account.index');
     }
 }

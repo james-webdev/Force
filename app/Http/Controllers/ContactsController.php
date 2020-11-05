@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contacts;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -18,7 +18,7 @@ class ContactsController extends Controller
 
 
         return Inertia::render('Contacts/Index', [
-            'contacts' => Contacts::with('accounts')->get()->map(function ($contact) {
+            'contacts' => Contact::with('accounts')->get()->map(function ($contact) {
                 return [
                     'id' => $contact->id,
                     'name' => $contact->name,

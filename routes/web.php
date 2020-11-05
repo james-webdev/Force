@@ -27,11 +27,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 // Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
 
-Route::resource('/accounts','AccountsController');
+Route::resource('/account','AccountsController');
 
-Route::resource('/contacts','ContactsController');
+Route::resource('/contact','ContactsController');
 
 Route::get('/import','AccountsController@importForm');
 Route::post('/import','AccountsController@import');
+// Route::get('/accounts/{accounts}/edit', 'AccountsController@edit');
+// Route::post('/update','AccountsController@update');
+// Route::post('/destroy','AccountsController@destroy');
 
 // Route::get('import-form', 'AccountsController@importForm');

@@ -2,10 +2,11 @@
 
 namespace App\Imports;
 
-use App\Accounts;
+use App\Models\Account;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class AccountsImport implements ToModel
+class AccountsImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -14,7 +15,7 @@ class AccountsImport implements ToModel
     */
     public function model(array $row)
     {
-        return new Accounts([
+        return new Account([
             "name" => $row["name"],
             "email" => $row["email"],
             "phone" => $row["phone"],
