@@ -45,7 +45,9 @@ class AccountsController extends Controller
      */
     public function create()
     {
-        //
+        // dd('hi there');
+        return Inertia::render('Accounts/Create');
+
     }
 
     /**
@@ -56,7 +58,9 @@ class AccountsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        Account::create($request->all());
+        return redirect()->route('account.index');
     }
 
     /**
