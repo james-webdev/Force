@@ -3942,6 +3942,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -33060,7 +33061,9 @@ var render = function() {
                     "text-3xl text-teal-400 hover:text-teal-600 leading-tight"
                 },
                 [_vm._v("\n            Accounts\n        ")]
-              )
+              ),
+              _vm._v(" "),
+              _c("div", [_vm._v(" here :" + _vm._s(_vm.accounts.links) + " ")])
             ]
           },
           proxy: true
@@ -33178,7 +33181,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("pagination", { attrs: { links: _vm.accounts.links } })
+      _c("pagination", { attrs: { links: _vm.accounts } })
     ],
     1
   )
@@ -50388,7 +50391,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************************************!*\
   !*** ./resources/js/Pages/Accounts/Index.vue?vue&type=template&id=6790c29c& ***!
   \******************************************************************************/
-/*! no static exports found */
+/*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

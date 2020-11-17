@@ -4,6 +4,7 @@
         <h2 class="text-3xl text-teal-400 hover:text-teal-600 leading-tight">
             Accounts
         </h2>
+        <div> here :{{accounts.links}} </div>
     </template>
     <div class="mb-6 bg-white flex justify-between items-center">
         <input type="text" placeholder="Search.." class="border ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2">
@@ -44,7 +45,7 @@
         </table>
     </div>
 
- <pagination :links="accounts.links" />
+ <pagination :links="accounts" />
 </app-layout>
 </template>
 

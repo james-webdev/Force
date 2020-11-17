@@ -20,8 +20,8 @@ class AccountsController extends Controller
     public function index()
     {
 
-
         // return Inertia::render('Accounts/Index', [
+
         //     'accounts' => Account::all()
         //         ->paginate()
         //         ->only('id', 'name', 'phone', 'email', 'address'),
