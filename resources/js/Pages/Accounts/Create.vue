@@ -28,7 +28,7 @@
                     <input name="contactcount" v-model="contact" class="border py-2 px-3 text-grey-800 w-full" />
                 </div>
                 <div class="px-8 py-4 border-gray-200 flex items-center">
-                    <button @click="createAccount" class="bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Create Account</button>
+                    <button @click="createAccount" class="bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Creates Account</button>
 
                 </div>
             </form>
@@ -64,10 +64,10 @@ export default {
                 phone: this.phone,
                 address: this.address,
                 contact: this.contact,
-                _method: 'POST',
+
             }
             console.log(accountCreate);
-            this.$inertia.post('/account/add', accountCreate)
+            this.$inertia.post('/account', accountCreate)
         },
 
     }

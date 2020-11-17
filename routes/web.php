@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
 
 Route::resource('/account','AccountsController');
-Route::post('/account/add','AccountsController@store');
+// Route::post('/account/add','AccountsController@store');
 
 Route::resource('/contact','ContactsController');
 

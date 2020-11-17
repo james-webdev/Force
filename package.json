@@ -23,6 +23,10 @@
         "resolve-url-loader": "^3.1.0",
         "tailwindcss": "^1.8.0",
         "vue": "^2.5.17",
+        "vue-ads-pagination": "^2.1.7",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.1"
     }
 }

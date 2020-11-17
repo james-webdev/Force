@@ -19,10 +19,18 @@ class AccountsController extends Controller
      */
     public function index()
     {
+
+
+        // return Inertia::render('Accounts/Index', [
+        //     'accounts' => Account::all()
+        //         ->paginate()
+        //         ->only('id', 'name', 'phone', 'email', 'address'),
+        // ]);
+
         $accounts = Account::all();
         // dd($accounts);
         return Inertia::render('Accounts/Index', [
-            'accounts' => Account::withCount('contacts')->get()->map(function ($account) {
+            'accounts' => Account::withCount('contacts')->paginate(2)->map(function ($account) {
                 return [
                     'id' => $account->id,
                     'phone' => $account->phone,
@@ -31,6 +39,7 @@ class AccountsController extends Controller
                     'address' => $account->address,
                     'contactcount' => $account->contacts_count,
                     'edit_url' => URL::route('account.edit', $account),
+                    'links' => $account->links,
                 ];
             }),
         ]);
