@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Imports\AccountsImport;
 use Excel;
 use URL;
+use App\Http\Resources\AccountResource;;
 
 
 class AccountsController extends Controller
@@ -27,25 +28,31 @@ class AccountsController extends Controller
         //         ->only('id', 'name', 'phone', 'email', 'address'),
         // ]);
 
-        $accounts = Account::all();
+
+    //     $accounts =
+
+
+        $accounts = AccountResource::collection(Account::paginate(3));
         // dd($accounts);
-        return Inertia::render('Accounts/Index', [
-            'accounts' => Account::withCount('contacts')->paginate(2)->map(function ($account) {
-                return [
-                    'id' => $account->id,
-                    'phone' => $account->phone,
-                    'name' => $account->name,
-                    'email' => $account->email,
-                    'address' => $account->address,
-                    'contactcount' => $account->contacts_count,
-                    'edit_url' => URL::route('account.edit', $account),
-                    'links' => $account->links,
-                ];
-            }),
-        ]);
+        return Inertia::render('Accounts/Index', ['accounts' => $accounts]
 
 
-    }
+
+    //     return Inertia::render('Accounts/Index', [
+    //         'accounts' => Account::withCount('contacts')->paginate(2)->map(function ($account) {
+    //             return [
+    //                 'id' => $account->id,
+    //                 'phone' => $account->phone,
+    //                 'name' => $account->name,
+    //                 'email' => $account->email,
+    //                 'address' => $account->address,
+    //                 'contactcount' => $account->contacts_count,
+    //                 'edit_url' => URL::route('account.edit', $account),
+    //                 'links' => $account->links,
+    //             ];
+    //         }),
+        );
+     }
 
     /**
      * Show the form for creating a new resource.

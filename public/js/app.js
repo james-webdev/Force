@@ -3951,7 +3951,7 @@ __webpack_require__.r(__webpack_exports__);
     Pagination: _Pagination_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
-    accounts: Array
+    accounts: Object
   }
 });
 
@@ -33063,7 +33063,7 @@ var render = function() {
                 [_vm._v("\n            Accounts\n        ")]
               ),
               _vm._v(" "),
-              _c("div", [_vm._v(" here :" + _vm._s(_vm.accounts.links) + " ")])
+              _c("div", [_vm._v(" here :" + _vm._s(_vm.accounts.name) + " ")])
             ]
           },
           proxy: true
@@ -33179,11 +33179,8 @@ var render = function() {
             2
           )
         ]
-      ),
-      _vm._v(" "),
-      _c("pagination", { attrs: { links: _vm.accounts } })
-    ],
-    1
+      )
+    ]
   )
 }
 var staticRenderFns = []
