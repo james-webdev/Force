@@ -29,12 +29,17 @@ class AccountsController extends Controller
         // ]);
 
 
-    //     $accounts =
+        // return Inertia::render('Accounts/Index', [
+        //     'accounts' => Account::query()->paginate()
+        //         ->transform(function ($user) {
+        //             return AccountResource::make($user);
+        //         }),
+        // ]);
 
 
-        $accounts = AccountResource::collection(Account::paginate(3));
+        $accounts = new AccountResource(Account::paginate(5));
         // dd($accounts);
-        return Inertia::render('Accounts/Index', ['accounts' => $accounts]
+        return Inertia::render('Accounts/Index', ['accounts' => $accounts, ]
 
 
 

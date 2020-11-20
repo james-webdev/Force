@@ -4,7 +4,6 @@
         <h2 class="text-3xl text-teal-400 hover:text-teal-600 leading-tight">
             Accounts
         </h2>
-        <div> here :{{accounts.name}} </div>
     </template>
     <div class="mb-6 bg-white flex justify-between items-center">
         <input type="text" placeholder="Search.." class="border ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2">
@@ -13,7 +12,7 @@
             <span class="hidden md:inline">Account</span>
         </inertia-link>
     </div>
-    <div class="bg-white h-screen flex justify-center content-center shadow overflow-x-auto">
+    <div class="bg-white mb-10 flex justify-center content-center">
         <table class="border rounded ml-20 mr-20 whitespace-no-wrap">
             <tr class="bg-white text-left font-bold">
                 <th class="px-6 pt-6 pb-4">Name</th>
@@ -23,29 +22,30 @@
                 <th class="px-6 pt-6 pb-4">Phone</th>
 
             </tr>
-            <tr v-for="account in accounts" class="hover:bg-gray-100 focus-within:bg-gray-100">
+            <tr v-for="account in accounts.data" class="hover:bg-gray-100 focus-within:bg-gray-100">
 
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <a :href="account.edit_url" method="post" as="button" :account="accounts">{{account.name}}</a>
+                     <inertia-link :href="route('account.edit', account.id)">{{ account.name }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <inertia-link :href="account.edit_url">{{ account.email }}</inertia-link>
+                    <inertia-link :href="route('account.edit', account.id)">{{ account.email }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <div>{{ account.address }}</div>
+                 <inertia-link :href="route('account.edit', account.id)">{{ account.address }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <div>{{ account.contactcount }}</div>
+                 <inertia-link :href="route('account.edit', account.id)">{{ account.contactcount }}</inertia-link>
                 </td>
                 <td class=" px-6 pt-6 pb-4 border-t">
-                    <div>{{ account.phone }}</div>
+                 <inertia-link :href="route('account.edit', account.id)">{{ account.phone }}</inertia-link>
                 </td>
+
             </tr>
 
         </table>
     </div>
 
-<!-- <pagination :links="accounts" /> -->
+ <pagination class="p-2 mb-6" :links="accounts.pagination.links" />
 </app-layout>
 </template>
 
@@ -61,7 +61,7 @@ export default {
 
     },
     props: {
-        accounts: Object,
+        accounts: Array,
     },
 
 
