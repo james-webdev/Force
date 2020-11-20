@@ -3951,7 +3951,7 @@ __webpack_require__.r(__webpack_exports__);
     Pagination: _Pagination_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
-    accounts: Object
+    accounts: Array
   }
 });
 
@@ -33061,9 +33061,7 @@ var render = function() {
                     "text-3xl text-teal-400 hover:text-teal-600 leading-tight"
                 },
                 [_vm._v("\n            Accounts\n        ")]
-              ),
-              _vm._v(" "),
-              _c("div", [_vm._v(" here :" + _vm._s(_vm.accounts.name) + " ")])
+              )
             ]
           },
           proxy: true
@@ -33103,10 +33101,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        {
-          staticClass:
-            "bg-white h-screen flex justify-center content-center shadow overflow-x-auto"
-        },
+        { staticClass: "bg-white mb-10 flex justify-center content-center" },
         [
           _c(
             "table",
@@ -33128,25 +33123,27 @@ var render = function() {
                 _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Phone")])
               ]),
               _vm._v(" "),
-              _vm._l(_vm.accounts, function(account) {
+              _vm._l(_vm.accounts.data, function(account) {
                 return _c(
                   "tr",
                   { staticClass: "hover:bg-gray-100 focus-within:bg-gray-100" },
                   [
-                    _c("td", { staticClass: "px-6 pt-6 pb-4 border-t" }, [
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: account.edit_url,
-                            method: "post",
-                            as: "button",
-                            account: _vm.accounts
-                          }
-                        },
-                        [_vm._v(_vm._s(account.name))]
-                      )
-                    ]),
+                    _c(
+                      "td",
+                      { staticClass: "px-6 pt-6 pb-4 border-t" },
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            attrs: {
+                              href: _vm.route("account.edit", account.id)
+                            }
+                          },
+                          [_vm._v(_vm._s(account.name))]
+                        )
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c(
                       "td",
@@ -33154,24 +33151,67 @@ var render = function() {
                       [
                         _c(
                           "inertia-link",
-                          { attrs: { href: account.edit_url } },
+                          {
+                            attrs: {
+                              href: _vm.route("account.edit", account.id)
+                            }
+                          },
                           [_vm._v(_vm._s(account.email))]
                         )
                       ],
                       1
                     ),
                     _vm._v(" "),
-                    _c("td", { staticClass: "px-6 pt-6 pb-4 border-t" }, [
-                      _c("div", [_vm._v(_vm._s(account.address))])
-                    ]),
+                    _c(
+                      "td",
+                      { staticClass: "px-6 pt-6 pb-4 border-t" },
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            attrs: {
+                              href: _vm.route("account.edit", account.id)
+                            }
+                          },
+                          [_vm._v(_vm._s(account.address))]
+                        )
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _c("td", { staticClass: "px-6 pt-6 pb-4 border-t" }, [
-                      _c("div", [_vm._v(_vm._s(account.contactcount))])
-                    ]),
+                    _c(
+                      "td",
+                      { staticClass: "px-6 pt-6 pb-4 border-t" },
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            attrs: {
+                              href: _vm.route("account.edit", account.id)
+                            }
+                          },
+                          [_vm._v(_vm._s(account.contactcount))]
+                        )
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _c("td", { staticClass: " px-6 pt-6 pb-4 border-t" }, [
-                      _c("div", [_vm._v(_vm._s(account.phone))])
-                    ])
+                    _c(
+                      "td",
+                      { staticClass: " px-6 pt-6 pb-4 border-t" },
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            attrs: {
+                              href: _vm.route("account.edit", account.id)
+                            }
+                          },
+                          [_vm._v(_vm._s(account.phone))]
+                        )
+                      ],
+                      1
+                    )
                   ]
                 )
               })
@@ -33179,8 +33219,14 @@ var render = function() {
             2
           )
         ]
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _c("pagination", {
+        staticClass: "p-2 mb-6",
+        attrs: { links: _vm.accounts.pagination.links }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -36161,7 +36207,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mt-6 -mb-1 flex flex-wrap" },
+    { staticClass: "mt-6 mb-1 flex flex-wrap" },
     [
       _vm._l(_vm.links, function(link, key) {
         return [
@@ -36171,7 +36217,7 @@ var render = function() {
                 {
                   key: key,
                   staticClass:
-                    "mr-1 mb-1 px-4 py-3 text-sm border rounded text-gray-400",
+                    "mr-4 mb-1 px-4 py-3 text-sm border rounded text-gray-400",
                   class: { "ml-auto": link.label === "Next" }
                 },
                 [_vm._v(_vm._s(link.label))]
@@ -36181,9 +36227,9 @@ var render = function() {
                 {
                   key: key,
                   staticClass:
-                    "mr-1 mb-1 px-4 py-3 text-sm border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500",
+                    "mr-1 mb-1 ml-2 px-4 py-3 text-sm border rounded hover:bg-white focus:border-teal-500 hover:bg-teal-100 focus:text-teal-500",
                   class: {
-                    "bg-white": link.active,
+                    "bg-teal-100": link.active,
                     "ml-auto": link.label === "Next"
                   },
                   attrs: { href: link.url }

@@ -25,7 +25,7 @@ class AccountFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
-            'address' => $this->faker->address
+            'address' => $this->faker->realText(mt_rand(10, 20)),
         ];
     }
 }
