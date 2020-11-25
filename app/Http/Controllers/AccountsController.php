@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
-use Illuminate\Http\Request;
+use Request;
 use Inertia\Inertia;
 use App\Imports\AccountsImport;
 use Excel;
 use URL;
-use App\Http\Resources\AccountResource;;
+use App\Http\Resources\AccountResource;
+
 
 
 class AccountsController extends Controller
@@ -38,8 +39,12 @@ class AccountsController extends Controller
 
 
         $accounts = new AccountResource(Account::paginate(5));
+        $filteredAccounts = Account::all(Request::only('search'));
         // dd($accounts);
-        return Inertia::render('Accounts/Index', ['accounts' => $accounts, ]
+        return Inertia::render('Accounts/Index', [
+            'filters' => Request::all('search'),
+            'accounts' => $accounts,
+            'filteredAccounts' => $filteredAccounts ]
 
 
 
