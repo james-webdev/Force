@@ -2,7 +2,7 @@
 <app-layout>
     <template #header>
         <h2 class="text-3xl text-teal-400 hover:text-teal-600 leading-tight">
-            Accounts {{filteredAccounts}}
+            Accounts
         </h2>
     </template>
     <div class="mb-6 bg-white flex justify-between items-center">
@@ -36,15 +36,15 @@
                  <inertia-link :href="route('account.edit', account.id)">{{ account.address }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                 <inertia-link :href="route('account.edit', account.id)">{{ account.contactcount }}</inertia-link>
+                 <inertia-link :href="route('account.edit', account.id)">{{ account.contacts_count }}</inertia-link>
                 </td>
                 <td class=" px-6 pt-6 pb-4 border-t">
                  <inertia-link :href="route('account.edit', account.id)">{{ account.phone }}</inertia-link>
                 </td>
 
             </tr>
+            </table>
 
-        </table>
     </div>
 
  <pagination class="p-2 mb-6" :links="accounts.pagination.links" />
@@ -66,9 +66,8 @@ export default {
         SearchFilter
     },
     props: {
-        accounts: Array,
+        accounts: Object,
         filters: Object,
-        filteredAccounts: Object,
 
     },
     data() {
@@ -82,8 +81,9 @@ export default {
   watch: {
     form: {
       handler: throttle(function() {
+        // console.log(this.form);
         let query = pickBy(this.form)
-        console.log(query);
+        // console.log(query);
         this.$inertia.replace(this.route('account.index', query))
       }, 150),
       deep: true,

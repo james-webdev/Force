@@ -1,10 +1,12 @@
 <template>
  <app-layout>
   <div class="bg-white h-screen flex justify-center content-center">
+    <div class="">
     <h1 class="mb-8 font-bold text-3xl">
       <inertia-link class="text-teal-400 hover:text-teal-600">Account</inertia-link>
       <span class="text-teal-400 font-medium">/ {{ account.name }}</span>
     </h1>
+
     <div class="bg-white ml-3 rounded max-w-3xl">
       <form class="p-10" @submit.prevent="">
         <div class="flex flex-col mb-4">
@@ -33,7 +35,43 @@
         </div>
       </form>
     </div>
+    </div>
 
+ <div class="mt-40">
+        <h1 class="mb-8 font-bold text-2xl">
+      <inertia-link class="text-teal-400 hover:text-teal-600">Contacts</inertia-link>
+        </h1>
+
+
+    <div class="bg-white ml-3 rounded max-w-3xl">
+        <table class="border rounded ml-20 mr-20 whitespace-no-wrap">
+            <tr class="bg-white text-left font-bold">
+                <th class="px-6 pt-6 pb-4">Name</th>
+                <th class="px-6 pt-6 pb-4">City</th>
+                <th class="px-6 pt-6 pb-4">Phone</th>
+
+            </tr>
+            <tr v-for="contact in Object.values(contacts)[0].contacts" class="hover:bg-gray-100 focus-within:bg-gray-100">
+
+                <td class="px-6 pt-6 pb-4 border-t">
+                     <inertia-link :href="route('contact.edit', contact.id)">{{ contact.name }}</inertia-link>
+                </td>
+                <td class="px-6 pt-6 pb-4 border-t">
+                 <inertia-link :href="route('contact.edit', contact.id)">{{ contact.city }}</inertia-link>
+                </td>
+                <td class=" px-6 pt-6 pb-4 border-t">
+                 <inertia-link :href="route('contact.edit', contact.id)">{{ contact.phone }}</inertia-link>
+                </td>
+
+            </tr>
+
+        </table>
+            <div class="px-8 py-4 border-gray-200 flex items-center">
+
+          <button class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Add contact</button>
+        </div>
+      </div>
+    </div>
   </div>
   </app-layout>
 </template>
@@ -45,6 +83,7 @@ export default {
         },
         props: {
             account: Object,
+            contacts: Object
         },
 
         data() {

@@ -12,6 +12,7 @@ use App\Http\Resources\AccountResource;
 
 
 
+
 class AccountsController extends Controller
 {
     /**
@@ -22,29 +23,15 @@ class AccountsController extends Controller
     public function index()
     {
 
-        // return Inertia::render('Accounts/Index', [
 
-        //     'accounts' => Account::all()
-        //         ->paginate()
-        //         ->only('id', 'name', 'phone', 'email', 'address'),
-        // ]);
-
-
-        // return Inertia::render('Accounts/Index', [
-        //     'accounts' => Account::query()->paginate()
-        //         ->transform(function ($user) {
-        //             return AccountResource::make($user);
-        //         }),
-        // ]);
-
-
-        $accounts = new AccountResource(Account::paginate(5));
-        $filteredAccounts = Account::all(Request::only('search'));
+        $accounts = new AccountResource(Account::withCount('contacts')->filter(request('search'))->paginate(8));
+        // $filteredAccounts = Account::all(Request::only('search'));
         // dd($accounts);
         return Inertia::render('Accounts/Index', [
             'filters' => Request::all('search'),
             'accounts' => $accounts,
-            'filteredAccounts' => $filteredAccounts ]
+             ]
+
 
 
 
@@ -109,9 +96,12 @@ class AccountsController extends Controller
     public function edit(Account $account)
     {
 
+        $contacts = Account::with('contacts')->get();
+    //   $contacts = Account::find(1)->contacts;
         return Inertia::render('Accounts/Edit', [
             'account' => $account,
             'update_url' => URL::route('account.edit', $account),
+            'contacts' => $contacts->where('id', $account->id),
         ]);
     }
 

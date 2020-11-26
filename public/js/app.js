@@ -3693,10 +3693,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3778,13 +3774,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    account: Object
+    account: Object,
+    contacts: Object
   },
   data: function data() {
     return {
@@ -3965,9 +4000,8 @@ __webpack_require__.r(__webpack_exports__);
     SearchFilter: _Search_SearchFilter__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
-    accounts: Array,
-    filters: Object,
-    filteredAccounts: Object
+    accounts: Object,
+    filters: Object
   },
   data: function data() {
     return {
@@ -3979,8 +4013,9 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     form: {
       handler: lodash_throttle__WEBPACK_IMPORTED_MODULE_5___default()(function () {
-        var query = lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default()(this.form);
-        console.log(query);
+        // console.log(this.form);
+        var query = lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default()(this.form); // console.log(query);
+
         this.$inertia.replace(this.route('account.index', query));
       }, 150),
       deep: true
@@ -5777,11 +5812,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    value: String
-  }
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -37952,39 +37983,6 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "flex flex-col mb-4" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                    attrs: { for: "name" }
-                  },
-                  [_vm._v("#Contact")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.contact,
-                      expression: "contact"
-                    }
-                  ],
-                  staticClass: "border py-2 px-3 text-grey-800 w-full",
-                  attrs: { name: "contactcount" },
-                  domProps: { value: _vm.contact },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.contact = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "px-8 py-4 border-gray-200 flex items-center" },
@@ -37996,7 +37994,7 @@ var render = function() {
                         "bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
                       on: { click: _vm.createAccount }
                     },
-                    [_vm._v("Creates Account")]
+                    [_vm._v("Create Account")]
                   )
                 ]
               )
@@ -38034,235 +38032,349 @@ var render = function() {
       "div",
       { staticClass: "bg-white h-screen flex justify-center content-center" },
       [
-        _c(
-          "h1",
-          { staticClass: "mb-8 font-bold text-3xl" },
-          [
-            _c(
-              "inertia-link",
-              { staticClass: "text-teal-400 hover:text-teal-600" },
-              [_vm._v("Account")]
-            ),
-            _vm._v(" "),
-            _c("span", { staticClass: "text-teal-400 font-medium" }, [
-              _vm._v("/ " + _vm._s(_vm.account.name))
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+        _c("div", {}, [
           _c(
-            "form",
-            {
-              staticClass: "p-10",
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                }
-              }
-            },
+            "h1",
+            { staticClass: "mb-8 font-bold text-3xl" },
             [
-              _c("div", { staticClass: "flex flex-col mb-4" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                    attrs: { for: "name" }
-                  },
-                  [_vm._v("Name")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.account.name,
-                      expression: "account.name"
-                    }
-                  ],
-                  staticClass: "border py-2 px-3 text-grey-800 w-full",
-                  attrs: { name: "name", id: "name" },
-                  domProps: { value: _vm.account.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.account, "name", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex flex-col mb-4" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                    attrs: { for: "name" }
-                  },
-                  [_vm._v("Email")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.account.email,
-                      expression: "account.email"
-                    }
-                  ],
-                  staticClass: "border py-2 px-3 text-grey-800 w-full",
-                  attrs: { name: "email" },
-                  domProps: { value: _vm.account.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.account, "email", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex flex-col mb-4" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                    attrs: { for: "name" }
-                  },
-                  [_vm._v("Phone")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model.number",
-                      value: _vm.account.phone,
-                      expression: "account.phone",
-                      modifiers: { number: true }
-                    }
-                  ],
-                  staticClass: "border py-2 px-3 text-grey-800 w-full",
-                  attrs: { name: "phone", text: "" },
-                  domProps: { value: _vm.account.phone },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.account,
-                        "phone",
-                        _vm._n($event.target.value)
-                      )
-                    },
-                    blur: function($event) {
-                      return _vm.$forceUpdate()
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex flex-col mb-4" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                    attrs: { for: "name" }
-                  },
-                  [_vm._v("Address")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.account.address,
-                      expression: "account.address"
-                    }
-                  ],
-                  staticClass: "border py-2 px-3 text-grey-800 w-full",
-                  attrs: { name: "address" },
-                  domProps: { value: _vm.account.address },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.account, "address", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex flex-col mb-4" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                    attrs: { for: "name" }
-                  },
-                  [_vm._v("#Contact")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.account.contact,
-                      expression: "account.contact"
-                    }
-                  ],
-                  staticClass: "border py-2 px-3 text-grey-800 w-full",
-                  attrs: { name: "contactcount" },
-                  domProps: { value: _vm.account.contact },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.account, "contact", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
               _c(
-                "div",
-                { staticClass: "px-8 py-4 border-gray-200 flex items-center" },
-                [
+                "inertia-link",
+                { staticClass: "text-teal-400 hover:text-teal-600" },
+                [_vm._v("Account")]
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-teal-400 font-medium" }, [
+                _vm._v("/ " + _vm._s(_vm.account.name))
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+            _c(
+              "form",
+              {
+                staticClass: "p-10",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "flex flex-col mb-4" }, [
                   _c(
-                    "button",
+                    "label",
                     {
-                      staticClass:
-                        "bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
-                      on: { click: _vm.destroy }
+                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
+                      attrs: { for: "name" }
                     },
-                    [_vm._v("Delete Account")]
+                    [_vm._v("Name")]
                   ),
                   _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.account.name,
+                        expression: "account.name"
+                      }
+                    ],
+                    staticClass: "border py-2 px-3 text-grey-800 w-full",
+                    attrs: { name: "name", id: "name" },
+                    domProps: { value: _vm.account.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.account, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-col mb-4" }, [
                   _c(
-                    "button",
+                    "label",
                     {
-                      staticClass:
-                        "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
-                      on: { click: _vm.editAccount }
+                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
+                      attrs: { for: "name" }
                     },
-                    [_vm._v("Edit Account")]
-                  )
-                ]
+                    [_vm._v("Email")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.account.email,
+                        expression: "account.email"
+                      }
+                    ],
+                    staticClass: "border py-2 px-3 text-grey-800 w-full",
+                    attrs: { name: "email" },
+                    domProps: { value: _vm.account.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.account, "email", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-col mb-4" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Phone")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model.number",
+                        value: _vm.account.phone,
+                        expression: "account.phone",
+                        modifiers: { number: true }
+                      }
+                    ],
+                    staticClass: "border py-2 px-3 text-grey-800 w-full",
+                    attrs: { name: "phone", text: "" },
+                    domProps: { value: _vm.account.phone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.account,
+                          "phone",
+                          _vm._n($event.target.value)
+                        )
+                      },
+                      blur: function($event) {
+                        return _vm.$forceUpdate()
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-col mb-4" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Address")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.account.address,
+                        expression: "account.address"
+                      }
+                    ],
+                    staticClass: "border py-2 px-3 text-grey-800 w-full",
+                    attrs: { name: "address" },
+                    domProps: { value: _vm.account.address },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.account, "address", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-col mb-4" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("#Contact")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.account.contact,
+                        expression: "account.contact"
+                      }
+                    ],
+                    staticClass: "border py-2 px-3 text-grey-800 w-full",
+                    attrs: { name: "contactcount" },
+                    domProps: { value: _vm.account.contact },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.account, "contact", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "px-8 py-4 border-gray-200 flex items-center"
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                        on: { click: _vm.destroy }
+                      },
+                      [_vm._v("Delete Account")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                        on: { click: _vm.editAccount }
+                      },
+                      [_vm._v("Edit Account")]
+                    )
+                  ]
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-40" }, [
+          _c(
+            "h1",
+            { staticClass: "mb-8 font-bold text-2xl" },
+            [
+              _c(
+                "inertia-link",
+                { staticClass: "text-teal-400 hover:text-teal-600" },
+                [_vm._v("Contacts")]
               )
-            ]
-          )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+            _c(
+              "table",
+              { staticClass: "border rounded ml-20 mr-20 whitespace-no-wrap" },
+              [
+                _c("tr", { staticClass: "bg-white text-left font-bold" }, [
+                  _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
+                  _vm._v(" "),
+                  _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("City")]),
+                  _vm._v(" "),
+                  _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Phone")])
+                ]),
+                _vm._v(" "),
+                _vm._l(Object.values(_vm.contacts)[0].contacts, function(
+                  contact
+                ) {
+                  return _c(
+                    "tr",
+                    {
+                      staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
+                    },
+                    [
+                      _c(
+                        "td",
+                        { staticClass: "px-6 pt-6 pb-4 border-t" },
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              attrs: {
+                                href: _vm.route("contact.edit", contact.id)
+                              }
+                            },
+                            [_vm._v(_vm._s(contact.name))]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "px-6 pt-6 pb-4 border-t" },
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              attrs: {
+                                href: _vm.route("contact.edit", contact.id)
+                              }
+                            },
+                            [_vm._v(_vm._s(contact.city))]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: " px-6 pt-6 pb-4 border-t" },
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              attrs: {
+                                href: _vm.route("contact.edit", contact.id)
+                              }
+                            },
+                            [_vm._v(_vm._s(contact.phone))]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "px-8 py-4 border-gray-200 flex items-center" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15"
+                  },
+                  [_vm._v("Add contact")]
+                )
+              ]
+            )
+          ])
         ])
       ]
     )
@@ -38367,13 +38479,7 @@ var render = function() {
                   staticClass:
                     "text-3xl text-teal-400 hover:text-teal-600 leading-tight"
                 },
-                [
-                  _vm._v(
-                    "\n            Accounts " +
-                      _vm._s(_vm.filteredAccounts) +
-                      "\n        "
-                  )
-                ]
+                [_vm._v("\n            Accounts\n        ")]
               )
             ]
           },
@@ -38508,7 +38614,7 @@ var render = function() {
                               href: _vm.route("account.edit", account.id)
                             }
                           },
-                          [_vm._v(_vm._s(account.contactcount))]
+                          [_vm._v(_vm._s(account.contacts_count))]
                         )
                       ],
                       1
@@ -41585,14 +41691,13 @@ var render = function() {
   return _c("div", { staticClass: "flex items-center" }, [
     _c("div", { staticClass: "flex w-full bg-white shadow rounded" }, [
       _c("input", {
-        staticClass: "relative w-full px-6 py-3 rounded-r focus:shadow-outline",
+        staticClass: "relative w-full px-6 py-3",
         attrs: {
           autocomplete: "off",
           type: "text",
           name: "search",
           placeholder: "Search…"
         },
-        domProps: { value: _vm.value },
         on: {
           input: function($event) {
             return _vm.$emit("input", $event.target.value)
