@@ -13,4 +13,12 @@ class Account extends Model
     public function contacts(){
         return $this->hasMany(Contact::class);
     }
+
+    public function scopeFilter($query, $search = null)
+    {
+
+        $query->when($search ?? null, function ($query, $search) {
+            $query->where('name', 'like', '%'.$search.'%');
+        });
+    }
 }

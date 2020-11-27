@@ -6,7 +6,9 @@
         </h2>
     </template>
     <div class="mb-6 bg-white flex justify-between items-center">
-        <input type="text" placeholder="Search.." class="border ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2">
+    <search-filter v-model="form.search" class="ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2">
+      </search-filter>
+
         <inertia-link class="bg-teal-400 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mt-5 mr-40 mb-7" :href="route('account.create')">
             <span>Create</span>
             <span class="hidden md:inline">Account</span>
@@ -34,15 +36,15 @@
                  <inertia-link :href="route('account.edit', account.id)">{{ account.address }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                 <inertia-link :href="route('account.edit', account.id)">{{ account.contactcount }}</inertia-link>
+                 <inertia-link :href="route('account.edit', account.id)">{{ account.contacts_count }}</inertia-link>
                 </td>
                 <td class=" px-6 pt-6 pb-4 border-t">
                  <inertia-link :href="route('account.edit', account.id)">{{ account.phone }}</inertia-link>
                 </td>
 
             </tr>
+            </table>
 
-        </table>
     </div>
 
  <pagination class="p-2 mb-6" :links="accounts.pagination.links" />
@@ -52,17 +54,41 @@
 <script>
 import AppLayout from "./../../Layouts/AppLayout";
 import Pagination from "./../../Pagination/Pagination"
-
+import SearchFilter from "./../../Search/SearchFilter"
+import mapValues from 'lodash/mapValues'
+import pickBy from 'lodash/pickBy'
+import throttle from 'lodash/throttle'
 
 export default {
     components: {
         AppLayout,
         Pagination,
-
+        SearchFilter
     },
     props: {
-        accounts: Array,
+        accounts: Object,
+        filters: Object,
+
     },
+    data() {
+    return {
+      form: {
+        search: this.filters.search,
+      },
+    }
+  },
+
+  watch: {
+    form: {
+      handler: throttle(function() {
+        // console.log(this.form);
+        let query = pickBy(this.form)
+        // console.log(query);
+        this.$inertia.replace(this.route('account.index', query))
+      }, 150),
+      deep: true,
+    },
+  },
 
 
 };

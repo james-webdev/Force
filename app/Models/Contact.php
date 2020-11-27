@@ -11,7 +11,7 @@ class Contact extends Model
  protected $fillable = ["name", "email", "phone", "address"];
 
   public function accounts(){
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(Account::class, 'account_id');
     }
 
 }
