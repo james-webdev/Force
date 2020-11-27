@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Contacts;
+use App\Models\Contact;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ContactsFactory extends Factory
+class ContactFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Contacts::class;
+    protected $model = Contact::class;
 
     /**
      * Define the model's default state.
@@ -21,8 +21,12 @@ class ContactsFactory extends Factory
      */
     public function definition()
     {
-        return [
-            //
-        ];
+
+            return [
+                'name' => $this->faker->name,
+                'city' => $this->faker->city,
+                'phone' => $this->faker->phoneNumber,
+            ];
+
     }
 }

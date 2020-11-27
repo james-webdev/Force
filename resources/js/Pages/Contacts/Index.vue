@@ -9,11 +9,12 @@
     <div class="mb-6 flex justify-between items-center">
         <input type="text" placeholder="Search.." class="border ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2">
 
-        <inertia-link class="bg-teal-400 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mt-5 mr-40 mb-7" :href="route('contacts.create')">
+        <inertia-link class="bg-teal-400 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mt-5 mr-40 mb-7">
             <span>Create</span>
             <span class="hidden md:inline">Contact</span>
         </inertia-link>
     </div>
+  <!-- <h1> here: {{contacts[0].accounts.name}}</h1> -->
 
     <div class="bg-white h-screen flex justify-center content-center shadow overflow-x-auto">
         <table class="border rounded ml-20 mr-20 whitespace-no-wrap">
@@ -26,16 +27,16 @@
             <tr v-for="contact in contacts" class="hover:bg-gray-100 focus-within:bg-gray-100">
 
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <a :href="contact.edit_url" method="post" as="button" :contact="contacts">{{contact.name}}</a>
+                    <inertia-link :href="route('contact.edit', contact.id)">{{ contact.name }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <inertia-link>{{ contact.account }}</inertia-link>
+                    <inertia-link :href="route('account.edit', contact.accounts.id)">{{ contact.accounts.name }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <div>{{ contact.city }}</div>
+                     <inertia-link :href="route('contact.edit', contact.id)">{{ contact.city }}</inertia-link>
                 </td>
                 <td class=" px-6 pt-6 pb-4 border-t">
-                    <div>{{ contact.phone }}</div>
+                    <inertia-link :href="route('contact.edit', contact.id)">{{ contact.phone }}</inertia-link>
                 </td>
             </tr>
 
@@ -53,7 +54,7 @@ export default {
         AppLayout,
     },
     props: {
-        contacts: Object,
+        contacts: Array,
     },
 };
 </script>

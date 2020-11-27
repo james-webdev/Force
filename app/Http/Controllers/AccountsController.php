@@ -96,12 +96,12 @@ class AccountsController extends Controller
     public function edit(Account $account)
     {
 
-        $contacts = Account::with('contacts')->get();
+        $contacts = Account::with('contacts')->get()->where('id', $account->id);
     //   $contacts = Account::find(1)->contacts;
         return Inertia::render('Accounts/Edit', [
             'account' => $account,
             'update_url' => URL::route('account.edit', $account),
-            'contacts' => $contacts->where('id', $account->id),
+            'contacts' => $contacts,
         ]);
     }
 

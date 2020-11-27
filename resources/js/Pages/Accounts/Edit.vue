@@ -68,7 +68,10 @@
         </table>
             <div class="px-8 py-4 border-gray-200 flex items-center">
 
-          <button class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Add contact</button>
+           <inertia-link class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15" :href="route('contact.create')">
+            <span>Add</span>
+            <span class="hidden md:inline">Contact</span>
+        </inertia-link>
         </div>
       </div>
     </div>
