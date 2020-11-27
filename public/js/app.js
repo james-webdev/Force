@@ -3879,18 +3879,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: {},
+  props: {
+    accounts: Object
+  },
   data: function data() {
     return {
       name: '',
       phone: null,
       city: '',
-      account: ''
+      account_id: this.accounts
     };
   },
   methods: {
@@ -3958,7 +3966,7 @@ __webpack_require__.r(__webpack_exports__);
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    contacts: Object
+    contact: Object
   },
   data: function data() {
     return {
@@ -3968,32 +3976,29 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    editcontact: function editcontact() {
+    editContact: function editContact() {
+      console.log("clicked edit contact");
       var contactsEdit = {
-        name: this.contacts.name,
-        email: this.contacts.email,
-        phone: this.contacts.phone,
-        address: this.contacts.address,
-        contact: this.contacts.contact,
-        id: this.contacts.id,
+        name: this.contact.name,
+        phone: this.contact.phone,
+        city: this.contact.city,
+        id: this.contact.id,
         _method: 'PUT'
       };
-      this.$inertia.post('/contacts/' + this.contacts.id, contactsEdit);
+      this.$inertia.post('/contact/' + this.contact.id, contactsEdit);
     },
     destroy: function destroy() {
       var contactsDelete = {
-        name: this.contacts.name,
-        email: this.contacts.email,
-        phone: this.contacts.phone,
-        address: this.contacts.address,
-        contact: this.contacts.contact,
-        id: this.contacts.id,
+        name: this.contact.name,
+        phone: this.contact.phone,
+        city: this.contact.city,
+        id: this.contact.id,
         _method: 'DELETE'
       };
 
       if (confirm('Are you sure you want to delete this contact?')) {
-        console.log(this.contacts.id);
-        this.$inertia.post('/contacts/' + this.contacts.id, contactsDelete);
+        console.log(this.contact.id);
+        this.$inertia.post('/contact/' + this.contact.id, contactsDelete);
       }
     }
   }
@@ -4011,6 +4016,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+//
 //
 //
 //
@@ -33365,27 +33371,42 @@ var render = function() {
                   [_vm._v("Account")]
                 ),
                 _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.account,
-                      expression: "account"
-                    }
-                  ],
-                  staticClass: "border py-2 px-3 text-grey-800 w-full",
-                  attrs: { name: "account" },
-                  domProps: { value: _vm.account },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.account,
+                        expression: "account"
                       }
-                      _vm.account = $event.target.value
+                    ],
+                    staticClass: "border py-2 px-3 text-grey-800 w-full",
+                    attrs: { name: "account_id" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.account = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
                     }
-                  }
-                })
+                  },
+                  _vm._l(_vm.accounts, function(account) {
+                    return _c("option", { domProps: { value: account.id } }, [
+                      _vm._v(_vm._s(account.name) + " ")
+                    ])
+                  }),
+                  0
+                )
               ]),
               _vm._v(" "),
               _c(
@@ -33449,7 +33470,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("span", { staticClass: "text-teal-400 font-medium" }, [
-                _vm._v("/ " + _vm._s(_vm.contacts.name))
+                _vm._v("/ " + _vm._s(_vm.contact.name))
               ])
             ],
             1
@@ -33482,19 +33503,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.contacts.name,
-                        expression: "contacts.name"
+                        value: _vm.contact.name,
+                        expression: "contact.name"
                       }
                     ],
                     staticClass: "border py-2 px-3 text-grey-800 w-full",
                     attrs: { name: "name", id: "name" },
-                    domProps: { value: _vm.contacts.name },
+                    domProps: { value: _vm.contact.name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.contacts, "name", $event.target.value)
+                        _vm.$set(_vm.contact, "name", $event.target.value)
                       }
                     }
                   })
@@ -33515,19 +33536,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.contacts.city,
-                        expression: "contacts.city"
+                        value: _vm.contact.city,
+                        expression: "contact.city"
                       }
                     ],
                     staticClass: "border py-2 px-3 text-grey-800 w-full",
                     attrs: { name: "email" },
-                    domProps: { value: _vm.contacts.city },
+                    domProps: { value: _vm.contact.city },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.contacts, "city", $event.target.value)
+                        _vm.$set(_vm.contact, "city", $event.target.value)
                       }
                     }
                   })
@@ -33548,21 +33569,21 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model.number",
-                        value: _vm.contacts.phone,
-                        expression: "contacts.phone",
+                        value: _vm.contact.phone,
+                        expression: "contact.phone",
                         modifiers: { number: true }
                       }
                     ],
                     staticClass: "border py-2 px-3 text-grey-800 w-full",
                     attrs: { name: "phone", text: "" },
-                    domProps: { value: _vm.contacts.phone },
+                    domProps: { value: _vm.contact.phone },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.$set(
-                          _vm.contacts,
+                          _vm.contact,
                           "phone",
                           _vm._n($event.target.value)
                         )
@@ -33669,7 +33690,8 @@ var render = function() {
             "inertia-link",
             {
               staticClass:
-                "bg-teal-400 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mt-5 mr-40 mb-7"
+                "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+              attrs: { href: _vm.route("contact.create") }
             },
             [
               _c("span", [_vm._v("Create")]),
@@ -33732,18 +33754,20 @@ var render = function() {
                       "td",
                       { staticClass: "px-6 pt-6 pb-4 border-t" },
                       [
-                        _c(
-                          "inertia-link",
-                          {
-                            attrs: {
-                              href: _vm.route(
-                                "account.edit",
-                                contact.accounts.id
-                              )
-                            }
-                          },
-                          [_vm._v(_vm._s(contact.accounts.name))]
-                        )
+                        contact.accounts
+                          ? _c(
+                              "inertia-link",
+                              {
+                                attrs: {
+                                  href: _vm.route(
+                                    "account.edit",
+                                    contact.accounts.id
+                                  )
+                                }
+                              },
+                              [_vm._v(_vm._s(contact.accounts.name))]
+                            )
+                          : _vm._e()
                       ],
                       1
                     ),

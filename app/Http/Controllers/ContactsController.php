@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use URL;
@@ -17,9 +18,6 @@ class ContactsController extends Controller
     public function index()
     {
 
-        // $accounts = Contact::with('accounts')->get();
-        // dd($accounts);
-
         return Inertia::render('Contacts/Index', [
             'contacts' => Contact::with('accounts')->get()
         ]);
@@ -32,7 +30,9 @@ class ContactsController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Contacts/Create');
+        return Inertia::render('Contacts/Create',[
+            'accounts' => Account::orderBy('name')->get()
+        ]);
     }
 
     /**
@@ -43,7 +43,11 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd(request()->all());
+      $contact = Contact::create($request->all());
+    //   $contact->accounts()->attach(request('account'));
+      return redirect()->route('contact.index');
+
     }
 
     /**
@@ -68,7 +72,7 @@ class ContactsController extends Controller
 
         return Inertia::render('Contacts/Edit', [
             'update_url' => URL::route('contact.edit', $contact),
-            'contacts' => $contact,
+            'contact' => $contact,
         ]);
     }
 
@@ -79,9 +83,10 @@ class ContactsController extends Controller
      * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contacts $contacts)
+    public function update(Request $request, Contact $contact)
     {
-        //
+        $contact->update(request()->all());
+        return redirect()->route('contact.index');
     }
 
     /**
@@ -90,8 +95,9 @@ class ContactsController extends Controller
      * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contacts $contacts)
+    public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->route('contact.index');
     }
 }

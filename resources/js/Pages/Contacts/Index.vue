@@ -9,7 +9,7 @@
     <div class="mb-6 flex justify-between items-center">
         <input type="text" placeholder="Search.." class="border ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2">
 
-        <inertia-link class="bg-teal-400 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mt-5 mr-40 mb-7">
+        <inertia-link class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15" :href="route('contact.create')">
             <span>Create</span>
             <span class="hidden md:inline">Contact</span>
         </inertia-link>
@@ -30,7 +30,8 @@
                     <inertia-link :href="route('contact.edit', contact.id)">{{ contact.name }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <inertia-link :href="route('account.edit', contact.accounts.id)">{{ contact.accounts.name }}</inertia-link>
+
+                    <inertia-link v-if="contact.accounts" :href="route('account.edit', contact.accounts.id)">{{ contact.accounts.name }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
                      <inertia-link :href="route('contact.edit', contact.id)">{{ contact.city }}</inertia-link>
