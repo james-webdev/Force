@@ -14,7 +14,7 @@
             <span class="hidden md:inline">Contact</span>
         </inertia-link>
     </div>
-  <!-- <h1> here: {{contacts[0].accounts.name}}</h1> -->
+  <!-- <h1> here: {{contacts}}</h1> <h1> here: {{contacts[0].accounts.name}}</h1> -->
 
     <div class="bg-white h-screen flex justify-center content-center shadow overflow-x-auto">
         <table class="border rounded ml-20 mr-20 whitespace-no-wrap">

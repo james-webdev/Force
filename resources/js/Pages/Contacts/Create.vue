@@ -22,7 +22,7 @@
                 <div class="flex flex-col mb-4">
                     <label class="mb-2 font-bold text-lg text-grey-darkest" for="account">Account</label>
 
-                    <select v-model="account" class="border py-2 px-3 text-grey-800 w-full" name="account_id">
+                    <select v-model="account_id" class="border py-2 px-3 text-grey-800 w-full" name="account_id">
 
                     <option v-for="account in accounts" v-bind:value="account.id">{{account.name}} </option>
 
@@ -55,7 +55,7 @@ export default {
             name: '',
             phone: null,
             city: '',
-            account_id: this.accounts,
+            account_id: '',
         }
     },
     methods: {
@@ -65,7 +65,7 @@ export default {
                 name: this.name,
                 phone: this.phone,
                 city: this.city,
-                account: this.account,
+                account_id: this.account_id,
 
             }
             console.log(contactCreate);

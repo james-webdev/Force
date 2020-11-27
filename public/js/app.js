@@ -3898,7 +3898,7 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       phone: null,
       city: '',
-      account_id: this.accounts
+      account_id: ''
     };
   },
   methods: {
@@ -3907,7 +3907,7 @@ __webpack_require__.r(__webpack_exports__);
         name: this.name,
         phone: this.phone,
         city: this.city,
-        account: this.account
+        account_id: this.account_id
       };
       console.log(contactCreate);
       this.$inertia.post('/contact', contactCreate);
@@ -33378,8 +33378,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.account,
-                        expression: "account"
+                        value: _vm.account_id,
+                        expression: "account_id"
                       }
                     ],
                     staticClass: "border py-2 px-3 text-grey-800 w-full",
@@ -33394,7 +33394,7 @@ var render = function() {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
-                        _vm.account = $event.target.multiple
+                        _vm.account_id = $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
                       }

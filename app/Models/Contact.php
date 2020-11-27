@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
- protected $fillable = ["name", "email", "phone", "address"];
+ protected $fillable = ["name", "city", "phone", "account_id"];
 
   public function accounts(){
         return $this->belongsTo(Account::class, 'account_id');
