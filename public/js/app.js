@@ -3084,6 +3084,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31049,23 +31056,25 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "inertia-link",
+                    "jet-nav-link",
                     {
-                      staticClass:
-                        "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out",
-                      attrs: { href: _vm.route("account.index") }
+                      attrs: {
+                        href: _vm.route("account.index"),
+                        active: _vm.$page.currentRouteName == "account.index"
+                      }
                     },
-                    [_vm._v("Accounts")]
+                    [_vm._v("Accounts\n            ")]
                   ),
                   _vm._v(" "),
                   _c(
-                    "inertia-link",
+                    "jet-nav-link",
                     {
-                      staticClass:
-                        "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out",
-                      attrs: { href: _vm.route("contact.index") }
+                      attrs: {
+                        href: _vm.route("contact.index"),
+                        active: _vm.$page.currentRouteName == "contact.index"
+                      }
                     },
-                    [_vm._v("Contacts")]
+                    [_vm._v("Accounts\n            ")]
                   )
                 ],
                 1
