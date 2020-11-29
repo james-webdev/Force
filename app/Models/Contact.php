@@ -14,4 +14,12 @@ class Contact extends Model
         return $this->belongsTo(Account::class, 'account_id');
     }
 
+    public function scopeFilter($query, $search = null)
+    {
+
+        $query->when($search ?? null, function ($query, $search) {
+            $query->where('name', 'like', '%'.$search.'%');
+        });
+    }
+
 }

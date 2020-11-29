@@ -4016,6 +4016,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Pagination_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Pagination/Pagination */ "./resources/js/Pagination/Pagination.vue");
+/* harmony import */ var _Search_SearchFilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Search/SearchFilter */ "./resources/js/Search/SearchFilter.vue");
+/* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/mapValues */ "./node_modules/lodash/mapValues.js");
+/* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/pickBy */ "./node_modules/lodash/pickBy.js");
+/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_pickBy__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash/throttle */ "./node_modules/lodash/throttle.js");
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_5__);
+//
 //
 //
 //
@@ -4066,12 +4075,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Pagination: _Pagination_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SearchFilter: _Search_SearchFilter__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
-    contacts: Array
+    contacts: Object,
+    filters: Object
+  },
+  data: function data() {
+    return {
+      form: {
+        search: this.filters.search
+      }
+    };
+  },
+  watch: {
+    form: {
+      handler: lodash_throttle__WEBPACK_IMPORTED_MODULE_5___default()(function () {
+        // console.log(this.form);
+        var query = lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default()(this.form);
+        console.log(query);
+        this.$inertia.replace(this.route('contact.index', query));
+      }, 150),
+      deep: true
+    }
   }
 });
 
@@ -31634,7 +31669,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("header", { staticClass: "bg-white shadow" }, [
+      _c("header", { staticClass: "bg-white" }, [
         _c(
           "div",
           { staticClass: "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8" },
@@ -33680,10 +33715,15 @@ var render = function() {
         "div",
         { staticClass: "mb-6 flex justify-between items-center" },
         [
-          _c("input", {
-            staticClass:
-              "border ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2",
-            attrs: { type: "text", placeholder: "Search.." }
+          _c("search-filter", {
+            staticClass: "ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2",
+            model: {
+              value: _vm.form.search,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "search", $$v)
+              },
+              expression: "form.search"
+            }
           }),
           _vm._v(" "),
           _c(
@@ -33707,10 +33747,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        {
-          staticClass:
-            "bg-white h-screen flex justify-center content-center shadow overflow-x-auto"
-        },
+        { staticClass: "bg-white mb-10 flex justify-center content-center" },
         [
           _c(
             "table",
@@ -33728,7 +33765,7 @@ var render = function() {
                 _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Phone")])
               ]),
               _vm._v(" "),
-              _vm._l(_vm.contacts, function(contact) {
+              _vm._l(_vm.contacts.data, function(contact) {
                 return _c(
                   "tr",
                   { staticClass: "hover:bg-gray-100 focus-within:bg-gray-100" },
@@ -33812,8 +33849,14 @@ var render = function() {
             2
           )
         ]
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _c("pagination", {
+        staticClass: "p-2 mb-10",
+        attrs: { links: _vm.contacts.pagination.links }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = []

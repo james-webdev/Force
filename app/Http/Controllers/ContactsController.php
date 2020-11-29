@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\Account;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use URL;
+use Request;
+use App\Http\Resources\ContactResource;
 
 class ContactsController extends Controller
 {
@@ -18,9 +19,20 @@ class ContactsController extends Controller
     public function index()
     {
 
+
+        $contacts = new ContactResource(Contact::with('accounts')->filter(request('search'))->paginate(5));
+        // $filteredAccounts = Account::all(Request::only('search'));
+        // dd($contacts);
         return Inertia::render('Contacts/Index', [
-            'contacts' => Contact::with('accounts')->get()
-        ]);
+            'filters' => Request::all('search'),
+            'contacts' => $contacts,
+             ]
+
+        // return Inertia::render('Contacts/Index', [
+        //     'contacts' => Contact::with('accounts')->get()
+        // ]);
+    );
+
     }
 
     /**
