@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-use Illuminate\Http\Request;
+use App\Models\Account;
+use App\Models\Activity;
 use Inertia\Inertia;
 use URL;
+use Request;
+use App\Http\Resources\ContactResource;
 
 class ContactsController extends Controller
 {
@@ -17,12 +20,21 @@ class ContactsController extends Controller
     public function index()
     {
 
-        // $accounts = Contact::with('accounts')->get();
-        // dd($accounts);
 
+        $contacts = new ContactResource(Contact::with('accounts')->filter(request('search'))->paginate(5));
+        // $filteredAccounts = Account::all(Request::only('search'));
+        // dd($contacts);
         return Inertia::render('Contacts/Index', [
-            'contacts' => Contact::with('accounts')->get()
-        ]);
+            'filters' => Request::all('search'),
+            'contacts' => $contacts,
+            'activities' => Activity::all()
+             ]
+
+        // return Inertia::render('Contacts/Index', [
+        //     'contacts' => Contact::with('accounts')->get()
+        // ]);
+    );
+
     }
 
     /**
@@ -32,7 +44,9 @@ class ContactsController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Contacts/Create');
+        return Inertia::render('Contacts/Create',[
+            'accounts' => Account::orderBy('name')->get()
+        ]);
     }
 
     /**
@@ -43,7 +57,11 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+      Contact::create($request->all());
+    //   $contact->accounts()->attach(request('account'));
+      return redirect()->route('contact.index');
+
     }
 
     /**
@@ -66,9 +84,12 @@ class ContactsController extends Controller
     public function edit(Contact $contact)
     {
 
+        $activities = Activity::get()->where('contact_id', $contact->id);
+        // dd($activities);
         return Inertia::render('Contacts/Edit', [
             'update_url' => URL::route('contact.edit', $contact),
-            'contacts' => $contact,
+            'contact' => $contact,
+            'activities' => $activities
         ]);
     }
 
@@ -79,9 +100,10 @@ class ContactsController extends Controller
      * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contacts $contacts)
+    public function update(Request $request, Contact $contact)
     {
-        //
+        $contact->update(request()->all());
+        return redirect()->route('contact.index');
     }
 
     /**
@@ -90,8 +112,9 @@ class ContactsController extends Controller
      * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contacts $contacts)
+    public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->route('contact.index');
     }
 }

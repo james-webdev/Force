@@ -21,7 +21,13 @@
                 </div>
                 <div class="flex flex-col mb-4">
                     <label class="mb-2 font-bold text-lg text-grey-darkest" for="account">Account</label>
-                    <input name="account" v-model="account" class="border py-2 px-3 text-grey-800 w-full" />
+
+                    <select v-model="account_id" class="border py-2 px-3 text-grey-800 w-full" name="account_id">
+
+                    <option v-for="account in accounts" v-bind:value="account.id">{{account.name}} </option>
+
+                    </select>
+
                 </div>
                 <div class="px-8 py-4 border-gray-200 flex items-center">
                     <button @click="createContact" class="bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Create Contact</button>
@@ -40,14 +46,16 @@ export default {
     components: {
         AppLayout,
     },
-    props: {},
+    props: {
+        accounts: Object,
+    },
 
     data() {
         return {
             name: '',
             phone: null,
             city: '',
-            account: '',
+            account_id: '',
         }
     },
     methods: {
@@ -57,7 +65,7 @@ export default {
                 name: this.name,
                 phone: this.phone,
                 city: this.city,
-                account: this.account,
+                account_id: this.account_id,
 
             }
             console.log(contactCreate);

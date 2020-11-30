@@ -24,7 +24,7 @@ class AccountsController extends Controller
     {
 
 
-        $accounts = new AccountResource(Account::withCount('contacts')->filter(request('search'))->paginate(8));
+        $accounts = new AccountResource(Account::withCount('contacts')->filter(request('search'))->paginate(5));
         // $filteredAccounts = Account::all(Request::only('search'));
         // dd($accounts);
         return Inertia::render('Accounts/Index', [

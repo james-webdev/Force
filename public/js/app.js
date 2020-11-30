@@ -3084,6 +3084,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3879,18 +3888,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: {},
+  props: {
+    accounts: Object
+  },
   data: function data() {
     return {
       name: '',
       phone: null,
       city: '',
-      account: ''
+      account_id: ''
     };
   },
   methods: {
@@ -3899,7 +3916,7 @@ __webpack_require__.r(__webpack_exports__);
         name: this.name,
         phone: this.phone,
         city: this.city,
-        account: this.account
+        account_id: this.account_id
       };
       console.log(contactCreate);
       this.$inertia.post('/contact', contactCreate);
@@ -3952,49 +3969,102 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    contacts: Object
+    contact: Object,
+    activities: Array
   },
   data: function data() {
     return {
       name: '',
       phone: null,
-      city: ''
+      city: '',
+      called: false,
+      met: false,
+      proposed: false,
+      assisted: false,
+      comments: '',
+      id: ''
     };
   },
   methods: {
-    editcontact: function editcontact() {
+    editContact: function editContact() {
+      console.log("clicked edit contact");
       var contactsEdit = {
-        name: this.contacts.name,
-        email: this.contacts.email,
-        phone: this.contacts.phone,
-        address: this.contacts.address,
-        contact: this.contacts.contact,
-        id: this.contacts.id,
+        name: this.contact.name,
+        phone: this.contact.phone,
+        city: this.contact.city,
+        id: this.contact.id,
         _method: 'PUT'
       };
-      this.$inertia.post('/contacts/' + this.contacts.id, contactsEdit);
+      this.$inertia.post('/contact/' + this.contact.id, contactsEdit);
     },
     destroy: function destroy() {
       var contactsDelete = {
-        name: this.contacts.name,
-        email: this.contacts.email,
-        phone: this.contacts.phone,
-        address: this.contacts.address,
-        contact: this.contacts.contact,
-        id: this.contacts.id,
+        name: this.contact.name,
+        phone: this.contact.phone,
+        city: this.contact.city,
+        id: this.contact.id,
         _method: 'DELETE'
       };
 
       if (confirm('Are you sure you want to delete this contact?')) {
-        console.log(this.contacts.id);
-        this.$inertia.post('/contacts/' + this.contacts.id, contactsDelete);
+        console.log(this.contact.id);
+        this.$inertia.post('/contact/' + this.contact.id, contactsDelete);
       }
+    },
+    editActivity: function editActivity() {
+      console.log(this.activity);
+      var activityEdit = {
+        called: this.activity.called,
+        met: this.activity.met,
+        proposed: this.activity.proposed,
+        assisted: this.activity.assisted,
+        comments: this.activity.comments,
+        id: this.id,
+        _method: 'PUT'
+      };
+      console.log(activityEdit);
+      this.$inertia.post('/activity/' + this.activity.id, activityEdit);
     }
   }
 });
@@ -4011,6 +4081,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Pagination_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Pagination/Pagination */ "./resources/js/Pagination/Pagination.vue");
+/* harmony import */ var _Search_SearchFilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Search/SearchFilter */ "./resources/js/Search/SearchFilter.vue");
+/* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/mapValues */ "./node_modules/lodash/mapValues.js");
+/* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/pickBy */ "./node_modules/lodash/pickBy.js");
+/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_pickBy__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash/throttle */ "./node_modules/lodash/throttle.js");
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_5__);
+//
+//
+//
 //
 //
 //
@@ -4060,12 +4141,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Pagination: _Pagination_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SearchFilter: _Search_SearchFilter__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
-    contacts: Array
+    contacts: Object,
+    filters: Object,
+    activities: Object
+  },
+  data: function data() {
+    return {
+      form: {
+        search: this.filters.search
+      }
+    };
+  },
+  watch: {
+    form: {
+      handler: lodash_throttle__WEBPACK_IMPORTED_MODULE_5___default()(function () {
+        // console.log(this.form);
+        var query = lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default()(this.form);
+        console.log(query);
+        this.$inertia.replace(this.route('contact.index', query));
+      }, 150),
+      deep: true
+    }
   }
 });
 
@@ -31004,27 +31112,29 @@ var render = function() {
                         active: _vm.$page.currentRouteName == "dashboard"
                       }
                     },
-                    [_vm._v("\n              Dashboard\n            ")]
+                    [_vm._v("\n                  Dashboard\n            ")]
                   ),
                   _vm._v(" "),
                   _c(
-                    "inertia-link",
+                    "jet-nav-link",
                     {
-                      staticClass:
-                        "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out",
-                      attrs: { href: _vm.route("account.index") }
+                      attrs: {
+                        href: _vm.route("account.index"),
+                        active: _vm.$page.currentRouteName == "account.index"
+                      }
                     },
-                    [_vm._v("Accounts")]
+                    [_vm._v("\n                  Accounts\n            ")]
                   ),
                   _vm._v(" "),
                   _c(
-                    "inertia-link",
+                    "jet-nav-link",
                     {
-                      staticClass:
-                        "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out",
-                      attrs: { href: _vm.route("contact.index") }
+                      attrs: {
+                        href: _vm.route("contact.index"),
+                        active: _vm.$page.currentRouteName == "contact.index"
+                      }
                     },
-                    [_vm._v("Contacts")]
+                    [_vm._v("\n                  Contacts\n            ")]
                   )
                 ],
                 1
@@ -31628,7 +31738,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("header", { staticClass: "bg-white shadow" }, [
+      _c("header", { staticClass: "bg-white" }, [
         _c(
           "div",
           { staticClass: "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8" },
@@ -33365,27 +33475,42 @@ var render = function() {
                   [_vm._v("Account")]
                 ),
                 _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.account,
-                      expression: "account"
-                    }
-                  ],
-                  staticClass: "border py-2 px-3 text-grey-800 w-full",
-                  attrs: { name: "account" },
-                  domProps: { value: _vm.account },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.account_id,
+                        expression: "account_id"
                       }
-                      _vm.account = $event.target.value
+                    ],
+                    staticClass: "border py-2 px-3 text-grey-800 w-full",
+                    attrs: { name: "account_id" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.account_id = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
                     }
-                  }
-                })
+                  },
+                  _vm._l(_vm.accounts, function(account) {
+                    return _c("option", { domProps: { value: account.id } }, [
+                      _vm._v(_vm._s(account.name) + " ")
+                    ])
+                  }),
+                  0
+                )
               ]),
               _vm._v(" "),
               _c(
@@ -33449,7 +33574,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("span", { staticClass: "text-teal-400 font-medium" }, [
-                _vm._v("/ " + _vm._s(_vm.contacts.name))
+                _vm._v("/ " + _vm._s(_vm.contact.name))
               ])
             ],
             1
@@ -33482,19 +33607,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.contacts.name,
-                        expression: "contacts.name"
+                        value: _vm.contact.name,
+                        expression: "contact.name"
                       }
                     ],
                     staticClass: "border py-2 px-3 text-grey-800 w-full",
                     attrs: { name: "name", id: "name" },
-                    domProps: { value: _vm.contacts.name },
+                    domProps: { value: _vm.contact.name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.contacts, "name", $event.target.value)
+                        _vm.$set(_vm.contact, "name", $event.target.value)
                       }
                     }
                   })
@@ -33515,19 +33640,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.contacts.city,
-                        expression: "contacts.city"
+                        value: _vm.contact.city,
+                        expression: "contact.city"
                       }
                     ],
                     staticClass: "border py-2 px-3 text-grey-800 w-full",
                     attrs: { name: "email" },
-                    domProps: { value: _vm.contacts.city },
+                    domProps: { value: _vm.contact.city },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.contacts, "city", $event.target.value)
+                        _vm.$set(_vm.contact, "city", $event.target.value)
                       }
                     }
                   })
@@ -33548,21 +33673,21 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model.number",
-                        value: _vm.contacts.phone,
-                        expression: "contacts.phone",
+                        value: _vm.contact.phone,
+                        expression: "contact.phone",
                         modifiers: { number: true }
                       }
                     ],
                     staticClass: "border py-2 px-3 text-grey-800 w-full",
                     attrs: { name: "phone", text: "" },
-                    domProps: { value: _vm.contacts.phone },
+                    domProps: { value: _vm.contact.phone },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.$set(
-                          _vm.contacts,
+                          _vm.contact,
                           "phone",
                           _vm._n($event.target.value)
                         )
@@ -33604,8 +33729,329 @@ var render = function() {
               ]
             )
           ])
-        ])
-      ]
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.activities, function(activity) {
+          return _vm.activities
+            ? _c("div", [
+                _c(
+                  "h1",
+                  { staticClass: "mb-8 font-bold text-2xl" },
+                  [
+                    _c(
+                      "inertia-link",
+                      { staticClass: "text-teal-400 hover:text-teal-600" },
+                      [_vm._v("Activities")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+                  _c(
+                    "form",
+                    {
+                      staticClass: "p-10",
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                        }
+                      }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: activity.called,
+                            expression: "activity.called"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: "called",
+                          value: "called"
+                        },
+                        domProps: {
+                          checked: Array.isArray(activity.called)
+                            ? _vm._i(activity.called, "called") > -1
+                            : activity.called
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = activity.called,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "called",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    activity,
+                                    "called",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    activity,
+                                    "called",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(activity, "called", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "called" } }, [
+                        _vm._v("Called")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: activity.met,
+                            expression: "activity.met"
+                          }
+                        ],
+                        attrs: { type: "checkbox", id: "met", value: "met" },
+                        domProps: {
+                          checked: Array.isArray(activity.met)
+                            ? _vm._i(activity.met, "met") > -1
+                            : activity.met
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = activity.met,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "met",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(activity, "met", $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    activity,
+                                    "met",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(activity, "met", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "met" } }, [_vm._v("Met")]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: activity.proposed,
+                            expression: "activity.proposed"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: "proposed",
+                          value: "proposed"
+                        },
+                        domProps: {
+                          checked: Array.isArray(activity.proposed)
+                            ? _vm._i(activity.proposed, "proposed") > -1
+                            : activity.proposed
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = activity.proposed,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "proposed",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    activity,
+                                    "proposed",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    activity,
+                                    "proposed",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(activity, "proposed", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "proposed" } }, [
+                        _vm._v("Proposed")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: activity.assisted,
+                            expression: "activity.assisted"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: "assisted",
+                          value: "assisted"
+                        },
+                        domProps: {
+                          checked: Array.isArray(activity.assisted)
+                            ? _vm._i(activity.assisted, "assisted") > -1
+                            : activity.assisted
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = activity.assisted,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "assisted",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    activity,
+                                    "assisted",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    activity,
+                                    "assisted",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(activity, "assisted", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "assisted" } }, [
+                        _vm._v("Assisted")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex flex-col mb-4" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: activity.comments,
+                              expression: "activity.comments"
+                            }
+                          ],
+                          staticClass:
+                            "border rounded mt-2 py-2 px-3 text-grey-800 w-full",
+                          attrs: { placeholder: "comment" },
+                          domProps: { value: activity.comments },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                activity,
+                                "comments",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "px-8 py-4 border-gray-200 flex items-center"
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                              on: { click: function($event) {} }
+                            },
+                            [_vm._v("Delete Activities")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                              on: { click: _vm.editActivity }
+                            },
+                            [_vm._v("Edit Activities")]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              ])
+            : _c("div", [
+                _c(
+                  "div",
+                  {
+                    staticClass: "px-8 py-4 border-gray-200 flex items-center"
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                        attrs: { href: _vm.route("activity.edit", _vm.act.id) }
+                      },
+                      [_vm._v("Add Activities")]
+                    )
+                  ]
+                )
+              ])
+        })
+      ],
+      2
     )
   ])
 }
@@ -33659,17 +34105,23 @@ var render = function() {
         "div",
         { staticClass: "mb-6 flex justify-between items-center" },
         [
-          _c("input", {
-            staticClass:
-              "border ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2",
-            attrs: { type: "text", placeholder: "Search.." }
+          _c("search-filter", {
+            staticClass: "ml-20 py-2 px-3 text-grey-darkest w-full lg:w-1/2",
+            model: {
+              value: _vm.form.search,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "search", $$v)
+              },
+              expression: "form.search"
+            }
           }),
           _vm._v(" "),
           _c(
             "inertia-link",
             {
               staticClass:
-                "bg-teal-400 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mt-5 mr-40 mb-7"
+                "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+              attrs: { href: _vm.route("contact.create") }
             },
             [
               _c("span", [_vm._v("Create")]),
@@ -33685,10 +34137,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        {
-          staticClass:
-            "bg-white h-screen flex justify-center content-center shadow overflow-x-auto"
-        },
+        { staticClass: "bg-white mb-10 flex justify-center content-center" },
         [
           _c(
             "table",
@@ -33706,7 +34155,7 @@ var render = function() {
                 _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Phone")])
               ]),
               _vm._v(" "),
-              _vm._l(_vm.contacts, function(contact) {
+              _vm._l(_vm.contacts.data, function(contact) {
                 return _c(
                   "tr",
                   { staticClass: "hover:bg-gray-100 focus-within:bg-gray-100" },
@@ -33732,18 +34181,20 @@ var render = function() {
                       "td",
                       { staticClass: "px-6 pt-6 pb-4 border-t" },
                       [
-                        _c(
-                          "inertia-link",
-                          {
-                            attrs: {
-                              href: _vm.route(
-                                "account.edit",
-                                contact.accounts.id
-                              )
-                            }
-                          },
-                          [_vm._v(_vm._s(contact.accounts.name))]
-                        )
+                        contact.accounts
+                          ? _c(
+                              "inertia-link",
+                              {
+                                attrs: {
+                                  href: _vm.route(
+                                    "account.edit",
+                                    contact.accounts.id
+                                  )
+                                }
+                              },
+                              [_vm._v(_vm._s(contact.accounts.name))]
+                            )
+                          : _vm._e()
                       ],
                       1
                     ),
@@ -33788,8 +34239,14 @@ var render = function() {
             2
           )
         ]
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _c("pagination", {
+        staticClass: "p-2 mb-10",
+        attrs: { links: _vm.contacts.pagination.links }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -50222,6 +50679,8 @@ var map = {
 	"./Accounts/Import.vue": "./resources/js/Pages/Accounts/Import.vue",
 	"./Accounts/Index": "./resources/js/Pages/Accounts/Index.vue",
 	"./Accounts/Index.vue": "./resources/js/Pages/Accounts/Index.vue",
+	"./Activities/Edit": "./resources/js/Pages/Activities/Edit.vue",
+	"./Activities/Edit.vue": "./resources/js/Pages/Activities/Edit.vue",
 	"./Contacts/Create": "./resources/js/Pages/Contacts/Create.vue",
 	"./Contacts/Create.vue": "./resources/js/Pages/Contacts/Create.vue",
 	"./Contacts/Edit": "./resources/js/Pages/Contacts/Edit.vue",
@@ -50689,6 +51148,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_6790c29c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Activities/Edit.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Pages/Activities/Edit.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/Pages/Activities/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
