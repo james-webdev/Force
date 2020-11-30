@@ -16,6 +16,7 @@
         </inertia-link>
     </div>
   <!-- <h1> here: {{contacts.data}}</h1> <h1> here: {{contacts}}</h1> <h1> here: {{contacts}}</h1> <h1> here: {{contacts[0].accounts.name}}</h1> -->
+  
 
     <div class="bg-white mb-10 flex justify-center content-center">
         <table class="border rounded ml-20 mr-20 whitespace-no-wrap">
@@ -65,6 +66,7 @@ export default {
     props: {
         contacts: Object,
         filters: Object,
+        activities: Object,
     },
 
     data() {

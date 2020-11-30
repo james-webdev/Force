@@ -3091,6 +3091,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3967,19 +3969,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    contact: Object
+    contact: Object,
+    activities: Array
   },
   data: function data() {
     return {
       name: '',
       phone: null,
-      city: ''
+      city: '',
+      called: false,
+      met: false,
+      proposed: false,
+      assisted: false,
+      comments: '',
+      id: ''
     };
   },
   methods: {
@@ -4007,6 +4051,20 @@ __webpack_require__.r(__webpack_exports__);
         console.log(this.contact.id);
         this.$inertia.post('/contact/' + this.contact.id, contactsDelete);
       }
+    },
+    editActivity: function editActivity() {
+      console.log(this.activity);
+      var activityEdit = {
+        called: this.activity.called,
+        met: this.activity.met,
+        proposed: this.activity.proposed,
+        assisted: this.activity.assisted,
+        comments: this.activity.comments,
+        id: this.id,
+        _method: 'PUT'
+      };
+      console.log(activityEdit);
+      this.$inertia.post('/activity/' + this.activity.id, activityEdit);
     }
   }
 });
@@ -4081,6 +4139,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -4095,7 +4154,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     contacts: Object,
-    filters: Object
+    filters: Object,
+    activities: Object
   },
   data: function data() {
     return {
@@ -31052,7 +31112,7 @@ var render = function() {
                         active: _vm.$page.currentRouteName == "dashboard"
                       }
                     },
-                    [_vm._v("\n              Dashboard\n            ")]
+                    [_vm._v("\n                  Dashboard\n            ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -31063,7 +31123,7 @@ var render = function() {
                         active: _vm.$page.currentRouteName == "account.index"
                       }
                     },
-                    [_vm._v("Accounts\n            ")]
+                    [_vm._v("\n                  Accounts\n            ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -31074,7 +31134,7 @@ var render = function() {
                         active: _vm.$page.currentRouteName == "contact.index"
                       }
                     },
-                    [_vm._v("Accounts\n            ")]
+                    [_vm._v("\n                  Contacts\n            ")]
                   )
                 ],
                 1
@@ -33669,8 +33729,329 @@ var render = function() {
               ]
             )
           ])
-        ])
-      ]
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.activities, function(activity) {
+          return _vm.activities
+            ? _c("div", [
+                _c(
+                  "h1",
+                  { staticClass: "mb-8 font-bold text-2xl" },
+                  [
+                    _c(
+                      "inertia-link",
+                      { staticClass: "text-teal-400 hover:text-teal-600" },
+                      [_vm._v("Activities")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+                  _c(
+                    "form",
+                    {
+                      staticClass: "p-10",
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                        }
+                      }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: activity.called,
+                            expression: "activity.called"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: "called",
+                          value: "called"
+                        },
+                        domProps: {
+                          checked: Array.isArray(activity.called)
+                            ? _vm._i(activity.called, "called") > -1
+                            : activity.called
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = activity.called,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "called",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    activity,
+                                    "called",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    activity,
+                                    "called",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(activity, "called", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "called" } }, [
+                        _vm._v("Called")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: activity.met,
+                            expression: "activity.met"
+                          }
+                        ],
+                        attrs: { type: "checkbox", id: "met", value: "met" },
+                        domProps: {
+                          checked: Array.isArray(activity.met)
+                            ? _vm._i(activity.met, "met") > -1
+                            : activity.met
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = activity.met,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "met",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(activity, "met", $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    activity,
+                                    "met",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(activity, "met", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "met" } }, [_vm._v("Met")]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: activity.proposed,
+                            expression: "activity.proposed"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: "proposed",
+                          value: "proposed"
+                        },
+                        domProps: {
+                          checked: Array.isArray(activity.proposed)
+                            ? _vm._i(activity.proposed, "proposed") > -1
+                            : activity.proposed
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = activity.proposed,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "proposed",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    activity,
+                                    "proposed",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    activity,
+                                    "proposed",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(activity, "proposed", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "proposed" } }, [
+                        _vm._v("Proposed")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: activity.assisted,
+                            expression: "activity.assisted"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: "assisted",
+                          value: "assisted"
+                        },
+                        domProps: {
+                          checked: Array.isArray(activity.assisted)
+                            ? _vm._i(activity.assisted, "assisted") > -1
+                            : activity.assisted
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = activity.assisted,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "assisted",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    activity,
+                                    "assisted",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    activity,
+                                    "assisted",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(activity, "assisted", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "assisted" } }, [
+                        _vm._v("Assisted")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex flex-col mb-4" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: activity.comments,
+                              expression: "activity.comments"
+                            }
+                          ],
+                          staticClass:
+                            "border rounded mt-2 py-2 px-3 text-grey-800 w-full",
+                          attrs: { placeholder: "comment" },
+                          domProps: { value: activity.comments },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                activity,
+                                "comments",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "px-8 py-4 border-gray-200 flex items-center"
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                              on: { click: function($event) {} }
+                            },
+                            [_vm._v("Delete Activities")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                              on: { click: _vm.editActivity }
+                            },
+                            [_vm._v("Edit Activities")]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              ])
+            : _c("div", [
+                _c(
+                  "div",
+                  {
+                    staticClass: "px-8 py-4 border-gray-200 flex items-center"
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                        attrs: { href: _vm.route("activity.edit", _vm.act.id) }
+                      },
+                      [_vm._v("Add Activities")]
+                    )
+                  ]
+                )
+              ])
+        })
+      ],
+      2
     )
   ])
 }
@@ -50298,6 +50679,8 @@ var map = {
 	"./Accounts/Import.vue": "./resources/js/Pages/Accounts/Import.vue",
 	"./Accounts/Index": "./resources/js/Pages/Accounts/Index.vue",
 	"./Accounts/Index.vue": "./resources/js/Pages/Accounts/Index.vue",
+	"./Activities/Edit": "./resources/js/Pages/Activities/Edit.vue",
+	"./Activities/Edit.vue": "./resources/js/Pages/Activities/Edit.vue",
 	"./Contacts/Create": "./resources/js/Pages/Contacts/Create.vue",
 	"./Contacts/Create.vue": "./resources/js/Pages/Contacts/Create.vue",
 	"./Contacts/Edit": "./resources/js/Pages/Contacts/Edit.vue",
@@ -50765,6 +51148,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_6790c29c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Activities/Edit.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Pages/Activities/Edit.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/Pages/Activities/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 

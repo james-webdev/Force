@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\Account;
+use App\Models\Activity;
 use Inertia\Inertia;
 use URL;
 use Request;
@@ -26,6 +27,7 @@ class ContactsController extends Controller
         return Inertia::render('Contacts/Index', [
             'filters' => Request::all('search'),
             'contacts' => $contacts,
+            'activities' => Activity::all()
              ]
 
         // return Inertia::render('Contacts/Index', [
@@ -82,9 +84,12 @@ class ContactsController extends Controller
     public function edit(Contact $contact)
     {
 
+        $activities = Activity::get()->where('contact_id', $contact->id);
+        // dd($activities);
         return Inertia::render('Contacts/Edit', [
             'update_url' => URL::route('contact.edit', $contact),
             'contact' => $contact,
+            'activities' => $activities
         ]);
     }
 
