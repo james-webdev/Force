@@ -3881,6 +3881,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3888,11 +3896,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     activities: Object,
+    contacts: Object,
     activitytypes: Object
   },
   data: function data() {
     return {
-      id: ''
+      contact_id: '',
+      activity_type_id: '',
+      comments: ''
     };
   },
   methods: {
@@ -3910,19 +3921,14 @@ __webpack_require__.r(__webpack_exports__);
         this.$inertia.post('/contact/' + this.contact.id, contactsDelete);
       }
     },
-    editActivity: function editActivity() {
-      console.log(this.activity);
-      var activityEdit = {
-        called: this.called,
-        met: this.met,
-        proposed: this.proposed,
-        assisted: this.assisted,
+    addActivity: function addActivity() {
+      var activityAdd = {
         comments: this.comments,
-        id: this.id,
-        _method: 'PUT'
+        contact_id: this.contact_id,
+        activity_type_id: this.activity_type_id
       };
-      console.log(activityEdit);
-      this.$inertia.post('/activity/' + this.activity.id, activityEdit);
+      console.log(activityAdd);
+      this.$inertia.post('/activity', activityAdd);
     }
   }
 });
@@ -33456,14 +33462,87 @@ var render = function() {
               _c(
                 "select",
                 {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.activity_type_id,
+                      expression: "activity_type_id"
+                    }
+                  ],
                   staticClass: "border py-2 px-3 text-grey-800 w-full",
-                  attrs: { name: "account_id" }
+                  attrs: { name: "activitytype_id" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.activity_type_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
                 },
                 _vm._l(_vm.activitytypes, function(activitytype) {
-                  return _c("option", [
-                    _vm._v(
-                      _vm._s(activitytype.activity) + "\n                   "
-                    )
+                  return _c(
+                    "option",
+                    { domProps: { value: activitytype.id } },
+                    [
+                      _vm._v(
+                        _vm._s(activitytype.activity) + "\n                   "
+                      )
+                    ]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "mb-2 font-bold text-lg text-grey-darkest",
+                  attrs: { for: "account" }
+                },
+                [_vm._v("Contact")]
+              ),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.contact_id,
+                      expression: "contact_id"
+                    }
+                  ],
+                  staticClass: "border py-2 px-3 text-grey-800 w-full",
+                  attrs: { name: "contact_id" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.contact_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                _vm._l(_vm.contacts, function(contact) {
+                  return _c("option", { domProps: { value: contact.id } }, [
+                    _vm._v(_vm._s(contact.name) + "\n                   ")
                   ])
                 }),
                 0
@@ -33471,9 +33550,26 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "flex flex-col mb-4" }, [
                 _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.comments,
+                      expression: "comments"
+                    }
+                  ],
                   staticClass:
                     "border rounded mt-2 py-2 px-3 text-grey-800 w-full",
-                  attrs: { placeholder: "comments" }
+                  attrs: { name: "comments", placeholder: "comments" },
+                  domProps: { value: _vm.comments },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.comments = $event.target.value
+                    }
+                  }
                 })
               ]),
               _vm._v(" "),
@@ -33485,7 +33581,8 @@ var render = function() {
                     "button",
                     {
                       staticClass:
-                        "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15"
+                        "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                      on: { click: _vm.addActivity }
                     },
                     [_vm._v("Add Activity")]
                   )

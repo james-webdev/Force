@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Models\ActivityType;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -28,8 +29,10 @@ class ActivityController extends Controller
     public function create()
     {
         $activitytypes = ActivityType::all();
+        $contacts = Contact::all();
         return Inertia::render('Activities/Create', [
             'activitytypes' => $activitytypes,
+            'contacts' => $contacts
         ]);
     }
 
@@ -41,7 +44,7 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         Activity::create($request->all());
     //   $contact->accounts()->attach(request('account'));
       return redirect()->route('contact.index');

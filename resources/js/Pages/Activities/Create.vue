@@ -8,17 +8,25 @@
       <form class="p-10" @submit.prevent="">
         <label class="mb-2 font-bold text-lg text-grey-darkest" for="account">Activity Type</label>
 
-                    <select class="border py-2 px-3 text-grey-800 w-full" name="account_id">
+                    <select v-model="activity_type_id" class="border py-2 px-3 text-grey-800 w-full" name="activitytype_id">
 
-                    <option v-for="activitytype in activitytypes">{{activitytype.activity}}
+                    <option v-bind:value="activitytype.id" v-for="activitytype in activitytypes">{{activitytype.activity}}
+                    </option>
+
+                    </select>
+        <label class="mb-2 font-bold text-lg text-grey-darkest" for="account">Contact</label>
+
+                    <select v-model="contact_id"  class="border py-2 px-3 text-grey-800 w-full" name="contact_id">
+
+                    <option v-bind:value="contact.id" v-for="contact in contacts">{{contact.name}}
                     </option>
 
                     </select>
         <div class="flex flex-col mb-4">
-           <textarea class="border rounded mt-2 py-2 px-3 text-grey-800 w-full" placeholder="comments"></textarea>
+           <textarea name="comments" v-model="comments" class="border rounded mt-2 py-2 px-3 text-grey-800 w-full" placeholder="comments"></textarea>
         </div>
         <div class="px-8 py-4 border-gray-200 flex items-center">
-          <button  class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Add Activity</button>
+          <button @click="addActivity" class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Add Activity</button>
         </div>
       </form>
     </div>
@@ -35,16 +43,18 @@ export default {
         },
         props: {
             activities: Object,
+            contacts: Object,
             activitytypes: Object
         },
 
         data() {
             return {
-                id: '',
+                contact_id: '',
+                activity_type_id: '',
+                comments: ''
             }
         },
                 methods: {
-
 
                     destroy() {
                       let contactsDelete = {
@@ -60,20 +70,15 @@ export default {
                             }
                         },
 
-                    editActivity(){
-                        console.log(this.activity);
-                        let activityEdit = {
+                    addActivity(){
 
-                           called: this.called,
-                           met: this.met,
-                           proposed: this.proposed,
-                           assisted: this.assisted,
+                        let activityAdd = {
                            comments: this.comments,
-                           id: this.id,
-                           _method: 'PUT',
+                           contact_id: this.contact_id,
+                           activity_type_id: this.activity_type_id,
                         }
-                        console.log(activityEdit);
-                        this.$inertia.post('/activity/' + this.activity.id, activityEdit)
+                        console.log(activityAdd);
+                        this.$inertia.post('/activity', activityAdd)
                     },
                 }
     };
