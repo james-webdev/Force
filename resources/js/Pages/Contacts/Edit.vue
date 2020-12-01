@@ -36,15 +36,12 @@
       <div class="px-8 py-4 border-gray-200 flex items-center">
            <inertia-link class="bg-teal-200 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15" :href="route('activity.create')">Add New Activity</inertia-link>
         </div>
-      <form class="p-10" @submit.prevent="">
-        <div v-for="activitytype in Object.values(activitytypes)" class="py-2 px-3 text-grey-800 w-full" name="">
-
-            <h1>Activity added: {{activitytype.type.activity}} </h1>
-            <h1> Date: {{activitytype.type.created_at}} </h1>
-
+      <form class="p-5" @submit.prevent="">
+        <div v-for="activitytype in Object.values(activitytypes)">
+            <h1 class="text-teal-500">Activity Type : {{activitytype.type.activity}}, Date Added: {{activitytype.type.created_at.substring(0,10)}} </h1>
         </div>
-        <div v-for="activity in activities" class="flex flex-col mb-4">
-           <textarea class="border rounded mt-2 py-2 px-3 text-grey-800 w-full" v-bind:value="activity.comments" placeholder="comment"></textarea>
+        <div v-for="activity in activities" class="flex flex-col">
+           <p class="py-2 text-teal-500 w-full" v-bind:value="activity.comments">Comment: {{activity.comments}}</p>
         </div>
         <div class="px-8 py-4 border-gray-200 flex items-center">
           <button @click="" class="bg-teal-700 hover:bg-teal-200 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15">Delete Activities</button>

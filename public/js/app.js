@@ -4089,9 +4089,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -34055,7 +34052,7 @@ var render = function() {
                 _c(
                   "form",
                   {
-                    staticClass: "p-10",
+                    staticClass: "p-5",
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
@@ -34066,40 +34063,31 @@ var render = function() {
                     _vm._l(Object.values(_vm.activitytypes), function(
                       activitytype
                     ) {
-                      return _c(
-                        "div",
-                        {
-                          staticClass: "py-2 px-3 text-grey-800 w-full",
-                          attrs: { name: "" }
-                        },
-                        [
-                          _c("h1", [
-                            _vm._v(
-                              "Activity added: " +
-                                _vm._s(activitytype.type.activity) +
-                                " "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("h1", [
-                            _vm._v(
-                              " Date: " +
-                                _vm._s(activitytype.type.created_at) +
-                                " "
-                            )
-                          ])
-                        ]
-                      )
+                      return _c("div", [
+                        _c("h1", { staticClass: "text-teal-500" }, [
+                          _vm._v(
+                            "Activity Type : " +
+                              _vm._s(activitytype.type.activity) +
+                              ", Date Added: " +
+                              _vm._s(
+                                activitytype.type.created_at.substring(0, 10)
+                              ) +
+                              " "
+                          )
+                        ])
+                      ])
                     }),
                     _vm._v(" "),
                     _vm._l(_vm.activities, function(activity) {
-                      return _c("div", { staticClass: "flex flex-col mb-4" }, [
-                        _c("textarea", {
-                          staticClass:
-                            "border rounded mt-2 py-2 px-3 text-grey-800 w-full",
-                          attrs: { placeholder: "comment" },
-                          domProps: { value: activity.comments }
-                        })
+                      return _c("div", { staticClass: "flex flex-col" }, [
+                        _c(
+                          "p",
+                          {
+                            staticClass: "py-2 text-teal-500 w-full",
+                            attrs: { value: activity.comments }
+                          },
+                          [_vm._v("Comment: " + _vm._s(activity.comments))]
+                        )
                       ])
                     }),
                     _vm._v(" "),
