@@ -6,7 +6,6 @@
       <inertia-link class="text-teal-400 hover:text-teal-600">contacts</inertia-link>
       <span class="text-teal-400 font-medium">/ {{ contact.name }}</span>
     </h1>
-
     <div class="bg-white ml-3 rounded max-w-3xl">
       <form class="p-10" @submit.prevent="">
         <div class="flex flex-col mb-4">
@@ -28,28 +27,20 @@
       </form>
     </div>
     </div>
-    <div v-if="activities" v-for="activity in activities">
-        <h1 class="mb-8 font-bold text-2xl">
+ <!--<h1> {{activities}}</h1> -->
+    <div v-if="activities.length !== 0 && activitytypes.length !== 0">
+        <h1 class="mb-8 mt-6 font-bold text-2xl">
               <inertia-link class="text-teal-400 hover:text-teal-600">Activities</inertia-link>
         </h1>
-
     <div  class="bg-white ml-3 rounded max-w-3xl">
       <form class="p-10" @submit.prevent="">
-        <input type="checkbox" class="" id="called" value="called" v-model="activity.called">
-            <label for="called">Called</label>
-            <br>
-            <input type="checkbox" id="met" value="met" v-model="activity.met">
-            <label for="met">Met</label>
-            <br>
+        <div class="py-2 px-3 text-grey-800 w-full" name="">
 
-            <input type="checkbox" id="proposed" value="proposed" v-model="activity.proposed">
-            <label for="proposed">Proposed</label>
-            <br>
-            <input type="checkbox" id="assisted" value="assisted" v-model="activity.assisted">
-            <label for="assisted">Assisted</label>
-            <br>
-        <div class="flex flex-col mb-4">
-           <textarea class="border rounded mt-2 py-2 px-3 text-grey-800 w-full" v-model="activity.comments" placeholder="comment"></textarea>
+            <h1>{{Object.values(activitytypes)[0].type.activity}} </h1>
+
+        </div>
+        <div v-for="activity in activities" class="flex flex-col mb-4">
+           <textarea class="border rounded mt-2 py-2 px-3 text-grey-800 w-full" v-bind:value="activity.comments" placeholder="comment"></textarea>
         </div>
         <div class="px-8 py-4 border-gray-200 flex items-center">
           <button @click="" class="bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Delete Activities</button>
@@ -60,7 +51,7 @@
     </div>
     <div v-else>
        <div class="px-8 py-4 border-gray-200 flex items-center">
-          <button :href="route('activity.edit', act.id)" class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Add Activities</button>
+           <inertia-link class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15" :href="route('activity.create')">Add Activity</inertia-link>
         </div>
     </div>
   </div>
@@ -74,7 +65,8 @@ export default {
         },
         props: {
             contact: Object,
-            activities: Array
+            activities: Object,
+            activitytypes: Object
         },
 
         data() {
@@ -122,11 +114,11 @@ export default {
                         console.log(this.activity);
                         let activityEdit = {
 
-                           called: this.activity.called,
-                           met: this.activity.met,
-                           proposed: this.activity.proposed,
-                           assisted: this.activity.assisted,
-                           comments: this.activity.comments,
+                           called: this.called,
+                           met: this.met,
+                           proposed: this.proposed,
+                           assisted: this.assisted,
+                           comments: this.comments,
                            id: this.id,
                            _method: 'PUT',
                         }

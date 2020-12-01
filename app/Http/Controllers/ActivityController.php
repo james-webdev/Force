@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\ActivityType;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 
 class ActivityController extends Controller
 {
@@ -24,7 +27,10 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        $activitytypes = ActivityType::all();
+        return Inertia::render('Activities/Create', [
+            'activitytypes' => $activitytypes,
+        ]);
     }
 
     /**
@@ -60,7 +66,12 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //
+        // dd($activity);
+        $activitytypes = ActivityType::all();
+        return Inertia::render('Activities/Edit', [
+            'activity' => $activity,
+            'activitytypes' => $activitytypes,
+        ]);
     }
 
     /**
