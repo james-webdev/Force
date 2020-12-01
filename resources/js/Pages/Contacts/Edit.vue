@@ -37,9 +37,10 @@
            <inertia-link class="bg-teal-200 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15" :href="route('activity.create')">Add New Activity</inertia-link>
         </div>
       <form class="p-10" @submit.prevent="">
-        <div class="py-2 px-3 text-grey-800 w-full" name="">
+        <div v-for="activitytype in Object.values(activitytypes)" class="py-2 px-3 text-grey-800 w-full" name="">
 
-            <h1>{{Object.values(activitytypes)[0].type.activity}} </h1>
+            <h1>Activity added: {{activitytype.type.activity}} </h1>
+            <h1> Date: {{activitytype.type.created_at}} </h1>
 
         </div>
         <div v-for="activity in activities" class="flex flex-col mb-4">

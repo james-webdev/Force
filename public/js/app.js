@@ -4091,6 +4091,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -34062,22 +34063,34 @@ var render = function() {
                     }
                   },
                   [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "py-2 px-3 text-grey-800 w-full",
-                        attrs: { name: "" }
-                      },
-                      [
-                        _c("h1", [
-                          _vm._v(
-                            _vm._s(
-                              Object.values(_vm.activitytypes)[0].type.activity
-                            ) + " "
-                          )
-                        ])
-                      ]
-                    ),
+                    _vm._l(Object.values(_vm.activitytypes), function(
+                      activitytype
+                    ) {
+                      return _c(
+                        "div",
+                        {
+                          staticClass: "py-2 px-3 text-grey-800 w-full",
+                          attrs: { name: "" }
+                        },
+                        [
+                          _c("h1", [
+                            _vm._v(
+                              "Activity added: " +
+                                _vm._s(activitytype.type.activity) +
+                                " "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("h1", [
+                            _vm._v(
+                              " Date: " +
+                                _vm._s(activitytype.type.created_at) +
+                                " "
+                            )
+                          ])
+                        ]
+                      )
+                    }),
                     _vm._v(" "),
                     _vm._l(_vm.activities, function(activity) {
                       return _c("div", { staticClass: "flex flex-col mb-4" }, [
