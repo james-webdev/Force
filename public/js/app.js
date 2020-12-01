@@ -4082,6 +4082,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -33933,6 +33936,25 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
                 _c(
+                  "div",
+                  {
+                    staticClass: "px-8 py-4 border-gray-200 flex items-center"
+                  },
+                  [
+                    _c(
+                      "inertia-link",
+                      {
+                        staticClass:
+                          "bg-teal-200 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15",
+                        attrs: { href: _vm.route("activity.create") }
+                      },
+                      [_vm._v("Add New Activity")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
                   "form",
                   {
                     staticClass: "p-10",
@@ -33982,7 +34004,7 @@ var render = function() {
                           "button",
                           {
                             staticClass:
-                              "bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                              "bg-teal-700 hover:bg-teal-200 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15",
                             on: { click: function($event) {} }
                           },
                           [_vm._v("Delete Activities")]
@@ -33992,7 +34014,7 @@ var render = function() {
                           "button",
                           {
                             staticClass:
-                              "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+                              "bg-teal-300 hover:bg-teal-800 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15",
                             on: { click: _vm.editActivity }
                           },
                           [_vm._v("Edit Activities")]

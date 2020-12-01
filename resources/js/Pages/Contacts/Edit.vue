@@ -33,6 +33,9 @@
               <inertia-link class="text-teal-400 hover:text-teal-600">Activities</inertia-link>
         </h1>
     <div  class="bg-white ml-3 rounded max-w-3xl">
+      <div class="px-8 py-4 border-gray-200 flex items-center">
+           <inertia-link class="bg-teal-200 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15" :href="route('activity.create')">Add New Activity</inertia-link>
+        </div>
       <form class="p-10" @submit.prevent="">
         <div class="py-2 px-3 text-grey-800 w-full" name="">
 
@@ -43,8 +46,8 @@
            <textarea class="border rounded mt-2 py-2 px-3 text-grey-800 w-full" v-bind:value="activity.comments" placeholder="comment"></textarea>
         </div>
         <div class="px-8 py-4 border-gray-200 flex items-center">
-          <button @click="" class="bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Delete Activities</button>
-          <button @click="editActivity" class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Edit Activities</button>
+          <button @click="" class="bg-teal-700 hover:bg-teal-200 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15">Delete Activities</button>
+          <button @click="editActivity" class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15">Edit Activities</button>
         </div>
       </form>
     </div>
