@@ -47,7 +47,7 @@ class ActivityController extends Controller
         // dd($request);
         Activity::create($request->all());
     //   $contact->accounts()->attach(request('account'));
-      return redirect()->route('contact.index');
+      return redirect()->route('contact.edit', $request->contact_id);
     }
 
     /**
