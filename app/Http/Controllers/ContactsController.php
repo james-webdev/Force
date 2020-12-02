@@ -59,7 +59,7 @@ class ContactsController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-      Contact::create($request->all());
+      Contact::create(request()->all());
     //   $contact->accounts()->attach(request('account'));
       return redirect()->route('contact.index');
 

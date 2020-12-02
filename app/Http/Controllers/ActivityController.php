@@ -70,10 +70,12 @@ class ActivityController extends Controller
     public function edit(Activity $activity)
     {
         // dd($activity);
+        $thisactivitytype = ActivityType::get()->where('id', $activity->activity_type_id);
         $activitytypes = ActivityType::all();
         return Inertia::render('Activities/Edit', [
             'activity' => $activity,
-            'activitytypes' => $activitytypes,
+            'thisactivitytype' => $thisactivitytype,
+            'activitytypes' => $activitytypes
         ]);
     }
 
