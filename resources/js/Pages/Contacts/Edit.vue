@@ -6,7 +6,6 @@
       <inertia-link class="text-teal-400 hover:text-teal-600">contacts</inertia-link>
       <span class="text-teal-400 font-medium">/ {{ contact.name }}</span>
     </h1>
-
     <div class="bg-white ml-3 rounded max-w-3xl">
       <form class="p-10" @submit.prevent="">
         <div class="flex flex-col mb-4">
@@ -28,39 +27,34 @@
       </form>
     </div>
     </div>
-    <div v-if="activities" v-for="activity in activities">
-        <h1 class="mb-8 font-bold text-2xl">
+ <!--<h1> {{activitytypes}}</h1> -->
+
+    <div v-if="activities.length !== 0 && activitytypes.length !== 0">
+        <h1 class="mb-8 mt-6 font-bold text-2xl">
               <inertia-link class="text-teal-400 hover:text-teal-600">Activities</inertia-link>
         </h1>
-
     <div  class="bg-white ml-3 rounded max-w-3xl">
-      <form class="p-10" @submit.prevent="">
-        <input type="checkbox" class="" id="called" value="called" v-model="activity.called">
-            <label for="called">Called</label>
-            <br>
-            <input type="checkbox" id="met" value="met" v-model="activity.met">
-            <label for="met">Met</label>
-            <br>
+      <div class="px-8 py-4 border-gray-200 flex items-center">
+           <inertia-link class="bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15" :href="route('activity.create')">Add New Activity</inertia-link>
+        </div>
+      <form class="p-5" @submit.prevent="">
 
-            <input type="checkbox" id="proposed" value="proposed" v-model="activity.proposed">
-            <label for="proposed">Proposed</label>
-            <br>
-            <input type="checkbox" id="assisted" value="assisted" v-model="activity.assisted">
-            <label for="assisted">Assisted</label>
-            <br>
-        <div class="flex flex-col mb-4">
-           <textarea class="border rounded mt-2 py-2 px-3 text-grey-800 w-full" v-model="activity.comments" placeholder="comment"></textarea>
+        <div class="flex" v-for="activitytype in Object.values(activitytypes)">
+            <h1 v-model="Object.values(activitytypes)[activitytype.type.activity]" class="p-1 text-teal-500">Activity Type : {{activitytype.type.activity}}, Date Added: {{activitytype.type.created_at.substring(0,10)}}</h1>
+            <inertia-link class="text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activitytype.id)">Edit</inertia-link>
         </div>
-        <div class="px-8 py-4 border-gray-200 flex items-center">
-          <button @click="" class="bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Delete Activities</button>
-          <button @click="editActivity" class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Edit Activities</button>
+        <div v-for="activity in activities" class="flex">
+           <p class="text-teal-500" v-bind="comments">Comment: {{activity.comments}}</p>
+            <inertia-link  class="text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activity.id)">Edit</inertia-link>
         </div>
+
+
       </form>
     </div>
     </div>
     <div v-else>
        <div class="px-8 py-4 border-gray-200 flex items-center">
-          <button :href="route('activity.edit', act.id)" class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Add Activities</button>
+           <inertia-link class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15" :href="route('activity.create')">Add Activity</inertia-link>
         </div>
     </div>
   </div>
@@ -74,7 +68,8 @@ export default {
         },
         props: {
             contact: Object,
-            activities: Array
+            activities: Object,
+            activitytypes: Object
         },
 
         data() {
@@ -82,11 +77,6 @@ export default {
                 name: '',
                 phone: null,
                 city: '',
-                called: false,
-                met: false,
-                proposed: false,
-                assisted: false,
-                comments: '',
                 id: '',
             }
         },
@@ -119,19 +109,15 @@ export default {
                         },
 
                     editActivity(){
-                        console.log(this.activity);
-                        let activityEdit = {
 
-                           called: this.activity.called,
-                           met: this.activity.met,
-                           proposed: this.activity.proposed,
-                           assisted: this.activity.assisted,
-                           comments: this.activity.comments,
-                           id: this.id,
+                        let activityEdit = {
+                           activity_type: this.activity_type,
+                           created_at: this.created_at,
+                           comments: this.comments,
                            _method: 'PUT',
                         }
                         console.log(activityEdit);
-                        this.$inertia.post('/activity/' + this.activity.id, activityEdit)
+                        this.$inertia.post('/activity/', activityEdit)
                     },
                 }
     };

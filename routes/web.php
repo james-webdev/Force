@@ -33,6 +33,7 @@ Route::resource('/account','AccountsController');
 Route::resource('/contact','ContactsController');
 
 Route::resource('/activity','ActivityController');
+Route::resource('/activitytype','ActivityTypeController');
 
 Route::get('/import','AccountsController@importForm');
 Route::post('/import','AccountsController@import');

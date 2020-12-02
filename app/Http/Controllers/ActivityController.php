@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\ActivityType;
+use App\Models\Contact;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 
 class ActivityController extends Controller
 {
@@ -24,7 +28,12 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        $activitytypes = ActivityType::all();
+        $contacts = Contact::all();
+        return Inertia::render('Activities/Create', [
+            'activitytypes' => $activitytypes,
+            'contacts' => $contacts
+        ]);
     }
 
     /**
@@ -35,10 +44,10 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         Activity::create($request->all());
     //   $contact->accounts()->attach(request('account'));
-      return redirect()->route('contact.index');
+      return redirect()->route('contact.edit', $request->contact_id);
     }
 
     /**
@@ -60,7 +69,14 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //
+        // dd($activity);
+        $thisactivitytype = ActivityType::get()->where('id', $activity->activity_type_id);
+        $activitytypes = ActivityType::all();
+        return Inertia::render('Activities/Edit', [
+            'activity' => $activity,
+            'thisactivitytype' => $thisactivitytype,
+            'activitytypes' => $activitytypes
+        ]);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Account;
 use App\Models\Activity;
+use App\Models\ActivityType;
 use Inertia\Inertia;
 use URL;
 use Request;
@@ -58,7 +59,7 @@ class ContactsController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-      Contact::create($request->all());
+      Contact::create(request()->all());
     //   $contact->accounts()->attach(request('account'));
       return redirect()->route('contact.index');
 
@@ -72,7 +73,11 @@ class ContactsController extends Controller
      */
     public function show(Contacts $contacts)
     {
-        //
+        $contact->load('activities');
+            return Inertia::render('Contacts/Show', [
+                'contact' => $contact,
+                'activities' => $contact->activities
+            ]);
     }
 
     /**
@@ -84,12 +89,16 @@ class ContactsController extends Controller
     public function edit(Contact $contact)
     {
 
-        $activities = Activity::get()->where('contact_id', $contact->id);
-        // dd($activities);
+     $contact->load('activities');
+     $activitytypes = Activity::with('type')->get()->where('contact_id', $contact->id);
+
+        // $activities = Activity::get()->where('contact_id', $contact->id);
+        // dd($contact->load('activities'));
         return Inertia::render('Contacts/Edit', [
             'update_url' => URL::route('contact.edit', $contact),
             'contact' => $contact,
-            'activities' => $activities
+            'activities' => $contact->activities,
+            'activitytypes' => $activitytypes,
         ]);
     }
 

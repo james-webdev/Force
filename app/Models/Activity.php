@@ -8,10 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use HasFactory;
-    protected $fillable = ["called", "met", "proposed", "assisted", "comments", "contact_id"];
+    protected $fillable = ["comments", "contact_id", "activity_type_id"];
 
 
-    public function contacts(){
+    public function contacts()
+    {
         return $this->belongsTo(Contact::class, 'contact_id');
     }
+
+    public function type()
+    {
+        return $this->belongsTo(ActivityType::class, 'activity_type_id');
+    }
+
 }
