@@ -85,7 +85,7 @@ class ContactsController extends Controller
 
         // $activities = Activity::get()->where('contact_id', $contact->id);
         // dd($contact->load('activities'));
-        return Inertia::render('Contacts/Edit', [
+        return Inertia::render('Contacts/Show', [
             'update_url' => URL::route('contact.show', $contact),
             'contact' => $contact,
             'activities' => $contact->activities,

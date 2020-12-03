@@ -4323,14 +4323,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4589,6 +4581,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4596,7 +4593,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     contact: Object,
-    activities: Object,
+    activities: Array,
     activitytypes: Object
   },
   data: function data() {
@@ -34774,7 +34771,7 @@ var render = function() {
             _c(
               "inertia-link",
               { staticClass: "text-teal-400 hover:text-teal-600" },
-              [_vm._v("contacts")]
+              [_vm._v("Contact")]
             ),
             _vm._v(" "),
             _c("span", { staticClass: "text-teal-400 font-medium" }, [
@@ -34933,6 +34930,8 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
+      _c("h1", [_vm._v(" " + _vm._s(_vm.activites) + " ")]),
+      _vm._v(" "),
       _vm.activities.length !== 0 && _vm.activitytypes.length !== 0
         ? _c("div", { staticClass: "flex justify-center content-center" }, [
             _c(
@@ -34957,7 +34956,17 @@ var render = function() {
                     "table",
                     { staticClass: "table-auto p-4" },
                     [
-                      _c("thead", [_c("tr", [_c("th", [_vm._v("Type")])])]),
+                      _c("thead", [
+                        _c("tr", [
+                          _c("th", [_vm._v("Activity")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Date")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Comments")]),
+                          _vm._v(" "),
+                          _c("th")
+                        ])
+                      ]),
                       _vm._v(" "),
                       _vm._l(Object.values(_vm.activitytypes), function(
                         activitytype
@@ -34966,39 +34975,16 @@ var render = function() {
                           _c("tr", { staticClass: "p-3 text-teal-500" }, [
                             _c("td", { staticClass: "p-3" }, [
                               _vm._v(_vm._s(activitytype.type.activity))
-                            ])
-                          ])
-                        ])
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "table",
-                    { staticClass: "table-auto p-4" },
-                    [
-                      _c("thead", [
-                        _c("tr", [
-                          _c("th", [_vm._v("Comments")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Date")]),
-                          _vm._v(" "),
-                          _c("th")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.activities, function(activity) {
-                        return _c("tbody", [
-                          _c("tr", { staticClass: "p-3 text-teal-500" }, [
-                            _c("td", { staticClass: "p-3" }, [
-                              _vm._v(_vm._s(activity.comments))
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "p-3" }, [
                               _vm._v(
-                                _vm._s(activity.created_at.substring(0, 10))
+                                _vm._s(activitytype.created_at.substring(0, 10))
                               )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "p-3" }, [
+                              _vm._v(_vm._s(activitytype.comments))
                             ]),
                             _vm._v(" "),
                             _c(
@@ -35013,7 +34999,7 @@ var render = function() {
                                     attrs: {
                                       href: _vm.route(
                                         "activity.edit",
-                                        activity.id
+                                        activitytype.id
                                       )
                                     }
                                   },
@@ -35481,9 +35467,13 @@ var render = function() {
                     [
                       _c("thead", [
                         _c("tr", [
-                          _c("th", [_vm._v("Type")]),
+                          _c("th", [_vm._v("Activity")]),
                           _vm._v(" "),
-                          _c("th", [_vm._v("Date")])
+                          _c("th", [_vm._v("Date")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Comments")]),
+                          _vm._v(" "),
+                          _c("th")
                         ])
                       ]),
                       _vm._v(" "),
@@ -35498,35 +35488,12 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", { staticClass: "p-3" }, [
                               _vm._v(
-                                _vm._s(
-                                  activitytype.type.created_at.substring(0, 10)
-                                )
+                                _vm._s(activitytype.created_at.substring(0, 10))
                               )
-                            ])
-                          ])
-                        ])
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "table",
-                    { staticClass: "table-auto p-4" },
-                    [
-                      _c("thead", [
-                        _c("tr", [
-                          _c("th", [_vm._v("Comments")]),
-                          _vm._v(" "),
-                          _c("th")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.activities, function(activity) {
-                        return _c("tbody", [
-                          _c("tr", { staticClass: "p-3 text-teal-500" }, [
+                            ]),
+                            _vm._v(" "),
                             _c("td", { staticClass: "p-3" }, [
-                              _vm._v(_vm._s(activity.comments))
+                              _vm._v(_vm._s(activitytype.comments))
                             ]),
                             _vm._v(" "),
                             _c(
@@ -35541,7 +35508,7 @@ var render = function() {
                                     attrs: {
                                       href: _vm.route(
                                         "activity.edit",
-                                        activity.id
+                                        activitytype.id
                                       )
                                     }
                                   },

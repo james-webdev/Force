@@ -27,7 +27,6 @@
       </form>
     </div>
     </div>
- <!--<h1> {{activitytypes}}</h1> -->
 
     <div class="flex justify-center content-center" v-if="activities.length !== 0 && activitytypes.length !== 0">
         <h1 class="mb-8 mt-6 mr-6 font-bold text-2xl">
@@ -35,23 +34,29 @@
         </h1>
     <div class="bg-white ml-3 rounded max-w-3xl">
 
+
   <div class="flex justify-between content-center">
         <table class="table-auto p-4">
         <thead>
             <tr>
-            <th>Type</th>
+            <th>Activity</th>
             <th>Date</th>
+            <th>Comments</th>
+             <th></th>
             </tr>
         </thead>
         <tbody v-for="activitytype in Object.values(activitytypes)">
             <tr class="p-3 text-teal-500">
             <td class="p-3">{{activitytype.type.activity}}</td>
-            <td class="p-3">{{activitytype.type.created_at.substring(0,10)}}</td>
+            <td class="p-3">{{activitytype.created_at.substring(0,10)}}</td>
+            <td class="p-3">{{activitytype.comments}}</td>
+             <td class="p-3"> <inertia-link  class="text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activitytype.id)">Edit</inertia-link></td>
+            </tr>
             </tr>
         </tbody>
         </table>
 
-        <table class="table-auto p-4">
+       <!-- <table class="table-auto p-4">
         <thead>
             <tr>
             <th>Comments</th>
@@ -64,7 +69,7 @@
             <td class="p-3"> <inertia-link  class="text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activity.id)">Edit</inertia-link></td>
             </tr>
         </tbody>
-        </table>
+        </table>-->
 </div>
          <div class="px-8 py-4 border-gray-200 flex items-center">
            <inertia-link class="bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20" :href="route('activity.create')">Add New Activity</inertia-link>
@@ -87,7 +92,7 @@ export default {
         },
         props: {
             contact: Object,
-            activities: Object,
+            activities: Array,
             activitytypes: Object
         },
 
