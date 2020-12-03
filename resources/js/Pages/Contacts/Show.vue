@@ -27,15 +27,15 @@
       </form>
     </div>
     </div>
- <!--<h1> {{activitytypes}}</h1> -->
- <h1> {{activites}} </h1>
+
     <div class="flex justify-center content-center mt-5" v-if="activities.length !== 0 && activitytypes.length !== 0">
         <h1 class="mb-8 mt-6 mr-6 font-bold text-2xl">
               <inertia-link class="text-teal-400 hover:text-teal-600">Activities</inertia-link>
         </h1>
     <div class="bg-white ml-3 rounded max-w-3xl">
 
-   <div class="flex justify-between content-center">
+
+  <div class="flex justify-between content-center">
         <table class="table-auto border solid rounded p-4">
         <thead class="border solid">
             <tr >
@@ -56,15 +56,29 @@
         </tbody>
         </table>
 
+       <!-- <table class="table-auto p-4">
+        <thead>
+            <tr>
+            <th>Comments</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody v-for="activity in activities">
+            <tr class="p-3 text-teal-500">
+            <td class="p-3">{{activity.comments}}</td>
+            <td class="p-3"> <inertia-link  class="text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activity.id)">Edit</inertia-link></td>
+            </tr>
+        </tbody>
+        </table>-->
 </div>
          <div class="px-8 py-4 border-gray-200 flex items-center">
            <inertia-link class="bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20" :href="route('activity.create')">Add New Activity</inertia-link>
         </div>
     </div>
     </div>
-    <div v-else>
-       <div class="px-8 py-4 border-gray-200 flex items-center">
-           <inertia-link class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15" :href="route('activity.create')">Add Activity</inertia-link>
+    <div class="ml-60 flex justify-content items-center" v-else>
+       <div class="px-8 py-4 border-gray-200 flex justify-content items-center">
+           <inertia-link class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-1 px-2 rounded ml-60 mt-3 mr-15" :href="route('activity.create')">Add Activity</inertia-link>
         </div>
     </div>
   </div>
@@ -78,7 +92,7 @@ export default {
         },
         props: {
             contact: Object,
-            activities: Object,
+            activities: Array,
             activitytypes: Object
         },
 
