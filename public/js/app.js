@@ -38277,22 +38277,29 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "flex items-center" }, [
-    _c("div", { staticClass: "flex w-full bg-white shadow rounded" }, [
-      _c("input", {
-        staticClass: "relative w-full px-6 py-3",
-        attrs: {
-          autocomplete: "off",
-          type: "text",
-          name: "search",
-          placeholder: "Search…"
-        },
-        on: {
-          input: function($event) {
-            return _vm.$emit("input", $event.target.value)
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex bg-white border-2 border-teal-400 border-opacity-25 rounded"
+      },
+      [
+        _c("input", {
+          staticClass: "relative px-4 py-2",
+          attrs: {
+            autocomplete: "off",
+            type: "text",
+            name: "search",
+            placeholder: "Search…"
+          },
+          on: {
+            input: function($event) {
+              return _vm.$emit("input", $event.target.value)
+            }
           }
-        }
-      })
-    ])
+        })
+      ]
+    )
   ])
 }
 var staticRenderFns = []
