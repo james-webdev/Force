@@ -16,7 +16,7 @@
         </inertia-link>
     </div>
   <!-- <h1> here: {{contacts.data}}</h1> <h1> here: {{contacts}}</h1> <h1> here: {{contacts}}</h1> <h1> here: {{contacts[0].accounts.name}}</h1> -->
-  
+
 
     <div class="bg-white mb-10 flex justify-center content-center">
         <table class="border rounded ml-20 mr-20 whitespace-no-wrap">
@@ -29,17 +29,17 @@
             <tr v-for="contact in contacts.data" class="hover:bg-gray-100 focus-within:bg-gray-100">
 
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <inertia-link :href="route('contact.edit', contact.id)">{{ contact.name }}</inertia-link>
+                    <inertia-link :href="route('contact.show', contact.id)">{{ contact.name }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
 
                     <inertia-link v-if="contact.accounts" :href="route('account.edit', contact.accounts.id)">{{ contact.accounts.name }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                     <inertia-link :href="route('contact.edit', contact.id)">{{ contact.city }}</inertia-link>
+                     <inertia-link :href="route('contact.show', contact.id)">{{ contact.city }}</inertia-link>
                 </td>
                 <td class=" px-6 pt-6 pb-4 border-t">
-                    <inertia-link :href="route('contact.edit', contact.id)">{{ contact.phone }}</inertia-link>
+                    <inertia-link :href="route('contact.show', contact.id)">{{ contact.phone }}</inertia-link>
                 </td>
             </tr>
 

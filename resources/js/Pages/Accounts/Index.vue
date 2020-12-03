@@ -27,19 +27,19 @@
             <tr v-for="account in accounts.data" class="hover:bg-gray-100 focus-within:bg-gray-100">
 
                 <td class="px-6 pt-6 pb-4 border-t">
-                     <inertia-link :href="route('account.edit', account.id)">{{ account.name }}</inertia-link>
+                     <inertia-link :href="route('account.show', account.id)">{{ account.name }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                    <inertia-link :href="route('account.edit', account.id)">{{ account.email }}</inertia-link>
+                    <inertia-link :href="route('account.show', account.id)">{{ account.email }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                 <inertia-link :href="route('account.edit', account.id)">{{ account.address }}</inertia-link>
+                 <inertia-link :href="route('account.show', account.id)">{{ account.address }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
-                 <inertia-link :href="route('account.edit', account.id)">{{ account.contacts_count }}</inertia-link>
+                 <inertia-link :href="route('account.show', account.id)">{{ account.contacts_count }}</inertia-link>
                 </td>
                 <td class=" px-6 pt-6 pb-4 border-t">
-                 <inertia-link :href="route('account.edit', account.id)">{{ account.phone }}</inertia-link>
+                 <inertia-link :href="route('account.show', account.id)">{{ account.phone }}</inertia-link>
                 </td>
 
             </tr>

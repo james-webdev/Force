@@ -44,8 +44,9 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        Activity::create($request->all());
+        // dd($request->all());
+        $activity = Activity::create($request->all());
+        // dd($activity);
     //   $contact->accounts()->attach(request('account'));
       return redirect()->route('contact.edit', $request->contact_id);
     }
@@ -101,4 +102,11 @@ class ActivityController extends Controller
     {
         //
     }
+
+    // public function contactActivity(Contact $contact)
+    // {
+    //     // dd($contact);
+    //     $activitytypes = ActivityType::all();
+    //     return response()->view('contacts.addactivity', compact('contact', 'activitytypes'));
+    // }
 }

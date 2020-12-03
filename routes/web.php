@@ -29,7 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::resource('/account','AccountsController');
 // Route::post('/account/add','AccountsController@store');
-
+Route::get('/addactivity/{contact}', ['as' => 'contact.activity', 'uses' => 'ActivityController@contactActivity']);
 Route::resource('/contact','ContactsController');
 
 Route::resource('/activity','ActivityController');

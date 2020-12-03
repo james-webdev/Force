@@ -32,22 +32,6 @@ class AccountsController extends Controller
             'accounts' => $accounts,
              ]
 
-
-
-
-    //     return Inertia::render('Accounts/Index', [
-    //         'accounts' => Account::withCount('contacts')->paginate(2)->map(function ($account) {
-    //             return [
-    //                 'id' => $account->id,
-    //                 'phone' => $account->phone,
-    //                 'name' => $account->name,
-    //                 'email' => $account->email,
-    //                 'address' => $account->address,
-    //                 'contactcount' => $account->contacts_count,
-    //                 'edit_url' => URL::route('account.edit', $account),
-    //                 'links' => $account->links,
-    //             ];
-    //         }),
         );
      }
 
@@ -84,7 +68,13 @@ class AccountsController extends Controller
      */
     public function show(Account $account)
     {
-        dd($account);
+        $contacts = Account::with('contacts')->get()->where('id', $account->id);
+        //   $contacts = Account::find(1)->contacts;
+            return Inertia::render('Accounts/Show', [
+                'account' => $account,
+                'update_url' => URL::route('account.edit', $account),
+                'contacts' => $contacts,
+            ]);
     }
 
     /**

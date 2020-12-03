@@ -3,7 +3,7 @@
   <div class="bg-white h-screen">
     <div class="flex justify-center content-center">
     <h1 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-teal-400 hover:text-teal-600">contacts</inertia-link>
+      <inertia-link class="text-teal-400 hover:text-teal-600">Contact</inertia-link>
       <span class="text-teal-400 font-medium">/ {{ contact.name }}</span>
     </h1>
     <div class="bg-white ml-3 rounded max-w-3xl">
@@ -40,11 +40,13 @@
         <thead>
             <tr>
             <th>Type</th>
+            <th>Date</th>
             </tr>
         </thead>
         <tbody v-for="activitytype in Object.values(activitytypes)">
             <tr class="p-3 text-teal-500">
             <td class="p-3">{{activitytype.type.activity}}</td>
+            <td class="p-3">{{activitytype.type.created_at.substring(0,10)}}</td>
             </tr>
         </tbody>
         </table>
@@ -53,14 +55,12 @@
         <thead>
             <tr>
             <th>Comments</th>
-            <th>Date</th>
             <th></th>
             </tr>
         </thead>
         <tbody v-for="activity in activities">
             <tr class="p-3 text-teal-500">
             <td class="p-3">{{activity.comments}}</td>
-            <td class="p-3">{{activity.created_at.substring(0,10)}}</td>
             <td class="p-3"> <inertia-link  class="text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activity.id)">Edit</inertia-link></td>
             </tr>
         </tbody>
@@ -71,9 +71,9 @@
         </div>
     </div>
     </div>
-    <div v-else>
-       <div class="px-8 py-4 border-gray-200 flex items-center">
-           <inertia-link class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15" :href="route('activity.create')">Add Activity</inertia-link>
+    <div class="ml-60 flex justify-content items-center" v-else>
+       <div class="px-8 py-4 border-gray-200 flex justify-content items-center">
+           <inertia-link class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-1 px-2 rounded ml-60 mt-3 mr-15" :href="route('activity.create')">Add Activity</inertia-link>
         </div>
     </div>
   </div>

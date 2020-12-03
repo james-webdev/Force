@@ -71,13 +71,26 @@ class ContactsController extends Controller
      * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function show(Contacts $contacts)
+    public function show(Contact $contact)
     {
+        // $contact->load('activities');
+        // // return response()->view('contacts.show', compact('contact'));
+        //     return Inertia::render('Contacts/Edit', [
+        //         'contact' => $contact,
+        //         'activities' => $contact->activities
+        //     ]);
+
         $contact->load('activities');
-            return Inertia::render('Contacts/Show', [
-                'contact' => $contact,
-                'activities' => $contact->activities
-            ]);
+     $activitytypes = Activity::with('type')->get()->where('contact_id', $contact->id);
+
+        // $activities = Activity::get()->where('contact_id', $contact->id);
+        // dd($contact->load('activities'));
+        return Inertia::render('Contacts/Edit', [
+            'update_url' => URL::route('contact.show', $contact),
+            'contact' => $contact,
+            'activities' => $contact->activities,
+            'activitytypes' => $activitytypes,
+        ]);
     }
 
     /**
