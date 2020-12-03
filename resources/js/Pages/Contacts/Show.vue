@@ -28,7 +28,7 @@
     </div>
     </div>
 
-    <div class="flex justify-center content-center" v-if="activities.length !== 0 && activitytypes.length !== 0">
+    <div class="flex justify-center content-center mt-5" v-if="activities.length !== 0 && activitytypes.length !== 0">
         <h1 class="mb-8 mt-6 mr-6 font-bold text-2xl">
               <inertia-link class="text-teal-400 hover:text-teal-600">Activities</inertia-link>
         </h1>
@@ -36,20 +36,20 @@
 
 
   <div class="flex justify-between content-center">
-        <table class="table-auto p-4">
-        <thead>
-            <tr>
-            <th>Activity</th>
-            <th>Date</th>
-            <th>Comments</th>
+        <table class="table-auto border solid rounded p-4">
+        <thead class="border solid">
+            <tr >
+            <th class="border solid">Activity</th>
+            <th class="border solid">Date</th>
+            <th class="border solid">Comments</th>
              <th></th>
             </tr>
         </thead>
-        <tbody v-for="activitytype in Object.values(activitytypes)">
+        <tbody class="border solid" v-for="activitytype in Object.values(activitytypes)">
             <tr class="p-3 text-teal-500">
-            <td class="p-3">{{activitytype.type.activity}}</td>
-            <td class="p-3">{{activitytype.created_at.substring(0,10)}}</td>
-            <td class="p-3">{{activitytype.comments}}</td>
+            <td class="p-3 border solid">{{activitytype.type.activity}}</td>
+            <td class="p-3 border solid">{{activitytype.created_at.substring(0,10)}}</td>
+            <td class="p-3 border solid">{{activitytype.comments}}</td>
              <td class="p-3"> <inertia-link  class="text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activitytype.id)">Edit</inertia-link></td>
             </tr>
             </tr>

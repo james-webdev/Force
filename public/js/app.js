@@ -4322,7 +4322,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -34933,108 +34932,122 @@ var render = function() {
       _c("h1", [_vm._v(" " + _vm._s(_vm.activites) + " ")]),
       _vm._v(" "),
       _vm.activities.length !== 0 && _vm.activitytypes.length !== 0
-        ? _c("div", { staticClass: "flex justify-center content-center" }, [
-            _c(
-              "h1",
-              { staticClass: "mb-8 mt-6 mr-6 font-bold text-2xl" },
-              [
-                _c(
-                  "inertia-link",
-                  { staticClass: "text-teal-400 hover:text-teal-600" },
-                  [_vm._v("Activities")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+        ? _c(
+            "div",
+            { staticClass: "flex justify-center content-center mt-5" },
+            [
               _c(
-                "div",
-                { staticClass: "flex justify-between content-center" },
-                [
-                  _c(
-                    "table",
-                    { staticClass: "table-auto p-4" },
-                    [
-                      _c("thead", [
-                        _c("tr", [
-                          _c("th", [_vm._v("Activity")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Date")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Comments")]),
-                          _vm._v(" "),
-                          _c("th")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(Object.values(_vm.activitytypes), function(
-                        activitytype
-                      ) {
-                        return _c("tbody", [
-                          _c("tr", { staticClass: "p-3 text-teal-500" }, [
-                            _c("td", { staticClass: "p-3" }, [
-                              _vm._v(_vm._s(activitytype.type.activity))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "p-3" }, [
-                              _vm._v(
-                                _vm._s(activitytype.created_at.substring(0, 10))
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "p-3" }, [
-                              _vm._v(_vm._s(activitytype.comments))
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              { staticClass: "p-3" },
-                              [
-                                _c(
-                                  "inertia-link",
-                                  {
-                                    staticClass:
-                                      "text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded",
-                                    attrs: {
-                                      href: _vm.route(
-                                        "activity.edit",
-                                        activitytype.id
-                                      )
-                                    }
-                                  },
-                                  [_vm._v("Edit")]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ])
-                      })
-                    ],
-                    2
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "px-8 py-4 border-gray-200 flex items-center" },
+                "h1",
+                { staticClass: "mb-8 mt-6 mr-6 font-bold text-2xl" },
                 [
                   _c(
                     "inertia-link",
-                    {
-                      staticClass:
-                        "bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20",
-                      attrs: { href: _vm.route("activity.create") }
-                    },
-                    [_vm._v("Add New Activity")]
+                    { staticClass: "text-teal-400 hover:text-teal-600" },
+                    [_vm._v("Activities")]
                   )
                 ],
                 1
-              )
-            ])
-          ])
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+                _c(
+                  "div",
+                  { staticClass: "flex justify-between content-center" },
+                  [
+                    _c(
+                      "table",
+                      { staticClass: "table-auto border solid rounded p-4" },
+                      [
+                        _c("thead", { staticClass: "border solid" }, [
+                          _c("tr", [
+                            _c("th", { staticClass: "border solid" }, [
+                              _vm._v("Activity")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { staticClass: "border solid" }, [
+                              _vm._v("Date")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { staticClass: "border solid" }, [
+                              _vm._v("Comments")
+                            ]),
+                            _vm._v(" "),
+                            _c("th")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(Object.values(_vm.activitytypes), function(
+                          activitytype
+                        ) {
+                          return _c("tbody", { staticClass: "border solid" }, [
+                            _c("tr", { staticClass: "p-3 text-teal-500" }, [
+                              _c("td", { staticClass: "p-3 border solid" }, [
+                                _vm._v(_vm._s(activitytype.type.activity))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "p-3 border solid" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    activitytype.created_at.substring(0, 10)
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "p-3 border solid" }, [
+                                _vm._v(_vm._s(activitytype.comments))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticClass: "p-3" },
+                                [
+                                  _c(
+                                    "inertia-link",
+                                    {
+                                      staticClass:
+                                        "text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded",
+                                      attrs: {
+                                        href: _vm.route(
+                                          "activity.edit",
+                                          activitytype.id
+                                        )
+                                      }
+                                    },
+                                    [_vm._v("Edit")]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ])
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "px-8 py-4 border-gray-200 flex items-center"
+                  },
+                  [
+                    _c(
+                      "inertia-link",
+                      {
+                        staticClass:
+                          "bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20",
+                        attrs: { href: _vm.route("activity.create") }
+                      },
+                      [_vm._v("Add New Activity")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
         : _c("div", [
             _c(
               "div",
@@ -35442,108 +35455,122 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm.activities.length !== 0 && _vm.activitytypes.length !== 0
-        ? _c("div", { staticClass: "flex justify-center content-center" }, [
-            _c(
-              "h1",
-              { staticClass: "mb-8 mt-6 mr-6 font-bold text-2xl" },
-              [
-                _c(
-                  "inertia-link",
-                  { staticClass: "text-teal-400 hover:text-teal-600" },
-                  [_vm._v("Activities")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+        ? _c(
+            "div",
+            { staticClass: "flex justify-center content-center mt-5" },
+            [
               _c(
-                "div",
-                { staticClass: "flex justify-between content-center" },
-                [
-                  _c(
-                    "table",
-                    { staticClass: "table-auto p-4" },
-                    [
-                      _c("thead", [
-                        _c("tr", [
-                          _c("th", [_vm._v("Activity")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Date")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Comments")]),
-                          _vm._v(" "),
-                          _c("th")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(Object.values(_vm.activitytypes), function(
-                        activitytype
-                      ) {
-                        return _c("tbody", [
-                          _c("tr", { staticClass: "p-3 text-teal-500" }, [
-                            _c("td", { staticClass: "p-3" }, [
-                              _vm._v(_vm._s(activitytype.type.activity))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "p-3" }, [
-                              _vm._v(
-                                _vm._s(activitytype.created_at.substring(0, 10))
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "p-3" }, [
-                              _vm._v(_vm._s(activitytype.comments))
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              { staticClass: "p-3" },
-                              [
-                                _c(
-                                  "inertia-link",
-                                  {
-                                    staticClass:
-                                      "text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded",
-                                    attrs: {
-                                      href: _vm.route(
-                                        "activity.edit",
-                                        activitytype.id
-                                      )
-                                    }
-                                  },
-                                  [_vm._v("Edit")]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ])
-                      })
-                    ],
-                    2
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "px-8 py-4 border-gray-200 flex items-center" },
+                "h1",
+                { staticClass: "mb-8 mt-6 mr-6 font-bold text-2xl" },
                 [
                   _c(
                     "inertia-link",
-                    {
-                      staticClass:
-                        "bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20",
-                      attrs: { href: _vm.route("activity.create") }
-                    },
-                    [_vm._v("Add New Activity")]
+                    { staticClass: "text-teal-400 hover:text-teal-600" },
+                    [_vm._v("Activities")]
                   )
                 ],
                 1
-              )
-            ])
-          ])
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+                _c(
+                  "div",
+                  { staticClass: "flex justify-between content-center" },
+                  [
+                    _c(
+                      "table",
+                      { staticClass: "table-auto border solid rounded p-4" },
+                      [
+                        _c("thead", { staticClass: "border solid" }, [
+                          _c("tr", [
+                            _c("th", { staticClass: "border solid" }, [
+                              _vm._v("Activity")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { staticClass: "border solid" }, [
+                              _vm._v("Date")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { staticClass: "border solid" }, [
+                              _vm._v("Comments")
+                            ]),
+                            _vm._v(" "),
+                            _c("th")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(Object.values(_vm.activitytypes), function(
+                          activitytype
+                        ) {
+                          return _c("tbody", { staticClass: "border solid" }, [
+                            _c("tr", { staticClass: "p-3 text-teal-500" }, [
+                              _c("td", { staticClass: "p-3 border solid" }, [
+                                _vm._v(_vm._s(activitytype.type.activity))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "p-3 border solid" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    activitytype.created_at.substring(0, 10)
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "p-3 border solid" }, [
+                                _vm._v(_vm._s(activitytype.comments))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticClass: "p-3" },
+                                [
+                                  _c(
+                                    "inertia-link",
+                                    {
+                                      staticClass:
+                                        "text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded",
+                                      attrs: {
+                                        href: _vm.route(
+                                          "activity.edit",
+                                          activitytype.id
+                                        )
+                                      }
+                                    },
+                                    [_vm._v("Edit")]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ])
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "px-8 py-4 border-gray-200 flex items-center"
+                  },
+                  [
+                    _c(
+                      "inertia-link",
+                      {
+                        staticClass:
+                          "bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20",
+                        attrs: { href: _vm.route("activity.create") }
+                      },
+                      [_vm._v("Add New Activity")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
         : _c(
             "div",
             { staticClass: "ml-60 flex justify-content items-center" },
