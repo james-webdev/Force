@@ -59,7 +59,8 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        //
+        // dd($activity);
+
     }
 
     /**
@@ -89,7 +90,8 @@ class ActivityController extends Controller
      */
     public function update(Request $request, Activity $activity)
     {
-        //
+        $activity->update(request()->all());
+        return redirect()->route('contact.show');
     }
 
     /**
@@ -100,7 +102,19 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
-        //
+        // dd($activity->contact_id);
+        $activity->delete();
+        // return redirect()->route('contact.show');
+
+        $contact = Contact::where('id', $activity->contact_id)->get();
+        // $contact->load('activities');
+        // dd($contact);
+        $activitytypes = Activity::with('type')->get()->where('contact_id', $activity->contact_id);
+
+           return Inertia::render('Contacts/Show', [
+               'contact' => $contact,
+               'activitytypes' => $activitytypes,
+           ]);
     }
 
     // public function contactActivity(Contact $contact)

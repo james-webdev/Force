@@ -33,6 +33,7 @@ Route::get('/addactivity/{contact}', ['as' => 'contact.activity', 'uses' => 'Act
 Route::resource('/contact','ContactsController');
 
 Route::resource('/activity','ActivityController');
+// Route::delete('/activity/{id}', ['as' => 'activity.destroy', 'uses' =>'ActivityController@destroy']);
 Route::resource('/activitytype','ActivityTypeController');
 
 Route::get('/import','AccountsController@importForm');
