@@ -125,7 +125,7 @@ class ContactsController extends Controller
     public function update(Request $request, Contact $contact)
     {
         $contact->update(request()->all());
-        return redirect()->route('contact.index');
+        return redirect()->route('contact.show', $contact->id);
     }
 
     /**

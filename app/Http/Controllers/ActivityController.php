@@ -44,7 +44,7 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $activity = Activity::create($request->all());
         // dd($activity);
     //   $contact->accounts()->attach(request('account'));
@@ -102,25 +102,31 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
-        // dd($activity->contact_id);
         $activity->delete();
-        // return redirect()->route('contact.show');
+        // dd($activity->contact_id);
+        return redirect()->route('contact.show', $activity->contact_id);
 
-        $contact = Contact::where('id', $activity->contact_id)->get();
-        // $contact->load('activities');
-        // dd($contact);
-        $activitytypes = Activity::with('type')->get()->where('contact_id', $activity->contact_id);
+        // $contact = Contact::where('id', $activity->contact_id)->get();
+        // // $contact->load('activities');
+        // // dd($contact);
+        // $activitytypes = Activity::with('type')->get()->where('contact_id', $activity->contact_id);
 
-           return Inertia::render('Contacts/Show', [
-               'contact' => $contact,
-               'activitytypes' => $activitytypes,
-           ]);
+        //    return Inertia::render('Contacts/Show', [
+        //        'contact' => $contact,
+        //        'activitytypes' => $activitytypes,
+        //    ]);
     }
 
-    // public function contactActivity(Contact $contact)
-    // {
-    //     // dd($contact);
-    //     $activitytypes = ActivityType::all();
-    //     return response()->view('contacts.addactivity', compact('contact', 'activitytypes'));
-    // }
+    public function contactActivity(Contact $contact)
+    {
+        // dd($contact);
+        $contacts = Contact::all();
+        $activitytypes = ActivityType::all();
+        // return response()->view('contacts.addactivity', compact('contact', 'activitytypes'));
+        return Inertia::render('Activities/Create', [
+            'activitytypes' => $activitytypes,
+            'selected_contact' => $contact->id,
+            'contacts' => $contacts,
+        ]);
+    }
 }

@@ -63,7 +63,7 @@
 
 </div>
          <div class="px-8 py-4 border-gray-200 flex items-center">
-           <inertia-link class="bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20" :href="route('activity.create')">Add New Activity</inertia-link>
+           <inertia-link class="bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20" :href="route('contact.activity', contact.id)">Add New Activity</inertia-link>
         </div>
     </div>
     </div>

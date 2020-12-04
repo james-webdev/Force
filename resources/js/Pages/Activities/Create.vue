@@ -14,14 +14,17 @@
                     </option>
 
                     </select>
+    <p> {{selected_contact}} </p>
         <label class="mb-2 font-bold text-lg text-grey-darkest" for="account">Contact</label>
 
                     <select v-model="contact_id"  class="border py-2 px-3 text-grey-800 w-full" name="contact_id">
 
-                    <option v-bind:value="contact.id" v-for="contact in contacts">{{contact.name}}
+                    <option v-bind:value="contact.id" :value="contact_id == selected_contact" v-for="contact in contacts">{{contact.name}}
                     </option>
 
                     </select>
+
+
         <div class="flex flex-col mb-4">
            <textarea name="comments" v-model="comments" class="border rounded mt-2 py-2 px-3 text-grey-800 w-full" placeholder="comments"></textarea>
         </div>
@@ -44,6 +47,7 @@ export default {
         props: {
             activities: Object,
             contacts: Object,
+            selected_contact: Number,
             activitytypes: Object
         },
 

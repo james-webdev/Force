@@ -4032,6 +4032,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4040,6 +4043,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     activities: Object,
     contacts: Object,
+    selected_contact: Number,
     activitytypes: Object
   },
   data: function data() {
@@ -34240,6 +34244,8 @@ var render = function() {
                 0
               ),
               _vm._v(" "),
+              _c("p", [_vm._v(" " + _vm._s(_vm.selected_contact) + " ")]),
+              _vm._v(" "),
               _c(
                 "label",
                 {
@@ -34279,9 +34285,16 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.contacts, function(contact) {
-                  return _c("option", { domProps: { value: contact.id } }, [
-                    _vm._v(_vm._s(contact.name) + "\n                   ")
-                  ])
+                  return _c(
+                    "option",
+                    {
+                      domProps: {
+                        value: contact.id,
+                        value: _vm.contact_id == _vm.selected_contact
+                      }
+                    },
+                    [_vm._v(_vm._s(contact.name) + "\n                   ")]
+                  )
                 }),
                 0
               ),
@@ -35587,7 +35600,9 @@ var render = function() {
                       {
                         staticClass:
                           "bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20",
-                        attrs: { href: _vm.route("activity.create") }
+                        attrs: {
+                          href: _vm.route("contact.activity", _vm.contact.id)
+                        }
                       },
                       [_vm._v("Add New Activity")]
                     )
