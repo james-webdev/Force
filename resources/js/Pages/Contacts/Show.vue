@@ -28,7 +28,7 @@
     </div>
     </div>
 
-    <div class="flex justify-center content-center mt-5" v-if="activities.length !== 0 && activitytypes.length !== 0">
+    <div class="flex justify-center content-center mt-5" v-if="activitytypes.length !== 0">
         <h1 class="mb-8 mt-6 mr-6 font-bold text-2xl">
               <inertia-link class="text-teal-400 hover:text-teal-600">Activities</inertia-link>
         </h1>
@@ -43,33 +43,24 @@
             <th class="border solid">Date</th>
             <th class="border solid">Comments</th>
              <th></th>
+             <th></th>
             </tr>
         </thead>
         <tbody class="border solid" v-for="activitytype in Object.values(activitytypes)">
+        <!--<h1>{{activitytype.id}}</h1>-->
+
             <tr class="p-3 text-teal-500">
             <td class="p-3 border solid">{{activitytype.type.activity}}</td>
             <td class="p-3 border solid">{{activitytype.created_at.substring(0,10)}}</td>
             <td class="p-3 border solid">{{activitytype.comments}}</td>
-             <td class="p-3"> <inertia-link  class="text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activitytype.id)">Edit</inertia-link></td>
+             <td class="p-3 border solid"> <inertia-link  class="text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activitytype.id)"><i class="far fa-edit"></i></inertia-link></td>
+              <td class="p-3 border solid"> <inertia-link method="delete" class="text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.destroy', activitytype.id)"><i class="far fa-trash-alt"></i></inertia-link></td>
             </tr>
             </tr>
         </tbody>
         </table>
 
-       <!-- <table class="table-auto p-4">
-        <thead>
-            <tr>
-            <th>Comments</th>
-            <th></th>
-            </tr>
-        </thead>
-        <tbody v-for="activity in activities">
-            <tr class="p-3 text-teal-500">
-            <td class="p-3">{{activity.comments}}</td>
-            <td class="p-3"> <inertia-link  class="text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded" :href="route('activity.edit', activity.id)">Edit</inertia-link></td>
-            </tr>
-        </tbody>
-        </table>-->
+
 </div>
          <div class="px-8 py-4 border-gray-200 flex items-center">
            <inertia-link class="bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-2 rounded ml-4 mt-3 mr-15 mb-20" :href="route('activity.create')">Add New Activity</inertia-link>
@@ -143,6 +134,7 @@ export default {
                         console.log(activityEdit);
                         this.$inertia.post('/activity/', activityEdit)
                     },
+
                 }
     };
 </script>

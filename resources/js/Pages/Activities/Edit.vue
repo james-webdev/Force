@@ -20,7 +20,6 @@
         </div>
         <div class="px-8 py-4 border-gray-200 flex items-center">
           <button @click="addActivity" class="bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Edit Activity</button>
-          <button @click="destroy" class="bg-teal-500 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">Delete Activity</button>
         </div>
       </form>
     </div>
@@ -49,22 +48,6 @@ export default {
             }
         },
                 methods: {
-
-                    destroy() {
-                      let contactsDelete = {
-                            name: this.contact.name,
-                            phone: this.contact.phone,
-                            city: this.contact.city,
-                            id: this.contact.id,
-                            _method: 'DELETE',
-                        }
-                            if (confirm('Are you sure you want to delete this contact?')) {
-                                console.log(this.contact.id);
-                                this.$inertia.post('/contact/' + this.contact.id, contactsDelete);
-                            }
-                        },
-
-
                 }
     };
 </script>

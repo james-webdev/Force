@@ -4118,7 +4118,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4136,22 +4135,7 @@ __webpack_require__.r(__webpack_exports__);
       comments: ''
     };
   },
-  methods: {
-    destroy: function destroy() {
-      var contactsDelete = {
-        name: this.contact.name,
-        phone: this.contact.phone,
-        city: this.contact.city,
-        id: this.contact.id,
-        _method: 'DELETE'
-      };
-
-      if (confirm('Are you sure you want to delete this contact?')) {
-        console.log(this.contact.id);
-        this.$inertia.post('/contact/' + this.contact.id, contactsDelete);
-      }
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -4250,6 +4234,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+//
+//
+//
 //
 //
 //
@@ -4499,15 +4486,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -34492,16 +34470,6 @@ var render = function() {
                       on: { click: _vm.addActivity }
                     },
                     [_vm._v("Edit Activity")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "bg-teal-500 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
-                      on: { click: _vm.destroy }
-                    },
-                    [_vm._v("Delete Activity")]
                   )
                 ]
               )
@@ -34931,7 +34899,7 @@ var render = function() {
       _vm._v(" "),
       _c("h1", [_vm._v(" " + _vm._s(_vm.activites) + " ")]),
       _vm._v(" "),
-      _vm.activities.length !== 0 && _vm.activitytypes.length !== 0
+      _vm.activitytypes.length !== 0
         ? _c(
             "div",
             { staticClass: "flex justify-center content-center mt-5" },
@@ -34972,6 +34940,8 @@ var render = function() {
                               _vm._v("Comments")
                             ]),
                             _vm._v(" "),
+                            _c("th"),
+                            _vm._v(" "),
                             _c("th")
                           ])
                         ]),
@@ -34999,13 +34969,13 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "td",
-                                { staticClass: "p-3" },
+                                { staticClass: "p-3 border solid" },
                                 [
                                   _c(
                                     "inertia-link",
                                     {
                                       staticClass:
-                                        "text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded",
+                                        "text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded",
                                       attrs: {
                                         href: _vm.route(
                                           "activity.edit",
@@ -35013,7 +34983,34 @@ var render = function() {
                                         )
                                       }
                                     },
-                                    [_vm._v("Edit")]
+                                    [_c("i", { staticClass: "far fa-edit" })]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticClass: "p-3 border solid" },
+                                [
+                                  _c(
+                                    "inertia-link",
+                                    {
+                                      staticClass:
+                                        "text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded",
+                                      attrs: {
+                                        method: "delete",
+                                        href: _vm.route(
+                                          "activity.destroy",
+                                          activitytype.id
+                                        )
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "far fa-trash-alt"
+                                      })
+                                    ]
                                   )
                                 ],
                                 1
@@ -35454,7 +35451,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm.activities.length !== 0 && _vm.activitytypes.length !== 0
+      _vm.activitytypes.length !== 0
         ? _c(
             "div",
             { staticClass: "flex justify-center content-center mt-5" },
@@ -35495,6 +35492,8 @@ var render = function() {
                               _vm._v("Comments")
                             ]),
                             _vm._v(" "),
+                            _c("th"),
+                            _vm._v(" "),
                             _c("th")
                           ])
                         ]),
@@ -35522,13 +35521,13 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "td",
-                                { staticClass: "p-3" },
+                                { staticClass: "p-3 border solid" },
                                 [
                                   _c(
                                     "inertia-link",
                                     {
                                       staticClass:
-                                        "text-xs bg-gray-300 hover:bg-teal-400 text-white font-bold p-1 ml-1 mb-3 rounded",
+                                        "text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded",
                                       attrs: {
                                         href: _vm.route(
                                           "activity.edit",
@@ -35536,7 +35535,34 @@ var render = function() {
                                         )
                                       }
                                     },
-                                    [_vm._v("Edit")]
+                                    [_c("i", { staticClass: "far fa-edit" })]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticClass: "p-3 border solid" },
+                                [
+                                  _c(
+                                    "inertia-link",
+                                    {
+                                      staticClass:
+                                        "text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded",
+                                      attrs: {
+                                        method: "delete",
+                                        href: _vm.route(
+                                          "activity.destroy",
+                                          activitytype.id
+                                        )
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "far fa-trash-alt"
+                                      })
+                                    ]
                                   )
                                 ],
                                 1
@@ -50471,17 +50497,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/css/app.css":
-/*!*******************************!*\
-  !*** ./resources/css/app.css ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "./resources/images/OkosLogo.png":
 /*!***************************************!*\
   !*** ./resources/images/OkosLogo.png ***!
@@ -52042,6 +52057,8 @@ var map = {
 	"./Activities/Create.vue": "./resources/js/Pages/Activities/Create.vue",
 	"./Activities/Edit": "./resources/js/Pages/Activities/Edit.vue",
 	"./Activities/Edit.vue": "./resources/js/Pages/Activities/Edit.vue",
+	"./Activities/Show": "./resources/js/Pages/Activities/Show.vue",
+	"./Activities/Show.vue": "./resources/js/Pages/Activities/Show.vue",
 	"./ActivityTypes/Create": "./resources/js/Pages/ActivityTypes/Create.vue",
 	"./ActivityTypes/Create.vue": "./resources/js/Pages/ActivityTypes/Create.vue",
 	"./ActivityTypes/Edit": "./resources/js/Pages/ActivityTypes/Edit.vue",
@@ -52726,6 +52743,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_decfd31a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Activities/Show.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Pages/Activities/Show.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/Pages/Activities/Show.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
@@ -54247,15 +54296,26 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!***********************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/css/app.css ***!
-  \***********************************************************/
+/*!*************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\laragon\www\test3\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\test3\resources\css\app.css */"./resources/css/app.css");
+module.exports = __webpack_require__(/*! C:\laragon\www\test3\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -79,7 +79,7 @@ class ContactsController extends Controller
         //         'contact' => $contact,
         //         'activities' => $contact->activities
         //     ]);
-
+// dd($contact);
         $contact->load('activities');
      $activitytypes = Activity::with('type')->get()->where('contact_id', $contact->id);
 
@@ -88,7 +88,7 @@ class ContactsController extends Controller
         return Inertia::render('Contacts/Show', [
             'update_url' => URL::route('contact.show', $contact),
             'contact' => $contact,
-            'activities' => $contact->activities,
+            // 'activities' => $contact->activities,
             'activitytypes' => $activitytypes,
         ]);
     }
