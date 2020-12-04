@@ -3,7 +3,7 @@
   <div class="bg-white h-screen">
     <div class="flex justify-center content-center">
     <h1 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-teal-400 hover:text-teal-600">Contact</inertia-link>
+      <inertia-link class="text-teal-400 hover:text-teal-600">Contacts</inertia-link>
       <span class="text-teal-400 font-medium">/ {{ contact.name }}</span>
     </h1>
     <div class="bg-white ml-3 rounded max-w-3xl">

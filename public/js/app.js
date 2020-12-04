@@ -33583,7 +33583,7 @@ var render = function() {
                   staticClass:
                     "text-3xl text-teal-400 hover:text-teal-600 leading-tight"
                 },
-                [_vm._v("\n            Accounts\n        ")]
+                [_vm._v("\r\n            Accounts\r\n        ")]
               )
             ]
           },
@@ -35305,7 +35305,7 @@ var render = function() {
             _c(
               "inertia-link",
               { staticClass: "text-teal-400 hover:text-teal-600" },
-              [_vm._v("Contact")]
+              [_vm._v("Contacts")]
             ),
             _vm._v(" "),
             _c("span", { staticClass: "text-teal-400 font-medium" }, [
@@ -54329,8 +54329,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\test3\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\test3\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\Force\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\Force\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
