@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Contact;
-class ContactsSeeder extends Seeder
+use App\Models\Account;
+
+class AccountSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +14,7 @@ class ContactsSeeder extends Seeder
      */
     public function run()
     {
-        Contact::factory()
+        Account::factory()
             ->times(100)
             ->create();
     }

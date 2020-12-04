@@ -1,10 +1,10 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\Opportunity;
 use Illuminate\Database\Seeder;
 
-class AccountsSeeder extends Seeder
+class OpportunitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,8 @@ class AccountsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Opportunity::factory()
+            ->times(100)
+            ->create();
     }
 }
