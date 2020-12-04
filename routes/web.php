@@ -32,9 +32,9 @@ Route::resource('/account','AccountsController');
 Route::get('/addactivity/{contact}', ['as' => 'contact.activity', 'uses' => 'ActivityController@contactActivity']);
 Route::resource('/contact','ContactsController');
 
-Route::resource('/activity','ActivityController');
-Route::resource('/activitytype','ActivityTypeController');
-
+Route::resource('/activity', 'ActivityController');
+Route::resource('/activitytype', 'ActivityTypeController');
+Route::resource('/opportunity', 'OpportunityController');
 Route::get('/import','AccountsController@importForm');
 Route::post('/import','AccountsController@import');
 // Route::get('/accounts/{accounts}/edit', 'AccountsController@edit');

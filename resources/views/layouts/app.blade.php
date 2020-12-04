@@ -12,13 +12,17 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+        
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.js" defer></script>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
-             @yield('content')
+            <x-main_menu>
+                @include('layouts.main_menu')
+            </x-main_menu>
+        @yield('content')
         </div>
     </body>
+    @livewireScripts
 </html>
