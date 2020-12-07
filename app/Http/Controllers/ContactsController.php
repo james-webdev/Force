@@ -22,19 +22,15 @@ class ContactsController extends Controller
     {
 
 
-        $contacts = new ContactResource(Contact::with('accounts')->filter(request('search'))->paginate(5));
-        // $filteredAccounts = Account::all(Request::only('search'));
-        // dd($contacts);
-        return Inertia::render('Contacts/Index', [
-            'filters' => Request::all('search'),
-            'contacts' => $contacts,
-            'activities' => Activity::all()
-             ]
-
-        // return Inertia::render('Contacts/Index', [
-        //     'contacts' => Contact::with('accounts')->get()
-        // ]);
-    );
+        $contacts = new ContactResource(Contact::with('company')->filter(request('search'))->paginate(5));
+     
+        return Inertia::render(
+            'Contacts/Index', [
+                'filters' => Request::all('search'),
+                'contacts' => $contacts,
+                'activities' => Activity::all(),
+                ]
+        );
 
     }
 

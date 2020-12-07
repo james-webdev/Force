@@ -13,33 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Auth::routes(['register' => false]);
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
-
-// Route::get('accounts', [AccountsController::class, 'index']);
-
-// Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
-
-Route::resource('/account','AccountsController');
-// Route::post('/account/add','AccountsController@store');
-Route::get('/addactivity/{contact}', ['as' => 'contact.activity', 'uses' => 'ActivityController@contactActivity']);
-Route::resource('/contact','ContactsController');
-
-Route::resource('/activity','ActivityController');
-// Route::delete('/activity/{id}', ['as' => 'activity.destroy', 'uses' =>'ActivityController@destroy']);
-Route::resource('/activitytype','ActivityTypeController');
-
-Route::get('/import','AccountsController@importForm');
-Route::post('/import','AccountsController@import');
-// Route::get('/accounts/{accounts}/edit', 'AccountsController@edit');
-// Route::post('/update','AccountsController@update');
-// Route::post('/destroy','AccountsController@destroy');
-
-// Route::get('import-form', 'AccountsController@importForm');
+Route::get(
+    '/', function () {
+        return view('welcome');
+    }
+);
+Route::middleware(['auth:sanctum', 'verified'])
+    ->group(
+        function () { 
+            Route::get(
+                '/dashboard', function () {
+                    return Inertia\Inertia::render('Dashboard');
+                }
+            )->name('dashboard');
+            // Accounts
+            Route::resource('/account', 'AccountsController');
+            // Activities
+            Route::resource('/activity', 'ActivityController');
+            //Activity Types
+            Route::resource('/activitytype', 'ActivityTypeController');        
+            // Contacts
+            Route::get('/addactivity/{contact}', ['as' => 'contact.activity', 'uses' => 'ActivityController@contactActivity']);
+            Route::resource('/contact', 'ContactsController');
+            // Opportunities
+            Route::get('opportunity/create/{account?}', ['as'=>'opportunity.create', 'uses'=>'OpportunityController@create']);
+            Route::resource('/opportunity', 'OpportunityController');
+            // Imports
+            Route::get('/import', ['as'=>'account.import.create', 'uses'=>'AccountsController@importForm']);
+            Route::post('/import', ['as'=>'account.import.store', 'uses'=>'AccountsController@import']); 
+        }
+    );

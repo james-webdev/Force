@@ -89,14 +89,17 @@
 
             <tbody>
                 @foreach ($recentActivities as $activity)
-            
+                    @foreach ($activity['activities'] as $act)
                 <tr>
-                    <td class="border">{{$activity->activity_type_id}}</td>
-                    <td class="border">{{$activity->contact_id}}</td>
-                    <td class="border">{{$activity->activity_date}}</td>
+                    <td class="border">{{$act->type->activity}}</td>
+                    <td class="border">{{$activity['contact']}}</td>
                     
+                    <td class="border">{{$act->activity_date}}</td>
+                    
+                  
 
                 </tr>
+                @endforeach
                 @endforeach
             </tbody>
         </table>

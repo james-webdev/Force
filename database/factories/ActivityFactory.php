@@ -22,11 +22,11 @@ class ActivityFactory extends Factory
     public function definition()
     {
         return [
-            'called'=> $faker->boolean,
-            'met'=> $faker->boolean,
-            'proposed'=> $faker->boolean,
-            'assisted'=> $faker->boolean,
+            'activity_date' => $this->faker->dateTimeThisYear()->format('Y-m-d'),
+            'activity_type_id' => $this->faker->numberBetween(1, 5),
+            'completed' => $this->faker->numberBetween(0, 1),
             'comments' => $this->faker->realText(mt_rand(10, 20)),
+            'user_id' => $this->faker->numberBetween(1, 5),
         ];
     }
 }

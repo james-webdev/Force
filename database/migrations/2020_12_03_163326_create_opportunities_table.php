@@ -15,15 +15,18 @@ class CreateOpportunitiesTable extends Migration
     {
         Schema::create(
             'opportunities', function (Blueprint $table) {
-                $table->id();
-                $table->integer('account_id')->index();
+                $table->bigIncrements('id');
+                $table->foreignId('account_id');
+                $table->foreign('account_id')->references('id')->on('accounts');
+                $table->foreignId('user_id');
+                $table->foreign('user_id')->references('id')->on('users');
                 $table->string('title');
                 $table->text('description');
-                $table->date('expected_close');
-                $table->date('actual_close');
+                $table->date('close_date');
                 $table->integer('value');
-                $table->integer('status')->nullable();
-                $table->integer('user_id')->index();
+                $table->integer('status')->default(0);
+                $table->foreignId('stage_id');
+                $table->foreign('stage_id')->references('id')->on('sales_stages');
                 $table->timestamps();
             }
         );

@@ -33,9 +33,9 @@
 <tbody>
  @foreach ($contact->activities as $activity)
  <tr>
-<td>{{$activity->created_at->format('Y-m-d')}}</td>
-<td> {{$activity->type->activity}}</td>
-<td> {{$activity->comments}}</td>
+<td>{{$activity->activity_date->format('Y-m-d')}}</td>
+<td>{{$activity->type->activity}}</td>
+<td>{{$activity->comments}}</td>
  </tr>
 
  @endforeach

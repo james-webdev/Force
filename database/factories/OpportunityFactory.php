@@ -22,15 +22,14 @@ class OpportunityFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->title,
-            'expected_close' => $this->faker->dateTimeThisYear()->format('Y-m-d'),
-            'actual_close' => $this->faker->dateTimeThisYear()->format('Y-m-d'),
-            'account_id' => function () {
-                return factory(App\Models\Account::class)->create()->id;
-            }, 
+            'title' => $this->faker->sentence,
+            'close_date' => $this->faker->dateTimeThisYear()->format('Y-m-d'),
+            'account_id' => $this->faker->numberBetween(1, 12), 
+            'user_id' => $this->faker->numberBetween(1, 5),
             'description' => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
             'status' => $this->faker->numberBetween($min = 0, $max = 2),
             'value' =>  $this->faker->numberBetween($min = 500000, $max = 20000000),
+            'stage_id' => $this->faker->numberBetween(1, 4),
         ];
     }
 }

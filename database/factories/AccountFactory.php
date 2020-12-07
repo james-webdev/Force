@@ -25,7 +25,11 @@ class AccountFactory extends Factory
             'name' => $this->faker->company,
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
-            'address' => $this->faker->realText(mt_rand(10, 20)),
+            'address' => $this->faker->streetAddress,
+            'city' => $this->faker->city,
+            'state'=> $this->faker->stateAbbr,
+            'zipcode' => $this->faker->postcode,
+            'user_id'=> $this->faker->numberBetween(1, 5),
         ];
     }
 }

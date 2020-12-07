@@ -18,9 +18,11 @@
         <table class="border rounded ml-20 mr-20 whitespace-no-wrap">
             <tr class="bg-white text-left font-bold">
                 <th class="px-6 pt-6 pb-4">Name</th>
+                <th class="px-6 pt-6 pb-4">Owner</th>
                 <th class="px-6 pt-6 pb-4">Email</th>
                 <th class="px-6 pt-6 pb-4">Address</th>
                 <th class="px-6 pt-6 pb-4"># Contacts</th>
+                <th class="px-6 pt-6 pb-4"># Open Opportunities</th>
                 <th class="px-6 pt-6 pb-4">Phone</th>
 
             </tr>
@@ -28,6 +30,9 @@
 
                 <td class="px-6 pt-6 pb-4 border-t">
                      <inertia-link :href="route('account.show', account.id)">{{ account.name }}</inertia-link>
+                </td>
+                <td class=" px-6 pt-6 pb-4 border-t">
+                 <inertia-link :href="route('account.show', account.id)">{{ account.owner.name }}</inertia-link>
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
                     <inertia-link :href="route('account.show', account.id)">{{ account.email }}</inertia-link>
@@ -37,6 +42,9 @@
                 </td>
                 <td class="px-6 pt-6 pb-4 border-t">
                  <inertia-link :href="route('account.show', account.id)">{{ account.contacts_count }}</inertia-link>
+                </td>
+                <td class="px-6 pt-6 pb-4 border-t">
+                 <inertia-link :href="route('account.show', account.id)">{{ account.open_opportunities_count }}</inertia-link>
                 </td>
                 <td class=" px-6 pt-6 pb-4 border-t">
                  <inertia-link :href="route('account.show', account.id)">{{ account.phone }}</inertia-link>

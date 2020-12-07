@@ -3804,6 +3804,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3852,29 +3860,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -33638,6 +33623,8 @@ var render = function() {
               _c("tr", { staticClass: "bg-white text-left font-bold" }, [
                 _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
                 _vm._v(" "),
+                _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Owner")]),
+                _vm._v(" "),
                 _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Email")]),
                 _vm._v(" "),
                 _c("th", { staticClass: "px-6 pt-6 pb-4" }, [
@@ -33646,6 +33633,10 @@ var render = function() {
                 _vm._v(" "),
                 _c("th", { staticClass: "px-6 pt-6 pb-4" }, [
                   _vm._v("# Contacts")
+                ]),
+                _vm._v(" "),
+                _c("th", { staticClass: "px-6 pt-6 pb-4" }, [
+                  _vm._v("# Open Opportunities")
                 ]),
                 _vm._v(" "),
                 _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Phone")])
@@ -33668,6 +33659,23 @@ var render = function() {
                             }
                           },
                           [_vm._v(_vm._s(account.name))]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: " px-6 pt-6 pb-4 border-t" },
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            attrs: {
+                              href: _vm.route("account.show", account.id)
+                            }
+                          },
+                          [_vm._v(_vm._s(account.owner.name))]
                         )
                       ],
                       1
@@ -33719,6 +33727,23 @@ var render = function() {
                             }
                           },
                           [_vm._v(_vm._s(account.contacts_count))]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "px-6 pt-6 pb-4 border-t" },
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            attrs: {
+                              href: _vm.route("account.show", account.id)
+                            }
+                          },
+                          [_vm._v(_vm._s(account.open_opportunities_count))]
                         )
                       ],
                       1
@@ -33784,360 +33809,149 @@ var render = function() {
       "div",
       { staticClass: "bg-white h-screen flex justify-center content-center" },
       [
-        _c("div", {}, [
-          _c(
-            "h1",
-            { staticClass: "mb-8 font-bold text-3xl" },
-            [
-              _c(
-                "inertia-link",
-                { staticClass: "text-teal-400 hover:text-teal-600" },
-                [_vm._v("Account")]
-              ),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-teal-400 font-medium" }, [
-                _vm._v("/ " + _vm._s(_vm.account.name))
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+        _c(
+          "h1",
+          { staticClass: "mb-8 font-bold text-3xl text-teal-400 font-medium" },
+          [_vm._v(_vm._s(_vm.account.name))]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
+          _c("p", { staticClass: "font-bold text-lg text-grey-darkest" }, [
+            _vm._v("Email:\n               "),
             _c(
-              "form",
-              {
-                staticClass: "p-10",
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                  }
-                }
-              },
-              [
-                _c("div", { staticClass: "flex flex-col mb-4" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                      attrs: { for: "name" }
-                    },
-                    [_vm._v("Name")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.account.name,
-                        expression: "account.name"
-                      }
-                    ],
-                    staticClass: "border py-2 px-3 text-grey-800 w-full",
-                    attrs: { name: "name", id: "name" },
-                    domProps: { value: _vm.account.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.account, "name", $event.target.value)
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-col mb-4" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                      attrs: { for: "name" }
-                    },
-                    [_vm._v("Email")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.account.email,
-                        expression: "account.email"
-                      }
-                    ],
-                    staticClass: "border py-2 px-3 text-grey-800 w-full",
-                    attrs: { name: "email" },
-                    domProps: { value: _vm.account.email },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.account, "email", $event.target.value)
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-col mb-4" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                      attrs: { for: "name" }
-                    },
-                    [_vm._v("Phone")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model.number",
-                        value: _vm.account.phone,
-                        expression: "account.phone",
-                        modifiers: { number: true }
-                      }
-                    ],
-                    staticClass: "border py-2 px-3 text-grey-800 w-full",
-                    attrs: { name: "phone", text: "" },
-                    domProps: { value: _vm.account.phone },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.account,
-                          "phone",
-                          _vm._n($event.target.value)
-                        )
-                      },
-                      blur: function($event) {
-                        return _vm.$forceUpdate()
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-col mb-4" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                      attrs: { for: "name" }
-                    },
-                    [_vm._v("Address")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.account.address,
-                        expression: "account.address"
-                      }
-                    ],
-                    staticClass: "border py-2 px-3 text-grey-800 w-full",
-                    attrs: { name: "address" },
-                    domProps: { value: _vm.account.address },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.account, "address", $event.target.value)
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-col mb-4" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "mb-2 font-bold text-lg text-grey-darkest",
-                      attrs: { for: "name" }
-                    },
-                    [_vm._v("#Contact")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.account.contact,
-                        expression: "account.contact"
-                      }
-                    ],
-                    staticClass: "border py-2 px-3 text-grey-800 w-full",
-                    attrs: { name: "contactcount" },
-                    domProps: { value: _vm.account.contact },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.account, "contact", $event.target.value)
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "px-8 py-4 border-gray-200 flex items-center"
-                  },
-                  [
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "bg-teal-700 hover:bg-teal-200 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
-                        on: { click: _vm.destroy }
-                      },
-                      [_vm._v("Delete Account")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
-                        on: { click: _vm.editAccount }
-                      },
-                      [_vm._v("Edit Account")]
-                    )
-                  ]
-                )
-              ]
+              "span",
+              { staticClass: "font-normal py-2 px-3 text-grey-800 w-full" },
+              [_vm._v(_vm._s(_vm.account.email))]
             )
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: " font-bold text-lg text-grey-darkest" }, [
+            _vm._v("Phone:\n           "),
+            _c("span", { staticClass: "py-2 px-3 text-grey-800 w-full" }, [
+              _vm._v(_vm._s(_vm.account.phone))
+            ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "mt-40" }, [
+        _c("div", { staticClass: "flex flex-col mb-4" }, [
           _c(
-            "h1",
-            { staticClass: "mb-8 font-bold text-2xl" },
-            [
-              _c(
-                "inertia-link",
-                { staticClass: "text-teal-400 hover:text-teal-600" },
-                [_vm._v("Contacts")]
-              )
+            "label",
+            {
+              staticClass: " font-bold text-lg text-grey-darkest",
+              attrs: { for: "name" }
+            },
+            [_vm._v("Address")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.account.address,
+                expression: "account.address"
+              }
             ],
-            1
+            staticClass: "py-2 px-3 text-grey-800 w-full",
+            attrs: { name: "address" },
+            domProps: { value: _vm.account.address },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.account, "address", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex flex-col mb-4" }, [
+          _c(
+            "label",
+            {
+              staticClass: " font-bold text-lg text-grey-darkest",
+              attrs: { for: "name" }
+            },
+            [_vm._v("#Contact")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.account.contact,
+                expression: "account.contact"
+              }
+            ],
+            staticClass: "py-2 px-3 text-grey-800 w-full",
+            attrs: { name: "contactcount" },
+            domProps: { value: _vm.account.contact },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.account, "contact", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "mt-40" }, [
+      _c(
+        "h1",
+        { staticClass: "mb-8 font-bold text-2xl" },
+        [
+          _c(
+            "inertia-link",
+            { staticClass: "text-teal-400 hover:text-teal-600" },
+            [_vm._v("Contacts")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "px-8 py-4 border-gray-200 flex items-center" },
+        [
+          _c(
+            "inertia-link",
+            {
+              staticClass:
+                "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
+              attrs: { href: _vm.route("contact.create") }
+            },
+            [
+              _c("span", [_vm._v("Add")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "hidden md:inline" }, [
+                _vm._v("Contact")
+              ])
+            ]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "bg-white ml-3 rounded max-w-3xl" }, [
             _c(
               "table",
-              { staticClass: "border rounded ml-20 mr-20 whitespace-no-wrap" },
+              { staticClass: "rounded ml-20 mr-20 whitespace-no-wrap" },
               [
-                _c("tr", { staticClass: "bg-white text-left font-bold" }, [
-                  _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
-                  _vm._v(" "),
-                  _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("City")]),
-                  _vm._v(" "),
-                  _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Phone")])
-                ]),
+                _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
                 _vm._v(" "),
-                _vm._l(Object.values(_vm.contacts)[0].contacts, function(
-                  contact
-                ) {
-                  return _c(
-                    "tr",
-                    {
-                      staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-                    },
-                    [
-                      _c(
-                        "td",
-                        { staticClass: "px-6 pt-6 pb-4 border-t" },
-                        [
-                          _c(
-                            "inertia-link",
-                            {
-                              attrs: {
-                                href: _vm.route("contact.show", contact.id)
-                              }
-                            },
-                            [_vm._v(_vm._s(contact.name))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "px-6 pt-6 pb-4 border-t" },
-                        [
-                          _c(
-                            "inertia-link",
-                            {
-                              attrs: {
-                                href: _vm.route("contact.show", contact.id)
-                              }
-                            },
-                            [_vm._v(_vm._s(contact.city))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: " px-6 pt-6 pb-4 border-t" },
-                        [
-                          _c(
-                            "inertia-link",
-                            {
-                              attrs: {
-                                href: _vm.route("contact.show", contact.id)
-                              }
-                            },
-                            [_vm._v(_vm._s(contact.phone))]
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "px-8 py-4 border-gray-200 flex items-center" },
-              [
-                _c(
-                  "inertia-link",
-                  {
-                    staticClass:
-                      "bg-teal-300 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded ml-4 mt-3 mr-15",
-                    attrs: { href: _vm.route("contact.create") }
-                  },
-                  [
-                    _c("span", [_vm._v("Add")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "hidden md:inline" }, [
-                      _vm._v("Contact")
-                    ])
-                  ]
-                )
-              ],
-              1
+                _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("City")]),
+                _vm._v(" "),
+                _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Phone")])
+              ]
             )
           ])
-        ])
-      ]
-    )
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -35115,7 +34929,7 @@ var render = function() {
                   staticClass:
                     "text-3xl text-teal-400 hover:text-teal-600 leading-tight"
                 },
-                [_vm._v("\n            Contacts\n        ")]
+                [_vm._v("\r\n            Contacts\r\n        ")]
               )
             ]
           },
@@ -35195,7 +35009,11 @@ var render = function() {
                               href: _vm.route("contact.show", contact.id)
                             }
                           },
-                          [_vm._v(_vm._s(contact.name))]
+                          [
+                            _vm._v(
+                              _vm._s(contact.firstname + " " + contact.lastname)
+                            )
+                          ]
                         )
                       ],
                       1
@@ -35205,18 +35023,18 @@ var render = function() {
                       "td",
                       { staticClass: "px-6 pt-6 pb-4 border-t" },
                       [
-                        contact.accounts
+                        contact.company
                           ? _c(
                               "inertia-link",
                               {
                                 attrs: {
                                   href: _vm.route(
                                     "account.edit",
-                                    contact.accounts.id
+                                    contact.company.id
                                   )
                                 }
                               },
-                              [_vm._v(_vm._s(contact.accounts.name))]
+                              [_vm._v(_vm._s(contact.company.name))]
                             )
                           : _vm._e()
                       ],
@@ -54329,8 +54147,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\Force\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\Force\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! c:\laragon\www\force\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\laragon\www\force\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

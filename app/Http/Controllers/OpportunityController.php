@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Opportunity;
+use App\Models\Account;
 use Illuminate\Http\Request;
-use App\Requests\OpportunityFormRequest;
+use App\Models\SalesStage;
+use App\Http\Requests\OpportunityFormRequest;
 
 class OpportunityController extends Controller
 {
@@ -23,9 +25,10 @@ class OpportunityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Account $account = null)
     {
-        return response()->view('opportunities.create');
+        $stages = SalesStage::all()->pluck('stage', 'id')->toArray();
+        return response()->view('opportunities.create', compact('account', 'stages'));
     }
 
     /**
@@ -36,7 +39,10 @@ class OpportunityController extends Controller
      */
     public function store(OpportunityFormRequest $request)
     {
-        $opportunity = Opportunity::create(request()->all());
+        $user_id = auth()->user()->id;
+  
+        $opportunity = Opportunity::create(array_merge(request()->all(), ['user_id'=>$user_id]));
+
         return redirect()->route('account.show', request('account_id'));
     }
 
@@ -60,7 +66,9 @@ class OpportunityController extends Controller
      */
     public function edit(Opportunity $opportunity)
     {
-        return response()->view('opportunities.edit', compact('opportunity'));
+        $opportunity->load('owner', 'account');
+        $stages = SalesStage::all()->pluck('stage', 'id')->toArray();
+        return response()->view('opportunities.edit', compact('opportunity', 'stages'));
     }
 
     /**
