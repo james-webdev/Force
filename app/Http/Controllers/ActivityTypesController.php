@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActivityType;
 use Illuminate\Http\Request;
 
-class ActivityTypeController extends Controller
+class ActivityTypesController extends Controller
 {
     /**
      * Display a listing of the resource.

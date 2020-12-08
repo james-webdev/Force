@@ -23,19 +23,9 @@ class AccountsController extends Controller
      */
     public function index()
     {
-        $accounts = new AccountResource(
-            Account::withCount('contacts', 'openOpportunities')
-                ->with('owner')
-                ->filter(request('search'))
-                ->paginate(5)
-        );
 
-        return Inertia::render(
-            'Accounts/Index', [
-                'filters' => Request::all('search'),
-                'accounts' => $accounts,
-                 ]
-        );
+        return response()->view('accounts.index');
+               
     }
 
     /**

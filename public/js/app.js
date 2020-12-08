@@ -3093,6 +3093,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3860,8 +3866,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-//
-//
 //
 //
 //
@@ -31540,17 +31544,6 @@ var render = function() {
                     "jet-nav-link",
                     {
                       attrs: {
-                        href: _vm.route("dashboard"),
-                        active: _vm.$page.currentRouteName == "dashboard"
-                      }
-                    },
-                    [_vm._v("\n                  Dashboard\n            ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "jet-nav-link",
-                    {
-                      attrs: {
                         href: _vm.route("account.index"),
                         active: _vm.$page.currentRouteName == "account.index"
                       }
@@ -31567,6 +31560,29 @@ var render = function() {
                       }
                     },
                     [_vm._v("\n                  Contacts\n            ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "jet-nav-link",
+                    {
+                      attrs: {
+                        href: _vm.route("activity.index"),
+                        active: _vm.$page.currentRouteName == "activity.index"
+                      }
+                    },
+                    [_vm._v("\n                  Activities\n            ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "jet-nav-link",
+                    {
+                      attrs: {
+                        href: _vm.route("opportunity.index"),
+                        active:
+                          _vm.$page.currentRouteName == "opportunity.index"
+                      }
+                    },
+                    [_vm._v("\n                  Opportunities\n            ")]
                   )
                 ],
                 1
@@ -33830,40 +33846,14 @@ var render = function() {
             _c("span", { staticClass: "py-2 px-3 text-grey-800 w-full" }, [
               _vm._v(_vm._s(_vm.account.phone))
             ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex flex-col mb-4" }, [
-          _c(
-            "label",
-            {
-              staticClass: " font-bold text-lg text-grey-darkest",
-              attrs: { for: "name" }
-            },
-            [_vm._v("Address")]
-          ),
+          ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.account.address,
-                expression: "account.address"
-              }
-            ],
-            staticClass: "py-2 px-3 text-grey-800 w-full",
-            attrs: { name: "address" },
-            domProps: { value: _vm.account.address },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.account, "address", $event.target.value)
-              }
-            }
-          })
+          _c("p", { staticClass: " font-bold text-lg text-grey-darkest" }, [
+            _vm._v("Address:\n           "),
+            _c("span", { staticClass: "py-2 px-3 text-grey-800 w-full" }, [
+              _vm._v(_vm._s(_vm.account.address))
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "flex flex-col mb-4" }, [

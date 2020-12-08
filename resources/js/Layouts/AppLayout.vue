@@ -15,11 +15,7 @@
 
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-              <jet-nav-link
-                    :href="route('dashboard')"
-                    :active="$page.currentRouteName == 'dashboard'">
-                    Dashboard
-              </jet-nav-link>
+              
 
               <jet-nav-link
                     :href="route('account.index')"
@@ -27,10 +23,20 @@
                     Accounts
               </jet-nav-link>
 
-                <jet-nav-link
+              <jet-nav-link
                     :href="route('contact.index')"
                     :active="$page.currentRouteName == 'contact.index'" >
                     Contacts
+              </jet-nav-link>
+              <jet-nav-link
+                    :href="route('activity.index')"
+                    :active="$page.currentRouteName == 'activity.index'" >
+                    Activities
+              </jet-nav-link>
+              <jet-nav-link
+                    :href="route('opportunity.index')"
+                    :active="$page.currentRouteName == 'opportunity.index'" >
+                    Opportunities
               </jet-nav-link>
 
             </div>

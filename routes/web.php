@@ -27,17 +27,19 @@ Route::middleware(['auth:sanctum', 'verified'])
                 }
             )->name('dashboard');
             // Accounts
-            Route::resource('/account', 'AccountsController');
+            Route::get('activity/create/{contact?}', ['as'=>'activity.create', 'uses'=>'ActivityController@create']);
+            Route::resource('/account', 'AccountsController')->except('create');
             // Activities
-            Route::resource('/activity', 'ActivityController');
+            Route::resource('/activity', 'ActivitiesController');
             //Activity Types
-            Route::resource('/activitytype', 'ActivityTypeController');        
+            Route::resource('/activitytype', 'ActivityTypesController');        
             // Contacts
-            Route::get('/addactivity/{contact}', ['as' => 'contact.activity', 'uses' => 'ActivityController@contactActivity']);
+            Route::get('/addactivity/{contact}', ['as' => 'contact.activity', 'uses' => 'ActivitiesController@contactActivity']);
+
             Route::resource('/contact', 'ContactsController');
             // Opportunities
             Route::get('opportunity/create/{account?}', ['as'=>'opportunity.create', 'uses'=>'OpportunityController@create']);
-            Route::resource('/opportunity', 'OpportunityController');
+            Route::resource('/opportunity', 'OpportunityiesController');
             // Imports
             Route::get('/import', ['as'=>'account.import.create', 'uses'=>'AccountsController@importForm']);
             Route::post('/import', ['as'=>'account.import.store', 'uses'=>'AccountsController@import']); 

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 
-class ActivityController extends Controller
+class ActivitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,8 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        //
+        $activities = Activity::with('contact.company', 'type')->get();
+        return response()->view('activities.index', compact('activities'));
     }
 
     /**
@@ -26,14 +27,18 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Contact $contact=null)
     {
+        ddd($contact);
         $activitytypes = ActivityType::all();
         $contacts = Contact::all();
-        return Inertia::render('Activities/Create', [
-            'activitytypes' => $activitytypes,
-            'contacts' => $contacts
-        ]);
+        return Inertia::render(
+            'Activities/Create', [
+                'activitytypes' => $activitytypes,
+                'contacts' => $contacts,
+                'contact' => $contact,
+            ]
+        );
     }
 
     /**
@@ -44,11 +49,9 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        
         $activity = Activity::create($request->all());
-        // dd($activity);
-    //   $contact->accounts()->attach(request('account'));
-      return redirect()->route('contact.edit', $request->contact_id);
+        return redirect()->route('contact.show', $request->contact_id);
     }
 
     /**
@@ -59,7 +62,7 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        // dd($activity);
+        return response()->view('activity.show', compact('activity'));
 
     }
 
@@ -71,14 +74,16 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        // dd($activity);
+
         $thisactivitytype = ActivityType::get()->where('id', $activity->activity_type_id);
         $activitytypes = ActivityType::all();
-        return Inertia::render('Activities/Edit', [
-            'activity' => $activity,
-            'thisactivitytype' => $thisactivitytype,
-            'activitytypes' => $activitytypes
-        ]);
+        return Inertia::render(
+            'Activities/Edit', [
+                'activity' => $activity,
+                'thisactivitytype' => $thisactivitytype,
+                'activitytypes' => $activitytypes
+            ]
+        );
     }
 
     /**
@@ -91,30 +96,21 @@ class ActivityController extends Controller
     public function update(Request $request, Activity $activity)
     {
         $activity->update(request()->all());
-        return redirect()->route('contact.show');
+        return redirect()->route('contact.show')->withMessage('Activity updated');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Activity  $activity
-     * @return \Illuminate\Http\Response
+     * 
+     * @param Activity $activity [description]
+     * 
+     * @return redirect             [return to contact]
      */
     public function destroy(Activity $activity)
     {
         $activity->delete();
-        // dd($activity->contact_id);
-        return redirect()->route('contact.show', $activity->contact_id);
+        return redirect()->route('contact.show', $activity->contact_id)->withMessage('Activity deleted');
 
-        // $contact = Contact::where('id', $activity->contact_id)->get();
-        // // $contact->load('activities');
-        // // dd($contact);
-        // $activitytypes = Activity::with('type')->get()->where('contact_id', $activity->contact_id);
-
-        //    return Inertia::render('Contacts/Show', [
-        //        'contact' => $contact,
-        //        'activitytypes' => $activitytypes,
-        //    ]);
     }
 
     public function contactActivity(Contact $contact)
@@ -123,10 +119,12 @@ class ActivityController extends Controller
         $contacts = Contact::all();
         $activitytypes = ActivityType::all();
         // return response()->view('contacts.addactivity', compact('contact', 'activitytypes'));
-        return Inertia::render('Activities/Create', [
-            'activitytypes' => $activitytypes,
-            'selected_contact' => $contact->id,
-            'contacts' => $contacts,
-        ]);
+        return Inertia::render(
+            'Activities/Create', [
+                'activitytypes' => $activitytypes,
+                'selected_contact' => $contact->id,
+                'contacts' => $contacts,
+            ]
+        );
     }
 }

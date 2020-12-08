@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\SalesStage;
 use App\Http\Requests\OpportunityFormRequest;
 
-class OpportunityController extends Controller
+class OpportunitiesController extends Controller
 {
     /**
      * Display a listing of the resource.

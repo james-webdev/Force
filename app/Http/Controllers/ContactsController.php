@@ -23,7 +23,7 @@ class ContactsController extends Controller
 
 
         $contacts = new ContactResource(Contact::with('company')->filter(request('search'))->paginate(5));
-     
+
         return Inertia::render(
             'Contacts/Index', [
                 'filters' => Request::all('search'),
@@ -69,24 +69,19 @@ class ContactsController extends Controller
      */
     public function show(Contact $contact)
     {
-        // $contact->load('activities');
-        // // return response()->view('contacts.show', compact('contact'));
-        //     return Inertia::render('Contacts/Edit', [
-        //         'contact' => $contact,
-        //         'activities' => $contact->activities
-        //     ]);
-// dd($contact);
-        $contact->load('activities');
-     $activitytypes = Activity::with('type')->get()->where('contact_id', $contact->id);
 
-        // $activities = Activity::get()->where('contact_id', $contact->id);
-        // dd($contact->load('activities'));
-        return Inertia::render('Contacts/Show', [
+        $contact->load('activities.type', 'company');
+       
+        //$activitytypes = Activity::with('type')->get()->where('contact_id', $contact->id);
+
+        
+        /*return Inertia::render('Contacts/Show', [
             'update_url' => URL::route('contact.show', $contact),
             'contact' => $contact,
             // 'activities' => $contact->activities,
             'activitytypes' => $activitytypes,
-        ]);
+        ]);*/
+        return response()->view('contacts.show', compact('contact'));
     }
 
     /**

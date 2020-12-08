@@ -57,6 +57,14 @@ class Account extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('name', 'like', "%{$search}%")
+            ->orWhere('address', 'like', "%{$search}%")
+            ->orWhere('city',  'like', "%{$search}%");
+    }
+
     /**
      * [lastActivity description]
      * 
@@ -68,7 +76,9 @@ class Account extends Model
     }
     /**
      * [scopeWithLastActivityId description]
-     * @param  [type] $query [description]
+     * 
+     * @param [type] $query [description]
+     * 
      * @return [type]        [description]
      */
     public function scopeWithLastActivityId($query)
@@ -78,4 +88,6 @@ class Account extends Model
              ->selectSub('select id as last_activity_id from activities where account_id = accounts.id and completed=1 order by activities.activity_date desc limit 1', 'last_activity_id');
        
     }
+
+    
 }

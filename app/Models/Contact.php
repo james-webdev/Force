@@ -77,12 +77,20 @@ class Contact extends Model
              ->selectSub('select id as last_activity_id from activities where contact_id = contacts.id and completed=1 order by activities.activity_date desc limit 1', 'last_activity_id');
        
     }
-
+    /**
+     * [fullName description]
+     * 
+     * @return [type] [description]
+     */
     public function fullName()
     {
         return $this->firstname . ' ' . $this->lastname;
     }
-
+    /**
+     * [recentActivities description]
+     * 
+     * @return [type] [description]
+     */
     public function recentActivities()
     {
         return $this->hasMany(Activity::class, 'contact_id', 'id')

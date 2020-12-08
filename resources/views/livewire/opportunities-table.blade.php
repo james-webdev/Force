@@ -46,49 +46,49 @@
             <th class="w-1/8">
                 <a wire:click.prevent="sortBy('account')" role="button" href="#">
                     Company
-                    @include('includes._sort-icon', ['field' => 'account'])
+                    @include('livewire.partials._sort-icon', ['field' => 'account'])
                 </a>
             </th>
             <th class="w-1/8">
                 <a wire:click.prevent="sortBy('title')" role="button" href="#">
                     Opportunity
-                    @include('includes._sort-icon', ['field' => 'title'])
+                    @include('livewire.partials._sort-icon', ['field' => 'title'])
                 </a>
             </th>
             <th class="w-1/8">
                 <a wire:click.prevent="sortBy('user_id')" role="button" href="#">
                     Owner
-                    @include('includes._sort-icon', ['field'=>'user_id'])
+                    @include('livewire.partials._sort-icon', ['field'=>'user_id'])
                 </a>
             </th>
             <th class="w-1/8">
                 <a wire:click.prevent="sortBy('stage_id')" role="button" href="#">
                     Stage
-                    @include('includes._sort-icon', ['field' => 'stage_id'])
+                    @include('livewire.partials._sort-icon', ['field' => 'stage_id'])
                 </a>
             </th>
             <th class="w-1/8">
                 <a wire:click.prevent="sortBy('value')" role="button" href="#">
                     Value
-                    @include('includes._sort-icon', ['field' => 'value'])
+                    @include('livewire.partials._sort-icon', ['field' => 'value'])
                 </a>
             </th>
             <th class="w-1/8">
                 <a wire:click.prevent="sortBy('status')" role="button" href="#">
                     Status
-                    @include('includes._sort-icon', ['field' => 'status'])
+                    @include('livewire.partials._sort-icon', ['field' => 'status'])
                 </a>
             </th>
             <th class="w-1/8">
                 <a wire:click.prevent="sortBy('expected_close')" role="button" href="#">
                     Created
-                    @include('includes._sort-icon', ['field' => 'created_at'])
+                    @include('livewire.partials._sort-icon', ['field' => 'created_at'])
                 </a>
             </th>
             <th class="w-1/8">
                 <a wire:click.prevent="sortBy('expected_close')" role="button" href="#">
                     Close Date
-                    @include('includes._sort-icon', ['field' => 'expected_close'])
+                    @include('livewire.partials._sort-icon', ['field' => 'expected_close'])
                 </a>
             </th>
             <th class="w-1/8">Last Activity</th>

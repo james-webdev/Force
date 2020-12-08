@@ -12,10 +12,8 @@
 
             <p class=" font-bold text-lg text-grey-darkest">Phone:
             <span class="py-2 px-3 text-grey-800 w-full" >{{ account.phone}}</span></p>
-        </div>
-         <div class="flex flex-col mb-4">
-            <label class=" font-bold text-lg text-grey-darkest" for="name">Address</label>
-            <input v-model="account.address" name="address"class="py-2 px-3 text-grey-800 w-full"  />
+        <p class=" font-bold text-lg text-grey-darkest">Address:
+            <span class="py-2 px-3 text-grey-800 w-full">{{ account.address}}</span></p>
           </div>
           <div class="flex flex-col mb-4">
             <label class=" font-bold text-lg text-grey-darkest" for="name">#Contact</label>
