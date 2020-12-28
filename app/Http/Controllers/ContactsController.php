@@ -21,16 +21,7 @@ class ContactsController extends Controller
     public function index()
     {
 
-
-        $contacts = new ContactResource(Contact::with('company')->filter(request('search'))->paginate(5));
-
-        return Inertia::render(
-            'Contacts/Index', [
-                'filters' => Request::all('search'),
-                'contacts' => $contacts,
-                'activities' => Activity::all(),
-                ]
-        );
+        return response()->view('contacts.index');
 
     }
 

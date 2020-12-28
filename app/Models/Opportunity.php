@@ -10,17 +10,25 @@ class Opportunity extends Model
     use HasFactory;
 
     public $fillable = [
-            'title', 
-            'description', 
-            'close_date', 
-            'value', 
-            'status',
+            'id',
             'account_id',
-            'stage_id',
-            'user_id'
+            'title',
+            'description',
+            'close_date',
+            'value',
+            'status',
+            'stage',
+            'probability',
+            'type',
+            'next_step',
+            'lead_source',
+            'owner_id',
+            'contact_id',
+            'partner',
+            'created_at'
         ];
 
-    public $dates = ['expected_close', 'actual_close'];
+    public $dates = ['close_date'];
     /**
      * [owner description]
      * 
@@ -28,7 +36,7 @@ class Opportunity extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'owner_id', 'id');
 
     }
     /**
@@ -47,7 +55,7 @@ class Opportunity extends Model
      */
     public function account()
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(Account::class, 'account_id', 'id');
     }
     /**
      * [opportunityValue description]

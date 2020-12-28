@@ -2,7 +2,7 @@
 @section('content')
    
  
-@livewire('accounts-table')
+@livewire('contact-table')
 
 
 @endsection

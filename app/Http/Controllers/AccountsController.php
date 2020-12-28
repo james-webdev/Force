@@ -62,16 +62,20 @@ class AccountsController extends Controller
      */
     public function show(Account $account)
     {
-        
-        $account->load('openOpportunities', 'owner', 'contacts.recentActivities.type');
+        $account = Account::withLastActivityId()
+            ->with('openOpportunities', 'owner', 'lastActivity')
+            ->findOrFail($account->id);
+        $contacts = $account->contacts()->withLastActivityId()->with('lastActivity.type')->get();
+  
+        $account->load('openOpportunities', 'owner', 'contacts.recentActivities.type', 'contacts.lastActivity');
 
-        $recentActivities = $account->contacts->map(
+        $recentActivities = $contacts->map(
             function ($contact) use ($account) {
                 return ['contact'=>$contact->fullName(), 'activities'=>$contact->recentActivities];
             }
         );
-               
-        return response()->view('accounts.show', compact('account', 'recentActivities'));
+       //dd($contacts->first());     
+        return response()->view('accounts.show', compact('account', 'recentActivities', 'contacts'));
     }
 
     /**
@@ -132,8 +136,8 @@ class AccountsController extends Controller
 
     public function import(Request $request)
     {
-       $path = $request->file('import_file');
-       $data = Excel::import(new AccountsImport, $path);
-       return redirect()->route('account.index');
+        $path = $request->file('import_file');
+        $data = Excel::import(new AccountsImport, $path);
+        return redirect()->route('account.index');
     }
 }

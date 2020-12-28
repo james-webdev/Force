@@ -5,7 +5,6 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Account;
 use App\Models\User;
-use App\Models\SalesStage;
 
 
 class AccountsTable extends Component
@@ -16,13 +15,18 @@ class AccountsTable extends Component
 
     public $perPage = 10;
     public $sortField = 'name';
-    public $sortAsc = true;
+    public $sortAsc = false;
     public $search ='';
     public $status = 'All';
-    public $stage_id = 'All';
     public $user_id = 'All';
-
-
+    public $isOpen = 0;
+    public $name;
+    public $street;
+    public $city;
+    public $state;
+    public $postalcode;
+    public $description;
+    public $account_id;
 
 
     public function updatingSearch()
@@ -41,28 +45,105 @@ class AccountsTable extends Component
     }
     public function render()
     {
-        
+
         return view(
             'livewire.accounts-table', [
-                'accounts'=>Account::withCount('contacts', 'openOpportunities')
-                    ->with('owner')
+                'accounts'=>Account:: withLastActivityId()
+                    ->withCount('contacts', 'openOpportunities')
+                    ->with('owner', 'lastActivity')
                     ->search($this->search)
-                    ->with(
-                        'contacts', function ($q) {
-                            $q->withLastActivityId()->with('lastActivity');
-                        }
-                    )
                     ->when(
                         $this->user_id != 'All', function ($q) {
-                            $q->where('user_id', $this->user_id);
+                            $q->where('owner_id', $this->user_id);
                         }
                     )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
                     
-                    'users' => User::pluck('name', 'id')->toArray(),
+                    'users' => User::pluck('name', 'sf_id')->toArray(),
                 ]
         );
+    }
+
+    public function create()
+    {
+
+         $this->_resetInputFields();
+
+         $this->openModal();
+
+    }
+    /**
+     * [_resetInputFields description]
+     * 
+     * @return [type] [description]
+     */
+    private function _resetInputFields()
+    {
+        $this->name = '';
+        $this->street = '';
+        $this->city = '';
+        $this->state = '';
+        $this->postalcode = '';
+        $this->description = '';
+
+    }
+    /**
+     * [openModal description]
+     * 
+     * @return [type] [description]
+     */
+    public function openModal()
+    {
+
+        $this->isOpen = true;
+
+    }
+    /**
+     * [closeModal description]
+     * 
+     * @return [type] [description]
+     */
+    public function closeModal()
+    {
+
+        $this->isOpen = false;
+
+    }
+
+    public function store()
+    {
+
+        $this->validate(
+            [
+             'name' => 'required',
+            ]
+        );
+
+        Account::updateOrCreate(
+            ['id' => $this->account_id], 
+            [
+                'name' => $this->name,
+                'street' => $this->street,
+                'city'=> $this->city,
+                'state' => $this->state, 
+                'postalcode' => $this->postalcode,
+                'description' => $this->description,
+                'owner_id' => auth()->user()->id
+
+            ]
+        );
+
+     
+
+        session()->flash(
+            'message',
+            $this->account_id ? 'Account Updated Successfully.' : 'Account Created Successfully.'
+        );
+     
+        $this->closeModal();
+        $this->resetInputFields();
+
     }
 }
 

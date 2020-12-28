@@ -27,7 +27,7 @@ Route::middleware(['auth:sanctum', 'verified'])
                 }
             )->name('dashboard');
             // Accounts
-            Route::get('activity/create/{contact?}', ['as'=>'activity.create', 'uses'=>'ActivityController@create']);
+            Route::get('activity/create/{contact?}', ['as'=>'activity.create', 'uses'=>'ActivitiesController@create']);
             Route::resource('/account', 'AccountsController')->except('create');
             // Activities
             Route::resource('/activity', 'ActivitiesController');
@@ -38,10 +38,13 @@ Route::middleware(['auth:sanctum', 'verified'])
 
             Route::resource('/contact', 'ContactsController');
             // Opportunities
-            Route::get('opportunity/create/{account?}', ['as'=>'opportunity.create', 'uses'=>'OpportunityController@create']);
-            Route::resource('/opportunity', 'OpportunityiesController');
+            Route::get('opportunity/create/{account?}', ['as'=>'opportunity.create', 'uses'=>'OpportunitiesController@create']);
+            Route::resource('/opportunity', 'OpportunitiesController');
             // Imports
-            Route::get('/import', ['as'=>'account.import.create', 'uses'=>'AccountsController@importForm']);
-            Route::post('/import', ['as'=>'account.import.store', 'uses'=>'AccountsController@import']); 
+            
+            Route::post('import/mapping/{import}', ['as'=>'import.mapping', 'uses'=>'ImportController@mapping']);
+            Route::resource('/import', 'ImportController');
+            //Route::get('/import', ['as'=>'account.import.create', 'uses'=>'AccountsController@importForm']);
+            //Route::post('/import', ['as'=>'account.import.store', 'uses'=>'AccountsController@import']); 
         }
     );

@@ -11,36 +11,28 @@
 
     <div class="row mb-4">
         @include('livewire.partials._perpage')
-        <div class="col form-inline">
-            <label class="font-bold" for="status">Stage:</label>
-            <select wire:model="stage_id" 
-            class="form-control">
-                <option value="All">All</option>
-                @foreach ($stages as $id=>$stage)
-                    <option value={{$id}} >{{$stage}}</option>
-                @endforeach
-                
-            </select>
-            <label class="font-bold" for="status">Status:</label>
-            <select wire:model="status" 
-            class="form-control">
-                <option value="All">All</option>
-                @foreach ($statuses as $id=>$status)
-                    <option value={{$id}} >{{$status}}</option>
-                @endforeach
-                
-            </select>
-            <label class="font-bold" for="status">Owner:</label>
-            <select wire:model="user_id" 
-            class="form-control">
-                <option value="All">All</option>
-                @foreach ($users as $id=>$user)
-                    <option value={{$id}} >{{$user}}</option>
-                @endforeach
-                
-            </select>
-        </div>
+        
+        <label class="font-bold" for="status">Status:</label>
+        <select wire:model="status" 
+        class="form-control">
+            <option value="All">All</option>
+            @foreach ($statuses as $id=>$status)
+                <option value={{$id}} >{{$status}}</option>
+            @endforeach
+            
+        </select>
+        <label class="font-bold" for="status">Owner:</label>
+        <select wire:model="user_id" 
+        class="form-control">
+            <option value="All">All</option>
+            @foreach ($users as $sf_id=>$user)
+                <option value={{$sf_id}} >{{$user}}</option>
+            @endforeach
+            
+        </select>
     </div>
+
+    <div class="row">
     <table  class="table-fixed">
         <thead>
             <th class="w-1/8">
@@ -61,12 +53,7 @@
                     @include('livewire.partials._sort-icon', ['field'=>'user_id'])
                 </a>
             </th>
-            <th class="w-1/8">
-                <a wire:click.prevent="sortBy('stage_id')" role="button" href="#">
-                    Stage
-                    @include('livewire.partials._sort-icon', ['field' => 'stage_id'])
-                </a>
-            </th>
+            
             <th class="w-1/8">
                 <a wire:click.prevent="sortBy('value')" role="button" href="#">
                     Value
@@ -104,7 +91,7 @@
                 </td> 
                <td class="border border-grey-300">{{$opportunity->title}}</td> 
                <td class="border border-grey-300">{{$opportunity->owner->name}}</td>
-               <td class="border border-grey-300">{{$opportunity->stage->stage}}</td> 
+               
                <td class="border border-grey-300">
                     ${{number_format($opportunity->opportunityValue(),0)}}
                </td> 
@@ -123,6 +110,7 @@
         </tbody>
 
     </table>
+</div>
 
     <div class="row mb-4">
             <div class="row-start-4 text-left">
@@ -133,3 +121,4 @@
 
     </div>
 </div>
+

@@ -8,16 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
- protected $fillable = [
-            "firstname",
-            'lastname', 
-            'address', 
+    public $fillable = [
+            "id",
+            "account_id",
+            "salutation",
+            "firstName",
+            "lastName",
+            "street",
             "city",
-            'state',
-            'zipcode',
-            'email' ,
-            "phone", 
-            "account_id"
+            "state",
+            "postalCode",
+            "country",
+            "phone",
+            "fax",
+            "mobile_phone",
+            "home_phone",
+            "other_phone",
+            "assistant_phone",
+            "reports_to ",
+            "email",
+            "title",
+            "department",
+            "assistantName",
+            "leadsource ",
+            "description",
+            "owner_id",
+            "optOut"
         ];
 
     
@@ -29,15 +45,22 @@ class Contact extends Model
      * 
      * @return [type]         [description]
      */
-    public function scopeFilter($query, $search = null)
+    public function scopeSearch($query, $search = null)
     {
 
         $query->when(
             $search ?? null, function ($query, $search) {
-                $query->where('firstname', 'like', '%'.$search.'%');
+                $query->where('firstname', 'like', '%'.$search.'%')
+                    ->orWhere('lastname', 'like', '%'.$search.'%')
+                    ->orWhereHas(
+                        'company', function ($q) use ($search) {
+                            $q->where('name', 'like',  "%{$search}%");
+                        }
+                    );
             }
         );
     }
+
     /**
      * [activities description]
      * 
@@ -54,7 +77,17 @@ class Contact extends Model
      */
     public function company()
     {
-        return $this->belongsTo(Account::class, 'account_id');
+        return $this->belongsTo(Account::class, 'account_id', 'id');
+    }
+
+    /**
+     * [company description]
+     * 
+     * @return [type] [description]
+     */
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id', 'id');
     }
     /**
      * [lastActivity description]
@@ -84,7 +117,7 @@ class Contact extends Model
      */
     public function fullName()
     {
-        return $this->firstname . ' ' . $this->lastname;
+        return $this->firstName . ' ' . $this->lastName;
     }
     /**
      * [recentActivities description]
@@ -95,6 +128,8 @@ class Contact extends Model
     {
         return $this->hasMany(Activity::class, 'contact_id', 'id')
             ->where('completed', 1)
-            ->where('activity_date','>', now()->subMonth(3));
+            ->where('activity_date', '>',  now()->subMonth(3));
     }
+
+    
 }

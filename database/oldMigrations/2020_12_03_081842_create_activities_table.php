@@ -23,12 +23,12 @@ class CreateActivitiesTable extends Migration
                 $table->string('status', 50)->nullable();
                 $table->string('priority', 50)->default('normal');
                 $table->string('owner_id', 50)->nullable();
-                $table->longtext('details')->nullable();
+                $table->longtext('details')->nullable()
                 $table->foreignId('activity_type_id');
                 $table->foreign('activity_type_id')->references('id')->on('activity_types');
                 $table->string('account_id', 50)->nullable()->index();
                 $table->boolean('completed')->default(0);
-              
+                $table->boolean('completed')->default(1);
                
                 $table->timestamps();
             }

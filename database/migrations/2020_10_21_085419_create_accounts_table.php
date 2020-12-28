@@ -17,15 +17,22 @@ class CreateAccountsTable extends Migration
             'accounts', function (Blueprint $table) {
 
                 $table->bigIncrements('id');
-                $table->foreignId('user_id');
+                $table->string('sf_id', 100)->unique();
+                $table->foreignId('ownerid');
+                $table->foreignId('parent_id')->nullable();
                 $table->string('name', 100);
-                $table->string('email', 50)->nullable();
-                $table->string('phone', 50)->nullable();
-                $table->string('address', 150)->nullable();
-                $table->string('city', 50)->nullable();
-                $table->string('state', 2)->nullable();
-                $table->string('country', 2)->default('US')->nullable();
-                $table->string('zipcode', 25)->nullable();
+                $table->string('type', 100);
+                $table->string('email', 250)->nullable();
+                $table->string('phone', 250)->nullable();
+                $table->string('fax', 250)->nullable();
+                $table->string('website', 250)->nullable();
+                $table->string('industry', 100)->nullable();
+                $table->text('description')->nullable();
+                $table->string('billingstreet', 150)->nullable();
+                $table->string('billingcity', 50)->nullable();
+                $table->string('billingstate', 2)->nullable();
+                $table->string('billingcountry', 2)->default('US')->nullable();
+                $table->string('billingpostalcode', 25)->nullable();
                 $table->timestamps();
             }
         );

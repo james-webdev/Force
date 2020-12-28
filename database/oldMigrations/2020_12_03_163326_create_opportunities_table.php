@@ -21,7 +21,7 @@ class CreateOpportunitiesTable extends Migration
                 $table->string('title');
                 $table->longtext('description');
                 $table->date('close_date');
-                $table->integer('value')->nullable();
+                $table->integer('value');
                 $table->integer('status')->default(0);
                 $table->string('stage', 50)->nullable();
                 $table->integer('probability')->default(0);

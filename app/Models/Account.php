@@ -8,7 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
-    protected $fillable = ["name", "email", "phone", "address"];
+    public $fillable = [
+        'owner_id',
+        'parent_id',
+        'name', 
+        'phone',
+        'fax',
+        'website',
+        'description',
+        'street',
+        'city',
+        'state',
+        'country',
+        'postalcode'
+        ];
     /**
      * [contacts description]
      * 
@@ -16,7 +29,7 @@ class Account extends Model
      */
     public function contacts()
     {
-        return $this->hasMany(Contact::class);
+        return $this->hasMany(Contact::class, 'account_id', 'id');
     }
     /**
      * [scopeFilter description]
@@ -41,12 +54,43 @@ class Account extends Model
      */
     public function opportunities()
     {
-        return $this->hasMany(Opportunity::class);
+        return $this->hasMany(Opportunity::class, 'account_id', 'id');
     }
-
+    /**
+     * [type description]
+     * 
+     * @return [type] [description]
+     */
+    public function type()
+    {
+        return $this->belongsTo(AccountType::class);
+    }
+    /**
+     * [industry description]
+     * 
+     * @return [type] [description]
+     */
+    public function industry()
+    {
+        return $this->belongsTo(Industry::class);
+    }
+    /**
+     * [activities description]
+     * 
+     * @return [type] [description]
+     */
+    public function activities()
+    {
+        return $this->hasMany(Activity::class, 'account_id', 'id');
+    }
+    /**
+     * [openOpportunities description]
+     * 
+     * @return [type] [description]
+     */
     public function openOpportunities()
     {
-        return $this->hasMany(Opportunity::class)->where('status', 0);
+        return $this->hasMany(Opportunity::class, 'account_id', 'id')->where('status', 0);
     }
     /**
      * [user description]
@@ -55,13 +99,13 @@ class Account extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'owner_id', 'id');
     }
 
     public function scopeSearch($query, $search)
     {
         return $query->where('name', 'like', "%{$search}%")
-            ->orWhere('address', 'like', "%{$search}%")
+            ->orWhere('street', 'like', "%{$search}%")
             ->orWhere('city',  'like', "%{$search}%");
     }
 
@@ -85,7 +129,7 @@ class Account extends Model
     {
          return $query
              ->select('accounts.*')
-             ->selectSub('select id as last_activity_id from activities where account_id = accounts.id and completed=1 order by activities.activity_date desc limit 1', 'last_activity_id');
+             ->selectSub('select id as last_activity_id from activities where account_id = accounts.id and status=1 order by activities.activity_date desc limit 1', 'last_activity_id');
        
     }
 

@@ -4,20 +4,19 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Opportunity;
-use App\Models\User;
-use App\Models\SalesStage;
-class OpportunitiesTable extends Component
+use App\Models\Activity;
+
+class ActivityTable extends Component
 {
-    
+     
     use WithPagination;
 
     public $perPage = 10;
-    public $sortField = 'id';
+    public $sortField = 'name';
     public $sortAsc = true;
     public $search ='';
     public $status = 'All';
-
+    public $stage_id = 'All';
     public $user_id = 'All';
 
 
@@ -41,11 +40,12 @@ class OpportunitiesTable extends Component
     {
         
         return view(
-            'livewire.opportunities-table', [
-                'opportunities' => Opportunity::with('owner', 'account')
+            'livewire.activity-table', [
+                'activities'=>Activity::with('contact', 'account', 'owner')
+                    
                     ->search($this->search)
                     ->with(
-                        'contact', function ($q) {
+                        'contacts', function ($q) {
                             $q->withLastActivityId()->with('lastActivity');
                         }
                     )
@@ -54,16 +54,8 @@ class OpportunitiesTable extends Component
                             $q->where('owner_id', $this->user_id);
                         }
                     )
-                    ->when(
-                        $this->status != 'All', function ($q) {
-                            $q->where('status', $this->status);
-                        }
-                    ) 
-                    
-
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
-                    'statuses'=>[0=>'Open', 1=>'Closed Won', 2=> 'Closed Lost'],
                     
                     'users' => User::pluck('name', 'sf_id')->toArray(),
                 ]

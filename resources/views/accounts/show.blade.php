@@ -27,6 +27,7 @@
     </h4>
 
     <p><a href="{{route('contact.create')}}"><i class="text-teal-400  fas fa-plus-circle"></i> Add Contact</a></p>
+
     <table class="table-auto">
         <thead>
             <th>Name</th>
@@ -36,14 +37,14 @@
             <th>Last Activity</th>
         </thead>
         <tbody>
-            @foreach ($account->contacts as $contact)
+            @foreach ($contacts as $contact)
             
             <tr>
                 <td class="border font-bold"><a href="{{route('contact.show', $contact->id)}}">{{$contact->fullName()}}</a></td>
                 <td class="border">{{$contact->title}}</td>
                 <td class="border">{{$contact->phone}}</td>
                 <td class="border">{{$contact->email}}</td>
-                <td class="border">{{$contact->recentActivities->max('activity_date')}}</td>
+                <td class="border">{{$contact->lastActivity ? $contact->lastActivity->activity_date ." (". $contact->lastActivity->type->activity .")" : ''}}</td>
 
             </tr>
             @endforeach
@@ -111,3 +112,4 @@
         </tbody>
     </table>
 </div>
+@endsection

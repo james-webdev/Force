@@ -4,20 +4,20 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Opportunity;
+use App\Models\Contact;
 use App\Models\User;
-use App\Models\SalesStage;
-class OpportunitiesTable extends Component
+
+class ContactTable extends Component
 {
-    
+     
     use WithPagination;
 
     public $perPage = 10;
-    public $sortField = 'id';
+    public $sortField = 'lastname';
     public $sortAsc = true;
     public $search ='';
     public $status = 'All';
-
+    public $stage_id = 'All';
     public $user_id = 'All';
 
 
@@ -41,31 +41,20 @@ class OpportunitiesTable extends Component
     {
         
         return view(
-            'livewire.opportunities-table', [
-                'opportunities' => Opportunity::with('owner', 'account')
-                    ->search($this->search)
-                    ->with(
-                        'contact', function ($q) {
-                            $q->withLastActivityId()->with('lastActivity');
-                        }
-                    )
+            'livewire.contact-table', [
+                'contacts'=>Contact::search($this->search)
+                    ->withLastActivityId()
+                    ->has('company')
+                    ->with('lastActivity', 'company', 'owner')
                     ->when(
                         $this->user_id != 'All', function ($q) {
                             $q->where('owner_id', $this->user_id);
                         }
                     )
-                    ->when(
-                        $this->status != 'All', function ($q) {
-                            $q->where('status', $this->status);
-                        }
-                    ) 
-                    
-
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
-                    'statuses'=>[0=>'Open', 1=>'Closed Won', 2=> 'Closed Lost'],
                     
-                    'users' => User::pluck('name', 'sf_id')->toArray(),
+                    'users' => User::has('contacts')->pluck('name', 'id')->toArray(),
                 ]
         );
     }
