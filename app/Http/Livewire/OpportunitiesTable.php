@@ -8,6 +8,7 @@ use App\Models\Opportunity;
 use App\Models\User;
 use App\Models\SalesStage;
 use App\Models\Contact;
+use App\Models\Account;
 
 class OpportunitiesTable extends Component
 {
@@ -92,6 +93,7 @@ class OpportunitiesTable extends Component
                     'contacts'=>Contact::select('id', 'firstName', 'lastName')
                         ->where('account_id', $this->account_id)
                         ->get(),
+                    'accounts'=>Account::orderBy('name')->pluck('name', 'id')->toArray(),
                     'stages'=>SalesStage::all()->pluck('stage', 'id')->toArray(),
                     'users' => User::pluck('name', 'sf_id')->toArray(),
                 ]

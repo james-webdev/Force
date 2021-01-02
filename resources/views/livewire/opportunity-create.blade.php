@@ -11,8 +11,10 @@
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
 
 
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" 
+        role="dialog" aria-modal="true" 
+        aria-labelledby="modal-headline">
+        <h2>Create New Opportunity</h2>
             <form>
 
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -100,7 +102,28 @@
                                 @error('activity_type_id') <span class="text-red-500"></span>@enderror
 
                         </div>
+                        @if(! $account_id)
+                        <div class="mb-4">
 
+                            <label for="contact_id" 
+                                class="block text-gray-700 text-sm font-bold mb-2">Account:</label>
+
+                            <select
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                 
+                                id="account_id" 
+                                placeholder="Account" 
+                                wire:model="account_id">
+                                @foreach ($accounts as $id=>$account)
+                                    <option value="{{$id}}">{{$account}}</option>
+                                @endforeach
+
+                            </select>
+
+                                @error('account_id') <span class="text-red-500"></span>@enderror
+
+                        </div>
+                        @else
                         <div class="mb-4">
 
                             <label for="contact_id" 
@@ -121,6 +144,7 @@
                                 @error('contact_id') <span class="text-red-500"></span>@enderror
 
                         </div>
+                        @endif
 
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
 

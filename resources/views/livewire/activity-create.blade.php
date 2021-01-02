@@ -99,7 +99,28 @@
                                 @error('activity_type_id') <span class="text-red-500"></span>@enderror
 
                         </div>
+                        @if(! $account_id)
+                        <div class="mb-4">
 
+                            <label for="contact_id" 
+                                class="block text-gray-700 text-sm font-bold mb-2">Account:</label>
+
+                            <select
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                 
+                                id="account_id" 
+                                placeholder="Account" 
+                                wire:model="account_id">
+                                @foreach ($accounts as $id=>$account)
+                                    <option value="{{$id}}">{{$account}}</option>
+                                @endforeach
+
+                            </select>
+
+                                @error('account_id') <span class="text-red-500"></span>@enderror
+
+                        </div>
+                        @else
                         <div class="mb-4">
 
                             <label for="contact_id" 
@@ -120,7 +141,7 @@
                                 @error('contact_id') <span class="text-red-500"></span>@enderror
 
                         </div>
-
+                        @endif
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
 
                          <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">

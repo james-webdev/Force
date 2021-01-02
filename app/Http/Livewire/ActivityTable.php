@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Contact;
 use App\Models\ActivityType;
 use Illuminate\Validation\Rule;
+use App\Models\Account;
 
 class ActivityTable extends Component
 {
@@ -117,7 +118,7 @@ class ActivityTable extends Component
                     'contacts' =>Contact::where('account_id', $this->account_id)
                         ->select('id', 'firstName', 'lastName')
                         ->get(),
-                    
+                    'accounts'=>Account::orderBy('name')->pluck('name', 'id')->toArray(),
                     'users' => User::pluck('name', 'id')->toArray(),
                     'types' => ActivityType::orderBy('activity')->pluck('activity', 'id')->toArray(),
                 ]
