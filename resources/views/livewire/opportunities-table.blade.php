@@ -33,7 +33,16 @@
             
         </select>
     </div>
+<a 
+        wire:click="createOpportunity()"
+        class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600"
+        ><i class="text-teal-400  fas fa-plus-circle"></i>
+        Create New Opportunity</a>
 
+        @if($isOpportunityOpen)
+
+            @include('livewire.opportunity-create')
+        @endif
     <div class="row">
     <table  class="table-fixed">
         <thead class="bg-teal-300">
