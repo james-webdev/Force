@@ -16,8 +16,8 @@ class OpportunitiesTable extends Component
     public $sortField = 'id';
     public $sortAsc = true;
     public $search ='';
-    public $status = 'All';
-
+    public $status = '0';
+    public $account_id = null;
     public $user_id = 'All';
 
 
@@ -37,6 +37,10 @@ class OpportunitiesTable extends Component
 
         $this->sortField = $field;
     }
+    public function mount($account_id = null)
+    {
+        $this->account_id = $account_id;
+    }
     public function render()
     {
         
@@ -52,6 +56,11 @@ class OpportunitiesTable extends Component
                     ->when(
                         $this->user_id != 'All', function ($q) {
                             $q->where('owner_id', $this->user_id);
+                        }
+                    )
+                    ->when(
+                        $this->account_id, function ($q) {
+                            $q->where('account_id', $this->account_id);
                         }
                     )
                     ->when(

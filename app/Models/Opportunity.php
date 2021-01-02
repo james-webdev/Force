@@ -9,6 +9,12 @@ class Opportunity extends Model
 {
     use HasFactory;
 
+    public $statuses = [
+            0=>'Open',
+            1=> 'Closed Won',
+            2=>'Closed Lost'
+        ];
+
     public $fillable = [
             'id',
             'account_id',

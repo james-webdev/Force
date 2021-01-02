@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AccountTYpe;
+use App\Models\AccountType;
 use Illuminate\Http\Request;
 
-class AccountTYpeController extends Controller
+class AccountTypeController extends Controller
 {
     /**
      * Display a listing of the resource.

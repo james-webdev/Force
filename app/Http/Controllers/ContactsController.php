@@ -45,9 +45,9 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-      Contact::create(request()->all());
-    //   $contact->accounts()->attach(request('account'));
+        
+       Contact::create(request()->all());
+    
       return redirect()->route('contact.index');
 
     }
@@ -62,16 +62,6 @@ class ContactsController extends Controller
     {
 
         $contact->load('activities.type', 'company');
-       
-        //$activitytypes = Activity::with('type')->get()->where('contact_id', $contact->id);
-
-        
-        /*return Inertia::render('Contacts/Show', [
-            'update_url' => URL::route('contact.show', $contact),
-            'contact' => $contact,
-            // 'activities' => $contact->activities,
-            'activitytypes' => $activitytypes,
-        ]);*/
         return response()->view('contacts.show', compact('contact'));
     }
 

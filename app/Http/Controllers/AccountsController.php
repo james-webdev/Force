@@ -63,19 +63,20 @@ class AccountsController extends Controller
     public function show(Account $account)
     {
         $account = Account::withLastActivityId()
-            ->with('openOpportunities', 'owner', 'lastActivity')
+            ->totalBusiness()
+            ->with('openOpportunities.stage', 'owner', 'lastActivity')
+            ->withCount('opportunities', 'wonOpportunities', 'openOpportunities')
             ->findOrFail($account->id);
-        $contacts = $account->contacts()->withLastActivityId()->with('lastActivity.type')->get();
-  
-        $account->load('openOpportunities', 'owner', 'contacts.recentActivities.type', 'contacts.lastActivity');
 
-        $recentActivities = $contacts->map(
-            function ($contact) use ($account) {
-                return ['contact'=>$contact->fullName(), 'activities'=>$contact->recentActivities];
+        $contacts = $account->contacts()->withLastActivityId()->with('lastActivity.type')->get();
+
+        $activities = $contacts->map(
+            function ($contact) {
+                return ['activities'=>$contact->activities];
             }
-        );
-       //dd($contacts->first());     
-        return response()->view('accounts.show', compact('account', 'recentActivities', 'contacts'));
+        )->flatten();
+     
+        return response()->view('accounts.show', compact('account', 'activities', 'contacts'));
     }
 
     /**

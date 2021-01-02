@@ -10,7 +10,20 @@ use App\Http\Requests\OpportunityFormRequest;
 
 class OpportunitiesController extends Controller
 {
+    
+    public $opportunity;
     /**
+     * [__construct description]
+     * 
+     * @param Opportunity $opportunity [description]
+     */
+    public function __construct(Opportunity $opportunity)
+    {
+        $this->opportunity = $opportunity;
+
+
+    }
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -54,8 +67,10 @@ class OpportunitiesController extends Controller
      */
     public function show(Opportunity $opportunity)
     {
-        $opportunity->load('activities', 'owner', 'account');
-        return response()->view('opportunities.show', compact('opportunity'));
+        $opportunity->load('owner', 'account');
+        $statuses = $this->opportunity->statuses;
+        //dd($statuses);
+        return response()->view('opportunities.show', compact('opportunity', 'statuses'));
     }
 
     /**

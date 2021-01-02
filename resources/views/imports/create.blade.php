@@ -10,7 +10,7 @@
     @csrf
     
 <table class="table-fixed">
-    <thead>
+    <thead class="bg-teal-300">
         <th class="w-1/4">Field</th>
         <th class="w-1/4">Mapping</th>
         <th class="w-1/2" colspan="3">Example Data</th>
@@ -19,8 +19,8 @@
 
         @foreach ($fileData[0] as $dataid=>$importField)
             <tr>
-                <td>{{strtolower($importField)}}</td>
-                <td>
+                <td class="px-4 border-collapse border border-teal-800">{{strtolower($importField)}}</td>
+                <td class="px-4 border-collapse border border-teal-800">
                     <select name="{{strtolower($importField)}}">
                         <option value="ignore">Ignore</option>
                         @foreach ($fields as $field)
@@ -33,7 +33,7 @@
                 </td>
                 @for ($i=2; $i < 5; $i++)
                     
-                    <td>{{$fileData[$i][$dataid]}}</td>
+                    <td class="px-4 border-collapse border border-teal-800">{{$fileData[$i][$dataid]}}</td>
                  
                 @endfor
             </tr>

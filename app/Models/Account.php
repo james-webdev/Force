@@ -93,6 +93,15 @@ class Account extends Model
         return $this->hasMany(Opportunity::class, 'account_id', 'id')->where('status', 0);
     }
     /**
+     * [wonOpportunities description]
+     * 
+     * @return [type] [description]
+     */
+    public function wonOpportunities()
+    {
+        return $this->hasMany(Opportunity::class, 'account_id', 'id')->where('status', 1);
+    }
+    /**
      * [user description]
      * 
      * @return [type] [description]
@@ -107,6 +116,11 @@ class Account extends Model
         return $query->where('name', 'like', "%{$search}%")
             ->orWhere('street', 'like', "%{$search}%")
             ->orWhere('city',  'like', "%{$search}%");
+    }
+
+    public function fullAddress()
+    {
+        return $this->street . " " . $this->city . " " . $this->state;
     }
 
     /**
@@ -132,6 +146,22 @@ class Account extends Model
              ->selectSub('select id as last_activity_id from activities where account_id = accounts.id and status=1 order by activities.activity_date desc limit 1', 'last_activity_id');
        
     }
+    public function scopeTotalBusiness($query, $year=null)
+    {
+        return $query
+            ->withCount(
+                ['opportunities as closed_business'=>function ($q) use ($year) {
+                    $q->select(\DB::raw('SUM(value) as closed_business'))
+                        ->where('status', 1)
+                        ->when(
+                            $year, function ($q) use ($year) {
+                                $q->whereRaw('year(close_date) = ' . $year);
+                            }
+                        );
+                }
+                ]
+            );
 
+    }
     
 }

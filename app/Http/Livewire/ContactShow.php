@@ -3,22 +3,21 @@
 namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Account;
+use App\Models\Contact;
+use App\Models\Activity;
 use App\Models\User;
 
 
-class AccountsTable extends Component
+class ContactShow extends Component
 {
 
     
     use WithPagination;
 
     public $perPage = 10;
-    public $sortField = 'name';
+    public $sortField = 'activity_date';
     public $sortAsc = true;
     public $search ='';
-    public $status = 'All';
-    public $user_id = 'All';
     public $isOpen = 0;
     public $name;
     public $street;
@@ -26,7 +25,7 @@ class AccountsTable extends Component
     public $state;
     public $postalcode;
     public $description;
-    public $account_id;
+    public $contact_id;
 
 
     public function updatingSearch()
@@ -43,25 +42,22 @@ class AccountsTable extends Component
 
         $this->sortField = $field;
     }
+    public function mount($contact)
+    {
+        $this->contact_id = $contact;
+    }
     public function render()
     {
 
         return view(
-            'livewire.accounts-table', [
-                'accounts'=>Account::withLastActivityId()
-                    ->withCount('contacts', 'openOpportunities', 'wonOpportunities', 'opportunities')
-                    ->with('owner', 'lastActivity')
-                    ->totalBusiness()
+            'livewire.contacts-show', [
+                'contact'=>Contact::with('company', 'owner')
                     ->search($this->search)
-                    ->when(
-                        $this->user_id != 'All', function ($q) {
-                            $q->where('owner_id', $this->user_id);
-                        }
-                    )
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->paginate($this->perPage),
                     
-                    'users' => User::pluck('name', 'sf_id')->toArray(),
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->findorFail($this->contact_id),
+                    
+                    'activities' => Activity::where('contact_id', $this->contact_id)->orWhere('company_id', $contact->company_id)->paginate($this->perPage)
                 ]
         );
     }
@@ -81,12 +77,7 @@ class AccountsTable extends Component
      */
     private function _resetInputFields()
     {
-        $this->name = '';
-        $this->street = '';
-        $this->city = '';
-        $this->state = '';
-        $this->postalcode = '';
-        $this->description = '';
+        
 
     }
     /**
@@ -121,8 +112,8 @@ class AccountsTable extends Component
             ]
         );
 
-        Account::updateOrCreate(
-            ['id' => $this->account_id], 
+        Activity::updateOrCreate(
+            ['id' => $this->activity_id], 
             [
                 'name' => $this->name,
                 'street' => $this->street,

@@ -18,7 +18,7 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        $activities = Activity::with('contact.company', 'type')->get();
+        $activities = Activity::with('contact', 'account', 'type')->get();
         return response()->view('activities.index', compact('activities'));
     }
 
@@ -62,7 +62,8 @@ class ActivitiesController extends Controller
      */
     public function show(Activity $activity)
     {
-        return response()->view('activity.show', compact('activity'));
+        $activity->load('owner', 'account', 'contact');
+        return response()->view('activities.show', compact('activity'));
 
     }
 
