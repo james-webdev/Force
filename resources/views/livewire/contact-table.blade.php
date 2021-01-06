@@ -2,28 +2,16 @@
 <h4 class="mt-4 mb2 font-bold text-xl text-teal-400 font-medium">
        <i class="far fa-address-book text-teal-400"></i> Contacts
     </h4>
-    <div class="col mb8">
-        <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-search"></i></span>
-    
-            <input wire:model="search" class="form-control" type="text" placeholder="Search contacts...">
-        </div>
-    </div>
+    @component('livewire.partials._search')
+        @slot('placeholder')
+            Search contacts
+        @endslot
+    @endcomponent
 
 
     <div class="row mb-4">
         @include('livewire.partials._perpage')
-        <div class="col form-inline">
-            <label class="font-bold" for="status">Owner:</label>
-            <select wire:model="user_id" 
-            class="form-control">
-                <option value="All">All</option>
-                @foreach ($users as $id=>$user)
-                    <option value={{$id}} >{{$user}}</option>
-                @endforeach
-                
-            </select>
-        </div>
+        @include('livewire.partials._ownerselector')
     </div>
     <a 
         wire:click="createContact()"

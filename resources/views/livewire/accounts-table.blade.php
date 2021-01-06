@@ -10,14 +10,11 @@
         @include('livewire.accounts-create')
 
     @endif
-    <div class="col mb8">
-        <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-search"></i></span>
-    
-            <input wire:model="search" class="form-control" type="text" placeholder="Search accounts...">
-        </div>
-    </div>
-
+    @component('livewire.partials._search')
+        @slot('placeholder')
+            Search your mama!
+        @endslot
+    @endcomponent
 
     <div class="row mb-4">
         @include('livewire.partials._perpage')

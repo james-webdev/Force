@@ -2,13 +2,11 @@
     <h4 class="mt-4 mb-2 font-bold text-xl text-teal-400 font-medium">
         <i class="far fa-money-bill-alt text-teal-400"></i> Opportunities
     </h4>
-    <div class="col mb8">
-        <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-search"></i></span>
-    
-            <input wire:model="search" class="form-control" type="text" placeholder="Search opportunities...">
-        </div>
-    </div>
+    @component('livewire.partials._search')
+        @slot('placeholder')
+            Search activities
+        @endslot
+    @endcomponent
 
 
     <div class="row mb-4">
@@ -23,15 +21,7 @@
             @endforeach
             
         </select>
-        <label class="font-bold" for="status">Owner:</label>
-        <select wire:model="user_id" 
-        class="form-control">
-            <option value="All">All</option>
-            @foreach ($users as $sf_id=>$user)
-                <option value={{$sf_id}} >{{$user}}</option>
-            @endforeach
-            
-        </select>
+        @include('livewire.partials.ownerselector')
     </div>
 <a 
         wire:click="createOpportunity()"
