@@ -30,11 +30,22 @@ class AccountsTable extends Component
     public $description;
     public $account_id;
 
-
+    /**
+     * [updatingSearch description]
+     * 
+     * @return [type] [description]
+     */
     public function updatingSearch()
     {
         $this->resetPage();
     }
+    /**
+     * Set SortField
+     * 
+     * @param string $field [description]
+     * 
+     * @return sortField        [description]
+     */
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
@@ -45,6 +56,16 @@ class AccountsTable extends Component
 
         $this->sortField = $field;
     }
+
+    public function mount($industry=null)
+    {
+        $this->industry_id = $industry;
+    }
+    /**
+     * Select accounts, industries and users
+     * 
+     * @return array [description]
+     */
     public function render()
     {
 
@@ -72,7 +93,11 @@ class AccountsTable extends Component
                 ]
         );
     }
-
+    /**
+     * [create description]
+     * 
+     * @return [type] [description]
+     */
     public function create()
     {
 

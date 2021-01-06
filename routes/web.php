@@ -42,7 +42,8 @@ Route::middleware(['auth:sanctum', 'verified'])
             Route::resource('/opportunity', 'OpportunitiesController');
 
             Route::resource('/stages', 'SalesStageController');
-            Route::resource('/accounttypes', 'AccounttypeStageController');
+            Route::resource('/accounttypes', 'AccounttypeController');
+            Route::resource('/industries', 'IndustryController');
             // Imports
             
             Route::post('import/mapping/{import}', ['as'=>'import.mapping', 'uses'=>'ImportController@mapping']);
