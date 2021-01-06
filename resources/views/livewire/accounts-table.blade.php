@@ -12,19 +12,20 @@
     @endif
     @component('livewire.partials._search')
         @slot('placeholder')
-            Search your mama!
+            Search accounts
         @endslot
     @endcomponent
 
     <div class="row mb-4">
         @include('livewire.partials._perpage')
+        @include('livewire.partials._ownerselector')
         <div class="col form-inline">
-            <label class="font-bold" for="status">Owner:</label>
-            <select wire:model="user_id" 
+            <label class="font-bold" for="status">Industry:</label>
+            <select wire:model="industry_id" 
             class="form-control">
                 <option value="All">All</option>
-                @foreach ($users as $sf_id=>$user)
-                    <option value={{$sf_id}} >{{$user}}</option>
+                @foreach ($industries as $id=>$industry)
+                    <option value={{$id}} >{{$industry}}</option>
                 @endforeach
                 
             </select>
@@ -51,6 +52,9 @@
                 </a>
             </th>
             <th class="w-1/8 px-4 border-collapse border border-teal-800">
+                   Industry
+            </th>
+            <th class="w-1/8 px-4 border-collapse border border-teal-800">
                 <a wire:click.prevent="sortBy('owner')" role="button" href="#">
                     Owner
                     @include('livewire.partials._sort-icon', ['field' => 'owner'])
@@ -62,6 +66,7 @@
                     @include('livewire.partials._sort-icon', ['field' => 'contacts_count'])
                 </a>
             </th>
+            
             <th class="w-1/8 px-4 border-collapse border border-teal-800">
                 <a wire:click.prevent="sortBy('open_opportunities_count')" role="button" href="#">
                     # Open Opportunities
@@ -94,6 +99,9 @@
                 </td>
                 <td class="px-4 border-collapse border border-teal-800">
                     {{$account->state}}
+                </td>
+                <td class="px-4 border-collapse border border-teal-800">
+                    {{$account->industry ? $account->industry->industry : ''}}
                 </td>
                 <td class="px-4 border-collapse border border-teal-800">
                     {{$account->owner->name}}
