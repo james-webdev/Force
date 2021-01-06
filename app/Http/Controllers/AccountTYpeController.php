@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountType;
+use App\Http\Requests\AccountTypeRequest;
 use Illuminate\Http\Request;
 
 class AccountTypeController extends Controller
@@ -14,72 +15,88 @@ class AccountTypeController extends Controller
      */
     public function index()
     {
-        //
+        $accounttypes = AccountType::all();
+        return response()->view('accounttypes.index', compact('accounttypes'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 
+     * @return view [description]
      */
     public function create()
     {
-        //
+        return response()->view('accounttypes.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 
+     * @param AccountTypeRequest $request [description]
+     * 
+     * @return [type]                      [description]
      */
-    public function store(Request $request)
+    public function store(AccountTypeRequest $request)
     {
-        //
+        $accountType == AccountType::create(request()->all());
+        return redirect()->route('accounttypes.index')->withMessage('Account type created');
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\AccountTYpe  $accountTYpe
-     * @return \Illuminate\Http\Response
+     * 
+     * @param AccountType $accountType [description]
+     * 
+     * @return [type]                   [description]
      */
-    public function show(AccountTYpe $accountTYpe)
+    public function show(AccountType $accountType)
     {
-        //
+        $accountType->loadCount('accounts');
+        return response()->view('accounttype.show', $accounttype);
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AccountTYpe  $accountTYpe
-     * @return \Illuminate\Http\Response
+     * 
+     * @param AccountType $accountType [description]
+     * 
+     * @return [view]                   [description]
      */
-    public function edit(AccountTYpe $accountTYpe)
+    public function edit(AccountType $accountType)
     {
-        //
+        return response()->view('accounttype.edit', compact($accountType));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AccountTYpe  $accountTYpe
-     * @return \Illuminate\Http\Response
+     * Update the specified resource in storage
+     * 
+     * @param AccountTypeRequest $request     [description]
+     * @param AccountType        $accountType [description]
+     * 
+     * @return [type]                          [description]
      */
-    public function update(Request $request, AccountTYpe $accountTYpe)
+    public function update(AccountTypeRequest $request, AccountType $accountType)
     {
-        //
+        $accountType = $accounttype->update(request()->all());
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\AccountTYpe  $accountTYpe
-     * @return \Illuminate\Http\Response
+     * Remove specified resource from storage
+     * 
+     * @param AccountType $accountType [description]
+     * 
+     * @return [type]                   [description]
      */
-    public function destroy(AccountTYpe $accountTYpe)
+    public function destroy(AccountType $accountType)
     {
-        //
+        $accountType->loadCount('accounts');
+        if (! $accountType->accounts_count ==0) {
+            $accountType->delete();
+            return redirect()->route('accounttypes.index')->withMessage('Account type deleted');
+
+        } else {
+            return redirect()->back()
+                ->withError('Cannot delete account type as ' .$accounttype->accounts->count() . ' accounts are associated with this type');
+        }
     }
 }

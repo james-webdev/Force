@@ -15,4 +15,17 @@ class AccountType extends Model
     {
         return $this->hasMany(Account::class);
     }
+
+    /**
+     * [scopeSearch description]
+     * 
+     * @param [type] $query  [description]
+     * @param [type] $search [description]
+     * 
+     * @return [type]         [description]
+     */
+    public function scopeSearch($query, $search)
+    {
+         return $query->where('type', 'like', "%{$search}%");
+    }
 }

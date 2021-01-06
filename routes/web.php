@@ -40,9 +40,13 @@ Route::middleware(['auth:sanctum', 'verified'])
             // Opportunities
             Route::get('opportunity/create/{account?}', ['as'=>'opportunity.create', 'uses'=>'OpportunitiesController@create']);
             Route::resource('/opportunity', 'OpportunitiesController');
+
+            Route::resource('/stages', 'SalesStageController');
+            Route::resource('/accounttypes', 'AccounttypeStageController');
             // Imports
             
             Route::post('import/mapping/{import}', ['as'=>'import.mapping', 'uses'=>'ImportController@mapping']);
+
             Route::resource('/import', 'ImportController');
             //Route::get('/import', ['as'=>'account.import.create', 'uses'=>'AccountsController@importForm']);
             //Route::post('/import', ['as'=>'account.import.store', 'uses'=>'AccountsController@import']); 
