@@ -3,6 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+<<<<<<< HEAD
+// use App\Models
+=======
+>>>>>>> Stephen
 
 class AccounttypesTable extends Component
 {
