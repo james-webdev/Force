@@ -1,50 +1,54 @@
 <div>
-    <h4 class="mt-4 mb-2 font-bold text-xl text-teal-400 font-medium">
-        <i class="far fa-money-bill-alt text-teal-400"></i> Opportunities
-    </h4>
-    <div class="col mb8">
-        <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-search"></i></span>
-    
-            <input wire:model="search" class="form-control" type="text" placeholder="Search opportunities...">
+
+
+<div class="ml-24 mr-24">
+<h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
+            Opportunities
+        </h2>
+
+
+    @if($isOpportunityOpen)
+
+        @include('livewire.opportunity-create')
+
+    @endif
+
+   <div class="flex justify-between mt-5 items-center">
+        <div class="flex justify-left items-center">
+            <div class="col m-8">
+                <div class="input-group-prepend">
+                <!-- <span class="input-group-text"><i class="fas fa-search"></i></span> -->
+
+                    <input wire:model="search" class="p-2 w-96 form-control rounded border border-gray-200" type="text" placeholder="Search opportunities...">
+                </div>
+            </div>
+
+
+            <div class="p-3 mt-1">
+                @include('livewire.partials._perpage')
+                <div class="col form-inline">
+                    <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
+                    <select wire:model="user_id"
+                    class="form-control p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($users as $sf_id=>$user)
+                            <option value={{$sf_id}} class="p-3" >{{$user}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+            </div>
         </div>
-    </div>
-
-
-    <div class="row mb-4">
-        @include('livewire.partials._perpage')
-        
-        <label class="font-bold" for="status">Status:</label>
-        <select wire:model="status" 
-        class="form-control">
-            <option value="All">All</option>
-            @foreach ($statuses as $id=>$status)
-                <option value={{$id}} >{{$status}}</option>
-            @endforeach
-            
-        </select>
-        <label class="font-bold" for="status">Owner:</label>
-        <select wire:model="user_id" 
-        class="form-control">
-            <option value="All">All</option>
-            @foreach ($users as $sf_id=>$user)
-                <option value={{$sf_id}} >{{$user}}</option>
-            @endforeach
-            
-        </select>
-    </div>
-<a 
-        wire:click="createOpportunity()"
-        class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600"
-        ><i class="text-teal-400  fas fa-plus-circle"></i>
-        Create New Opportunity</a>
-
-        @if($isOpportunityOpen)
-
-            @include('livewire.opportunity-create')
-        @endif
-    <div class="row">
-    <table  class="table-fixed">
+        <div class="mr-8">
+            <button
+                wire:click="createOpportunity()"
+                class="border border-gray-300 bg-teal-400 hover:bg-teal-500 text-white font-bold mr-5 mb-5 py-2 px-4 rounded my-3">
+                Create New Opportunity
+            </button>
+        </div>
+</div>
+</div>
+<table  class="table-fixed">
         <thead class="bg-teal-300">
             <th class="w-1/8 px-4 border-collapse border border-teal-800">
                 <a wire:click.prevent="sortBy('account')" role="button" href="#">
@@ -64,7 +68,7 @@
                     @include('livewire.partials._sort-icon', ['field'=>'user_id'])
                 </a>
             </th>
-            
+
             <th class="w-1/8 px-4 border-collapse border border-teal-800">
                 <a wire:click.prevent="sortBy('value')" role="button" href="#">
                     Value
@@ -93,26 +97,26 @@
         </thead>
         <tbody>
         @foreach ($opportunities as $opportunity)
-          
+
             <tr>
                <td class="px-4 border-collapse border border-teal-800">
                     <a href="{{route('account.show', $opportunity->account_id)}}"
                          class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600">
                         {{$opportunity->account->name}}
                     </a>
-                </td> 
+                </td>
                <td class="px-4 border-collapse border border-teal-800">
                 <a href="{{route('opportunity.show', $opportunity->id)}}"
                      class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600">
                 {{$opportunity->title}}
             </a>
-            </td> 
+            </td>
                <td class="px-4 border-collapse border border-teal-800">
                 {{$opportunity->owner->name}}</td>
-               
+
                <td class="px-4 text-right border-collapse border border-teal-800">
                     ${{number_format($opportunity->opportunityValue(),0)}}
-               </td> 
+               </td>
                <td class="px-4 border-collapse border border-teal-800">{{$statuses[$opportunity->status]}}</td>
                <td class="px-4 border-collapse border border-teal-800">{{$opportunity->created_at->format('Y-m-d')}}</td>
                <td class="px-4 border-collapse border border-teal-800">
@@ -135,8 +139,7 @@
                 {{ $opportunities->links() }}
             </div>
 
-            
+
 
     </div>
 </div>
-

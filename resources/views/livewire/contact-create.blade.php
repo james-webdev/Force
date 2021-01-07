@@ -21,13 +21,13 @@
 
                         <div class="mb-4">
 
-                            <label for="firstName" 
+                            <label for="firstName"
                                 class="block text-gray-700 text-sm font-bold mb-2">First Name:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="firstName" 
-                                placeholder="First Name" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="firstName"
+                                placeholder="First Name"
                                 wire:model="firstName">
 
                                 @error('firstName') <span class="text-red-500"></span>@enderror
@@ -35,13 +35,13 @@
                         </div>
                         <div class="mb-4">
 
-                            <label for="lastName" 
+                            <label for="lastName"
                                 class="block text-gray-700 text-sm font-bold mb-2">Last Name:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="lastName" 
-                                placeholder="Last Name" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="lastName"
+                                placeholder="Last Name"
                                 wire:model="lastName">
 
                                 @error('lastName') <span class="text-red-500"></span>@enderror
@@ -50,13 +50,13 @@
 
                         <div class="mb-4">
 
-                            <label for="title" 
+                            <label for="title"
                                 class="block text-gray-700 text-sm font-bold mb-2">Job Title:</label>
 
-                            <input type="text" 
+                            <input type="text"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id = "title" 
-                                placeholder="Job title" 
+                                id = "title"
+                                placeholder="Job title"
                                 wire:model="title">
 
                                 @error('title') <span class="text-red-500"></span>@enderror
@@ -65,13 +65,13 @@
 
                         <div class="mb-4">
 
-                            <label for="email" 
+                            <label for="email"
                                 class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
 
-                            <input type="email" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="street" 
-                                placeholder="email" 
+                            <input type="email"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="street"
+                                placeholder="email"
                                 wire:model="email">
 
                                 @error('email') <span class="text-red-500"></span>@enderror
@@ -79,13 +79,13 @@
                         </div>
                         <div class="mb-4">
 
-                            <label for="phone" 
+                            <label for="phone"
                                 class="block text-gray-700 text-sm font-bold mb-2">Phone:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="phone" 
-                                placeholder="phone" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="phone"
+                                placeholder="phone"
                                 wire:model="phone">
 
                                 @error('phone') <span class="text-red-500"></span>@enderror
@@ -94,13 +94,13 @@
 
                         <div class="mb-4">
 
-                            <label for="mobile" 
+                            <label for="mobile"
                                 class="block text-gray-700 text-sm font-bold mb-2">Mobile:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="mobile" 
-                                placeholder="mobile" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="mobile"
+                                placeholder="mobile"
                                 wire:model="mobile">
 
                                 @error('mobile') <span class="text-red-500"></span>@enderror
@@ -109,13 +109,13 @@
 
                         <div class="mb-4">
 
-                            <label for="notes" 
+                            <label for="notes"
                                 class="block text-gray-700 text-sm font-bold mb-2">Notes:</label>
 
                             <textarea
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="description" 
-                                placeholder="notes" 
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="description"
+                                placeholder="notes"
                                 wire:model="description"></textarea>
 
                                 @error('description') <span class="text-red-500"></span>@enderror
@@ -124,25 +124,25 @@
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
 
                      <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                         <button 
-                             wire:click.prevent="storeContact()" 
-                             type="button" 
-                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                         <button
+                             wire:click.prevent="storeContact()"
+                             type="button"
+                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-400 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                          Save
                          </button>
                      </span>
 
                      <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                         <button 
-                             wire:click="closeContactModal()" 
-                             type="button" 
+                         <button
+                             wire:click="closeContactModal()"
+                             type="button"
                              class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                              Cancel
                          </button>
                      </span>
                 </div>
 
-            </form>        
+            </form>
 
          </div>
 

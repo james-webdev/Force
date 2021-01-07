@@ -19,9 +19,9 @@
                         {{ __('Accounts') }}
                     </x-jet-nav-link>
 
-                    
+
                 </div>
-                
+
             </div>
 
             <!-- Settings Dropdown -->

@@ -11,8 +11,8 @@
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
 
 
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" 
-        role="dialog" aria-modal="true" 
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        role="dialog" aria-modal="true"
         aria-labelledby="modal-headline">
         <h2>Create New Opportunity</h2>
             <form>
@@ -22,13 +22,13 @@
                     <div class="">
                         <div class="mb-4">
 
-                            <label for="email" 
+                            <label for="email"
                                 class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="title" 
-                                placeholder="Opportunity title" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="title"
+                                placeholder="Opportunity title"
                                 wire:model="title">
 
                                 @error('title') <span class="text-red-500"></span>@enderror
@@ -37,30 +37,30 @@
 
                         <div class="mb-4">
 
-                            <label for="close_date" 
+                            <label for="close_date"
                                 class="block text-gray-700 text-sm font-bold mb-2">Expected Close Date:</label>
 
-                            <input type="date" 
+                            <input type="date"
                                 required
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="close_date" 
-                                placeholder="Close date" 
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="close_date"
+                                placeholder="Close date"
                                 wire:model="close_date">
 
                                 @error('close_date') <span class="text-red-500"></span>@enderror
 
                         </div>
-                        
+
 
                         <div class="mb-4">
 
-                            <label for="email" 
+                            <label for="email"
                                 class="block text-gray-700 text-sm font-bold mb-2">VAlue:</label>
 
-                            <input type="number" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="value" 
-                                placeholder="Value in whole dollars." 
+                            <input type="number"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="value"
+                                placeholder="Value in whole dollars."
                                 wire:model="value">
 
                                 @error('value') <span class="text-red-500"></span>@enderror
@@ -68,30 +68,30 @@
                         </div>
                         <div class="mb-4">
 
-                            <label for="description" 
+                            <label for="description"
                                 class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
 
                             <textarea
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="description" 
-                                placeholder="Description" 
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="description"
+                                placeholder="Description"
                                 wire:model="description"></textarea>
 
                                 @error('description') <span class="text-red-500"></span>@enderror
 
                         </div>
 
-                        
+
                         <div class="mb-4">
 
-                            <label for="type" 
+                            <label for="type"
                                 class="block text-gray-700 text-sm font-bold mb-2">Current Stage:</label>
 
                             <select
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required 
-                                id="stage_id" 
-                                placeholder="Stage" 
+                                required
+                                id="stage_id"
+                                placeholder="Stage"
                                 wire:model="stage_id">
                                 @foreach ($stages as $id=>$stage)
                                     <option value="{{$id}}">{{$stage}}</option>
@@ -105,14 +105,14 @@
                         @if(! $account_id)
                         <div class="mb-4">
 
-                            <label for="contact_id" 
+                            <label for="contact_id"
                                 class="block text-gray-700 text-sm font-bold mb-2">Account:</label>
 
                             <select
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                 
-                                id="account_id" 
-                                placeholder="Account" 
+
+                                id="account_id"
+                                placeholder="Account"
                                 wire:model="account_id">
                                 @foreach ($accounts as $id=>$account)
                                     <option value="{{$id}}">{{$account}}</option>
@@ -126,14 +126,14 @@
                         @else
                         <div class="mb-4">
 
-                            <label for="contact_id" 
+                            <label for="contact_id"
                                 class="block text-gray-700 text-sm font-bold mb-2">Associated Contact:</label>
 
                             <select
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                 
-                                id="contact_id" 
-                                placeholder="Contact" 
+
+                                id="contact_id"
+                                placeholder="Contact"
                                 wire:model="contact_id">
                                 @foreach ($contacts as $contact)
                                     <option value="{{$contact->id}}">{{$contact->fullName()}}</option>
@@ -149,25 +149,25 @@
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
 
                          <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                             <button 
-                                 wire:click.prevent="storeOpportunity()" 
-                                 type="button" 
-                                 class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                             <button
+                                 wire:click.prevent="storeOpportunity()"
+                                 type="button"
+                                 class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-400 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                              Save
                              </button>
                          </span>
 
                      <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                         <button 
-                             wire:click="closeOpportunityModal()" 
-                             type="button" 
+                         <button
+                             wire:click="closeOpportunityModal()"
+                             type="button"
                              class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                              Cancel
                          </button>
                      </span>
                 </div>
 
-            </form>        
+            </form>
 
          </div>
 
