@@ -60,7 +60,19 @@ class Activity extends Model
 
     public function scopeSearch($query, $search)
     {
-        return $query->where('subject', 'like', "%{$search}%");
+        return $query->where('subject', 'like', "%{$search}%")
+            ->orWhereHas(
+                'account', function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%");
+                }
+            )
+            ->orWhereHas(
+                'contact', function ($q) use ($search) {
+                    $q->where('firstName', 'like', "%{$search}%")
+                        ->orWhere('lastName', 'like', "%{$search}%");
+                }
+            );;
     }
+   
 
 }

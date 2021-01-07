@@ -5,6 +5,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Account;
 use App\Models\User;
+use App\Models\Industry;
 
 
 class AccountsTable extends Component
@@ -19,6 +20,7 @@ class AccountsTable extends Component
     public $search ='';
     public $status = 'All';
     public $user_id = 'All';
+    public $industry_id = 'All';
     public $isOpen = 0;
     public $name;
     public $street;
@@ -28,11 +30,22 @@ class AccountsTable extends Component
     public $description;
     public $account_id;
 
-
+    /**
+     * [updatingSearch description]
+     * 
+     * @return [type] [description]
+     */
     public function updatingSearch()
     {
         $this->resetPage();
     }
+    /**
+     * Set SortField
+     * 
+     * @param string $field [description]
+     * 
+     * @return sortField        [description]
+     */
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
@@ -43,6 +56,16 @@ class AccountsTable extends Component
 
         $this->sortField = $field;
     }
+
+    public function mount($industry=null)
+    {
+        $this->industry_id = $industry;
+    }
+    /**
+     * Select accounts, industries and users
+     * 
+     * @return array [description]
+     */
     public function render()
     {
 
@@ -50,7 +73,7 @@ class AccountsTable extends Component
             'livewire.accounts-table', [
                 'accounts'=>Account::withLastActivityId()
                     ->withCount('contacts', 'openOpportunities', 'wonOpportunities', 'opportunities')
-                    ->with('owner', 'lastActivity')
+                    ->with('owner', 'lastActivity', 'industry')
                     ->totalBusiness()
                     ->search($this->search)
                     ->when(
@@ -58,14 +81,23 @@ class AccountsTable extends Component
                             $q->where('owner_id', $this->user_id);
                         }
                     )
+                    ->when(
+                        $this->industry_id != 'All', function ($q) {
+                            $q->where('industry_id', $this->industry_id);
+                        }
+                    )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
-                    
+                    'industries' => Industry::orderBy('industry')->pluck('industry', 'id')->toArray(),
                     'users' => User::pluck('name', 'sf_id')->toArray(),
                 ]
         );
     }
-
+    /**
+     * [create description]
+     * 
+     * @return [type] [description]
+     */
     public function create()
     {
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Industry;
 use Illuminate\Http\Request;
+use App\Http\Requests\IndustryFormRequest;
 
 class IndustryController extends Controller
 {
@@ -14,7 +15,7 @@ class IndustryController extends Controller
      */
     public function index()
     {
-        //
+        return response()->view('industries.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class IndustryController extends Controller
      */
     public function create()
     {
-        //
+        return response()->view('industries.create');
     }
 
     /**
@@ -33,9 +34,10 @@ class IndustryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(IndustryFormRequest $request)
     {
-        //
+        Industry::create(request()->all());
+        return redirect()->route('industries.index')->withMessage('Industry created');
     }
 
     /**
@@ -46,7 +48,8 @@ class IndustryController extends Controller
      */
     public function show(Industry $industry)
     {
-        //
+       
+        return response()->view('industries.show', compact('industry'));
     }
 
     /**
@@ -57,7 +60,7 @@ class IndustryController extends Controller
      */
     public function edit(Industry $industry)
     {
-        //
+        return response()->view('indsutries.edit', compact('industry'));
     }
 
     /**
@@ -69,7 +72,10 @@ class IndustryController extends Controller
      */
     public function update(Request $request, Industry $industry)
     {
-        //
+        $industry->updated(reqest()->all());
+        return redirect()
+            ->route('industries.index')
+            ->withMessage("Industry updated");
     }
 
     /**
@@ -80,6 +86,13 @@ class IndustryController extends Controller
      */
     public function destroy(Industry $industry)
     {
-        //
+        $industry->loadCount('accounts');
+        if ($industry->accounts_count == 0) {
+            $industry->delete();
+            return redirect()->route('industries.index')->withMessage("Industry deleted");
+        } else {
+            return redirect()->back()->withMessage('Unable to delete indusutry as '. $industry->accounts_count. ' accounts are associated with this industry');
+        }
+    
     }
 }

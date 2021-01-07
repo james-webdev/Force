@@ -19,7 +19,7 @@ class ActivityTable extends Component
     public $perPage = 10;
     public $sortField = 'activity_date';
     public $sortAsc = false;
-    public $searchActivities ='';
+    public $search ='';
     public $status = true;
     public $contact_id = null;
     public $contact = null;
@@ -87,7 +87,7 @@ class ActivityTable extends Component
             'livewire.activity-table', [
                 'activities'=>Activity::with('contact', 'account', 'owner')
                     
-                    ->search($this->searchActivities)
+                    ->search($this->search)
                     ->with(
                         'contact', function ($q) {
                             $q->withLastActivityId()->with('lastActivity');

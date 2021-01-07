@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Industry extends Model
 {
     use HasFactory;
+
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+    public function scopeSearch($query, $search)
+    {
+        
+          return $query->where('industry', 'like', "%{$search}%");  
+        
+            
+    }
+
 }
