@@ -145,7 +145,7 @@
         </thead>
         <tbody>
             @foreach ($accounts as $account)
-
+            
             <tr class="bg-white border border-gray-300 border-1">
                 <td class="border">
                  <x-tbody>
@@ -177,7 +177,7 @@
                 </td>
                 <td class="border border-gray-200">
                 <x-tbody>
-                    {{$account->owner->name}}
+                    {{$account->owner ? $account->owner->name :''}}
                     </x-tbody>
                 </td>
 
