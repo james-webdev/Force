@@ -16,15 +16,15 @@ class OpportunitiesTable extends Component
     use WithPagination;
 
     public $perPage = 10;
-    public $sortField = 'id';
+    public $sortField = 'name';
     public $sortAsc = true;
     public $search ='';
     public $status = '0';
     public $stage = 'All';
-    public $account_id = null;
+    public $name = null;
     public $contact_id = null;
     public $user_id = 'All';
-
+    public $account_id=null;
     public $isOpportunityOpen = false;
     public $opportunity_id = null;
     public $close_date = null;
@@ -59,7 +59,9 @@ class OpportunitiesTable extends Component
         
         return view(
             'livewire.opportunities-table', [
-                'opportunities' => Opportunity::with('owner', 'account')
+                'opportunities' => Opportunity::
+                    join('accounts', 'opportunities.account_id', '=', 'accounts.id')
+                    ->with('owner')
                     ->search($this->search)
                     ->with(
                         'contact', function ($q) {
@@ -72,8 +74,8 @@ class OpportunitiesTable extends Component
                         }
                     )
                     ->when(
-                        $this->account_id, function ($q) {
-                            $q->where('account_id', $this->account_id);
+                        $this->name, function ($q) {
+                            $q->where('name', $this->name);
                         }
                     )
                     ->when(
@@ -86,8 +88,6 @@ class OpportunitiesTable extends Component
                             $q->where('stage_id', $this->stage);
                         }
                     )
-                    
-
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
                     'statuses'=>[0=>'Open', 1=>'Closed Won', 2=> 'Closed Lost'],

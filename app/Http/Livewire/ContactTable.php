@@ -19,7 +19,7 @@ class ContactTable extends Component
     public $status = 'All';
     public $stage_id = 'All';
     public $user_id = 'All';
-    public $account_id = null;
+    public $name = null;
     public $contact_id = null;
     public $isContactOpen = false;
     public $firstName = null;
@@ -56,18 +56,20 @@ class ContactTable extends Component
        
         return view(
             'livewire.contact-table', [
-                'contacts'=>Contact::search($this->search)
+                'contacts'=>Contact::
+                    join('accounts', 'contacts.account_id', '=', 'accounts.id')
+                    ->search($this->search)
                     ->withLastActivityId()
                     
-                    ->with('lastActivity', 'company')
+                    ->with('lastActivity')
                     ->when(
                         $this->user_id != 'All', function ($q) {
                             $q->where('user_id', $this->user_id);
                         }
                     )
                     ->when(
-                        $this->account_id, function ($q) {
-                            $q->where('account_id', $this->account_id);
+                        $this->name, function ($q) {
+                            $q->where('accounts.name', $this->name);
                         }
                     )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

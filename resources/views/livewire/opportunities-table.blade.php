@@ -32,9 +32,9 @@
     <table  class="table-fixed">
         <thead class="bg-teal-300">
             <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                <a wire:click.prevent="sortBy('account')" role="button" href="#">
+                <a wire:click.prevent="sortBy('name')" role="button" href="#">
                     Company
-                    @include('livewire.partials._sort-icon', ['field' => 'account'])
+                    @include('livewire.partials._sort-icon', ['field' => 'name'])
                 </a>
             </th>
             <th class="w-1/8 px-4 border-collapse border border-teal-800">

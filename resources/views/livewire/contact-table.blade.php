@@ -34,9 +34,9 @@
                 </a>
             </th>
             <th class="w-1/4">
-                <a wire:click.prevent="sortBy('company_id')" role="button" href="#">
+                <a wire:click.prevent="sortBy('name')" role="button" href="#">
                     Company
-                    @include('livewire.partials._sort-icon', ['field' => 'company_id'])
+                    @include('livewire.partials._sort-icon', ['field' => 'name'])
                 </a>
             </th>
             <th class="w-1/4">
