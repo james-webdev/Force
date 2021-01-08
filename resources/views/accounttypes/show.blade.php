@@ -4,8 +4,6 @@
 <div class="container">
 <h2>{{$accounttype->type}}</h2>
 
-<p>There are {{$accounttype->accounts_count}} accounts in this type.</p>
-</div>
-
+@livewire('account-table', ['accounttype'=>$accounttype])
 
 @endsection

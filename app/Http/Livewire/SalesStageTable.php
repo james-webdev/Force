@@ -11,8 +11,58 @@ class SalesStageTable extends Component
     public $sortField = 'stage';
     public $sortAsc = true;
     public $search = '';
+    /**
+     * [updatingSearch description]
+     * 
+     * @return [type] [description]
+     */
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+    /**
+     * Set SortField
+     * 
+     * @param string $field [description]
+     * 
+     * @return sortField        [description]
+     */
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortAsc = ! $this->sortAsc;
+        } else {
+            $this->sortAsc = true;
+        }
 
+        $this->sortField = $field;
+    }
+    /**
+     * [updatingSearch description]
+     * 
+     * @return [type] [description]
+     */
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+    /**
+     * [sortBy description]
+     * 
+     * @param [type] $field [description]
+     * 
+     * @return [type]        [description]
+     */
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortAsc = ! $this->sortAsc;
+        } else {
+            $this->sortAsc = true;
+        }
 
+        $this->sortField = $field;
+    }
     public function render()
     {
         return view(

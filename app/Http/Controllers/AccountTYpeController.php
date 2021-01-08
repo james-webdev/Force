@@ -15,8 +15,8 @@ class AccountTypeController extends Controller
      */
     public function index()
     {
-        $accounttypes = AccountType::all();
-        return response()->view('accounttypes.index', compact('accounttypes'));
+        //$accounttypes = AccountType::all();
+        return response()->view('accounttypes.index');
     }
 
     /**
@@ -38,7 +38,7 @@ class AccountTypeController extends Controller
      */
     public function store(AccountTypeRequest $request)
     {
-        $accountType == AccountType::create(request()->all());
+        $accountType = AccountType::create(request()->all());
         return redirect()->route('accounttypes.index')->withMessage('Account type created');
     }
 
@@ -51,8 +51,8 @@ class AccountTypeController extends Controller
      */
     public function show(AccountType $accountType)
     {
-        $accountType->loadCount('accounts');
-        return response()->view('accounttype.show', $accounttype);
+       
+        return response()->view('accounttype.show', compact('accounttype');
     }
 
     /**
@@ -78,6 +78,7 @@ class AccountTypeController extends Controller
     public function update(AccountTypeRequest $request, AccountType $accountType)
     {
         $accountType = $accounttype->update(request()->all());
+        return redirect()->route('accounttypes.index')->withMessage('Account type created');
     }
 
     /**

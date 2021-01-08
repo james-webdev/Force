@@ -11,8 +11,9 @@
 
     <div class="row mb-4">
         @include('livewire.partials._perpage')
-        @include(('livewire.partials._ownerselector'))
         <div class="col form-inline">
+        @include(('livewire.partials._ownerselector'))
+        
             <label class="font-bold" for="status">Type:</label>
             <select wire:model="activity_type_id" 
             class="form-control">

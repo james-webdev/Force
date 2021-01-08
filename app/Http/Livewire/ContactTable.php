@@ -53,16 +53,16 @@ class ContactTable extends Component
     }
     public function render()
     {
-        
+       
         return view(
             'livewire.contact-table', [
                 'contacts'=>Contact::search($this->search)
                     ->withLastActivityId()
-                    ->has('company')
-                    ->with('lastActivity', 'company', 'owner')
+                    
+                    ->with('lastActivity', 'company')
                     ->when(
                         $this->user_id != 'All', function ($q) {
-                            $q->where('owner_id', $this->user_id);
+                            $q->where('user_id', $this->user_id);
                         }
                     )
                     ->when(
@@ -152,7 +152,7 @@ class ContactTable extends Component
                 'mobile' => $this->mobile,
                 'description'=>$this->description,
                 
-                'owner_id' => auth()->user()->id,
+                'user_id' => auth()->user()->id,
                 'account_id' => $this->account_id,
             ]
         );

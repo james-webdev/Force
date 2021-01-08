@@ -2,7 +2,7 @@
 @section('content')
  <div class="container">  
 <h2>Edit Account Type  {{$accounttype->type}}</h2>
-<form action="{{route('accounttypes.update')}}"
+<form action="{{route('accounttypes.update', $accounttype->id)}}"
 method="post"
 >
 @csrf

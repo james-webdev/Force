@@ -16,7 +16,7 @@ class Activity extends Model
         "activity_date",
         "status",
         "priority",
-        "owner_id",
+        "user_id",
         "details",
         "activity_type_id",
         "account_id",
@@ -40,7 +40,7 @@ class Activity extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(User::class, 'owner_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     /**
      * [account description]

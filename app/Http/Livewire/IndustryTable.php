@@ -14,7 +14,12 @@ class IndustryTable extends Component
 
     public $sortAsc = true;
     public $search ='';
-public function updatingSearch()
+    /**
+     * [updatingSearch description]
+     * 
+     * @return [type] [description]
+     */
+    public function updatingSearch()
     {
         $this->resetPage();
     }

@@ -2,13 +2,8 @@
     <h4 class="mt-4 mb-2 font-bold text-xl text-teal-400 font-medium">
         <i class="far fa-money-bill-alt text-teal-400"></i> Opportunities
     </h4>
-    @component('livewire.partials._search')
-        @slot('placeholder')
-            Search activities
-        @endslot
-    @endcomponent
-
-
+    @include('livewire.partials._search', ['placeholder'=>'Search activities'])
+       
     <div class="row mb-4">
         @include('livewire.partials._perpage')
         
@@ -21,9 +16,9 @@
             @endforeach
             
         </select>
-        @include('livewire.partials.ownerselector')
+        @include('livewire.partials._ownerselector')
     </div>
-<a 
+    <a 
         wire:click="createOpportunity()"
         class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600"
         ><i class="text-teal-400  fas fa-plus-circle"></i>
@@ -88,7 +83,7 @@
                <td class="px-4 border-collapse border border-teal-800">
                     <a href="{{route('account.show', $opportunity->account_id)}}"
                          class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600">
-                        {{$opportunity->account->name}}
+                        {{$opportunity->account ? $opportunity->account->name : ''}}
                     </a>
                 </td> 
                <td class="px-4 border-collapse border border-teal-800">
@@ -98,7 +93,7 @@
             </a>
             </td> 
                <td class="px-4 border-collapse border border-teal-800">
-                {{$opportunity->owner->name}}</td>
+                {{$opportunity->owner ? $opportunity->owner->name : ''}}</td>
                
                <td class="px-4 text-right border-collapse border border-teal-800">
                     ${{number_format($opportunity->opportunityValue(),0)}}

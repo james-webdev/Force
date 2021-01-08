@@ -42,7 +42,7 @@ class Opportunity extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(User::class, 'owner_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
 
     }
     /**

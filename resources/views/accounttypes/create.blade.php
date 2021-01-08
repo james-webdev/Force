@@ -5,7 +5,7 @@
 <form action="{{route('accounttypes.store')}}"
 method="post"
 >
-@@csrf
+@csrf
 
 @include('accounttypes.partials._form')
 <input type="submit" name="submit" value="Create New Type">

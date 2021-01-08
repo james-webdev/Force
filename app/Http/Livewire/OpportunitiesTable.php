@@ -24,6 +24,7 @@ class OpportunitiesTable extends Component
     public $account_id = null;
     public $contact_id = null;
     public $user_id = 'All';
+
     public $isOpportunityOpen = false;
     public $opportunity_id = null;
     public $close_date = null;
@@ -67,7 +68,7 @@ class OpportunitiesTable extends Component
                     )
                     ->when(
                         $this->user_id != 'All', function ($q) {
-                            $q->where('owner_id', $this->user_id);
+                            $q->where('user_id', $this->user_id);
                         }
                     )
                     ->when(
@@ -95,7 +96,7 @@ class OpportunitiesTable extends Component
                         ->get(),
                     'accounts'=>Account::orderBy('name')->pluck('name', 'id')->toArray(),
                     'stages'=>SalesStage::all()->pluck('stage', 'id')->toArray(),
-                    'users' => User::pluck('name', 'sf_id')->toArray(),
+                    'users' => User::pluck('name', 'id')->toArray(),
                 ]
         );
     }

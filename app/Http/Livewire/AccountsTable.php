@@ -6,6 +6,7 @@ use Livewire\WithPagination;
 use App\Models\Account;
 use App\Models\User;
 use App\Models\Industry;
+use App\Models\AccountType;
 
 
 class AccountsTable extends Component
@@ -21,6 +22,7 @@ class AccountsTable extends Component
     public $status = 'All';
     public $user_id = 'All';
     public $industry_id = 'All';
+    public $accounttype ='All';
     public $isOpen = 0;
     public $name;
     public $street;
@@ -57,7 +59,7 @@ class AccountsTable extends Component
         $this->sortField = $field;
     }
 
-    public function mount($industry=null)
+    public function mount($industry=null, $accounttype=null)
     {
         $this->industry_id = $industry;
     }
@@ -73,12 +75,12 @@ class AccountsTable extends Component
             'livewire.accounts-table', [
                 'accounts'=>Account::withLastActivityId()
                     ->withCount('contacts', 'openOpportunities', 'wonOpportunities', 'opportunities')
-                    ->with('owner', 'lastActivity', 'industry')
+                    ->with('owner', 'lastActivity', 'industry', 'type')
                     ->totalBusiness()
                     ->search($this->search)
                     ->when(
                         $this->user_id != 'All', function ($q) {
-                            $q->where('owner_id', $this->user_id);
+                            $q->where('user_id', $this->user_id);
                         }
                     )
                     ->when(
@@ -86,10 +88,16 @@ class AccountsTable extends Component
                             $q->where('industry_id', $this->industry_id);
                         }
                     )
+                    ->when(
+                        $this->accounttype != 'All', function ($q) {
+                            $q->where('account_type_id', $this->accounttype);
+                        }
+                    )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
                     'industries' => Industry::orderBy('industry')->pluck('industry', 'id')->toArray(),
-                    'users' => User::pluck('name', 'sf_id')->toArray(),
+                    'users' => User::pluck('name', 'id')->toArray(),
+                    'accounttypes' => AccountType::orderBy('type')->pluck('type', 'id')->toArray(),
                 ]
         );
     }

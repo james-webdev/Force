@@ -110,7 +110,7 @@ class ActivityTable extends Component
                     )
                     ->when(
                         $this->user_id != 'All', function ($q) {
-                            $q->where('owner_id', $this->user_id);
+                            $q->where('user_id', $this->user_id);
                         }
                     )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

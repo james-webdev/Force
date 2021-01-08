@@ -2,6 +2,7 @@
 <h4 class="mt-4 mb2 font-bold text-xl text-teal-400 font-medium">
        <i class="far fa-address-book text-teal-400"></i> Contacts
     </h4>
+ 
     @component('livewire.partials._search')
         @slot('placeholder')
             Search contacts

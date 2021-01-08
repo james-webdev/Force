@@ -1,5 +1,5 @@
 <div>
-   
+   <p>Owner = {{$user_id}}</p>
     <button 
         wire:click="create()" 
         class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded my-3">
@@ -18,14 +18,24 @@
 
     <div class="row mb-4">
         @include('livewire.partials._perpage')
-        @include('livewire.partials._ownerselector')
         <div class="col form-inline">
+            @include('livewire.partials._ownerselector')
             <label class="font-bold" for="status">Industry:</label>
             <select wire:model="industry_id" 
             class="form-control">
                 <option value="All">All</option>
                 @foreach ($industries as $id=>$industry)
                     <option value={{$id}} >{{$industry}}</option>
+                @endforeach
+                
+            </select>
+        
+            <label class="font-bold" for="status">Account Type:</label>
+            <select wire:model="accounttype" 
+            class="form-control">
+                <option value="All">All</option>
+                @foreach ($accounttypes as $id=>$type)
+                    <option value={{$id}} >{{$type}}</option>
                 @endforeach
                 
             </select>
@@ -53,6 +63,9 @@
             </th>
             <th class="w-1/8 px-4 border-collapse border border-teal-800">
                    Industry
+            </th>
+            <th class="w-1/8 px-4 border-collapse border border-teal-800">
+                   Account Type
             </th>
             <th class="w-1/8 px-4 border-collapse border border-teal-800">
                 <a wire:click.prevent="sortBy('owner')" role="button" href="#">
@@ -102,6 +115,9 @@
                 </td>
                 <td class="px-4 border-collapse border border-teal-800">
                     {{$account->industry ? $account->industry->industry : ''}}
+                </td>
+                <td class="px-4 border-collapse border border-teal-800">
+                    {{$account->type ? $account->type->type : ''}}
                 </td>
                 <td class="px-4 border-collapse border border-teal-800">
                     {{$account->owner->name}}

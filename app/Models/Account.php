@@ -9,7 +9,7 @@ class Account extends Model
 {
     use HasFactory;
     public $fillable = [
-        'owner_id',
+        'user_id',
         'parent_id',
         'name', 
         'phone',
@@ -63,7 +63,7 @@ class Account extends Model
      */
     public function type()
     {
-        return $this->belongsTo(AccountType::class);
+        return $this->belongsTo(AccountType::class, 'account_type_id', 'id');
     }
     /**
      * [industry description]
@@ -108,7 +108,7 @@ class Account extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(User::class, 'owner_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function scopeSearch($query, $search)

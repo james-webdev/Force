@@ -65,7 +65,7 @@ class User extends Authenticatable
 
     public function accounts()
     {
-        return $this->hasMany(Account::class, 'owner_id', 'id');
+        return $this->hasMany(Account::class);
     }
 
     public function activities()
@@ -80,6 +80,6 @@ class User extends Authenticatable
 
     public function contacts()
     {
-        return $this->hasMany(Contact::class, 'owner_id', 'id');
+        return $this->hasMany(Contact::class);
     }
 }
