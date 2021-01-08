@@ -1,155 +1,220 @@
 <div>
-   <p>Owner = {{$user_id}}</p>
-    <button 
-        wire:click="create()" 
-        class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded my-3">
-        Create New Account</button>
+
+<div class="ml-24 mt-7 mr-24">
+
+        <h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
+            Accounts
+        </h2>
+
 
     @if($isOpen)
 
         @include('livewire.accounts-create')
 
     @endif
-    @component('livewire.partials._search')
-        @slot('placeholder')
-            Search accounts
-        @endslot
-    @endcomponent
 
-    <div class="row mb-4">
-        @include('livewire.partials._perpage')
-        <div class="col form-inline">
-            @include('livewire.partials._ownerselector')
-            <label class="font-bold" for="status">Industry:</label>
-            <select wire:model="industry_id" 
-            class="form-control">
-                <option value="All">All</option>
-                @foreach ($industries as $id=>$industry)
-                    <option value={{$id}} >{{$industry}}</option>
-                @endforeach
-                
-            </select>
-        
-            <label class="font-bold" for="status">Account Type:</label>
-            <select wire:model="accounttype" 
-            class="form-control">
-                <option value="All">All</option>
-                @foreach ($accounttypes as $id=>$type)
-                    <option value={{$id}} >{{$type}}</option>
-                @endforeach
-                
-            </select>
+   <div class="flex justify-between mt-5 items-center">
+        <div class="flex justify-left items-center">
+            <div class="col m-8">
+                <div class="input-group-prepend">
+                <!-- <span class="input-group-text"><i class="fas fa-search"></i></span> -->
+
+                    <input wire:model="search" class="p-2 w-96 form-control rounded border border-gray-200" type="text" placeholder="Search accounts...">
+                </div>
+            </div>
+
+
+            <div class="p-3 mt-1">
+                @include('livewire.partials._perpage')
+                <div class="col form-inline">
+                    <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
+                    <select wire:model="user_id"
+                    class="form-control p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($users as $sf_id=>$user)
+                            <option value={{$sf_id}} class="p-3" >{{$user}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class="col form-inline">
+                    <label class="font-bold" for="status">Industry: &nbsp; ↓</label>
+                    <select wire:model="industry_id"
+                    class="form-control p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($industries as $id=>$industry)
+                            <option value={{$id}} class="p-3" >{{$industry}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class="col form-inline">
+                    <label class="font-bold" for="status">Type: &nbsp; ↓</label>
+                    <select wire:model="account_type_id"
+                    class="form-control p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($accounttypes as $id=>$type)
+                            <option value={{$id}} class="p-3" >{{$type}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+            </div>
         </div>
-    </div>
-    <table  class="table-fixed">
-        <thead class="bg-teal-300">
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                <a wire:click.prevent="sortBy('name')" role="button" href="#">
-                    Company
-                    @include('livewire.partials._sort-icon', ['field' => 'name'])
-                </a>
+        <div class="mr-8">
+            <button
+                wire:click="create()"
+                class="border border-gray-300 bg-teal-400 hover:bg-teal-500 text-white font-bold mr-5 mb-5 py-2 px-4 rounded my-3">
+                Create New Account
+            </button>
+        </div>
+</div>
+</div>
+
+<div class="w-3/4 m-auto mt-10">
+      <table class="table-fixed shadow-md">
+        <thead class="bg-teal-100">
+            <th>
+                <x-thead>
+                            <a wire:click.prevent="sortBy('name')" role="button" href="#">
+                                Company
+                                @include('livewire.partials._sort-icon', ['field' => 'name'])
+                            </a>
+                </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                <a wire:click.prevent="sortBy('city')" role="button" href="#">
-                    City
-                    @include('livewire.partials._sort-icon', ['field' => 'city'])
-                </a>
+            <th>
+                <x-thead>
+                            <a wire:click.prevent="sortBy('industry_id')" role="button" href="#">
+                                Industry
+                                @include('livewire.partials._sort-icon', ['field' => 'industry_id'])
+                            </a>
+                </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                <a wire:click.prevent="sortBy('state')" role="button" href="#">
-                    State
-                    @include('livewire.partials._sort-icon', ['field' => 'state'])
-                </a>
+            <th>
+                <x-thead>
+                    <a wire:click.prevent="sortBy('city')" role="button" href="#">
+                        City
+                        @include('livewire.partials._sort-icon', ['field' => 'city'])
+                    </a>
+                </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                   Industry
+            <th>
+                <x-thead>
+                    <a wire:click.prevent="sortBy('state')" role="button" href="#">
+                        State
+                        @include('livewire.partials._sort-icon', ['field' => 'state'])
+                    </a>
+                </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                   Account Type
+            <th>
+                 <x-thead>
+                    <a wire:click.prevent="sortBy('owner')" role="button" href="#">
+                            Owner
+                            @include('livewire.partials._sort-icon', ['field' => 'owner'])
+                    </a>
+                 </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                <a wire:click.prevent="sortBy('owner')" role="button" href="#">
-                    Owner
-                    @include('livewire.partials._sort-icon', ['field' => 'owner'])
-                </a>
+            <th>
+                <x-thead>
+                    <a wire:click.prevent="sortBy('contacts_count')" role="button" href="#">
+                        # Contacts
+                        @include('livewire.partials._sort-icon', ['field' => 'contacts_count'])
+                    </a>
+                </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                <a wire:click.prevent="sortBy('contacts_count')" role="button" href="#">
-                    # Contacts
-                    @include('livewire.partials._sort-icon', ['field' => 'contacts_count'])
-                </a>
+            <th>
+                <x-thead>
+                    <a wire:click.prevent="sortBy('open_opportunities_count')" role="button" href="#">
+                        # Open Opportunities
+                        @include('livewire.partials._sort-icon', ['field' => 'open_opportunities_count'])
+                    </a>
+                </x-thead>
             </th>
-            
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                <a wire:click.prevent="sortBy('open_opportunities_count')" role="button" href="#">
-                    # Open Opportunities
-                    @include('livewire.partials._sort-icon', ['field' => 'open_opportunities_count'])
-                </a>
-            </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
-                
+            <th>
+                <x-thead>
                     Last Activity Date
-                    
+                </x-thead>
             </th>
-            <th  class="w-1/8 px-4 border-collapse border border-teal-800">
-                <a wire:click.prevent="sortBy('closed_business')" role="button" href="#">
-                Total Business
-                 @include('livewire.partials._sort-icon', ['field' => 'closed_business'])
+            <th>
+                <x-thead>
+                    <a wire:click.prevent="sortBy('closed_business')" role="button" href="#">
+                    Total Business
+                    @include('livewire.partials._sort-icon', ['field' => 'closed_business'])
+                 </x-thead>
             </th>
         </thead>
         <tbody>
             @foreach ($accounts as $account)
-          
-            <tr>
-                <td class="px-4 border-collapse border border-teal-800">
+            
+            <tr class="bg-white border border-gray-300 border-1">
+                <td class="border">
+                 <x-tbody>
                     <a href="{{route('account.show', $account->id)}}"
-                        class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600">
+                        class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
                         {{$account->name}}
                     </a>
+                 </x-tbody>
                 </td>
-                <td class="px-4 border-collapse border border-teal-800">
+                <td class="border">
+                 <x-tbody>
+                    @if($account->industry)
+                        <a href="{{route('industry.show', $account->industry->id)}}"
+                            class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
+                            {{$account->industry->industry}}
+                        </a>
+                    @endif
+                 </x-tbody>
+                </td>
+                <td class="border border-gray-200">
+                <x-tbody>
                     {{$account->city}}
+                </x-tbody>
                 </td>
-                <td class="px-4 border-collapse border border-teal-800">
+                <td class="border border-gray-200">
+                <x-tbody>
                     {{$account->state}}
+                </x-tbody>
                 </td>
-                <td class="px-4 border-collapse border border-teal-800">
-                    {{$account->industry ? $account->industry->industry : ''}}
+                <td class="border border-gray-200">
+                <x-tbody>
+                    {{$account->owner ? $account->owner->name :''}}
+                    </x-tbody>
                 </td>
-                <td class="px-4 border-collapse border border-teal-800">
-                    {{$account->type ? $account->type->type : ''}}
-                </td>
-                <td class="px-4 border-collapse border border-teal-800">
-                    {{$account->owner->name}}
-                </td>
-                
-                <td class="px-4 border-collapse border border-teal-800">
+
+                <td class="border border-gray-200">
+                <x-tbody>
                     {{$account->contacts_count}}
+                    </x-tbody>
                 </td>
-                <td class="px-4 border-collapse border border-teal-800">
+                <td class="border border-gray-200">
+                <x-tbody>
                     {{$account->open_opportunities_count}}
+                    </x-tbody>
                 </td>
-                <td class="px-4 border-collapse border border-teal-800">
-                    @if ($account->lastActivity) 
+                <td class="border border-gray-200">
+                <x-tbody>
+                    @if ($account->lastActivity)
                         {{$account->lastActivity->activity_date}}
                     @endif
+                    </x-tbody>
                 </td>
-                <td class="px-4 border-collapse border border-teal-800">
-                    
+                <td class="border border-gray-200">
+                <x-tbody>
                         ${{number_format($account->closed_business,0)}}
-                  
+                </x-tbody>
                 </td>
 
             </tr>
             @endforeach
         </tbody>
     </table>
-    <div class="row mb-4">
+    </div>
+    <div class="row mt-28">
             <div class="row-start-4 text-left">
                 {{ $accounts->links() }}
             </div>
 
-            
+
 
     </div>
 </div>

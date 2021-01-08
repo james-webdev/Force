@@ -25,7 +25,7 @@ class AccountsController extends Controller
     {
 
         return response()->view('accounts.index');
-               
+
     }
 
     /**
@@ -55,9 +55,9 @@ class AccountsController extends Controller
 
     /**
      * [show description]
-     * 
+     *
      * @param Account $account [description]
-     * 
+     *
      * @return [type]           [description]
      */
     public function show(Account $account)
@@ -68,29 +68,29 @@ class AccountsController extends Controller
             ->withCount('opportunities', 'wonOpportunities', 'openOpportunities')
             ->findOrFail($account->id);
 
-        $contacts = $account->contacts()->withLastActivityId()->with('lastActivity.type')->get();
+        // $contacts = $account->contacts()->withLastActivityId()->with('lastActivity.type')->get();
 
-        $activities = $contacts->map(
-            function ($contact) {
-                return ['activities'=>$contact->activities];
-            }
-        )->flatten();
-     
-        return response()->view('accounts.show', compact('account', 'activities', 'contacts'));
+        // $activities = $contacts->map(
+        //     function ($contact) {
+        //         return ['activities'=>$contact->activities];
+        //     }
+        // )->flatten();
+
+        return response()->view('accounts.show', compact('account'));
     }
 
     /**
      * [edit description]
-     * 
+     *
      * @param Account $account [description]
-     * 
+     *
      * @return [type]           [description]
      */
     public function edit(Account $account)
     {
 
         $contacts = Account::with('contacts')->get()->where('id', $account->id);
-   
+
         return Inertia::render(
             'Accounts/Edit', [
                 'account' => $account,
@@ -102,10 +102,10 @@ class AccountsController extends Controller
 
     /**
      * [update description]
-     * 
+     *
      * @param Account $account [description]
      * @param Request $request [description]
-     * 
+     *
      * @return [type]           [description]
      */
     public function update(Account $account, Request $request)
@@ -117,9 +117,9 @@ class AccountsController extends Controller
 
     /**
      * [destroy description]
-     * 
+     *
      * @param Account $account [description]
-     * 
+     *
      * @return [type]           [description]
      */
     public function destroy(Account $account)

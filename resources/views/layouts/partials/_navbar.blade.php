@@ -22,7 +22,7 @@
           <li class="nav-item">
             <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{route('contacts.index')}}">
               Contacts
-            
+
             </a>
           </li>
           <li class="nav-item">

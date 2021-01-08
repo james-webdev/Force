@@ -21,13 +21,13 @@
 
                         <div class="mb-4">
 
-                            <label for="Name" 
+                            <label for="Name"
                                 class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="name" 
-                                placeholder="Company Name" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="name"
+                                placeholder="Company Name"
                                 wire:model="name">
 
                                 @error('name') <span class="text-red-500"></span>@enderror
@@ -36,13 +36,13 @@
 
                         <div class="mb-4">
 
-                            <label for="street" 
+                            <label for="street"
                                 class="block text-gray-700 text-sm font-bold mb-2">Street:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="street" 
-                                placeholder="Street address" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="street"
+                                placeholder="Street address"
                                 wire:model="street">
 
                                 @error('street') <span class="text-red-500"></span>@enderror
@@ -50,13 +50,13 @@
                         </div>
                         <div class="mb-4">
 
-                            <label for="city" 
+                            <label for="city"
                                 class="block text-gray-700 text-sm font-bold mb-2">City:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="city" 
-                                placeholder="City" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="city"
+                                placeholder="City"
                                 wire:model="city">
 
                                 @error('city') <span class="text-red-500"></span>@enderror
@@ -65,13 +65,13 @@
 
                         <div class="mb-4">
 
-                            <label for="state" 
+                            <label for="state"
                                 class="block text-gray-700 text-sm font-bold mb-2">Street:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="state" 
-                                placeholder="State code" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="state"
+                                placeholder="State code"
                                 wire:model="state">
 
                                 @error('state') <span class="text-red-500"></span>@enderror
@@ -79,13 +79,13 @@
                         </div>
                         <div class="mb-4">
 
-                            <label for="postalcode" 
+                            <label for="postalcode"
                                 class="block text-gray-700 text-sm font-bold mb-2">Post code:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="postalcode" 
-                                placeholder="Postal code" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="postalcode"
+                                placeholder="Postal code"
                                 wire:model="postalcode">
 
                                 @error('street') <span class="text-red-500"></span>@enderror
@@ -94,13 +94,13 @@
 
                         <div class="mb-4">
 
-                            <label for="description" 
+                            <label for="description"
                              class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
 
-                            <textarea 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            <textarea
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="description"
-                                wire:model="description" 
+                                wire:model="description"
                                 placeholder="Enter Body">
                             </textarea>
 
@@ -115,25 +115,25 @@
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
 
                      <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                         <button 
-                             wire:click.prevent="store()" 
-                             type="button" 
-                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                         <button
+                             wire:click.prevent="store()"
+                             type="button"
+                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-400 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                          Save
                          </button>
                      </span>
 
                      <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                         <button 
-                             wire:click="closeModal()" 
-                             type="button" 
+                         <button
+                             wire:click="closeModal()"
+                             type="button"
                              class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                              Cancel
                          </button>
                      </span>
                 </div>
 
-            </form>        
+            </form>
 
          </div>
 

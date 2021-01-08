@@ -25,9 +25,9 @@ class IndustryTable extends Component
     }
     /**
      * Set SortField
-     * 
+     *
      * @param string $field [description]
-     * 
+     *
      * @return sortField        [description]
      */
     public function sortBy($field)
@@ -44,7 +44,7 @@ class IndustryTable extends Component
     {
 
         return view(
-            'livewire.industry-table', 
+            'livewire.industry-table',
             ['industries'=>Industry::withCount('accounts')
                 ->search($this->search)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

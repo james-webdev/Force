@@ -1,7 +1,7 @@
 <div>
     <h4 class="mt-4 mb-2 font-bold text-xl text-teal-400 font-medium">
             <i class="fas fa-exclamation"></i> Activities
-    </h4>    
+    </h4>
     @component('livewire.partials._search')
         @slot('placeholder')
             Search activities
@@ -15,17 +15,17 @@
         @include(('livewire.partials._ownerselector'))
         
             <label class="font-bold" for="status">Type:</label>
-            <select wire:model="activity_type_id" 
+            <select wire:model="activity_type_id"
             class="form-control">
                 <option value="All">All</option>
                 @foreach ($types as $id=>$activity)
                     <option value={{$id}} >{{$activity}}</option>
                 @endforeach
-                
+
             </select>
         </div>
     </div>
-    <a 
+    <a
         wire:click="createActivity()"
         class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600"
         ><i class="text-teal-400  fas fa-plus-circle"></i>
@@ -44,7 +44,7 @@
                     Activity Date
                     @include('livewire.partials._sort-icon', ['field' => 'activity_date'])
                 </a>
-              
+
                 </th>
                 <th class="px-4 border-collapse border border-teal-800">Type</th>
                 <th class="px-4 border-collapse border border-teal-800">Subject</th>
@@ -95,7 +95,7 @@
                 {{ $activities->links() }}
             </div>
 
-            
+
 
     </div>
 </div>

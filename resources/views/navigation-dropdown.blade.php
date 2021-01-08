@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                   
+
                     <x-jet-nav-link href="{{ route('account.index') }}" :active="request()->routeIs('account.index')">
                         {{ __('Accounts') }}
                     </x-jet-nav-link>

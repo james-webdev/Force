@@ -1,8 +1,10 @@
 <div>
+
+
     <h2>Account Types</h2>
-   
+
     @include('livewire.partials._perPage')
-    @include('livewire.partials._search', ['placeholder'=>'Search Industries'])
+    @include('livewire.partials._search', ['placeholder'=>'Search Account Types'])
     <table  class="table-fixed">
         <thead class="bg-teal-300">
             <th class="w-1/2">
@@ -20,11 +22,11 @@
 
         </thead>
         <tbody>
-            @foreach ($accounttypes as $type)
+            @foreach ($accounttypes as $accounttype)
             <tr>
                 <td class="text-left">
-                    <a href="{{route('accounttypes.show', $type->id)}}">{{$type->type}}</a></td>
-                <td class="text-center">{{$type->accounts_count}}</td>
+                    <a href="{{route('accounttype.show', $accounttype->id)}}">{{$accounttype->type}}</a></td>
+                <td class="text-center">{{$accounttype->accounts_count}}</td>
             </tr>
             @endforeach
         </tbody>
