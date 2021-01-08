@@ -6,12 +6,13 @@ use Livewire\WithPagination;
 use App\Models\Account;
 use App\Models\User;
 use App\Models\Industry;
+use App\Models\AccountType;
 
 
 class AccountsTable extends Component
 {
 
-    
+
     use WithPagination;
 
     public $perPage = 10;
@@ -21,6 +22,7 @@ class AccountsTable extends Component
     public $status = 'All';
     public $user_id = 'All';
     public $industry_id = 'All';
+    public $account_type_id = 'All';
     public $isOpen = 0;
     public $name;
     public $street;
@@ -32,7 +34,7 @@ class AccountsTable extends Component
 
     /**
      * [updatingSearch description]
-     * 
+     *
      * @return [type] [description]
      */
     public function updatingSearch()
@@ -41,9 +43,9 @@ class AccountsTable extends Component
     }
     /**
      * Set SortField
-     * 
+     *
      * @param string $field [description]
-     * 
+     *
      * @return sortField        [description]
      */
     public function sortBy($field)
@@ -63,13 +65,13 @@ class AccountsTable extends Component
     }
     /**
      * Select accounts, industries and users
-     * 
+     *
      * @return array [description]
      */
     public function render()
     {
 
-        return view(
+          return view(
             'livewire.accounts-table', [
                 'accounts'=>Account::withLastActivityId()
                     ->withCount('contacts', 'openOpportunities', 'wonOpportunities', 'opportunities')
@@ -86,16 +88,22 @@ class AccountsTable extends Component
                             $q->where('industry_id', $this->industry_id);
                         }
                     )
+                    ->when(
+                        $this->account_type_id != 'All', function ($q) {
+                            $q->where('account_type_id', $this->account_type_id);
+                        }
+                    )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
                     'industries' => Industry::orderBy('industry')->pluck('industry', 'id')->toArray(),
+                    'accounttypes' => AccountType::orderBy('type')->pluck('type', 'id')->toArray(),
                     'users' => User::pluck('name', 'sf_id')->toArray(),
                 ]
         );
     }
     /**
      * [create description]
-     * 
+     *
      * @return [type] [description]
      */
     public function create()
@@ -108,7 +116,7 @@ class AccountsTable extends Component
     }
     /**
      * [_resetInputFields description]
-     * 
+     *
      * @return [type] [description]
      */
     private function _resetInputFields()
@@ -123,7 +131,7 @@ class AccountsTable extends Component
     }
     /**
      * [openModal description]
-     * 
+     *
      * @return [type] [description]
      */
     public function openModal()
@@ -134,7 +142,7 @@ class AccountsTable extends Component
     }
     /**
      * [closeModal description]
-     * 
+     *
      * @return [type] [description]
      */
     public function closeModal()
@@ -154,12 +162,12 @@ class AccountsTable extends Component
         );
 
         Account::updateOrCreate(
-            ['id' => $this->account_id], 
+            ['id' => $this->account_id],
             [
                 'name' => $this->name,
                 'street' => $this->street,
                 'city'=> $this->city,
-                'state' => $this->state, 
+                'state' => $this->state,
                 'postalcode' => $this->postalcode,
                 'description' => $this->description,
                 'owner_id' => auth()->user()->id
@@ -167,13 +175,13 @@ class AccountsTable extends Component
             ]
         );
 
-     
+
 
         session()->flash(
             'message',
             $this->account_id ? 'Account Updated Successfully.' : 'Account Created Successfully.'
         );
-     
+
         $this->closeModal();
         $this->resetInputFields();
 

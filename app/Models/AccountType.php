@@ -10,7 +10,7 @@ class AccountType extends Model
     use HasFactory;
 
     public $fillable = ['type'];
-
+    public $table = 'account_types';
     public function accounts()
     {
         return $this->hasMany(Account::class);
@@ -18,10 +18,10 @@ class AccountType extends Model
 
     /**
      * [scopeSearch description]
-     * 
+     *
      * @param [type] $query  [description]
      * @param [type] $search [description]
-     * 
+     *
      * @return [type]         [description]
      */
     public function scopeSearch($query, $search)

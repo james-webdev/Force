@@ -86,6 +86,6 @@ class SalesStageController extends Controller
             $stage->delete();
             return redirect()->route('stages.index')->withMessage("Stage Deleted");
         }
-        return redirect()->back()->withMessage("There are " . . " opportunities associated the " . $stage->stage . " stage");
+        return redirect()->back()->withMessage("There are " .$stage->opportunities_count. " opportunities associated the " . $stage->stage . " stage");
     }
 }

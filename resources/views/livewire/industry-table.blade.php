@@ -1,6 +1,14 @@
 <div>
+
+
+<!-- <p>
+here:
+{{ $industries }}
+</p> -->
+
+
     <h2>Industries</h2>
-   
+
     @include('livewire.partials._perPage')
     @include('livewire.partials._search', ['placeholder'=>'Search Industries'])
     <table  class="table-fixed">

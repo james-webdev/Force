@@ -48,7 +48,7 @@ class IndustryController extends Controller
      */
     public function show(Industry $industry)
     {
-       
+
         return response()->view('industries.show', compact('industry'));
     }
 
@@ -60,7 +60,7 @@ class IndustryController extends Controller
      */
     public function edit(Industry $industry)
     {
-        return response()->view('indsutries.edit', compact('industry'));
+        return response()->view('industries.edit', compact('industry'));
     }
 
     /**
@@ -93,6 +93,6 @@ class IndustryController extends Controller
         } else {
             return redirect()->back()->withMessage('Unable to delete indusutry as '. $industry->accounts_count. ' accounts are associated with this industry');
         }
-    
+
     }
 }

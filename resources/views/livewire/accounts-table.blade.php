@@ -1,6 +1,6 @@
 <div>
 
-<div class="ml-24 mr-24">
+<div class="ml-24 mt-7 mr-24">
 
         <h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
             Accounts
@@ -37,6 +37,28 @@
 
                     </select>
                 </div>
+                <div class="col form-inline">
+                    <label class="font-bold" for="status">Industry: &nbsp; ↓</label>
+                    <select wire:model="industry_id"
+                    class="form-control p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($industries as $id=>$industry)
+                            <option value={{$id}} class="p-3" >{{$industry}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class="col form-inline">
+                    <label class="font-bold" for="status">Type: &nbsp; ↓</label>
+                    <select wire:model="account_type_id"
+                    class="form-control p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($accounttypes as $id=>$type)
+                            <option value={{$id}} class="p-3" >{{$type}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
             </div>
         </div>
         <div class="mr-8">
@@ -60,7 +82,14 @@
                             </a>
                 </x-thead>
             </th>
-
+            <th>
+                <x-thead>
+                            <a wire:click.prevent="sortBy('industry_id')" role="button" href="#">
+                                Industry
+                                @include('livewire.partials._sort-icon', ['field' => 'industry_id'])
+                            </a>
+                </x-thead>
+            </th>
             <th>
                 <x-thead>
                     <a wire:click.prevent="sortBy('city')" role="button" href="#">
@@ -119,22 +148,32 @@
 
             <tr class="bg-white border border-gray-300 border-1">
                 <td class="border">
-                <x-tbody>
+                 <x-tbody>
                     <a href="{{route('account.show', $account->id)}}"
-                        class=" text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
+                        class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
                         {{$account->name}}
                     </a>
-                    </x-tbody>
+                 </x-tbody>
+                </td>
+                <td class="border">
+                 <x-tbody>
+                    @if($account->industry)
+                        <a href="{{route('industry.show', $account->industry->id)}}"
+                            class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
+                            {{$account->industry->industry}}
+                        </a>
+                    @endif
+                 </x-tbody>
                 </td>
                 <td class="border border-gray-200">
                 <x-tbody>
                     {{$account->city}}
-                    </x-tbody>
+                </x-tbody>
                 </td>
                 <td class="border border-gray-200">
                 <x-tbody>
                     {{$account->state}}
-                    </x-tbody>
+                </x-tbody>
                 </td>
                 <td class="border border-gray-200">
                 <x-tbody>

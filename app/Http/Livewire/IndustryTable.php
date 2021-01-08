@@ -14,15 +14,15 @@ class IndustryTable extends Component
 
     public $sortAsc = true;
     public $search ='';
-public function updatingSearch()
+    public function updatingSearch()
     {
         $this->resetPage();
     }
     /**
      * Set SortField
-     * 
+     *
      * @param string $field [description]
-     * 
+     *
      * @return sortField        [description]
      */
     public function sortBy($field)
@@ -39,7 +39,7 @@ public function updatingSearch()
     {
 
         return view(
-            'livewire.industry-table', 
+            'livewire.industry-table',
             ['industries'=>Industry::withCount('accounts')
                 ->search($this->search)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

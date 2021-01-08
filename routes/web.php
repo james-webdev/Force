@@ -20,7 +20,7 @@ Route::get(
 );
 Route::middleware(['auth:sanctum', 'verified'])
     ->group(
-        function () { 
+        function () {
             Route::get(
                 '/dashboard', function () {
                     return Inertia\Inertia::render('Dashboard');
@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])
             // Activities
             Route::resource('/activity', 'ActivitiesController');
             //Activity Types
-            Route::resource('/activitytype', 'ActivityTypesController');        
+            Route::resource('/activitytype', 'ActivityTypesController');
             // Contacts
             Route::get('/addactivity/{contact}', ['as' => 'contact.activity', 'uses' => 'ActivitiesController@contactActivity']);
 
@@ -42,14 +42,14 @@ Route::middleware(['auth:sanctum', 'verified'])
             Route::resource('/opportunity', 'OpportunitiesController');
 
             Route::resource('/stages', 'SalesStageController');
-            Route::resource('/accounttypes', 'AccounttypeController');
-            Route::resource('/industries', 'IndustryController');
+            Route::resource('/accounttype', 'AccountTypeController');
+            Route::resource('/industry', 'IndustryController');
             // Imports
-            
+
             Route::post('import/mapping/{import}', ['as'=>'import.mapping', 'uses'=>'ImportController@mapping']);
 
             Route::resource('/import', 'ImportController');
             //Route::get('/import', ['as'=>'account.import.create', 'uses'=>'AccountsController@importForm']);
-            //Route::post('/import', ['as'=>'account.import.store', 'uses'=>'AccountsController@import']); 
+            //Route::post('/import', ['as'=>'account.import.store', 'uses'=>'AccountsController@import']);
         }
     );

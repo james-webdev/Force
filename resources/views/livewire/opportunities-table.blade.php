@@ -1,7 +1,7 @@
 <div>
 
 
-<div class="ml-24 mr-24">
+<div class="ml-24 mt-7 mr-24">
 <h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
             Opportunities
         </h2>
@@ -48,84 +48,122 @@
         </div>
 </div>
 </div>
-<table  class="table-fixed">
-        <thead class="bg-teal-300">
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
+<div class="w-3/4 m-auto mt-10">
+<table  class="table-fixed shadow-md">
+        <thead class="bg-teal-100">
+            <th>
+             <x-thead>
                 <a wire:click.prevent="sortBy('account')" role="button" href="#">
                     Company
                     @include('livewire.partials._sort-icon', ['field' => 'account'])
                 </a>
+             </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
+            <th>
+             <x-thead>
                 <a wire:click.prevent="sortBy('title')" role="button" href="#">
                     Opportunity
                     @include('livewire.partials._sort-icon', ['field' => 'title'])
                 </a>
+              </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
+            <th>
+             <x-thead>
                 <a wire:click.prevent="sortBy('user_id')" role="button" href="#">
                     Owner
                     @include('livewire.partials._sort-icon', ['field'=>'user_id'])
                 </a>
+              </x-thead>
             </th>
 
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
+            <th>
+             <x-thead>
                 <a wire:click.prevent="sortBy('value')" role="button" href="#">
                     Value
                     @include('livewire.partials._sort-icon', ['field' => 'value'])
                 </a>
+              </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
+            <th>
+             <x-thead>
                 <a wire:click.prevent="sortBy('status')" role="button" href="#">
                     Status
                     @include('livewire.partials._sort-icon', ['field' => 'status'])
                 </a>
+              </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
+            <th>
+             <x-thead>
                 <a wire:click.prevent="sortBy('expected_close')" role="button" href="#">
                     Created
                     @include('livewire.partials._sort-icon', ['field' => 'created_at'])
                 </a>
+              </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">
+            <th>
+             <x-thead>
                 <a wire:click.prevent="sortBy('expected_close')" role="button" href="#">
                     Close Date
                     @include('livewire.partials._sort-icon', ['field' => 'expected_close'])
                 </a>
+              </x-thead>
             </th>
-            <th class="w-1/8 px-4 border-collapse border border-teal-800">Last Activity</th>
+            <th>
+             <x-thead>Last Activity
+             </x-thead>
+            </th>
         </thead>
         <tbody>
         @foreach ($opportunities as $opportunity)
 
-            <tr>
-               <td class="px-4 border-collapse border border-teal-800">
+            <tr class="bg-white border border-gray-300 border-1">
+               <td class="border">
+                <x-tbody>
                     <a href="{{route('account.show', $opportunity->account_id)}}"
-                         class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600">
+                    class=" text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
                         {{$opportunity->account->name}}
                     </a>
+                 </x-tbody>
                 </td>
-               <td class="px-4 border-collapse border border-teal-800">
-                <a href="{{route('opportunity.show', $opportunity->id)}}"
-                     class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600">
-                {{$opportunity->title}}
-            </a>
-            </td>
-               <td class="px-4 border-collapse border border-teal-800">
-                {{$opportunity->owner->name}}</td>
-
-               <td class="px-4 text-right border-collapse border border-teal-800">
-                    ${{number_format($opportunity->opportunityValue(),0)}}
+               <td class="border border-gray-200">
+                    <x-tbody>
+                        <a href="{{route('opportunity.show', $opportunity->id)}}"
+                        class=" text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
+                        {{$opportunity->title}}
+                        </a>
+                    </x-tbody>
                </td>
-               <td class="px-4 border-collapse border border-teal-800">{{$statuses[$opportunity->status]}}</td>
-               <td class="px-4 border-collapse border border-teal-800">{{$opportunity->created_at->format('Y-m-d')}}</td>
-               <td class="px-4 border-collapse border border-teal-800">
-                        {{$opportunity->close_date->format('Y-m-d')}}
+               <td class="border border-gray-200">
+                    <x-tbody>
+                        {{$opportunity->owner->name}}
+                    </x-tbody>
+               </td>
+               <td class="border border-gray-200">
+                   <x-tbody>
+                        ${{number_format($opportunity->opportunityValue(),0)}}
+                    </x-tbody>
+               </td>
+               <td class="border border-gray-200">
+                    <x-tbody>
+                    {{$statuses[$opportunity->status]}}
+                    </x-tbody>
                 </td>
-                <td class="px-4 border-collapse border border-teal-800">
-                    @if($opportunity->contact && $opportunity->contact->lastActivity)
-                    {{$opportunity->contact->lastActivity->activity_date}}
-                    @endif
+               <td>
+                    <x-tbody>
+                    {{$opportunity->created_at->format('Y-m-d')}}
+                    </x-tbody>
+                </td>
+               <td class="border border-gray-200">
+                    <x-tbody>
+                            {{$opportunity->close_date->format('Y-m-d')}}
+                    </x-tbody>
+                </td>
+                <td class="border border-gray-200">
+                    <x-tbody>
+                        @if($opportunity->contact && $opportunity->contact->lastActivity)
+                        {{$opportunity->contact->lastActivity->activity_date}}
+                        @endif
+                    </x-tbody>
                 </td>
             </tr>
         @endforeach
@@ -134,7 +172,7 @@
     </table>
 </div>
 
-    <div class="row mb-4">
+    <div class="row mb-28">
             <div class="row-start-4 text-left">
                 {{ $opportunities->links() }}
             </div>

@@ -1,6 +1,6 @@
 <div>
 
-        <h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
+        <h2 class="text-4xl mt-7 text-teal-400 p-5 hover:text-teal-500 leading-tight">
             Contacts
         </h2>
         <!-- <i class="far fa-address-book text-teal-400"></i> -->

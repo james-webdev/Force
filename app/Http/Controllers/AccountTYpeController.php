@@ -15,13 +15,13 @@ class AccountTypeController extends Controller
      */
     public function index()
     {
-        $accounttypes = AccountType::all();
-        return response()->view('accounttypes.index', compact('accounttypes'));
+
+        return response()->view('accounttypes.index');
     }
 
     /**
      * Show the form for creating a new resource.
-     * 
+     *
      * @return view [description]
      */
     public function create()
@@ -31,9 +31,9 @@ class AccountTypeController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * 
+     *
      * @param AccountTypeRequest $request [description]
-     * 
+     *
      * @return [type]                      [description]
      */
     public function store(AccountTypeRequest $request)
@@ -44,22 +44,22 @@ class AccountTypeController extends Controller
 
     /**
      * Display the specified resource.
-     * 
+     *
      * @param AccountType $accountType [description]
-     * 
+     *
      * @return [type]                   [description]
      */
     public function show(AccountType $accountType)
     {
-        $accountType->loadCount('accounts');
-        return response()->view('accounttype.show', $accounttype);
+        dd($accountType);
+        return response()->view('accounttypes.show', compact('accountType'));
     }
 
     /**
      * Show the form for editing the specified resource.
-     * 
+     *
      * @param AccountType $accountType [description]
-     * 
+     *
      * @return [view]                   [description]
      */
     public function edit(AccountType $accountType)
@@ -69,10 +69,10 @@ class AccountTypeController extends Controller
 
     /**
      * Update the specified resource in storage
-     * 
+     *
      * @param AccountTypeRequest $request     [description]
      * @param AccountType        $accountType [description]
-     * 
+     *
      * @return [type]                          [description]
      */
     public function update(AccountTypeRequest $request, AccountType $accountType)
@@ -82,9 +82,9 @@ class AccountTypeController extends Controller
 
     /**
      * Remove specified resource from storage
-     * 
+     *
      * @param AccountType $accountType [description]
-     * 
+     *
      * @return [type]                   [description]
      */
     public function destroy(AccountType $accountType)
