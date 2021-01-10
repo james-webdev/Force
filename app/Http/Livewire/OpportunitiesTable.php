@@ -50,9 +50,16 @@ class OpportunitiesTable extends Component
 
         $this->sortField = $field;
     }
-    public function mount($account_id = null)
+    /**
+     * [mount description]
+     * 
+     * @param  [type] $account_id [description]
+     * @return [type]             [description]
+     */
+    public function mount($account_id = null, $stage_id = null)
     {
         $this->account_id = $account_id;
+        $this->stage_id = $stage_id;
     }
     public function render()
     {

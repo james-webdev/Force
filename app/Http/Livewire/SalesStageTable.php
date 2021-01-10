@@ -20,32 +20,8 @@ class SalesStageTable extends Component
     {
         $this->resetPage();
     }
-    /**
-     * Set SortField
-     * 
-     * @param string $field [description]
-     * 
-     * @return sortField        [description]
-     */
-    public function sortBy($field)
-    {
-        if ($this->sortField === $field) {
-            $this->sortAsc = ! $this->sortAsc;
-        } else {
-            $this->sortAsc = true;
-        }
-
-        $this->sortField = $field;
-    }
-    /**
-     * [updatingSearch description]
-     * 
-     * @return [type] [description]
-     */
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
+    
+    
     /**
      * [sortBy description]
      * 
@@ -63,6 +39,10 @@ class SalesStageTable extends Component
 
         $this->sortField = $field;
     }
+    /**
+     * [render description]
+     * @return [type] [description]
+     */
     public function render()
     {
         return view(
