@@ -2,7 +2,7 @@
 
 
 <div class="ml-24 mt-7 mr-24">
-<h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
+        <h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
             Opportunities
         </h2>
 
@@ -24,20 +24,6 @@
             </div>
 
 
-            <div class="p-3 mt-1">
-                @include('livewire.partials._perpage')
-                <div class="col form-inline">
-                    <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
-                    <select wire:model="user_id"
-                    class="form-control p-1 appearance-none">
-                        <option value="All">All</option>
-                        @foreach ($users as $sf_id=>$user)
-                            <option value={{$sf_id}} class="p-3" >{{$user}}</option>
-                        @endforeach
-
-                    </select>
-                </div>
-            </div>
         </div>
         <div class="mr-8">
             <button
@@ -46,7 +32,21 @@
                 Create New Opportunity
             </button>
         </div>
-</div>
+   </div>
+           <div class="p-3 flex justify-between text-md border border-gray-200 items-center rounded bg-gray-100 shadow-sm mt-1">
+                <div class="col m-1 form-inline">
+                    <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
+                    <select wire:model="user_id"
+                    class="form-control rounded-sm p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($users as $sf_id=>$user)
+                            <option value={{$sf_id}} class="p-3" >{{$user}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                @include('livewire.partials._perpage')
+            </div>
 </div>
 <div class="w-3/4 m-auto mt-10">
 <table  class="table-fixed shadow-md">
@@ -55,7 +55,7 @@
              <x-thead>
                 <a wire:click.prevent="sortBy('account')" role="button" href="#">
                     Company
-                    @include('livewire.partials._sort-icon', ['field' => 'name'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'account']) -->
                 </a>
              </x-thead>
             </th>
@@ -63,7 +63,7 @@
              <x-thead>
                 <a wire:click.prevent="sortBy('title')" role="button" href="#">
                     Opportunity
-                    @include('livewire.partials._sort-icon', ['field' => 'title'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'title']) -->
                 </a>
               </x-thead>
             </th>
@@ -71,7 +71,7 @@
              <x-thead>
                 <a wire:click.prevent="sortBy('user_id')" role="button" href="#">
                     Owner
-                    @include('livewire.partials._sort-icon', ['field'=>'user_id'])
+                    <!-- @include('livewire.partials._sort-icon', ['field'=>'user_id']) -->
                 </a>
               </x-thead>
             </th>
@@ -80,7 +80,7 @@
              <x-thead>
                 <a wire:click.prevent="sortBy('value')" role="button" href="#">
                     Value
-                    @include('livewire.partials._sort-icon', ['field' => 'value'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'value']) -->
                 </a>
               </x-thead>
             </th>
@@ -88,7 +88,7 @@
              <x-thead>
                 <a wire:click.prevent="sortBy('status')" role="button" href="#">
                     Status
-                    @include('livewire.partials._sort-icon', ['field' => 'status'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'status']) -->
                 </a>
               </x-thead>
             </th>
@@ -96,7 +96,7 @@
              <x-thead>
                 <a wire:click.prevent="sortBy('expected_close')" role="button" href="#">
                     Created
-                    @include('livewire.partials._sort-icon', ['field' => 'created_at'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'created_at']) -->
                 </a>
               </x-thead>
             </th>
@@ -104,7 +104,7 @@
              <x-thead>
                 <a wire:click.prevent="sortBy('expected_close')" role="button" href="#">
                     Close Date
-                    @include('livewire.partials._sort-icon', ['field' => 'expected_close'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'expected_close']) -->
                 </a>
               </x-thead>
             </th>

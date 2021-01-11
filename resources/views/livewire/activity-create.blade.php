@@ -21,14 +21,14 @@
 
                         <div class="mb-4">
 
-                            <label for="Date" 
+                            <label for="Date"
                                 class="block text-gray-700 text-sm font-bold mb-2">Activity Date:</label>
 
-                            <input type="date" 
+                            <input type="date"
                                 required
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="activity_date" 
-                                placeholder="Activity date" 
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="activity_date"
+                                placeholder="Activity date"
                                 wire:model="activity_date">
 
                                 @error('activity_date') <span class="text-red-500"></span>@enderror
@@ -36,12 +36,12 @@
                         </div>
                         <div class="mb-4">
 
-                            <label for="status" 
+                            <label for="status"
                                 class="block text-gray-700 text-sm font-bold mb-2">Completed:</label>
 
-                            <input type="checkbox" 
+                            <input type="checkbox"
                                 checked
-                                id="status" 
+                                id="status"
                                 value="1"
                                 wire:model="status">
 
@@ -51,29 +51,29 @@
 
                         <div class="mb-4">
 
-                            <label for="email" 
+                            <label for="email"
                                 class="block text-gray-700 text-sm font-bold mb-2">Subject:</label>
 
-                            <input type="text" 
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="subject" 
-                                placeholder="subject" 
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="subject"
+                                placeholder="subject"
                                 wire:model="subject">
 
                                 @error('subject') <span class="text-red-500"></span>@enderror
 
                         </div>
-                        
+
 
                         <div class="mb-4">
 
-                            <label for="details" 
+                            <label for="details"
                                 class="block text-gray-700 text-sm font-bold mb-2">Notes:</label>
 
                             <textarea
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="details" 
-                                placeholder="details" 
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="details"
+                                placeholder="details"
                                 wire:model="details"></textarea>
 
                                 @error('details') <span class="text-red-500"></span>@enderror
@@ -81,14 +81,14 @@
                         </div>
                          <div class="mb-4">
 
-                            <label for="type" 
+                            <label for="type"
                                 class="block text-gray-700 text-sm font-bold mb-2">Type:</label>
 
                             <select
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required 
-                                id="activity_type_id" 
-                                placeholder="Type" 
+                                required
+                                id="activity_type_id"
+                                placeholder="Type"
                                 wire:model="activity_type_id">
                                 @foreach ($types as $id=>$type)
                                     <option value="{{$id}}">{{$type}}</option>
@@ -102,14 +102,14 @@
                         @if(! $account_id)
                         <div class="mb-4">
 
-                            <label for="contact_id" 
+                            <label for="contact_id"
                                 class="block text-gray-700 text-sm font-bold mb-2">Account:</label>
 
                             <select
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                 
-                                id="account_id" 
-                                placeholder="Account" 
+
+                                id="account_id"
+                                placeholder="Account"
                                 wire:model="account_id">
                                 @foreach ($accounts as $id=>$account)
                                     <option value="{{$id}}">{{$account}}</option>
@@ -123,14 +123,14 @@
                         @else
                         <div class="mb-4">
 
-                            <label for="contact_id" 
+                            <label for="contact_id"
                                 class="block text-gray-700 text-sm font-bold mb-2">Associated Contact:</label>
 
                             <select
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                 
-                                id="contact_id" 
-                                placeholder="Contact" 
+
+                                id="contact_id"
+                                placeholder="Contact"
                                 wire:model="contact_id">
                                 @foreach ($contacts as $contact)
                                     <option value="{{$contact->id}}">{{$contact->fullName()}}</option>
@@ -145,25 +145,25 @@
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
 
                          <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                             <button 
-                                 wire:click.prevent="storeActivity()" 
-                                 type="button" 
-                                 class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                             <button
+                                 wire:click.prevent="storeActivity()"
+                                 type="button"
+                                 class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-300 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                              Save
                              </button>
                          </span>
 
                      <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                         <button 
-                             wire:click="closeActivityModal()" 
-                             type="button" 
+                         <button
+                             wire:click="closeActivityModal()"
+                             type="button"
                              class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                              Cancel
                          </button>
                      </span>
                 </div>
 
-            </form>        
+            </form>
 
          </div>
 
