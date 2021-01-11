@@ -11,7 +11,11 @@ class ActivityType extends Model
 
     public $fillable = [ 'activity' ];
 
-
+    /**
+     * Activities relationship
+     * 
+     * @return [type] [description]
+     */
     public function activities()
     {
         return $this->hasMany(Activity::class);

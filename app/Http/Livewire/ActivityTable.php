@@ -63,7 +63,7 @@ class ActivityTable extends Component
      * 
      * @return [type]          [description]
      */
-    public function mount($contact=null, $account=null)
+    public function mount($contact=null, $account=null, $activitytype='All')
     {
         $this->contact_id = $contact;
         if ($contact) {
@@ -72,6 +72,7 @@ class ActivityTable extends Component
         } else {
             $this->account_id = $account;
         }
+        $this->activity_type_id = $activitytype;
         
 
     }

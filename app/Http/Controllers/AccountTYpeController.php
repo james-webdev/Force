@@ -48,10 +48,10 @@ class AccountTypeController extends Controller
      *
      * @return [type]                   [description]
      */
-    public function show(AccountType $accountType)
+    public function show(AccountType $accounttype)
     {
        
-        return response()->view('accounttype.show', compact('accounttype');
+        return response()->view('accounttypes.show', compact('accounttype'));
     }
 
     /**
@@ -63,7 +63,7 @@ class AccountTypeController extends Controller
      */
     public function edit(AccountType $accountType)
     {
-        return response()->view('accounttype.edit', compact($accountType));
+        return response()->view('accounttypes.edit', compact($accountType));
     }
 
     /**

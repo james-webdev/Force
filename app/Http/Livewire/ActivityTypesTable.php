@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Livewire;
-
+use App\Modesl\ActivityTypes;
 use Livewire\Component;
-use Livewire\withPagination;
-use App\Models\AccountType;
+use Livewire\WithPagination;
 
-class AccounttypesTable extends Component
+class ActivityTypesTable extends Component
 {
     use WithPagination;
     public $perPage = 10;
@@ -37,16 +36,15 @@ class AccounttypesTable extends Component
             $this->sortAsc = true;
         }
     }
-    
-
     public function render()
     {
         return view(
-            'livewire.accounttypes-table',
-            ['accounttypes'=>AccountType::withCount('accounts')
-                ->search($this->search)
-                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                ->paginate($this->perPage),
+            'livewire.activity-types-table',
+            [
+                $activitytypes = ActivityTypes::withCount('activities')
+                    ->search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage),
             ]
         );
     }

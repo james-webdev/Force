@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActivityType;
 use Illuminate\Http\Request;
 
-class ActivityTypesController extends Controller
+class xActivityTypesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,10 @@ class ActivityTypesController extends Controller
      */
     public function index()
     {
-
-        return response()->view('activitytypes.index');
-
+       $activityTypes = ActivityType::withCount('activities')->get();
+       return Inertia::render('ActivityType/Index', [
+        'activitytypes' => $activityTypes,
+    ]);
     }
 
     /**
@@ -47,10 +48,12 @@ class ActivityTypesController extends Controller
      * @param  \App\Models\ActivityType  $activityType
      * @return \Illuminate\Http\Response
      */
-    public function show(ActivityType $activitytype)
+    public function show(ActivityType $activityType)
     {
-         $activitytype->loadCount('activities');
-         return response()->view('activitytypes.show', compact('activitytype'));
+         $activityType->loadCount('activities');
+         return Inertia::render('ActivityType/Show', [
+            'activitytype' => $activityType,
+        ]);
 
     }
 
