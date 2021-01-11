@@ -1,21 +1,43 @@
 <div>
-    <h4 class="mt-4 mb-2 font-bold text-xl text-teal-400 font-medium">
-            <i class="fas fa-exclamation"></i> Activities
-    </h4>
-    @component('livewire.partials._search')
-        @slot('placeholder')
-            Search activities
-        @endslot
-    @endcomponent
 
+<div class="ml-24 mt-7 mr-24">
+    <h2 class="text-4xl mt-7 text-teal-400 p-5 hover:text-teal-500 leading-tight">
+            <!-- <i class="fas fa-exclamation"></i> -->
+             Activities
+    </h2>
 
-    <div class="row mb-4">
-        @include('livewire.partials._perpage')
+    @if($isActivityOpen)
+
+@include('livewire.activity-create')
+
+@endif
+
+<div class="flex justify-between mt-5 items-center">
+
+        <div class="flex justify-left items-center">
+            @component('livewire.partials._search')
+                @slot('placeholder')
+                    Search activities
+                @endslot
+            @endcomponent
+        </div>
+
+    <div class="mr-8">
+        <button
+            wire:click="createActivity()"
+            class="border border-gray-300 bg-teal-400 hover:bg-teal-500 text-white font-bold mr-5 mb-5 py-2 px-4 rounded my-3"
+            >
+            Create New Activity
+        </button>
+    </div>
+</div>
+
+    <div class="p-3 flex justify-between text-md border border-gray-200 items-center rounded bg-gray-100 shadow-sm mt-1">
         @include(('livewire.partials._ownerselector'))
-        <div class="col form-inline">
-            <label class="font-bold" for="status">Type:</label>
+        <div class="col m-1 form-inline">
+            <label class="font-bold" for="status">Type: &nbsp; ↓</label>
             <select wire:model="activity_type_id"
-            class="form-control">
+            class="form-control appearance-none rounded-sm p-1">
                 <option value="All">All</option>
                 @foreach ($types as $id=>$activity)
                     <option value={{$id}} >{{$activity}}</option>
@@ -23,73 +45,107 @@
 
             </select>
         </div>
+        @include('livewire.partials._perpage')
     </div>
-    <a
-        wire:click="createActivity()"
-        class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600"
-        ><i class="text-teal-400  fas fa-plus-circle"></i>
-        Create New Activity</a>
+    </div>
 
-    @if($isActivityOpen)
 
-        @include('livewire.activity-create')
-
-    @endif
-    <div>
-        <table class="table-fixed px-4 border-collapse border border-teal-800">
-            <thead class="bg-teal-300">
-                <th class="px-4 border-collapse border border-teal-800">
-                    <a wire:click.prevent="sortBy('activity_date')" role="button" href="#">
-                    Activity Date
-                    @include('livewire.partials._sort-icon', ['field' => 'activity_date'])
-                </a>
-
+    <div class="w-3/4 m-auto mt-10">
+        <table class="table-fixed shadow-md">
+            <thead class="bg-teal-100">
+                <th>
+                    <x-thead>
+                        <a wire:click.prevent="sortBy('activity_date')" role="button" href="#">
+                        Activity Date
+                        <!-- @include('livewire.partials._sort-icon', ['field' => 'activity_date']) -->
+                    </x-thead>
+                    </a>
                 </th>
-                <th class="px-4 border-collapse border border-teal-800">Type</th>
-                <th class="px-4 border-collapse border border-teal-800">Subject</th>
-                <th class="px-4 border-collapse border border-teal-800">Contact</th>
-                <th class="px-4 border-collapse border border-teal-800">Company</th>
-                <th class="px-4 border-collapse border border-teal-800">Owner</th>
+                <th>
+                  <x-thead>
+                   Type
+                  </x-thead>
+                </th>
+                <th>
+                  <x-thead>
+                   Subject
+                  </x-thead>
+                </th>
+                <th>
+                  <x-thead>
+                   Contact
+                  </x-thead>
+                </th>
+                <th>
+                  <x-thead>
+                   Company
+                  </x-thead>
+                </th>
+                <th>
+                  <x-thead>
+                   Owner
+                  </x-thead>
+                </th>
             </thead>
             <tbody>
                 @foreach ($activities as $activity)
-                <tr>
-                    <td class="px-4 border-collapse border border-teal-800"><a href="{{route('activity.show', $activity->id)}}"
-                        class="underline text-teal-600 hover:text-teal-800 visited:text-purple-600"
+                <tr class="bg-white border rounded border-gray-300 border-1">
+                    <td class="border border-gray-200">
+                     <x-tbody>
+                      <a href="{{route('activity.show', $activity->id)}}"
+                      class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600"
                         >
-                        {{$activity->activity_date}}</a></td>
-                    <td class="px-4 border-collapse border border-teal-800">
+                        {{$activity->activity_date}}
+                        </a>
+                     </x-tbody>
+                    </td>
+                    <td class="border border-gray-200">
+                    <x-tbody>
                         <a href="{{route('activity.show', $activity->id)}}"
-                        class=" text-teal-600 hover:text-teal-800 underline visited:text-purple-600"
+                        class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600"
                         >
                         {{$activity->type->activity}}
                         </a>
+                     </x-tbody>
                     </td>
-                    <td class="px-4 border-collapse border border-teal-800">{{$activity->subject}}</td>
-                    <td class="px-4 border-collapse border border-teal-800">
+                    <td class="border border-gray-200">
+                        <x-tbody>
+                        {{$activity->subject}}
+                        </x-tbody>
+                    </td>
+
+                    <td class="border border-gray-200">
+                    <x-tbody>
                         @if($activity->contact)
                         <a href="{{route('contact.show', $activity->contact_id)}}"
-                            class="text-teal-600 hover:text-teal-800 underline visited:text-purple-600">
+                        class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
                             {{$activity->contact->fullName()}}
                         </a>
                         @endif
+                     </x-tbody>
                     </td>
-                    <td class="px-4 border-collapse border border-teal-800">
+                    <td class="border border-gray-200">
+                    <x-tbody>
                         @if($activity->account)
                             <a href="{{route('account.show', $activity->account_id)}}"
-                                class="text-teal-600 hover:text-teal-800 underline visited:text-purple-600">
+                            class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
                                 {{$activity->account->name}}
                             </a>
                         @endif
+                      </x-tbody>
                     </td>
-                    <td class="px-4 border-collapse border border-teal-800">{{$activity->owner ? $activity->owner->name : ''}}</td>
+                    <td class="border border-gray-200">
+                        <x-tbody>
+                        {{$activity->owner ? $activity->owner->name : ''}}
+                        </x-tbody>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
 
     </div>
-    <div class="row mb-4">
+    <div class="row mt-28">
             <div class="row-start-4 text-left">
                 {{ $activities->links() }}
             </div>

@@ -24,42 +24,7 @@
             </div>
 
 
-            <div class="p-3 mt-1">
-                @include('livewire.partials._perpage')
-                <div class="col form-inline">
-                    <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
-                    <select wire:model="user_id"
-                    class="form-control p-1 appearance-none">
-                        <option value="All">All</option>
-                        @foreach ($users as $sf_id=>$user)
-                            <option value={{$sf_id}} class="p-3" >{{$user}}</option>
-                        @endforeach
 
-                    </select>
-                </div>
-                <div class="col form-inline">
-                    <label class="font-bold" for="status">Industry: &nbsp; ↓</label>
-                    <select wire:model="industry_id"
-                    class="form-control p-1 appearance-none">
-                        <option value="All">All</option>
-                        @foreach ($industries as $id=>$industry)
-                            <option value={{$id}} class="p-3" >{{$industry}}</option>
-                        @endforeach
-
-                    </select>
-                </div>
-                <div class="col form-inline">
-                    <label class="font-bold" for="status">Type: &nbsp; ↓</label>
-                    <select wire:model="account_type_id"
-                    class="form-control p-1 appearance-none">
-                        <option value="All">All</option>
-                        @foreach ($accounttypes as $id=>$type)
-                            <option value={{$id}} class="p-3" >{{$type}}</option>
-                        @endforeach
-
-                    </select>
-                </div>
-            </div>
         </div>
         <div class="mr-8">
             <button
@@ -69,6 +34,42 @@
             </button>
         </div>
 </div>
+    <div class="p-3 flex text-md border border-gray-200 items-center rounded bg-gray-100 shadow-sm mt-1">
+                <div class="col m-1 form-inline">
+                    <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
+                    <select wire:model="user_id"
+                    class="form-control rounded p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($users as $sf_id=>$user)
+                            <option value={{$sf_id}} class="p-3" >{{$user}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class="col m-1 form-inline">
+                    <label class="font-bold" for="status">Industry: &nbsp; ↓</label>
+                    <select wire:model="industry_id"
+                    class="form-control rounded-sm p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($industries as $id=>$industry)
+                            <option value={{$id}} class="p-3" >{{$industry}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class="col m-1 form-inline">
+                    <label class="font-bold" for="status">Type: &nbsp; ↓</label>
+                    <select wire:model="account_type_id"
+                    class="form-control rounded-sm p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($accounttypes as $id=>$type)
+                            <option value={{$id}} class="p-3" >{{$type}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                @include('livewire.partials._perpage')
+    </div>
 </div>
 
 <div class="w-3/4 m-auto mt-10">
@@ -78,7 +79,7 @@
                 <x-thead>
                             <a wire:click.prevent="sortBy('name')" role="button" href="#">
                                 Company
-                                @include('livewire.partials._sort-icon', ['field' => 'name'])
+                                <!-- @include('livewire.partials._sort-icon', ['field' => 'name']) -->
                             </a>
                 </x-thead>
             </th>
@@ -86,7 +87,7 @@
                 <x-thead>
                             <a wire:click.prevent="sortBy('industry_id')" role="button" href="#">
                                 Industry
-                                @include('livewire.partials._sort-icon', ['field' => 'industry_id'])
+                                <!-- @include('livewire.partials._sort-icon', ['field' => 'industry_id']) -->
                             </a>
                 </x-thead>
             </th>
@@ -94,7 +95,7 @@
                 <x-thead>
                     <a wire:click.prevent="sortBy('city')" role="button" href="#">
                         City
-                        @include('livewire.partials._sort-icon', ['field' => 'city'])
+                        <!-- @include('livewire.partials._sort-icon', ['field' => 'city']) -->
                     </a>
                 </x-thead>
             </th>
@@ -102,7 +103,7 @@
                 <x-thead>
                     <a wire:click.prevent="sortBy('state')" role="button" href="#">
                         State
-                        @include('livewire.partials._sort-icon', ['field' => 'state'])
+                        <!-- @include('livewire.partials._sort-icon', ['field' => 'state']) -->
                     </a>
                 </x-thead>
             </th>
@@ -110,23 +111,23 @@
                  <x-thead>
                     <a wire:click.prevent="sortBy('owner')" role="button" href="#">
                             Owner
-                            @include('livewire.partials._sort-icon', ['field' => 'owner'])
+                            <!-- @include('livewire.partials._sort-icon', ['field' => 'owner']) -->
                     </a>
                  </x-thead>
             </th>
             <th>
                 <x-thead>
                     <a wire:click.prevent="sortBy('contacts_count')" role="button" href="#">
-                        # Contacts
-                        @include('livewire.partials._sort-icon', ['field' => 'contacts_count'])
+                        No. of Contacts
+                        <!-- @include('livewire.partials._sort-icon', ['field' => 'contacts_count']) -->
                     </a>
                 </x-thead>
             </th>
             <th>
                 <x-thead>
                     <a wire:click.prevent="sortBy('open_opportunities_count')" role="button" href="#">
-                        # Open Opportunities
-                        @include('livewire.partials._sort-icon', ['field' => 'open_opportunities_count'])
+                    No. of Open Opportunities
+                        <!-- @include('livewire.partials._sort-icon', ['field' => 'open_opportunities_count']) -->
                     </a>
                 </x-thead>
             </th>
@@ -139,7 +140,7 @@
                 <x-thead>
                     <a wire:click.prevent="sortBy('closed_business')" role="button" href="#">
                     Total Business
-                    @include('livewire.partials._sort-icon', ['field' => 'closed_business'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'closed_business']) -->
                  </x-thead>
             </th>
         </thead>

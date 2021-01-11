@@ -1,8 +1,8 @@
 @extends ('layouts.app')
 @section('content')
-   
- 
-@livewire('SalesStage-table')
+
+
+@livewire('sales-stage-table')
 
 
 @endsection

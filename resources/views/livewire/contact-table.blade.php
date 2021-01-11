@@ -23,20 +23,6 @@
     </div>
 
 
-    <div class="p-3 mt-1">
-        @include('livewire.partials._perpage')
-        <div class="col form-inline">
-            <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
-            <select wire:model="user_id"
-            class="form-control p-1 appearance-none">
-                <option value="All">All</option>
-                @foreach ($users as $sf_id=>$user)
-                    <option value={{$sf_id}} class="p-3" >{{$user}}</option>
-                @endforeach
-
-            </select>
-        </div>
-    </div>
 </div>
 <div class="mr-8">
     <button
@@ -48,6 +34,20 @@
 </div>
 </div>
 
+    <div class="p-3 flex justify-between text-md border border-gray-200 items-center rounded bg-gray-100 shadow-sm mt-1">
+        <div class="col m-1 form-inline">
+            <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
+            <select wire:model="user_id"
+            class="form-control rounded-sm p-1 appearance-none">
+                <option value="All">All</option>
+                @foreach ($users as $sf_id=>$user)
+                    <option value={{$sf_id}} class="p-3" >{{$user}}</option>
+                @endforeach
+
+            </select>
+        </div>
+        @include('livewire.partials._perpage')
+    </div>
 
 <div class="w-3/4 m-auto mt-10">
     <table class="table-fixed shadow-md">
@@ -56,7 +56,7 @@
              <x-thead>
                 <a wire:click.prevent="sortBy('lastName')" role="button" href="#">
                     Name
-                    @include('livewire.partials._sort-icon', ['field' => 'lastName'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'lastName']) -->
                 </a>
              </x-thead>
             </th>
@@ -64,7 +64,7 @@
               <x-thead>
                 <a wire:click.prevent="sortBy('company_id')" role="button" href="#">
                     Company
-                    @include('livewire.partials._sort-icon', ['field' => 'company_id'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'company_id']) -->
                 </a>
               </x-thead>
             </th>
@@ -72,7 +72,7 @@
               <x-thead>
                 <a wire:click.prevent="sortBy('user_id')" role="button" href="#">
                     Owner
-                    @include('livewire.partials._sort-icon', ['field' => 'user_id'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'user_id']) -->
                 </a>
               </x-thead>
             </th>
@@ -80,7 +80,7 @@
               <x-thead>
                 <a wire:click.prevent="sortBy('last_activity_id')" role="button" href="#">
                     Last Activity
-                    @include('livewire.partials._sort-icon', ['field' => 'last_activity_id'])
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'last_activity_id']) -->
                 </a>
               </x-thead>
             </th>
@@ -91,7 +91,7 @@
                 <td class="border border-gray-200">
                     <x-tbody>
                         <a href="{{route('contact.show', $contact->id)}}"
-                        class=" text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
+                        class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
                         {{$contact->fullName()}}
                         </a>
                     </x-tbody>
