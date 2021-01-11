@@ -24,7 +24,7 @@ class ActivityTable extends Component
     public $contact_id = null;
     public $contact = null;
     public $user_id = 'All';
-    public $activity_type_id = 'All';
+    public $activity_type_id = null;
     public $isActivityOpen = false;
     public $activity_date = null;
     public $subject = null;
@@ -63,7 +63,7 @@ class ActivityTable extends Component
      * 
      * @return [type]          [description]
      */
-    public function mount($contact=null, $account=null, $activitytype='All')
+    public function mount($contact=null, $account=null, $activitytype=null)
     {
         $this->contact_id = $contact;
         if ($contact) {
@@ -95,7 +95,7 @@ class ActivityTable extends Component
                         }
                     )
                     ->when(
-                        $this->activity_type_id != 'All', function ($q) {
+                        ! is_null($this->activity_type_id) && $this->activity_type_id != 'All', function ($q) {
                             $q->where('activity_type_id', $this->activity_type_id);
                         }
                     )

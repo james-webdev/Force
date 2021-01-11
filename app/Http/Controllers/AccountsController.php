@@ -68,14 +68,6 @@ class AccountsController extends Controller
             ->withCount('opportunities', 'wonOpportunities', 'openOpportunities')
             ->findOrFail($account->id);
 
-        // $contacts = $account->contacts()->withLastActivityId()->with('lastActivity.type')->get();
-
-        // $activities = $contacts->map(
-        //     function ($contact) {
-        //         return ['activities'=>$contact->activities];
-        //     }
-        // )->flatten();
-
         return response()->view('accounts.show', compact('account'));
     }
 

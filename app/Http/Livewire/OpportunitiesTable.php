@@ -59,7 +59,7 @@ class OpportunitiesTable extends Component
     public function mount($account_id = null, $stage_id = null)
     {
         $this->account_id = $account_id;
-        $this->stage_id = $stage_id;
+        $this->stage = $stage_id;
     }
     public function render()
     {

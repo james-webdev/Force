@@ -19,6 +19,7 @@ class ContactTable extends Component
     public $status = 'All';
     public $stage_id = 'All';
     public $user_id = 'All';
+    public $account_id;
     public $name = null;
     public $contact_id = null;
     public $isContactOpen = false;
@@ -70,6 +71,11 @@ class ContactTable extends Component
                     ->when(
                         $this->name, function ($q) {
                             $q->where('accounts.name', $this->name);
+                        }
+                    )
+                    ->when(
+                        $this->account_id, function ($q) {
+                             $q->where('accounts.id', $this->account_id);
                         }
                     )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

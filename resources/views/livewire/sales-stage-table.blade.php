@@ -13,6 +13,12 @@
                     <!-- @include('livewire.partials._sort-icon', ['field' => 'type']) -->
                 </a>
             </th>
+            <th class="w-1/2">
+                <a wire:click.prevent="sortBy('opportunities_count')" role="button" href="#">
+                    # Opportunities
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'opportunities_count']) -->
+                </a>
+            </th>
 
 
         </thead>
@@ -20,7 +26,15 @@
             @foreach ($stages as $stage)
             <tr>
                 <td class="text-left">
-                    <a href="{{route('stages.show', $stage->id)}}">{{$stage->stage}}</a></td>
+                    <a href="{{route('stages.show', $stage->id)}}">
+                        {{$stage->stage}}
+                    </a>
+                </td>
+                <td class="text-right">
+                   
+                        {{$stage->opportunities_count}}
+                    
+                </td>
 
             </tr>
             @endforeach

@@ -1,7 +1,7 @@
 <div>
 
 
-    <h2>Acctivity Types</h2>
+    <h2>Activity Types</h2>
 
     @include('livewire.partials._perPage')
     @include('livewire.partials._search', ['placeholder'=>'Search Activity Types'])
@@ -22,11 +22,12 @@
 
         </thead>
         <tbody>
-            @foreach ($activitytyupes as $activitytype)
+            @foreach ($activitytypes as $activitytype)
+  
             <tr>
                 <td class="text-left">
-                    <a href="{{route('actviitytype.show', $activitytype->id)}}">{{$activitytype->type}}</a></td>
-                <td class="text-center">{{$activitytype->actvities_count}}</td>
+                    <a href="{{route('activitytype.show', $activitytype->id)}}">{{$activitytype->activity}}</a></td>
+                <td class="text-center">{{$activitytype->activities_count}}</td>
             </tr>
             @endforeach
         </tbody>

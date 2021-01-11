@@ -26,7 +26,7 @@ class ActivityTypesController extends Controller
      */
     public function create()
     {
-        return Inertia::render('ActivityType/Create');
+        //return Inertia::render('ActivityType/Create');
     }
 
     /**
@@ -49,7 +49,7 @@ class ActivityTypesController extends Controller
      */
     public function show(ActivityType $activitytype)
     {
-         $activitytype->loadCount('activities');
+         
          return response()->view('activitytypes.show', compact('activitytype'));
 
     }

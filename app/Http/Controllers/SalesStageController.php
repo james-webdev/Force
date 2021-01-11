@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SalesStage;
 use Illuminate\Http\Request;
 
 class SalesStageController extends Controller
