@@ -5,7 +5,7 @@
             <!-- <i class="fas fa-exclamation"></i> -->
              Activities
     </h2>
-
+   
     @if($isActivityOpen)
 
 @include('livewire.activity-create')
