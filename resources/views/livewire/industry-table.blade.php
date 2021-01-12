@@ -1,11 +1,6 @@
 <div>
 
 
-<!-- <p>
-here:
-{{ $industries }}
-</p> -->
-
 
     <h2>Industries</h2>
 

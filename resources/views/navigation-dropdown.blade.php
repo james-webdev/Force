@@ -51,19 +51,19 @@
                             {{ __('Admin options') }}
                         </div>
 
-                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                            {{ __('Acitivity Types') }}
+                        <x-jet-dropdown-link href="{{ route('activitytype.index') }}">
+                            {{ __('Activity Types') }}
                         </x-jet-dropdown-link>
-                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                        <x-jet-dropdown-link href="{{ route('accounttype.index') }}">
                             {{ __('Account Types') }}
                         </x-jet-dropdown-link>
-                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                            {{ __('Sales Status') }}
+                        <x-jet-dropdown-link href="{{ route('stages.index') }}">
+                            {{ __('Sales Stages') }}
                         </x-jet-dropdown-link>
-                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                        <x-jet-dropdown-link href="{{ route('industry.index') }}">
                             {{ __('Industries') }}
                         </x-jet-dropdown-link>
-                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                        <x-jet-dropdown-link href="">
                             {{ __('Users') }}
                         </x-jet-dropdown-link>
 

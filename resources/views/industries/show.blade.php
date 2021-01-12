@@ -1,8 +1,8 @@
 @extends ('layouts.app')
 @section('content')
-   
+
 <div class="container">
-@livewire('accounts-table',[ 'industry'=>$industry->id])
+@livewire('industry-table',['industry'=>$industry->id])
 </div>
 
 

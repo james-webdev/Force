@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Modesl\ActivityTypes;
+use App\Models\ActivityType;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,7 +14,7 @@ class ActivityTypesTable extends Component
     public $search ='';
     /**
      * [updatingSearch description]
-     * 
+     *
      * @return [type] [description]
      */
     public function updatingSearch()
@@ -23,9 +23,9 @@ class ActivityTypesTable extends Component
     }
     /**
      * Set SortField
-     * 
+     *
      * @param string $field [description]
-     * 
+     *
      * @return sortField        [description]
      */
     public function sortBy($field)
@@ -41,7 +41,7 @@ class ActivityTypesTable extends Component
         return view(
             'livewire.activity-types-table',
             [
-                $activitytypes = ActivityTypes::withCount('activities')
+                $activitytypes = ActivityType::withCount('activities')
                     ->search($this->search)
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
