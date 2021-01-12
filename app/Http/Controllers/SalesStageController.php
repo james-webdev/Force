@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SalesStage;
 use Illuminate\Http\Request;
-use App\Models\SalesStage;
+
 
 class SalesStageController extends Controller
 {

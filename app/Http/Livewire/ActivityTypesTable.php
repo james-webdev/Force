@@ -5,7 +5,7 @@ use App\Models\ActivityType;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ActivityTypesTable extends Component
+class ActivitytypesTable extends Component
 {
     use WithPagination;
     public $perPage = 10;
@@ -39,12 +39,11 @@ class ActivityTypesTable extends Component
     public function render()
     {
         return view(
-            'livewire.activity-types-table',
-
-            [       'activitytypes'=>ActivityType::withCount('activities')
-                    ->search($this->search)
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->paginate($this->perPage),
+            'livewire.activitytypes-table',
+            ['activitytypes'=>ActivityType::withCount('activities')
+                ->search($this->search)
+                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                ->paginate($this->perPage),
             ]
         );
     }
