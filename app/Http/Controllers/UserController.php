@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SalesStage;
 use Illuminate\Http\Request;
-use App\Models\SalesStage;
 
-class SalesStageController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class SalesStageController extends Controller
      */
     public function index()
     {
-        return response()->view('stages.index');
+        return response()->view('users.index');
     }
 
     /**
@@ -25,7 +23,7 @@ class SalesStageController extends Controller
      */
     public function create()
     {
-        return response()->view('stages.create');
+        return response()->view('users.create');
     }
 
     /**
@@ -36,8 +34,8 @@ class SalesStageController extends Controller
      */
     public function store(Request $request)
     {
-        SalesStage::create(request()->all());
-        return redirect()->route('stages.index')->withMessage("Stage Created");
+        User::create(request()->all());
+        return redirect()->route('users.index')->withMessage('user created');
     }
 
     /**
@@ -46,9 +44,9 @@ class SalesStageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(SalesStage $stage)
+    public function show(User $user)
     {
-        return response()->view('stages.show', compact('stage'));
+        return response()->view('users.show', compact('user'));
     }
 
     /**
@@ -57,9 +55,9 @@ class SalesStageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(SalesStage $stage)
+    public function edit(User $user)
     {
-        return response()->view('stages.edit', compact('stage'));
+        return response()->view('users.edit', compact('user'));
     }
 
     /**
@@ -69,10 +67,10 @@ class SalesStageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SalesStage $stage)
+    public function update(User $user, Request $request)
     {
-        $stage->update(request()->all());
-        return redirect()->route('stages.index')->withMessage("Stage Updated");
+        $user->update(request()->all()); 
+        return redirect()->route('users.index')->withMessage('user updated');
     }
 
     /**
@@ -81,13 +79,9 @@ class SalesStageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SalesStage $stage)
+    public function destroy(User $user)
     {
-        $stage->loadCount('opportunities');
-        if ($stage->opportunities_count == 0) {
-            $stage->delete();
-            return redirect()->route('stages.index')->withMessage("Stage Deleted");
-        }
-        return redirect()->back()->withMessage("There are " .$stage->opportunities_count. " opportunities associated the " . $stage->stage . " stage");
+        $user->delete();
+        return redirect()->route('users.index')->withMessage('user deleted');
     }
 }

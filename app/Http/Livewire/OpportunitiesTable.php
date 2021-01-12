@@ -20,7 +20,6 @@ class OpportunitiesTable extends Component
     public $sortAsc = true;
     public $search ='';
     public $status = '0';
-    public $stage = 'All';
     public $name = null;
     public $contact_id = null;
     public $user_id = 'All';
@@ -86,13 +85,18 @@ class OpportunitiesTable extends Component
                         }
                     )
                     ->when(
+                        $this->account_id, function ($q) {
+                            $q->where('account_id', $this->account_id);
+                        }
+                    )
+                    ->when(
                         $this->status != 'All', function ($q) {
                             $q->where('status', $this->status);
                         }
                     ) 
                     ->when(
-                        $this->stage != 'All', function ($q) {
-                            $q->where('stage_id', $this->stage);
+                        $this->stage_id != 'All', function ($q) {
+                            $q->where('stage_id', $this->stage_id);
                         }
                     ) 
                     ->when(

@@ -20,6 +20,7 @@ class ActivityType extends Model
     {
         return $this->hasMany(Activity::class);
     }
+
     /**
      * [scopeSearch description]
      *

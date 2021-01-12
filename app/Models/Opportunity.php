@@ -28,7 +28,7 @@ class Opportunity extends Model
             'type',
             'next_step',
             'lead_source',
-            'owner_id',
+            'user_id',
             'contact_id',
             'partner',
             'created_at'

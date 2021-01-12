@@ -11,7 +11,7 @@
         {{ $account->fullAddress()}}
     </p>
     <p class="p-1"> <span class="font-bold  p-1 text-lg text-grey-darkest">Account Owner:</span>
-            {{ $account->owner->name}}
+            {{$account->owner ? $account->owner->name : ''}}
     </p>
     <p class="p-1">
         <span class=" font-bold  p-1 text-lg text-grey-darkest">Total Business:</span>

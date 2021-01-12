@@ -27,7 +27,7 @@
             @foreach ($industries as $industry)
             <tr>
                 <td class="text-left p-1">
-                    <a href="">{{$industry->industry}}</a></td>
+                    <a href="{{route('industry.show', $industry->id)}}">{{$industry->industry}}</a></td>
                 <td class="text-center">{{$industry->accounts_count}}</td>
             </tr>
             @endforeach
