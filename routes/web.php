@@ -15,17 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get(
     '/', function () {
-        return view('welcome');
+        return redirect()->route('login');
     }
 );
 Route::middleware(['auth:sanctum', 'verified'])
     ->group(
         function () {
-            Route::get(
-                '/dashboard', function () {
-                    return Inertia\Inertia::render('Dashboard');
-                }
-            )->name('dashboard');
+           
             // Accounts
             Route::get('activity/create/{contact?}', ['as'=>'activity.create', 'uses'=>'ActivitiesController@create']);
             Route::resource('/account', 'AccountsController')->except('create');
@@ -39,6 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])
             Route::resource('/contact', 'ContactsController');
             // Opportunities
             Route::get('opportunity/create/{account?}', ['as'=>'opportunity.create', 'uses'=>'OpportunitiesController@create']);
+            
             Route::resource('/opportunity', 'OpportunitiesController');
 
             Route::resource('/stages', 'SalesStageController');

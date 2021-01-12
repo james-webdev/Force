@@ -40,10 +40,11 @@ class ActivitytypesTable extends Component
     {
         return view(
             'livewire.activitytypes-table',
-            ['activitytypes'=>ActivityType::withCount('activities')
-                ->search($this->search)
-                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                ->paginate($this->perPage),
+            [
+                'activitytypes' => ActivityType::withCount('activities')
+                    ->search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage),
             ]
         );
     }

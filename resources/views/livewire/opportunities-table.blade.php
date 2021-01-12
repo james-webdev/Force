@@ -3,7 +3,7 @@
 
 <div class="ml-24 mt-7 mr-24">
         <h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
-            Opportunities
+            {{$status=='All' ? 'All' : $statuses[$status]}} Opportunities
         </h2>
 
 
@@ -41,6 +41,24 @@
                         <option value="All">All</option>
                         @foreach ($users as $sf_id=>$user)
                             <option value={{$sf_id}} class="p-3" >{{$user}}</option>
+                        @endforeach
+
+                    </select>
+                    <label class="font-bold" for="status">Status: &nbsp; ↓</label>
+                    <select wire:model="status"
+                    class="form-control rounded-sm p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($statuses as $key=>$oppty_status)
+                            <option value={{$key}} class="p-3" >{{$oppty_status}}</option>
+                        @endforeach
+
+                    </select>
+                    <label class="font-bold" for="status">Stage: &nbsp; ↓</label>
+                    <select wire:model="stage"
+                    class="form-control rounded-sm p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($stages as $key=>$stage)
+                            <option value={{$key}} class="p-3" >{{$stage}}</option>
                         @endforeach
 
                     </select>
