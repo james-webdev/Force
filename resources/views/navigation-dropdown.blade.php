@@ -23,7 +23,7 @@
                         {{ __('Opportunities') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('activity.index') }}" :active="request()->routeIs('activity.index')">
-                        {{ __('Tasks') }}
+                        {{ __('Activities') }}
                     </x-jet-nav-link>
                 </div>
                 <div>

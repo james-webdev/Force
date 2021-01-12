@@ -9,7 +9,7 @@ class ActivityTypesTable extends Component
 {
     use WithPagination;
     public $perPage = 10;
-    public $sortField = 'type';
+    public $sortField = 'activity';
     public $sortAsc = true;
     public $search ='';
     /**
@@ -40,8 +40,8 @@ class ActivityTypesTable extends Component
     {
         return view(
             'livewire.activity-types-table',
-            [
-                $activitytypes = ActivityType::withCount('activities')
+
+            [       'activitytypes'=>ActivityType::withCount('activities')
                     ->search($this->search)
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
