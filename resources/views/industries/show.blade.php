@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-@livewire('industry-table',[ 'industry'=>$industry->id])
+@livewire('accounts-table',[ 'industry'=>$industry->id])
 </div>
 
 

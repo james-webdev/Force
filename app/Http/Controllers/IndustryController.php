@@ -48,7 +48,7 @@ class IndustryController extends Controller
      */
     public function show(Industry $industry)
     {
-
+         
         return response()->view('industries.show', compact('industry'));
     }
 

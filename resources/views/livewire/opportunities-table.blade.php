@@ -45,6 +45,28 @@
 
                     </select>
                 </div>
+                <div class="col m-1 form-inline">
+                    <label class="font-bold" for="status">Status: &nbsp; ↓</label>
+                    <select wire:model="status"
+                    class="form-control rounded-sm p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($statuses as $id=>$status)
+                            <option value={{$id}} class="p-3" >{{$status}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class="col m-1 form-inline">
+                    <label class="font-bold" for="status">Stage: &nbsp; ↓</label>
+                    <select wire:model="stage_id"
+                    class="form-control rounded-sm p-1 appearance-none">
+                        <option value="All">All</option>
+                        @foreach ($stages as $id=>$stage)
+                            <option value={{$id}} class="p-3" >{{$stage}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
                 @include('livewire.partials._perpage')
             </div>
 </div>
@@ -135,7 +157,7 @@
                </td>
                <td class="border border-gray-200">
                     <x-tbody>
-                        {{$opportunity->owner->name}}
+                        {{$opportunity->owner ? $opportunity->owner->name : ''}}
                     </x-tbody>
                </td>
                <td class="border border-gray-200">
@@ -172,7 +194,7 @@
     </table>
 </div>
 
-    <div class="row mb-28">
+    <div class="row mt-28">
             <div class="row-start-4 text-left">
                 {{ $opportunities->links() }}
             </div>

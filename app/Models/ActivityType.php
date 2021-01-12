@@ -20,4 +20,10 @@ class ActivityType extends Model
     {
         return $this->hasMany(Activity::class);
     }
+
+    public function scopeSearch($query, $search)
+    {
+         return $query->where('activity', 'like', "%{$search}%");
+    }
+
 }
