@@ -77,7 +77,7 @@
         <thead class="bg-teal-100">
             <th>
                 <x-thead>
-                            <a wire:click.prevent="sortBy('name')" role="button" href="#">
+                            <a wire:click.prevent="sortBy('name')" title="sortBy('companyname')" role="button" href="#">
                                 Company
                                 <!-- @include('livewire.partials._sort-icon', ['field' => 'name']) -->
                             </a>
@@ -146,7 +146,7 @@
         </thead>
         <tbody>
             @foreach ($accounts as $account)
-            
+
             <tr class="bg-white border border-gray-300 border-1">
                 <td class="border">
                  <x-tbody>
