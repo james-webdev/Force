@@ -9,7 +9,7 @@ use App\Models\User;
 
 class ContactTable extends Component
 {
-     
+
     use WithPagination;
 
     public $perPage = 10;
@@ -54,14 +54,14 @@ class ContactTable extends Component
     }
     public function render()
     {
-       
+
         return view(
             'livewire.contact-table', [
                 'contacts'=>Contact::
                     join('accounts', 'contacts.account_id', '=', 'accounts.id')
                     ->search($this->search)
                     ->withLastActivityId()
-                    
+
                     ->with('lastActivity')
                     ->when(
                         $this->user_id != 'All', function ($q) {
@@ -80,7 +80,7 @@ class ContactTable extends Component
                     )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
-                    
+
                     'users' => User::has('contacts')->pluck('name', 'id')->toArray(),
                 ]
         );
@@ -88,7 +88,7 @@ class ContactTable extends Component
 
     /**
      * [create description]
-     * 
+     *
      * @return [type] [description]
      */
     public function createContact()
@@ -101,7 +101,7 @@ class ContactTable extends Component
     }
     /**
      * [_resetInputFields description]
-     * 
+     *
      * @return [type] [description]
      */
     private function _resetInputFields()
@@ -117,7 +117,7 @@ class ContactTable extends Component
     }
     /**
      * [openActivityModal description]
-     * 
+     *
      * @return [type] [description]
      */
     public function openContactModal()
@@ -128,7 +128,7 @@ class ContactTable extends Component
     }
     /**
      * [closeModal description]
-     * 
+     *
      * @return [type] [description]
      */
     public function closeContactModal()
@@ -137,20 +137,20 @@ class ContactTable extends Component
         $this->isContactOpen = false;
 
     }
-    
+
     public function storeContact()
     {
 
         $this->validate(
             [
              'firstName' => 'required',
-             'lastName' => 'required', 
+             'lastName' => 'required',
              'email' => 'required|email',
             ]
         );
 
         Contact::updateOrCreate(
-            ['id' => $this->contact_id], 
+            ['id' => $this->contact_id],
             [
                 'firstName' => $this->firstName,
                 'lastName' => $this->lastName,
@@ -159,13 +159,13 @@ class ContactTable extends Component
                 'phone'=> $this->phone,
                 'mobile' => $this->mobile,
                 'description'=>$this->description,
-                
+
                 'user_id' => auth()->user()->id,
                 'account_id' => $this->account_id,
             ]
         );
 
-     
+
 
         session()->flash(
             'message',

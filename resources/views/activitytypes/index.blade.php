@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 @section('content')
- 
-@livewire('activitytypes-table')
+
+@livewire('activity-types-table')
 
 @endsection

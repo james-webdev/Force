@@ -14,7 +14,7 @@ class ActivitytypesTable extends Component
     public $search ='';
     /**
      * [updatingSearch description]
-     * 
+     *
      * @return [type] [description]
      */
     public function updatingSearch()
@@ -23,9 +23,9 @@ class ActivitytypesTable extends Component
     }
     /**
      * Set SortField
-     * 
+     *
      * @param string $field [description]
-     * 
+     *
      * @return sortField        [description]
      */
     public function sortBy($field)
