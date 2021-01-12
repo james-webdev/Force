@@ -94,6 +94,11 @@ class OpportunitiesTable extends Component
                         $this->stage != 'All', function ($q) {
                             $q->where('stage_id', $this->stage);
                         }
+                    ) 
+                    ->when(
+                        ! is_null($this->stage) && $this->stage != 'All', function ($q) {
+                            $q->where('stage_id', $this->stage);
+                        }
                     )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
