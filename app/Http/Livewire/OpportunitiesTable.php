@@ -12,7 +12,7 @@ use App\Models\Account;
 
 class OpportunitiesTable extends Component
 {
-    
+
     use WithPagination;
 
     public $perPage = 10;
@@ -51,7 +51,7 @@ class OpportunitiesTable extends Component
     }
     /**
      * [mount description]
-     * 
+     *
      * @param  [type] $account_id [description]
      * @return [type]             [description]
      */
@@ -62,7 +62,7 @@ class OpportunitiesTable extends Component
     }
     public function render()
     {
-        
+
         return view(
             'livewire.opportunities-table', [
                 'opportunities' => Opportunity::
@@ -76,7 +76,7 @@ class OpportunitiesTable extends Component
                     )
                     ->when(
                         $this->user_id != 'All', function ($q) {
-                            $q->where('user_id', $this->user_id);
+                            $q->where('opportunities.user_id', $this->user_id);
                         }
                     )
                     
@@ -89,7 +89,7 @@ class OpportunitiesTable extends Component
                         $this->status != 'All', function ($q) {
                             $q->where('status', $this->status);
                         }
-                    ) 
+                    )
                     ->when(
                         $this->stage_id != 'All', function ($q) {
                             $q->where('stage_id', $this->stage_id);
@@ -114,7 +114,7 @@ class OpportunitiesTable extends Component
     }
      /**
      * [create description]
-     * 
+     *
      * @return [type] [description]
      */
     public function createOpportunity()
@@ -127,7 +127,7 @@ class OpportunitiesTable extends Component
     }
     /**
      * [_resetInputFields description]
-     * 
+     *
      * @return [type] [description]
      */
     private function _resetInputFields()
@@ -143,7 +143,7 @@ class OpportunitiesTable extends Component
     }
     /**
      * [openActivityModal description]
-     * 
+     *
      * @return [type] [description]
      */
     public function openModal()
@@ -154,7 +154,7 @@ class OpportunitiesTable extends Component
     }
     /**
      * [closeModal description]
-     * 
+     *
      * @return [type] [description]
      */
     public function closeModal()
@@ -163,7 +163,7 @@ class OpportunitiesTable extends Component
         $this->isOpen = false;
 
     }
-    
+
     public function storeOpportunity()
     {
 
@@ -171,15 +171,15 @@ class OpportunitiesTable extends Component
             [
              'title' => 'required',
              'value' => 'required|numeric',
-             'close_date' => 'required|date', 
+             'close_date' => 'required|date',
              'stage_id' => 'required',
-             
-             
+
+
             ]
         );
 
         Opportunity::updateOrCreate(
-            ['id' => $this->opportunity_id], 
+            ['id' => $this->opportunity_id],
             [
                 'title' => $this->title,
                 'value' => $this->value,
@@ -192,7 +192,7 @@ class OpportunitiesTable extends Component
             ]
         );
 
-     
+
 
         session()->flash(
             'message',
