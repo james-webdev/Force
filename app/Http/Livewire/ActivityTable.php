@@ -73,6 +73,7 @@ class ActivityTable extends Component
             $this->account_id = $account;
         }
         $this->activity_type_id = $activitytype;
+        $this->user_id = auth()->user()->id;
         
 
     }

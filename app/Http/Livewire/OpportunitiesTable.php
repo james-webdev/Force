@@ -59,6 +59,8 @@ class OpportunitiesTable extends Component
     {
         $this->account_id = $account_id;
         $this->stage_id = $stage_id;
+        $this->user_id = auth()->user()->id;
+        
     }
     public function render()
     {
@@ -79,7 +81,6 @@ class OpportunitiesTable extends Component
                             $q->where('opportunities.user_id', $this->user_id);
                         }
                     )
-                    
                     ->when(
                         $this->account_id, function ($q) {
                             $q->where('account_id', $this->account_id);
@@ -90,14 +91,10 @@ class OpportunitiesTable extends Component
                             $q->where('status', $this->status);
                         }
                     )
-                    ->when(
-                        $this->stage_id != 'All', function ($q) {
-                            $q->where('stage_id', $this->stage_id);
-                        }
-                    ) 
+                    
                     ->when(
                         ! is_null($this->stage_id) && $this->stage_id != 'All', function ($q) {
-                            $q->where('stage_id', $this->stage);
+                            $q->where('stage_id', $this->stage_id);
                         }
                     )
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
@@ -112,7 +109,7 @@ class OpportunitiesTable extends Component
                 ]
         );
     }
-     /**
+    /**
      * [create description]
      *
      * @return [type] [description]
@@ -136,7 +133,6 @@ class OpportunitiesTable extends Component
         $this->close_date = null;
         $this->title = null;
         $this->description = null;
-        $this->stage_id = 'All';
         $this->value = null;
 
 

@@ -51,6 +51,7 @@ class ContactTable extends Component
     public function mount($account = null)
     {
         $this->account_id = $account;
+        $this->user_id = auth()->user()->id;
     }
     public function render()
     {

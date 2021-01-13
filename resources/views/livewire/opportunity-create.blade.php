@@ -124,7 +124,7 @@
                                 @error('activity_type_id') <span class="text-red-500"></span>@enderror
 
                         </div>
-                        @if(! $account_id)
+                        @if(is_null($account_id))
                         <div class="mb-4">
 
                             <label for="contact_id"

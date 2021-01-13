@@ -62,9 +62,10 @@ class AccountsTable extends Component
     public function mount($industry=null, $accounttype=null)
     {
         $this->industry_id = $industry;
-        if(!is_null($accounttype)){
+        if (!is_null($accounttype)){
             $this->account_type_id = $accounttype;
         }
+        $this->user_id = auth()->user()->id;
     }
     /**
      * Select accounts, industries and users

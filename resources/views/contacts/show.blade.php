@@ -18,7 +18,7 @@
 
     <div class="bg-white ml-3 rounded max-w-3xl">
 
-      <p> <span class="font-black p-2">Email:</span>{{$contact->email}}</p>
+      <p> <span class="font-black p-2">Email:</span><a href="mailto:{{$contact->email}}" target="_blank" >{{$contact->email}}</a></p>
       <p> <span class="font-black p-2">Phone:</span>{{$contact->phone}}</p>
 
 </div>
