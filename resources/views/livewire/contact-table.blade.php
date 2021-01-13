@@ -2,11 +2,11 @@
 
 
 
-        @if($isContactOpen)
+        @if($isOpen)
 
-@include('livewire.contact-create')
+        @include('livewire.contact-create')
 
-@endif
+        @endif
 
 <div class="flex justify-between mt-5 items-center">
 <div class="flex justify-left items-center">

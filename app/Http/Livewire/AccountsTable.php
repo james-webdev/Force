@@ -130,6 +130,7 @@ class AccountsTable extends Component
         $this->state = '';
         $this->postalcode = '';
         $this->description = '';
+        
 
     }
     /**
@@ -173,6 +174,8 @@ class AccountsTable extends Component
                 'state' => $this->state,
                 'postalcode' => $this->postalcode,
                 'description' => $this->description,
+                'account_type_id'=>$this->account_type_id,
+                'industry_id' => $this->industry_id,
                 'owner_id' => auth()->user()->id
 
             ]

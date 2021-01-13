@@ -6,11 +6,11 @@
              Activities
     </h2>
    
-    @if($isActivityOpen)
+    @if($isOpen)
 
-@include('livewire.activity-create')
+    @include('livewire.activity-create')
 
-@endif
+    @endif
 
 <div class="flex justify-between mt-5 items-center">
 

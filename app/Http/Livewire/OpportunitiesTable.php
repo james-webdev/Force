@@ -24,7 +24,7 @@ class OpportunitiesTable extends Component
     public $contact_id = null;
     public $user_id = 'All';
     public $account_id=null;
-    public $isOpportunityOpen = false;
+    public $isOpen = false;
     public $opportunity_id = null;
     public $close_date = null;
     public $title = null;
@@ -58,7 +58,7 @@ class OpportunitiesTable extends Component
     public function mount($account_id = null, $stage_id = null)
     {
         $this->account_id = $account_id;
-        $this->stage = $stage_id;
+        $this->stage_id = $stage_id;
     }
     public function render()
     {
@@ -100,7 +100,7 @@ class OpportunitiesTable extends Component
                         }
                     ) 
                     ->when(
-                        ! is_null($this->stage) && $this->stage != 'All', function ($q) {
+                        ! is_null($this->stage_id) && $this->stage_id != 'All', function ($q) {
                             $q->where('stage_id', $this->stage);
                         }
                     )
@@ -126,7 +126,7 @@ class OpportunitiesTable extends Component
 
          $this->_resetInputFields();
 
-         $this->openOpportunityModal();
+         $this->openModal();
 
     }
     /**
@@ -150,10 +150,10 @@ class OpportunitiesTable extends Component
      * 
      * @return [type] [description]
      */
-    public function openOpportunityModal()
+    public function openModal()
     {
 
-        $this->isOpportunityOpen = true;
+        $this->isOpen = true;
 
     }
     /**
@@ -161,10 +161,10 @@ class OpportunitiesTable extends Component
      * 
      * @return [type] [description]
      */
-    public function closeOpportunityModal()
+    public function closeModal()
     {
 
-        $this->isOpportunityOpen = false;
+        $this->isOpen = false;
 
     }
     
@@ -203,7 +203,7 @@ class OpportunitiesTable extends Component
             $this->opportunity_id ? 'Opportunity Updated Successfully.' : 'Opportunity Created Successfully.'
         );
 
-        $this->closeOpportunityModal();
+        $this->closeModal();
         $this->_resetInputFields();
 
     }
