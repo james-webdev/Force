@@ -65,7 +65,7 @@ class ContactTable extends Component
                     ->with('lastActivity')
                     ->when(
                         $this->user_id != 'All', function ($q) {
-                            $q->where('user_id', $this->user_id);
+                            $q->where('contacts.user_id', $this->user_id);
                         }
                     )
                     ->when(
