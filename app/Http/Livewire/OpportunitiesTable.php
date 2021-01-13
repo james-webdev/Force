@@ -79,11 +79,7 @@ class OpportunitiesTable extends Component
                             $q->where('user_id', $this->user_id);
                         }
                     )
-                    ->when(
-                        $this->name, function ($q) {
-                            $q->where('name', $this->name);
-                        }
-                    )
+                    
                     ->when(
                         $this->account_id, function ($q) {
                             $q->where('account_id', $this->account_id);
