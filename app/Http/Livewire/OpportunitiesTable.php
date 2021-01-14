@@ -24,7 +24,7 @@ class OpportunitiesTable extends Component
     public $contact_id = null;
     public $user_id = 'All';
     public $account_id=null;
-    public $isOpportunityOpen = false;
+    public $isOpen = false;
     public $opportunity_id = null;
     public $close_date = null;
     public $title = null;
@@ -58,7 +58,9 @@ class OpportunitiesTable extends Component
     public function mount($account_id = null, $stage_id = null)
     {
         $this->account_id = $account_id;
-        $this->stage = $stage_id;
+        $this->stage_id = $stage_id;
+        $this->user_id = auth()->user()->id;
+        
     }
     public function render()
     {
@@ -80,11 +82,6 @@ class OpportunitiesTable extends Component
                         }
                     )
                     ->when(
-                        $this->name, function ($q) {
-                            $q->where('name', $this->name);
-                        }
-                    )
-                    ->when(
                         $this->account_id, function ($q) {
                             $q->where('account_id', $this->account_id);
                         }
@@ -94,8 +91,9 @@ class OpportunitiesTable extends Component
                             $q->where('status', $this->status);
                         }
                     )
+                    
                     ->when(
-                        $this->stage_id != 'All', function ($q) {
+                        ! is_null($this->stage_id) && $this->stage_id != 'All', function ($q) {
                             $q->where('stage_id', $this->stage_id);
                         }
                     )
@@ -111,7 +109,7 @@ class OpportunitiesTable extends Component
                 ]
         );
     }
-     /**
+    /**
      * [create description]
      *
      * @return [type] [description]
@@ -121,7 +119,7 @@ class OpportunitiesTable extends Component
 
          $this->_resetInputFields();
 
-         $this->openOpportunityModal();
+         $this->openModal();
 
     }
     /**
@@ -135,7 +133,6 @@ class OpportunitiesTable extends Component
         $this->close_date = null;
         $this->title = null;
         $this->description = null;
-        $this->stage_id = 'All';
         $this->value = null;
 
 
@@ -145,10 +142,10 @@ class OpportunitiesTable extends Component
      *
      * @return [type] [description]
      */
-    public function openOpportunityModal()
+    public function openModal()
     {
 
-        $this->isOpportunityOpen = true;
+        $this->isOpen = true;
 
     }
     /**
@@ -156,10 +153,10 @@ class OpportunitiesTable extends Component
      *
      * @return [type] [description]
      */
-    public function closeOpportunityModal()
+    public function closeModal()
     {
 
-        $this->isOpportunityOpen = false;
+        $this->isOpen = false;
 
     }
 
@@ -198,7 +195,7 @@ class OpportunitiesTable extends Component
             $this->opportunity_id ? 'Opportunity Updated Successfully.' : 'Opportunity Created Successfully.'
         );
 
-        $this->closeOpportunityModal();
+        $this->closeModal();
         $this->_resetInputFields();
 
     }

@@ -2,11 +2,11 @@
 
 
 
-        @if($isContactOpen)
+        @if($isOpen)
 
-@include('livewire.contact-create')
+        @include('livewire.contact-create')
 
-@endif
+        @endif
 
 <div class="flex justify-between mt-5 items-center">
 <div class="flex justify-left items-center">
@@ -36,8 +36,8 @@
             <select wire:model="user_id"
             class="form-control rounded-sm p-1 appearance-none">
                 <option value="All">All</option>
-                @foreach ($users as $sf_id=>$user)
-                    <option value={{$sf_id}} class="p-3" >{{$user}}</option>
+                @foreach ($users as $id=>$user)
+                    <option value="{{$id}}" class="p-3" >{{$user}}</option>
                 @endforeach
 
             </select>
@@ -53,6 +53,13 @@
                 <a wire:click.prevent="sortBy('lastName')" role="button" href="#">
                     Name
                     <!-- @include('livewire.partials._sort-icon', ['field' => 'lastName']) -->
+                </a>
+             </x-thead>
+            </th>
+            <x-thead>
+                <a wire:click.prevent="sortBy('email')" role="button" href="#">
+                    EMail
+                    <!-- @include('livewire.partials._sort-icon', ['field' => 'email']) -->
                 </a>
              </x-thead>
             </th>
@@ -89,6 +96,15 @@
                         <a href="{{route('contact.show', $contact->id)}}"
                         class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
                         {{$contact->fullName()}}
+                        </a>
+                    </x-tbody>
+                </td>
+                <td class="border border-gray-200">
+                    <x-tbody>
+                        <a href="mailto:{{$contact->email}}"
+                            target="_blank"
+                        class="text-teal-400 hover:text-teal-500 no-underline visited:text-purple-600">
+                        {{$contact->email}}
                         </a>
                     </x-tbody>
                 </td>

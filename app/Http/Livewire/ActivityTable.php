@@ -25,7 +25,7 @@ class ActivityTable extends Component
     public $contact = null;
     public $user_id = 'All';
     public $activity_type_id = null;
-    public $isActivityOpen = false;
+    public $isOpen = false;
     public $activity_date = null;
     public $subject = null;
     public $details = null;
@@ -73,6 +73,7 @@ class ActivityTable extends Component
             $this->account_id = $account;
         }
         $this->activity_type_id = $activitytype;
+        $this->user_id = auth()->user()->id;
         
 
     }
@@ -135,7 +136,7 @@ class ActivityTable extends Component
 
          $this->_resetInputFields();
 
-         $this->openActivityModal();
+         $this->openModal();
 
     }
     /**
@@ -154,14 +155,14 @@ class ActivityTable extends Component
 
     }
     /**
-     * [openActivityModal description]
+     * [openModal description]
      * 
      * @return [type] [description]
      */
-    public function openActivityModal()
+    public function openModal()
     {
 
-        $this->isActivityOpen = true;
+        $this->isOpen = true;
 
     }
     /**
@@ -169,10 +170,10 @@ class ActivityTable extends Component
      * 
      * @return [type] [description]
      */
-    public function closeActivityModal()
+    public function closeModal()
     {
 
-        $this->isActivityOpen = false;
+        $this->isOpen = false;
 
     }
     
@@ -210,7 +211,7 @@ class ActivityTable extends Component
             $this->account_id ? 'Account Updated Successfully.' : 'Account Created Successfully.'
         );
         $this->activity_type_id = 'All';
-        $this->closeActivityModal();
+        $this->closeModal();
         $this->_resetInputFields();
 
     }

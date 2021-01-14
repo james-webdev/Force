@@ -3,11 +3,11 @@
 
 <div class="ml-24 mt-7 mr-24">
         <h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
-            Opportunities
+            {{$status=='All' ? 'All' : $statuses[$status]}} Opportunities
         </h2>
 
 
-    @if($isOpportunityOpen)
+    @if($isOpen)
 
         @include('livewire.opportunity-create')
 
@@ -39,34 +39,31 @@
                     <select wire:model="user_id"
                     class="form-control rounded-sm p-1 appearance-none">
                         <option value="All">All</option>
-                        @foreach ($users as $sf_id=>$user)
-                            <option value={{$sf_id}} class="p-3" >{{$user}}</option>
+                        @foreach ($users as $id=>$user)
+                            <option value="{{$id}}" class="p-3" >{{$user}}</option>
                         @endforeach
 
                     </select>
-                </div>
-                <div class="col m-1 form-inline">
                     <label class="font-bold" for="status">Status: &nbsp; ↓</label>
                     <select wire:model="status"
                     class="form-control rounded-sm p-1 appearance-none">
                         <option value="All">All</option>
-                        @foreach ($statuses as $id=>$status)
-                            <option value={{$id}} class="p-3" >{{$status}}</option>
+                        @foreach ($statuses as $key=>$oppty_status)
+                            <option value="{{$key}}" class="p-3" >{{$oppty_status}}</option>
                         @endforeach
 
                     </select>
-                </div>
-                <div class="col m-1 form-inline">
                     <label class="font-bold" for="status">Stage: &nbsp; ↓</label>
                     <select wire:model="stage_id"
                     class="form-control rounded-sm p-1 appearance-none">
                         <option value="All">All</option>
-                        @foreach ($stages as $id=>$stage)
-                            <option value={{$id}} class="p-3" >{{$stage}}</option>
+                        @foreach ($stages as $key=>$stage)
+                            <option value="{{$key}}" class="p-3" >{{$stage}}</option>
                         @endforeach
 
                     </select>
                 </div>
+
                 @include('livewire.partials._perpage')
             </div>
 </div>

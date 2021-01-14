@@ -22,7 +22,7 @@ class ContactTable extends Component
     public $name = null;
     public $account_id = null;
     public $contact_id = null;
-    public $isContactOpen = false;
+    public $isOpen = false;
     public $firstName = null;
     public $lastName = null;
     public $email = null;
@@ -51,6 +51,7 @@ class ContactTable extends Component
     public function mount($account = null)
     {
         $this->account_id = $account;
+        $this->user_id = auth()->user()->id;
     }
     public function render()
     {
@@ -96,7 +97,7 @@ class ContactTable extends Component
 
          $this->_resetInputFields();
 
-         $this->openContactModal();
+         $this->openModal();
 
     }
     /**
@@ -120,10 +121,10 @@ class ContactTable extends Component
      *
      * @return [type] [description]
      */
-    public function openContactModal()
+    public function openModal()
     {
 
-        $this->isContactOpen = true;
+        $this->isOpen = true;
 
     }
     /**
@@ -131,10 +132,10 @@ class ContactTable extends Component
      *
      * @return [type] [description]
      */
-    public function closeContactModal()
+    public function closeModal()
     {
 
-        $this->isContactOpen = false;
+        $this->isOpen = false;
 
     }
 
@@ -172,7 +173,7 @@ class ContactTable extends Component
             $this->contact_id ? 'Contact Updated Successfully.' : 'Contact Created Successfully.'
         );
         //$this->activity_type_id = 'All';
-        $this->closeContactModal();
+        $this->closeModal();
         $this->_resetInputFields();
 
     }

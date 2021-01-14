@@ -21,9 +21,16 @@ class ActivityType extends Model
         return $this->hasMany(Activity::class);
     }
 
+    /**
+     * [scopeSearch description]
+     *
+     * @param [type] $query  [description]
+     * @param [type] $search [description]
+     *
+     * @return [type]         [description]
+     */
     public function scopeSearch($query, $search)
     {
          return $query->where('activity', 'like', "%{$search}%");
     }
-
 }

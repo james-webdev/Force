@@ -47,8 +47,8 @@ class SalesStageTable extends Component
     {
         return view(
             'livewire.sales-stage-table', 
-            ['stages'=>SalesStage::withCount('opportunities')
-                    ->search($this->search)
+            ['stages'=>SalesStage::search($this->search)
+                    ->withCount('opportunities')
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
             ]
