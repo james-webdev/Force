@@ -8,7 +8,7 @@
   </div>
     @include('livewire.partials._search', ['placeholder'=>'Search Activity Types'])
     <table  class="table-fixed mt-2">
-        <thead class="bg-teal-200">
+        <thead class="bg-teal-100">
             <th class="w-1/2">
                 <a wire:click.prevent="sortBy('activity')" role="button" href="#">
                     Activity Type

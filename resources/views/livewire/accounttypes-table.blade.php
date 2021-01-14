@@ -7,8 +7,8 @@
     @include('livewire.partials._perPage')
   </div>
     @include('livewire.partials._search', ['placeholder'=>'Search Account Types'])
-    <table  class="table-fixed mt-2">
-        <thead class="bg-teal-200">
+    <table class="table-fixed mt-2">
+        <thead class="bg-teal-100">
             <th class="w-1/2">
                 <a wire:click.prevent="sortBy('type')" role="button" href="#">
                     Account Type

@@ -8,7 +8,7 @@
   </div>
     @include('livewire.partials._search', ['placeholder'=>'Search Sales Stages'])
     <table  class="table-fixed mt-2 p-1">
-        <thead class="bg-teal-200 p-1">
+        <thead class="bg-teal-100 p-1">
             <th class="w-1/2 mt-1">
                 <a wire:click.prevent="sortBy('stage')" role="button" href="#">
                     Sales Stages
