@@ -91,17 +91,66 @@
 
 
                         <div class="mb-4">
-
                             <label for="details"
                                 class="block text-gray-700 text-sm font-bold mb-2">Notes:</label>
+                           <div 
+                                x-data="{
+                                    content: {{$details}}
+                                }" 
+                                class="bg-gray-200 border border-gray-900"
+                            >
+                            <alpine-editor 
+        x-model="content"
+        data-h1-classes="text-xl"
+    >
+        <div data-type="menu">
+            <button 
+                type="button" 
+                data-command="strong" 
+                data-active-class="bg-blue-400" 
+                class="bg-gray-500"
+            >
+                Bold
+            </button>
+            <button 
+                type="button" 
+                data-command="em" 
+                data-active-class="bg-blue-400" 
+                class="bg-gray-500"
+            >
+                Emphasize
+            </button>
+            <button 
+                type="button" 
+                data-command="code" 
+                data-active-class="bg-blue-400" 
+                class="bg-gray-500"
+            >
+                Code
+            </button>
+            <button type="button"
+                data-command="bullet_list"
+            >
+            List
+            </button>
+            <button 
+                type="button" 
+                data-command="heading" 
+                data-level="1"
+                data-active-class="bg-blue-400" 
+                class="bg-gray-500"
+            >
+                H1
+            </button>
+        </div>
 
-                            <textarea
-                                class="form-control summernote shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="summernote"
-                                placeholder="details"
-                                wire:model="details"></textarea>
+        <div data-type="editor" class="p-2">
+        </div>
+    </alpine-editor>
 
-                                @error('details') <span class="text-red-500"></span>@enderror
+                            
+                            </div>
+                            @error('details') <span class="text-red-500"></span>@enderror
 
                         </div>
                          <div class="mb-4">
@@ -127,7 +176,7 @@
                         @if(! $account_id)
                         <div class="mb-4">
 
-                            <label for="contact_id"
+                            <label for="account_id"
                                 class="block text-gray-700 text-sm font-bold mb-2">Account:</label>
 
                             <select
