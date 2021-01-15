@@ -21,7 +21,7 @@ Route::get(
 Route::middleware(['auth:sanctum', 'verified'])
     ->group(
         function () {
-           
+
             // Accounts
             Route::get('activity/create/{contact?}', ['as'=>'activity.create', 'uses'=>'ActivitiesController@create']);
             Route::resource('/account', 'AccountsController')->except('create');
@@ -35,12 +35,13 @@ Route::middleware(['auth:sanctum', 'verified'])
             Route::resource('/contact', 'ContactsController');
             // Opportunities
             Route::get('opportunity/create/{account?}', ['as'=>'opportunity.create', 'uses'=>'OpportunitiesController@create']);
-            
+
             Route::resource('/opportunity', 'OpportunitiesController');
 
             Route::resource('/stages', 'SalesStageController');
             Route::resource('/accounttype', 'AccountTypeController');
             Route::resource('/industry', 'IndustryController');
+            Route::resource('/users', 'UserController');
             // Imports
 
             Route::post('import/mapping/{import}', ['as'=>'import.mapping', 'uses'=>'ImportController@mapping']);

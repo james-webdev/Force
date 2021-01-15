@@ -2,6 +2,7 @@
 @section('content')
 
 <div>
+@livewire('user-table')
 
-</div> 
+</div>
 @endsection

@@ -1,5 +1,3 @@
-
-
 <div class="fixed z-10 inset-0 overflow-y-auto ease-out duration-400">
 
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -91,57 +89,71 @@
 
                         </div>
 
+            <div class="mb-4">
 
-                        <div class="mb-4">
+                    <label for="details"
+                        class="block text-gray-700 text-sm font-bold mb-2">Notes:</label>
+
+                    <div
+                        x-data="{
+                            content: 'Enter your notes here'
+                        }"
+                        class="form-control summernote shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    >
+                        <alpine-editor
+                            x-model="content"
+                            wire:model="details"
+                            id="summernote"
+                        >
+                            <div data-type="menu">
+                                <button
+                                    type="button"
+                                    data-command="strong"
+                                    data-active-class="bg-teal-100"
+                                    class="rounded-sm bg-gray-100 ml-1 mt-1 px-2 py-1"
+                                >
+                                <i class="fas fa-bold"></i>
+                                </button>
+                                <button
+                                    type="button"
+                                    data-command="em"
+                                    data-active-class="bg-teal-100"
+                                    class="rounded-sm bg-gray-100 mt-1 px-2 py-1"
+                                >
+                                <i class="h-1 w-1 fas fa-italic"></i>
+                                </button>
+                                <button type="button"
+                                        data-command="code"
+                                        data-active-class="bg-teal-100"
+                                        class="rounded-sm bg-gray-100 mt-1 px-2 py-1">
+                                        < >
+                                </button>
+
+
+                            </div>
+
+                            <div data-type="editor" class="p-2">
+                            </div>
+                        </alpine-editor>
+            </div>
+
+    @error('details') <span class="text-red-500"></span>@enderror
+
+                </div>
+                        <!-- <div class="mb-4">
 
                             <label for="details"
                                 class="block text-gray-700 text-sm font-bold mb-2">Notes:</label>
 
-<div
-    x-data="{
-        content: 'Enter your notes here'
-    }"
-    class="bg-teal-200 border border-gray-900"
->
-    <alpine-editor
-        x-model="content"
-        data-h1-classes="text-xl"
-    >
-        <div data-type="menu">
-            <button
-                type="button"
-                data-command="strong"
-                data-active-class="bg-teal-100"
-                class="rounded-sm bg-gray-100 ml-1 mt-1 px-2 py-1"
-            >
-            <i class="fas fa-bold"></i>
-            </button>
-            <button
-                type="button"
-                data-command="em"
-                data-active-class="bg-teal-100"
-                class="rounded-sm bg-gray-100 mt-1 px-2 py-1"
-            >
-            <i class="h-1 w-1 fas fa-italic"></i>
-            </button>
-            <button type="button"
-                    data-command="code"
-                     data-active-class="bg-teal-100"
-                     class="h-2 font-bold rounded-sm bg-gray-100 mt-1 px-1 py-1">
-                     < >
-            </button>
-
-
-        </div>
-
-        <div data-type="editor" class="p-2">
-        </div>
-    </alpine-editor>
-</div>
+                            <textarea
+                                class="form-control summernote shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="summernote"
+                                placeholder="details"
+                                wire:model="details"></textarea>
 
                                 @error('details') <span class="text-red-500"></span>@enderror
 
-                        </div>
+                        </div> -->
                          <div class="mb-4">
 
                             <label for="type"

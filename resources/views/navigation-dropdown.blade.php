@@ -63,7 +63,7 @@
                         <x-jet-dropdown-link href="{{ route('industry.index') }}">
                             {{ __('Industries') }}
                         </x-jet-dropdown-link>
-                        <x-jet-dropdown-link href="">
+                        <x-jet-dropdown-link href="{{ route('users.index') }}">
                             {{ __('Users') }}
                         </x-jet-dropdown-link>
 
