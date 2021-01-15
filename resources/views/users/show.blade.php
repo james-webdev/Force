@@ -2,7 +2,8 @@
 @section('content')
 
 <div>
-@livewire('user-table')
+
+@livewire('accounts-table', ['user_id'=>$user->id])
 
 </div>
 @endsection

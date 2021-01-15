@@ -59,13 +59,17 @@ class AccountsTable extends Component
         $this->sortField = $field;
     }
 
-    public function mount($industry=null, $accounttype=null)
+    public function mount($industry=null, $accounttype=null, $user_id=null)
     {
         $this->industry_id = $industry;
         if (!is_null($accounttype)){
             $this->account_type_id = $accounttype;
         }
-        $this->user_id = auth()->user()->id;
+        if(!is_null($user_id)){
+            $this->user_id = $user_id;
+        } else{
+            $this->user_id = auth()->user()->id;
+        }
     }
     /**
      * Select accounts, industries and users
@@ -131,7 +135,7 @@ class AccountsTable extends Component
         $this->state = '';
         $this->postalcode = '';
         $this->description = '';
-        
+
 
     }
     /**

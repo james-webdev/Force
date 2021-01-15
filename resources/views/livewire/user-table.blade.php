@@ -5,9 +5,16 @@
 
     <h2 class="text-2xl text-teal-400 p-5 hover:text-teal-500 leading-tight">Users</h2>
 
+    @if($isOpen)
+
+    @include('livewire.users-create')
+
+    @endif
+
+
     <div class="mr-8">
             <button
-                href="{{route('users.create')}}"
+                wire:click="create()"
                 class="border border-gray-300 bg-teal-400 hover:bg-teal-500 text-white font-bold mr-5 mb-5 py-2 px-4 rounded my-3">
                 Create New User
             </button>
@@ -41,7 +48,7 @@
             @foreach ($users as $user)
             <tr>
                 <td class="text-left p-1">
-                    <a href="{{route('account.index', $user->id)}}">{{$user->name}}</a></td>
+                    <a href="{{route('users.show', $user->id)}}">{{$user->name}}</a></td>
                 <td class="text-left p-1">
                     {{$user->email}}</td>
                 <td class="text-center">{{$user->accounts_count}}</td>

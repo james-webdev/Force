@@ -98,12 +98,12 @@
                         x-data="{
                             content: 'Enter your notes here'
                         }"
-                        class="form-control summernote shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     >
                         <alpine-editor
                             x-model="content"
                             wire:model="details"
-                            id="summernote"
+
                         >
                             <div data-type="menu">
                                 <button
