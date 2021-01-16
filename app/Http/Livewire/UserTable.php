@@ -153,4 +153,21 @@ class UserTable extends Component
         $this->openModal();
     }
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public function delete($user_id)
+    {
+        $user= User::withCount('accounts')->find($user_id);
+        if ($user->accounts_count ==0) {
+            $user->delete();
+            session()->flash('message', 'User Deleted Successfully.');
+        } else {
+            session()->flash('message', 'User has accounts.  Move these before deleing user.');
+        }
+        
+    }
+
 }
