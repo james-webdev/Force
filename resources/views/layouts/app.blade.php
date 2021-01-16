@@ -22,13 +22,13 @@
     </head>
     <body class="font-sans antialiased">
         <div class="flex flex-col min-h-screen bg-grey-200">
-      
+
             @livewire('navigation-dropdown')
 
             <!-- Page Content -->
             <main class="p-4 flex-grow max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 @yield('content')
-            
+
             </main>
              <footer class="p-4 bg-black">
 

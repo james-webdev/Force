@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -69,7 +70,7 @@ class UserController extends Controller
      */
     public function update(User $user, Request $request)
     {
-        $user->update(request()->all()); 
+        $user->update(request()->all());
         return redirect()->route('users.index')->withMessage('user updated');
     }
 

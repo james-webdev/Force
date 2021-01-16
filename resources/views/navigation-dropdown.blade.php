@@ -4,8 +4,12 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                
 
+                <div class="flex-shrink-0 flex items-center">
+
+                        <x-jet-application-mark class="block h-9 w-auto" />
+
+                </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
 
@@ -59,7 +63,7 @@
                         <x-jet-dropdown-link href="{{ route('industry.index') }}">
                             {{ __('Industries') }}
                         </x-jet-dropdown-link>
-                        <x-jet-dropdown-link href="">
+                        <x-jet-dropdown-link href="{{ route('users.index') }}">
                             {{ __('Users') }}
                         </x-jet-dropdown-link>
 
@@ -167,7 +171,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

@@ -68,7 +68,7 @@
             </div>
 </div>
 <div class="w-3/4 m-auto mt-10">
-<table  class="table-fixed shadow-md">
+<table class="table-fixed shadow-md">
         <thead class="bg-teal-100">
             <th>
              <x-thead>

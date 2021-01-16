@@ -12,24 +12,24 @@
 
 
         <!-- Header -->
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" 
-            role="dialog" 
-            aria-modal="true" 
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+            role="dialog"
+            aria-modal="true"
             aria-labelledby="modal-headline">
             <div class="flex w-full h-auto justify-center items-center">
             <div class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold">
                 Create New Contact
             </div>
-            <div wire:click="closeModal()" 
+            <div wire:click="closeModal()"
             class="flex w-1/12 h-auto justify-center cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" 
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="#000000" 
-                    stroke-width="2" 
-                    stroke-linecap="round" 
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
                     stroke-linejoin="round" class="feather feather-x">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -146,6 +146,26 @@
                                 @error('description') <span class="text-red-500"></span>@enderror
 
                         </div>
+
+                        <div class="mb-4">
+
+                        <label for="Account"
+                        class="block text-gray-700 text-sm font-bold mb-2">Account:</label>
+
+                        <select
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="description"
+                            wire:model="account"
+                            placeholder="Select Account">
+                            @foreach ($accounts as $id=>$account)
+                            <option value="{{$id}}">{{$account}}</option>
+                            @endforeach
+                        </select>
+
+                        @error('description') <span class="text-red-500"></span>@enderror
+
+                        </div>
+
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
 
                      <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">

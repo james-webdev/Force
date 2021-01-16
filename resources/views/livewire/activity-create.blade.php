@@ -12,24 +12,24 @@
 
 
         <!-- Header -->
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" 
-            role="dialog" 
-            aria-modal="true" 
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+            role="dialog"
+            aria-modal="true"
             aria-labelledby="modal-headline">
             <div class="flex w-full h-auto justify-center items-center">
             <div class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold">
                 Create New Activity
             </div>
-            <div wire:click="closeModal()" 
+            <div wire:click="closeModal()"
             class="flex w-1/12 h-auto justify-center cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" 
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="#000000" 
-                    stroke-width="2" 
-                    stroke-linecap="round" 
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
                     stroke-linejoin="round" class="feather feather-x">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -89,6 +89,53 @@
 
                         </div>
 
+            <div class="mb-4">
+
+                    <label for="details"
+                        class="block text-gray-700 text-sm font-bold mb-2">Notes:</label>
+
+                    <div
+                        x-data="{
+                            content: 'Enter your notes here'
+                        }"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    >
+                        <alpine-editor
+                            x-model="content"
+                            wire:model="details"
+
+                        >
+                            <div data-type="menu">
+                                <button
+                                    type="button"
+                                    data-command="strong"
+                                    data-active-class="bg-teal-100"
+                                    class="rounded-sm bg-gray-100 ml-1 mt-1 px-2 py-1"
+                                >
+                                <i class="fas fa-bold"></i>
+                                </button>
+                                <button
+                                    type="button"
+                                    data-command="em"
+                                    data-active-class="bg-teal-100"
+                                    class="rounded-sm bg-gray-100 mt-1 px-2 py-1"
+                                >
+                                <i class="h-1 w-1 fas fa-italic"></i>
+                                </button>
+                                <button type="button"
+                                        data-command="code"
+                                        data-active-class="bg-teal-100"
+                                        class="rounded-sm bg-gray-100 mt-1 px-2 py-1">
+                                        < >
+                                </button>
+
+
+                            </div>
+
+                            <div data-type="editor" class="p-2">
+                            </div>
+                        </alpine-editor>
+            </div>
 
                         <div class="mb-4">
                             <label for="details"
@@ -152,7 +199,7 @@
                             </div>
                             @error('details') <span class="text-red-500"></span>@enderror
 
-                        </div>
+                        </div> -->
                          <div class="mb-4">
 
                             <label for="type"
