@@ -20,6 +20,7 @@ class UserTable extends Component
     public $isOpen = false;
     public $user_id = null;
     public $search ='';
+    public $confirming;
 
 
 
@@ -152,7 +153,10 @@ class UserTable extends Component
         $this->user_id = $user_id; 
         $this->openModal();
     }
-
+    public function confirmDelete($id)
+    {
+        $this->confirming = $id;
+    }
     /**
      * The attributes that are mass assignable.
      *
