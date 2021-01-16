@@ -21,6 +21,8 @@
         </div>
 </div>
 
+       <input wire:model="search" class="p-2 w-96 form-control rounded border border-gray-200" type="text" placeholder="Search users...">
+
   <div class="text-sm p-1">
     @include('livewire.partials._perPage')
   </div>

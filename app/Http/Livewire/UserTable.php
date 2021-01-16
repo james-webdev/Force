@@ -13,10 +13,14 @@ class UserTable extends Component
 
     use WithPagination;
     public $perPage = 10;
+    public $sortField = 'name';
+    public $sortAsc = true;
     public $name = null;
     public $email = null;
     public $isOpen = false;
     public $user_id = null;
+    public $search ='';
+
 
 
 /**
@@ -50,13 +54,18 @@ class UserTable extends Component
 
     public function render()
     {
-        return view('livewire.user-table',
-         ['users'=>User::withCount('accounts')
-        ->paginate($this->perPage),
-    ]);
+        return view(
+            'livewire.user-table',
+            [
+                'users'=>User::withCount('accounts')
+                    ->search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage),
+            ]
+        );
     }
 
-/**
+    /**
      * [create description]
      *
      * @return [type] [description]

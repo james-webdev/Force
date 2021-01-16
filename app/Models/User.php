@@ -62,24 +62,53 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
+    /**
+     * Account relationship
+     * 
+     * @return model Accounts
+     */
     public function accounts()
     {
         return $this->hasMany(Account::class);
     }
-
+    /**
+     * Activities relationship
+     * 
+     * @return Activity model
+     */
     public function activities()
     {
         return $this->hasMany(Activity::class);
     }
-
+    /**
+     * Opportunities realtionship
+     * 
+     * @return Opportunity model
+     */
     public function opportunities()
     {
         return $this->hasMany(Opportunity::class);
     }
-
+    /**
+     * Contacts relationship
+     * 
+     * @return Contacts model
+     */
     public function contacts()
     {
         return $this->hasMany(Contact::class);
+    }
+    /**
+     * ScopeSearch query 
+     * 
+     * @param Eloquent $query  [description]
+     * @param string   $search [description]
+     * 
+     * @return [type]         [description]
+     */
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('name', 'like', "%{$search}%")
+            ->orWhere('email', 'like', "%{$search}%");
     }
 }
