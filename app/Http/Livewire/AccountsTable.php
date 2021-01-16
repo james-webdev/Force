@@ -184,7 +184,7 @@ class AccountsTable extends Component
                 'description' => $this->description,
                 'account_type_id'=>$this->account_type_id,
                 'industry_id' => $this->industry_id,
-                'owner_id' => auth()->user()->id
+                'user_id' => auth()->user()->id
 
             ]
         );
@@ -197,7 +197,7 @@ class AccountsTable extends Component
         );
 
         $this->closeModal();
-        $this->resetInputFields();
+        $this->_resetInputFields();
 
     }
 }
