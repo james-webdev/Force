@@ -29,16 +29,25 @@
     <table  class="table-fixed mt-2">
         <thead class="bg-teal-100">
             <th class="w-1/2">
-                <a wire:click.prevent="sortBy('user')" role="button" href="#">
+                <a wire:click.prevent="sortBy('name')" 
+                    title="Sort by Name"
+                    role="button" href="#">
                     Users
 
                 </a>
             </th>
             <th class="w-1/2 text-center">
+                <a wire:click.prevent="sortBy('email')" 
+                    title="Sort by Email"
+                    role="button" href="#">
                  Email
+                </a>
          </th>
             <th class="w-1/2 text-center">
-             <a wire:click.prevent="sortBy('accounts_count')" role="button" href="#">
+             <a wire:click.prevent="sortBy('accounts_count')" 
+                 title="Sort by # of accounts"
+                 role="button" 
+                 href="#">
                  No. of Accounts
              </a>
          </th>
@@ -54,7 +63,14 @@
                 <td class="text-left p-1">
                     {{$user->email}}</td>
                 <td class="text-center">{{$user->accounts_count}}</td>
-                <td class="p-3"> <button class="text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded"><i class="far fa-edit"></i></button></td>
+                <td class="p-3"> 
+                    <button  
+                        wire:click="edit({{ $user->id }})" 
+                        class="text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded">
+                        <i class="far fa-edit"></i>
+                    </button>
+                </td>
+               
                 <td class="p-3"> <button method="delete" class="text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded"><i class="far fa-trash-alt"></i></button></td>
             </tr>
             @endforeach

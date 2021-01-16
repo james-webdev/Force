@@ -139,4 +139,18 @@ class UserTable extends Component
 
     }
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public function edit($user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $this->name = $user->name;
+        $this->email = $user->email;
+        $this->user_id = $user_id; 
+        $this->openModal();
+    }
+
 }
