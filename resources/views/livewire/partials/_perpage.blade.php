@@ -1,5 +1,5 @@
 <div class="col font-bold form-inline">
-    Per Page: &nbsp;↓
+     Per Page: &nbsp;↓
     <select wire:model="perPage" class="form-control rounded-sm p-1 appearance-none">
         <option>10 </option>
         <option>25 </option>
