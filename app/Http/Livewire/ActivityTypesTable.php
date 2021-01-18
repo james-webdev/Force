@@ -11,7 +11,9 @@ class ActivitytypesTable extends Component
     public $perPage = 10;
     public $sortField = 'activity';
     public $sortAsc = true;
-    public $search ='';
+    public $search = '';
+    public $activity = '';
+    public $isOpen = false;
     /**
      * [updatingSearch description]
      *
@@ -48,4 +50,80 @@ class ActivitytypesTable extends Component
             ]
         );
     }
+
+
+/**
+     * [create description]
+     *
+     * @return [type] [description]
+     */
+    public function create()
+    {
+
+         $this->_resetInputFields();
+
+         $this->openModal();
+
+    }
+    /**
+     * [_resetInputFields description]
+     *
+     * @return [type] [description]
+     */
+    public function _resetInputFields()
+    {
+        $this->activity = '';
+
+    }
+    /**
+     * [openModal description]
+     *
+     * @return [type] [description]
+     */
+    public function openModal()
+    {
+
+        $this->isOpen = true;
+
+    }
+    /**
+     * [closeModal description]
+     *
+     * @return [type] [description]
+     */
+    public function closeModal()
+    {
+
+        $this->isOpen = false;
+
+    }
+
+    public function store()
+    {
+
+        $this->validate(
+            [
+             'activity' => 'required',
+            ]
+        );
+
+        ActivityType::updateOrCreate(
+            [],
+            [
+                'activity' => $this->activity,
+            ]
+        );
+
+        session()->flash(
+            'message',
+            'Activity Type Created Successfully.'
+        );
+
+        $this->closeModal();
+        $this->_resetInputFields();
+
+    }
+
+
+
 }

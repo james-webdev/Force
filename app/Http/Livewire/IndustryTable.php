@@ -11,12 +11,13 @@ class IndustryTable extends Component
     use WithPagination;
     public $perPage = 10;
     public $sortField = 'industry';
-
     public $sortAsc = true;
     public $search ='';
+    public $industry = '';
+    public $isOpen = false;
     /**
      * [updatingSearch description]
-     * 
+     *
      * @return [type] [description]
      */
     public function updatingSearch()
@@ -51,5 +52,77 @@ class IndustryTable extends Component
                 ->paginate($this->perPage),
             ]
         );
+    }
+
+    /**
+     * [create description]
+     *
+     * @return [type] [description]
+     */
+    public function create()
+    {
+
+         $this->_resetInputFields();
+
+         $this->openModal();
+
+    }
+    /**
+     * [_resetInputFields description]
+     *
+     * @return [type] [description]
+     */
+    public function _resetInputFields()
+    {
+        $this->industry = '';
+
+    }
+    /**
+     * [openModal description]
+     *
+     * @return [type] [description]
+     */
+    public function openModal()
+    {
+
+        $this->isOpen = true;
+
+    }
+    /**
+     * [closeModal description]
+     *
+     * @return [type] [description]
+     */
+    public function closeModal()
+    {
+
+        $this->isOpen = false;
+
+    }
+
+    public function store()
+    {
+
+        $this->validate(
+            [
+             'industry' => 'required',
+            ]
+        );
+
+        Industry::updateOrCreate(
+            [],
+            [
+                'industry' => $this->industry,
+            ]
+        );
+
+        session()->flash(
+            'message',
+            'Industry Created Successfully.'
+        );
+
+        $this->closeModal();
+        $this->_resetInputFields();
+
     }
 }
