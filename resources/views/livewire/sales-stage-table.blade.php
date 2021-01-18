@@ -10,7 +10,7 @@
         @endif
 
 
-        <div class="">
+        <div class="ml-5">
                 <button
                     wire:click="create()"
                     class="border border-gray-300 bg-teal-400 hover:bg-teal-500 text-white font-bold mr-5 mb-5 py-2 px-4 rounded my-3">

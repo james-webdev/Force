@@ -15,6 +15,8 @@ class AccounttypesTable extends Component
     public $search ='';
     public $type = '';
     public $isOpen = false;
+    public $account_type_id;
+    public $confirming = null;
     /**
      * [updatingSearch description]
      *
@@ -66,6 +68,16 @@ class AccounttypesTable extends Component
          $this->openModal();
 
     }
+
+
+    public function edit($account_type_id)
+    {
+        $accounttype = AccountType::findOrFail($account_type_id);
+        $this->account_type_id = $account_type_id;
+        $this->type = $accounttype->type;
+        $this->openModal();
+
+    }
     /**
      * [_resetInputFields description]
      *
@@ -109,7 +121,7 @@ class AccounttypesTable extends Component
         );
 
         AccountType::updateOrCreate(
-            [],
+            ['id' => $this->account_type_id],
             [
                 'type' => $this->type,
             ]
@@ -117,12 +129,29 @@ class AccounttypesTable extends Component
 
         session()->flash(
             'message',
-            'Account Type Created Successfully.'
+            $this->account_type_id ? 'Account Type Updated Successfully' :  'Account Type Created Successfully.'
         );
+
 
         $this->closeModal();
         $this->_resetInputFields();
 
+    }
+
+    public function confirmDelete($account_type_id)
+    {
+        $this->confirming = $account_type_id;
+    }
+
+
+    public function delete($account_type_id)
+    {
+        $accounttype = AccountType::findOrFail($account_type_id);
+        
+            $accounttype->delete();
+            session()->flash('message', 'Account Type Deleted Successfully.');
+        
+        
     }
 
 

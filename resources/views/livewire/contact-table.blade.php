@@ -56,9 +56,10 @@
                 </a>
              </x-thead>
             </th>
-            <x-thead>
+            <th>
+             <x-thead>
                 <a wire:click.prevent="sortBy('email')" role="button" href="#">
-                    EMail
+                    Email
                     <!-- @include('livewire.partials._sort-icon', ['field' => 'email']) -->
                 </a>
              </x-thead>

@@ -105,7 +105,7 @@ class AccountsTable extends Component
                     ->paginate($this->perPage),
                     'industries' => Industry::orderBy('industry')->pluck('industry', 'id')->toArray(),
                     'accounttypes' => AccountType::orderBy('type')->pluck('type', 'id')->toArray(),
-                    'users' => User::pluck('name', 'id')->toArray(),
+                    'users' => User::has('accounts')->pluck('name', 'id')->toArray(),
                 ]
         );
     }

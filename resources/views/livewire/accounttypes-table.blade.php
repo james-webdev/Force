@@ -48,17 +48,24 @@
                     <a href="{{route('accounttype.show', $accounttype->id)}}">{{$accounttype->type}}</a></td>
                 <td class="text-center">{{$accounttype->accounts_count}}</td>
                 <td class="p-3">
-                    <button class="text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded">
+                    <button wire:click="edit({{ $accounttype->id }})"
+                         class="text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded">
                         <i class="far fa-edit">
                        </i>
                     </button>
+
                 </td>
-                <td class="p-3">
-                    <button method="delete" class="text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded">
-                        <i class="far fa-trash-alt">
-                        </i>
-                    </button>
+                <td class="p-3"> 
+                    @if($confirming===$accounttype->id)
+                    <button wire:click="delete({{ $accounttype->id }})"
+                        class="bg-red-800 text-white w-32 px-4 py-1 hover:bg-red-600 rounded border">Sure?</button>
+                    @else
+                        <button wire:click="confirmDelete({{ $accounttype->id }})"
+                           class="text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded">
+                           <i class="far fa-trash-alt"></i></button>
+                    @endif
                 </td>
+
             </tr>
             @endforeach
         </tbody>
