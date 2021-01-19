@@ -8,7 +8,7 @@
    
     @if($isOpen)
 
-    @include('livewire.activity-create')
+    @include('livewire.activities.activity-create')
 
     @endif
 

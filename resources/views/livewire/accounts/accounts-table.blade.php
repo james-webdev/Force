@@ -11,7 +11,7 @@
 
     @if($isOpen)
 
-        @include('livewire.accounts-create')
+        @include('livewire.accounts.accounts-create')
 
     @endif
 

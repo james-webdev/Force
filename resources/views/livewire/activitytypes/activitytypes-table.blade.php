@@ -6,7 +6,7 @@
 
         @if($isOpen)
 
-            @include('livewire.activitytypes-create')
+            @include('livewire.activitytypes.activitytypes-create')
 
         @endif
 

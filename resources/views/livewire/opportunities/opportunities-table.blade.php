@@ -9,7 +9,7 @@
 
     @if($isOpen)
 
-        @include('livewire.opportunity-create')
+        @include('livewire.opportunities.opportunity-create')
 
     @endif
 

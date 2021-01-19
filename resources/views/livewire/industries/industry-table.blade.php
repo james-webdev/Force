@@ -6,7 +6,7 @@
 
         @if($isOpen)
 
-        @include('livewire.industries-create')
+        @include('livewire.industries.industries-create')
 
         @endif
 
