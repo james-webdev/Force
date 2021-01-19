@@ -9,9 +9,10 @@ class SalesStage extends Model
 {
     use HasFactory;
     public $table = 'sales_stages';
+    public $fillable = ['stage'];
     /**
      * [opportunities description]
-     * 
+     *
      * @return [type] [description]
      */
     public function opportunities()
@@ -20,10 +21,10 @@ class SalesStage extends Model
     }
     /**
      * [scopeSearch description]
-     * 
+     *
      * @param [type] $query  [description]
      * @param [type] $search [description]
-     * 
+     *
      * @return [type]         [description]
      */
     public function scopeSearch($query, $search)

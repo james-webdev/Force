@@ -14,6 +14,8 @@ class SalesStageTable extends Component
     public $isOpen = false;
     public $seq = null;
     public $stage = '';
+    public $sales_stage_id = null;
+    public $confirming = null;
     /**
      * [updatingSearch description]
      *
@@ -72,6 +74,17 @@ class SalesStageTable extends Component
          $this->openModal();
 
     }
+
+    public function edit($sales_stage_id)
+    {
+        $stage = SalesStage::findOrFail($sales_stage_id);
+        $this->sales_stage_id = $sales_stage_id;
+        $this->stage = $stage->stage;
+        $this->openModal();
+
+    }
+
+
     /**
      * [_resetInputFields description]
      *
@@ -80,7 +93,6 @@ class SalesStageTable extends Component
     public function _resetInputFields()
     {
         $this->stage = '';
-        $this->seq = null;
 
     }
     /**
@@ -103,6 +115,7 @@ class SalesStageTable extends Component
     {
 
         $this->isOpen = false;
+        $this->sales_stage_id = null;
 
     }
 
@@ -116,20 +129,41 @@ class SalesStageTable extends Component
         );
 
         SalesStage::updateOrCreate(
-            [],
+            ['id' => $this->sales_stage_id],
             [
                 'stage' => $this->stage,
-                'seq' => $this->seq,
             ]
         );
 
         session()->flash(
             'message',
-            'Sales Stage Created Successfully.'
+            $this->sales_stage_id ? 'Sales Stage Updated Successfully' :  'Sales Stage Created Successfully.'
         );
 
         $this->closeModal();
         $this->_resetInputFields();
 
     }
+
+    public function confirmDelete($sales_stage_id)
+    {
+        $this->confirming = $sales_stage_id;
+    }
+
+
+    public function delete($sales_stage_id)
+    {
+        $salesstage = SalesStage::findOrFail($sales_stage_id);
+
+            $salesstage->delete();
+            session()->flash('message', 'Sales Stage Deleted Successfully.');
+
+
+    }
+
+    public function stopDelete($sales_stage_id)
+    {
+        $this->confirming = null;
+    }
+
 }

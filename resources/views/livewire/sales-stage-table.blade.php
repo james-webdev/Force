@@ -56,16 +56,24 @@
                     </a>
                 </td>
                 <td class="p-3">
-                    <button class="text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded">
+                    <button wire:click="edit({{ $stage->id }})" class="text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded">
                         <i class="far fa-edit">
                        </i>
                     </button>
                 </td>
                 <td class="p-3">
-                    <button method="delete" class="text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded">
-                        <i class="far fa-trash-alt">
-                        </i>
-                    </button>
+                @if($confirming===$stage->id)
+                    <div class="flex justify-between">
+                    <button wire:click="delete({{ $stage->id }})"
+                        class="text-xs bg-red-400 hover:bg-red-600 text-black hover:text-white font-bold px-1.5 py-2 rounded"><i class="fas fa-check"></i></i></button>
+                        <button wire:click="stopDelete({{ $stage->id }})"
+                        class="text-xs px-2 py-2 bg-green-400 hover:bg-green-600 text-black hover:text-white font-bold rounded"><i class="fas fa-times"></i></i></button>
+                    </div>
+                    @else
+                        <button wire:click="confirmDelete({{ $stage->id }})"
+                           class="text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded">
+                           <i class="far fa-trash-alt"></i></button>
+                    @endif
                 </td>
             </tr>
             @endforeach

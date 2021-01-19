@@ -14,7 +14,12 @@
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <div class="flex w-full h-auto justify-center items-center">
         <div class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold">
-            Create New Sales Stage
+        {{$sales_stage_id ? 'Edit {{$stage}}' : 'Create New Sales Stage' }}
+
+
+<p>
+{{$stage}}
+</p>
         </div>
         <div wire:click="closeModal()"
         class="flex w-1/12 h-auto justify-center cursor-pointer">
