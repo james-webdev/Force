@@ -153,6 +153,13 @@ class UserTable extends Component
         $this->user_id = $user_id; 
         $this->openModal();
     }
+    /**
+     * [confirmDelete description]
+     * 
+     * @param [type] $id [description]
+     * 
+     * @return [type]     [description]
+     */
     public function confirmDelete($id)
     {
         $this->confirming = $id;
