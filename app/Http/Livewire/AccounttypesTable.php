@@ -15,7 +15,7 @@ class AccounttypesTable extends Component
     public $search ='';
     public $type = '';
     public $isOpen = false;
-    public $account_type_id;
+    public $account_type_id = null;
     public $confirming = null;
     /**
      * [updatingSearch description]
@@ -108,6 +108,7 @@ class AccounttypesTable extends Component
     {
 
         $this->isOpen = false;
+        $this->account_type_id = null;
 
     }
 
@@ -147,12 +148,16 @@ class AccounttypesTable extends Component
     public function delete($account_type_id)
     {
         $accounttype = AccountType::findOrFail($account_type_id);
-        
+
             $accounttype->delete();
             session()->flash('message', 'Account Type Deleted Successfully.');
-        
-        
+
+
     }
 
+    public function stopDelete($account_type_id)
+    {
+        $this->confirming = null;
+    }
 
 }
