@@ -50,15 +50,14 @@
                         <div class="block px-4 py-2 text-xs text-gray-400">
                             {{ __('Admin options') }}
                         </div>
-
-                        <x-jet-dropdown-link href="{{ route('activitytype.index') }}">
-                            {{ __('Activity Types') }}
-                        </x-jet-dropdown-link>
                         <x-jet-dropdown-link href="{{ route('accounttype.index') }}">
                             {{ __('Account Types') }}
                         </x-jet-dropdown-link>
                         <x-jet-dropdown-link href="{{ route('stages.index') }}">
                             {{ __('Sales Stages') }}
+                        </x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="{{ route('activitytype.index') }}">
+                            {{ __('Activity Types') }}
                         </x-jet-dropdown-link>
                         <x-jet-dropdown-link href="{{ route('industry.index') }}">
                             {{ __('Industries') }}

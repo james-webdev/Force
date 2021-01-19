@@ -13,9 +13,13 @@ class AccounttypesTable extends Component
     public $sortField = 'type';
     public $sortAsc = true;
     public $search ='';
+    public $type = '';
+    public $isOpen = false;
+    public $account_type_id = null;
+    public $confirming = null;
     /**
      * [updatingSearch description]
-     * 
+     *
      * @return [type] [description]
      */
     public function updatingSearch()
@@ -24,9 +28,9 @@ class AccounttypesTable extends Component
     }
     /**
      * Set SortField
-     * 
+     *
      * @param string $field [description]
-     * 
+     *
      * @return sortField        [description]
      */
     public function sortBy($field)
@@ -37,7 +41,7 @@ class AccounttypesTable extends Component
             $this->sortAsc = true;
         }
     }
-    
+
 
     public function render()
     {
@@ -50,4 +54,110 @@ class AccounttypesTable extends Component
             ]
         );
     }
+
+/**
+     * [create description]
+     *
+     * @return [type] [description]
+     */
+    public function create()
+    {
+
+         $this->_resetInputFields();
+
+         $this->openModal();
+
+    }
+
+
+    public function edit($account_type_id)
+    {
+        $accounttype = AccountType::findOrFail($account_type_id);
+        $this->account_type_id = $account_type_id;
+        $this->type = $accounttype->type;
+        $this->openModal();
+
+    }
+    /**
+     * [_resetInputFields description]
+     *
+     * @return [type] [description]
+     */
+    public function _resetInputFields()
+    {
+        $this->type = '';
+
+    }
+    /**
+     * [openModal description]
+     *
+     * @return [type] [description]
+     */
+    public function openModal()
+    {
+
+        $this->isOpen = true;
+
+    }
+    /**
+     * [closeModal description]
+     *
+     * @return [type] [description]
+     */
+    public function closeModal()
+    {
+
+        $this->isOpen = false;
+        $this->account_type_id = null;
+
+    }
+
+    public function store()
+    {
+
+        $this->validate(
+            [
+             'type' => 'required',
+            ]
+        );
+
+        AccountType::updateOrCreate(
+            ['id' => $this->account_type_id],
+            [
+                'type' => $this->type,
+            ]
+        );
+
+        session()->flash(
+            'message',
+            $this->account_type_id ? 'Account Type Updated Successfully' :  'Account Type Created Successfully.'
+        );
+
+
+        $this->closeModal();
+        $this->_resetInputFields();
+
+    }
+
+    public function confirmDelete($account_type_id)
+    {
+        $this->confirming = $account_type_id;
+    }
+
+
+    public function delete($account_type_id)
+    {
+        $accounttype = AccountType::findOrFail($account_type_id);
+
+            $accounttype->delete();
+            session()->flash('message', 'Account Type Deleted Successfully.');
+
+
+    }
+
+    public function stopDelete($account_type_id)
+    {
+        $this->confirming = null;
+    }
+
 }

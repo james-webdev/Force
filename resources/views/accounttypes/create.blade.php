@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 @section('content')
- <div class="container">  
+ <div class="container">
 <h2>Create New Account Type</h2>
 <form action="{{route('accounttypes.store')}}"
 method="post"
