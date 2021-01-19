@@ -57,7 +57,7 @@ class ContactTable extends Component
     {
 
         return view(
-            'livewire.contact-table', [
+            'livewire.contacts.contact-table', [
                 'contacts'=>Contact::
                     join('accounts', 'contacts.account_id', '=', 'accounts.id')
                     ->search($this->search)

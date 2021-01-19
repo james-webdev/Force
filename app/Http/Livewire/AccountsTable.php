@@ -83,7 +83,7 @@ class AccountsTable extends Component
     {
 
           return view(
-            'livewire.accounts-table', [
+            'livewire.accounts.accounts-table', [
                 'accounts'=>Account::withLastActivityId()
                     ->withCount('contacts', 'openOpportunities', 'wonOpportunities', 'opportunities')
                     ->with('owner', 'lastActivity', 'industry', 'type')

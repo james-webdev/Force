@@ -46,7 +46,7 @@ class SalesStageTable extends Component
     public function render()
     {
         return view(
-            'livewire.sales-stage-table', 
+            'livewire.salesstages.sales-stage-table', 
             ['stages'=>SalesStage::search($this->search)
                     ->withCount('opportunities')
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

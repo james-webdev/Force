@@ -50,7 +50,7 @@ class ContactShow extends Component
     {
 
         return view(
-            'livewire.contacts-show', [
+            'livewire.contacts.contacts-show', [
                 'contact'=>Contact::with('company', 'owner')
                     ->search($this->search)
                     

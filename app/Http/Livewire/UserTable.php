@@ -52,11 +52,15 @@ class UserTable extends Component
     }
 
 
-
+    /**
+     * [render description]
+     * 
+     * @return [type] [description]
+     */
     public function render()
     {
         return view(
-            'livewire.user-table',
+            'livewire.users.user-table',
             [
                 'users'=>User::withCount('accounts')
                     ->search($this->search)
@@ -112,7 +116,11 @@ class UserTable extends Component
         $this->isOpen = false;
 
     }
-
+    /**
+     * [store description]
+     * 
+     * @return [type] [description]
+     */
     public function store()
     {
 
@@ -139,11 +147,12 @@ class UserTable extends Component
         $this->_resetInputFields();
 
     }
-
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * [edit description]
+     * 
+     * @param [type] $user_id [description]
+     * 
+     * @return [type]          [description]
      */
     public function edit($user_id)
     {
@@ -165,9 +174,11 @@ class UserTable extends Component
         $this->confirming = $id;
     }
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * [delete description]
+     * 
+     * @param [type] $user_id [description]
+     * 
+     * @return [type]          [description]
      */
     public function delete($user_id)
     {

@@ -39,7 +39,7 @@ class ActivitytypesTable extends Component
     public function render()
     {
         return view(
-            'livewire.activitytypes-table',
+            'livewire.activitytypes.activitytypes-table',
             [
                 'activitytypes' => ActivityType::withCount('activities')
                     ->search($this->search)
