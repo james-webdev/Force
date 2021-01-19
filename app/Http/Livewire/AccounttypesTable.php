@@ -46,7 +46,7 @@ class AccounttypesTable extends Component
     public function render()
     {
         return view(
-            'livewire.accounttypes-table',
+            'livewire.accounttypes.accounttypes-table',
             ['accounttypes'=>AccountType::withCount('accounts')
                 ->search($this->search)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

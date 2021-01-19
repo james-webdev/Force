@@ -86,7 +86,7 @@ class ActivityTable extends Component
     {
         
         return view(
-            'livewire.activity-table', [
+            'livewire.activities.activity-table', [
                 'activities'=>Activity::with('contact', 'account', 'owner')
                     
                     ->search($this->search)

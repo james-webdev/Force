@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
-use Livewire\withPagination;
+use Livewire\WithPagination;
 
 
 class UserTable extends Component
@@ -13,10 +13,15 @@ class UserTable extends Component
 
     use WithPagination;
     public $perPage = 10;
+    public $sortField = 'name';
+    public $sortAsc = true;
     public $name = null;
     public $email = null;
     public $isOpen = false;
     public $user_id = null;
+    public $search ='';
+    public $confirming;
+
 
 
 /**
@@ -47,16 +52,25 @@ class UserTable extends Component
     }
 
 
-
+    /**
+     * [render description]
+     * 
+     * @return [type] [description]
+     */
     public function render()
     {
-        return view('livewire.user-table',
-         ['users'=>User::withCount('accounts')
-        ->paginate($this->perPage),
-    ]);
+        return view(
+            'livewire.users.user-table',
+            [
+                'users'=>User::withCount('accounts')
+                    ->search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage),
+            ]
+        );
     }
 
-/**
+    /**
      * [create description]
      *
      * @return [type] [description]
@@ -102,7 +116,11 @@ class UserTable extends Component
         $this->isOpen = false;
 
     }
-
+    /**
+     * [store description]
+     * 
+     * @return [type] [description]
+     */
     public function store()
     {
 
@@ -128,6 +146,50 @@ class UserTable extends Component
         $this->closeModal();
         $this->_resetInputFields();
 
+    }
+    /**
+     * [edit description]
+     * 
+     * @param [type] $user_id [description]
+     * 
+     * @return [type]          [description]
+     */
+    public function edit($user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $this->name = $user->name;
+        $this->email = $user->email;
+        $this->user_id = $user_id; 
+        $this->openModal();
+    }
+    /**
+     * [confirmDelete description]
+     * 
+     * @param [type] $id [description]
+     * 
+     * @return [type]     [description]
+     */
+    public function confirmDelete($id)
+    {
+        $this->confirming = $id;
+    }
+    /**
+     * [delete description]
+     * 
+     * @param [type] $user_id [description]
+     * 
+     * @return [type]          [description]
+     */
+    public function delete($user_id)
+    {
+        $user= User::withCount('accounts')->find($user_id);
+        if ($user->accounts_count ==0) {
+            $user->delete();
+            session()->flash('message', 'User Deleted Successfully.');
+        } else {
+            session()->flash('message', 'User has accounts.  Move these before deleing user.');
+        }
+        
     }
 
 }

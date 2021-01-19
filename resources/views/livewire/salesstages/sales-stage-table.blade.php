@@ -5,7 +5,7 @@
 
         @if($isOpen)
 
-        @include('livewire.salesstages-create')
+        @include('livewire.salesstages.salesstages-create')
 
         @endif
 

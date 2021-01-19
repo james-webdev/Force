@@ -45,7 +45,7 @@ class IndustryTable extends Component
     {
 
         return view(
-            'livewire.industry-table',
+            'livewire.industries.industry-table',
             ['industries'=>Industry::withCount('accounts')
                 ->search($this->search)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

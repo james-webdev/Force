@@ -66,7 +66,7 @@ class OpportunitiesTable extends Component
     {
 
         return view(
-            'livewire.opportunities-table', [
+            'livewire.opportunities.opportunities-table', [
                 'opportunities' => Opportunity::
                     join('accounts', 'opportunities.account_id', '=', 'accounts.id')
                     ->with('owner')

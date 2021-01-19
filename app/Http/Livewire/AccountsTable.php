@@ -61,13 +61,16 @@ class AccountsTable extends Component
 
     public function mount($industry=null, $accounttype=null, $user_id=null)
     {
-        $this->industry_id = $industry;
-        if (!is_null($accounttype)){
+        if (! is_null($industry)) {
+            $this->industry_id = $accounttype;
+        }
+        
+        if (! is_null($accounttype)) {
             $this->account_type_id = $accounttype;
         }
-        if(!is_null($user_id)){
+        if (!is_null($user_id)) {
             $this->user_id = $user_id;
-        } else{
+        } else {
             $this->user_id = auth()->user()->id;
         }
     }
@@ -80,7 +83,7 @@ class AccountsTable extends Component
     {
 
           return view(
-            'livewire.accounts-table', [
+            'livewire.accounts.accounts-table', [
                 'accounts'=>Account::withLastActivityId()
                     ->withCount('contacts', 'openOpportunities', 'wonOpportunities', 'opportunities')
                     ->with('owner', 'lastActivity', 'industry', 'type')
@@ -181,7 +184,7 @@ class AccountsTable extends Component
                 'description' => $this->description,
                 'account_type_id'=>$this->account_type_id,
                 'industry_id' => $this->industry_id,
-                'owner_id' => auth()->user()->id
+                'user_id' => auth()->user()->id
 
             ]
         );
@@ -194,7 +197,7 @@ class AccountsTable extends Component
         );
 
         $this->closeModal();
-        $this->resetInputFields();
+        $this->_resetInputFields();
 
     }
 }
