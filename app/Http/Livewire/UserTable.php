@@ -20,6 +20,7 @@ class UserTable extends Component
     public $isOpen = false;
     public $user_id = null;
     public $search ='';
+    public $user = '';
     public $confirming;
 
 
@@ -54,7 +55,7 @@ class UserTable extends Component
 
     /**
      * [render description]
-     * 
+     *
      * @return [type] [description]
      */
     public function render()
@@ -83,6 +84,8 @@ class UserTable extends Component
          $this->openModal();
 
     }
+
+
     /**
      * [_resetInputFields description]
      *
@@ -118,7 +121,7 @@ class UserTable extends Component
     }
     /**
      * [store description]
-     * 
+     *
      * @return [type] [description]
      */
     public function store()
@@ -149,9 +152,9 @@ class UserTable extends Component
     }
     /**
      * [edit description]
-     * 
+     *
      * @param [type] $user_id [description]
-     * 
+     *
      * @return [type]          [description]
      */
     public function edit($user_id)
@@ -159,25 +162,25 @@ class UserTable extends Component
         $user = User::findOrFail($user_id);
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->user_id = $user_id; 
+        $this->user_id = $user_id;
         $this->openModal();
     }
     /**
      * [confirmDelete description]
-     * 
+     *
      * @param [type] $id [description]
-     * 
+     *
      * @return [type]     [description]
      */
-    public function confirmDelete($id)
+    public function confirmDelete($user_id)
     {
-        $this->confirming = $id;
+        $this->confirming = $user_id;
     }
     /**
      * [delete description]
-     * 
+     *
      * @param [type] $user_id [description]
-     * 
+     *
      * @return [type]          [description]
      */
     public function delete($user_id)
@@ -189,7 +192,12 @@ class UserTable extends Component
         } else {
             session()->flash('message', 'User has accounts.  Move these before deleing user.');
         }
-        
+
+    }
+
+    public function stopDelete($user_id)
+    {
+        $this->confirming = null;
     }
 
 }

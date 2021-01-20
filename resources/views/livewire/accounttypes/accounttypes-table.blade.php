@@ -59,9 +59,9 @@
                     @if($confirming===$accounttype->id)
                     <div class="flex justify-between">
                     <button wire:click="delete({{ $accounttype->id }})"
-                        class="text-xs bg-red-400 hover:bg-red-600 text-black hover:text-white font-bold px-1.5 py-2 rounded"><i class="fas fa-check"></i></i></button>
+                        class="text-xs bg-red-600 hover:bg-red-500 text-white hover:text-black font-bold px-1.5 py-2 rounded"><i class="fas fa-check"></i></i></button>
                         <button wire:click="stopDelete({{ $accounttype->id }})"
-                        class="text-xs px-2 py-2 bg-green-400 hover:bg-green-600 text-black hover:text-white font-bold rounded"><i class="fas fa-times"></i></i></button>
+                        class="text-xs px-2 py-2 ml-0.5 bg-green-600 hover:bg-green-400 text-white hover:text-black font-bold rounded"><i class="fas fa-times"></i></i></button>
                     </div>
                     @else
                         <button wire:click="confirmDelete({{ $accounttype->id }})"

@@ -14,6 +14,9 @@ class ActivitytypesTable extends Component
     public $search = '';
     public $activity = '';
     public $isOpen = false;
+    public $type = '';
+    public $activity_type_id = null;
+    public $confirming = null;
     /**
      * [updatingSearch description]
      *
@@ -65,6 +68,16 @@ class ActivitytypesTable extends Component
          $this->openModal();
 
     }
+
+    public function edit($activity_type_id)
+    {
+        $activity = ActivityType::findOrFail($activity_type_id);
+        $this->activity_type_id = $activity_type_id;
+        $this->activity = $activity->activity;
+        $this->openModal();
+
+    }
+
     /**
      * [_resetInputFields description]
      *
@@ -108,7 +121,7 @@ class ActivitytypesTable extends Component
         );
 
         ActivityType::updateOrCreate(
-            [],
+            ['id' => $this->activity_type_id],
             [
                 'activity' => $this->activity,
             ]
@@ -116,7 +129,7 @@ class ActivitytypesTable extends Component
 
         session()->flash(
             'message',
-            'Activity Type Created Successfully.'
+            $this->activity_type_id ? 'Activity Type Updated Successfully' :  'Activity Type Created Successfully.'
         );
 
         $this->closeModal();
@@ -124,6 +137,25 @@ class ActivitytypesTable extends Component
 
     }
 
+    public function confirmDelete($activity_type_id)
+    {
+        $this->confirming = $activity_type_id;
+    }
 
+
+    public function delete($activity_type_id)
+    {
+        $activitytype = ActivityType::findOrFail($activity_type_id);
+
+            $activitytype->delete();
+            session()->flash('message', 'Activity Type Deleted Successfully.');
+
+
+    }
+
+    public function stopDelete($activity_type_id)
+    {
+        $this->confirming = null;
+    }
 
 }

@@ -51,16 +51,24 @@
                 <td class="text-center">{{$industry->accounts_count}}
                 </td>
                 <td class="p-3">
-                    <button class="text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded">
+                <button wire:click="edit({{ $industry->id }})" class="text-xs bg-gray-300 hover:bg-teal-300 text-teal t-teal-100 font-bold p-1 ml-1 mb-3 rounded">
                         <i class="far fa-edit">
                        </i>
                     </button>
                 </td>
                 <td class="p-3">
-                    <button method="delete" class="text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded">
-                        <i class="far fa-trash-alt">
-                        </i>
-                    </button>
+                @if($confirming===$industry->id)
+                    <div class="flex justify-between">
+                    <button wire:click="delete({{ $industry->id }})"
+                        class="text-xs bg-red-600 hover:bg-red-500 text-white hover:text-black font-bold px-1.5 py-2 rounded"><i class="fas fa-check"></i></i></button>
+                        <button wire:click="stopDelete({{ $industry->id }})"
+                        class="text-xs px-2 py-2 ml-0.5 bg-green-600 hover:bg-green-400 text-white hover:text-black font-bold rounded"><i class="fas fa-times"></i></i></button>
+                    </div>
+                    @else
+                        <button wire:click="confirmDelete({{ $industry->id }})"
+                           class="text-xs bg-gray-300 hover:bg-teal-800 text-teal-700 hover:text-teal-100 font-bold p-1 ml-1 mb-3 rounded">
+                           <i class="far fa-trash-alt"></i></button>
+                    @endif
                 </td>
             </tr>
             @endforeach

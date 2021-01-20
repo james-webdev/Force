@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Industry extends Model
 {
     use HasFactory;
+    public $fillable = ['industry'];
 
     public function accounts()
     {
@@ -15,10 +16,10 @@ class Industry extends Model
     }
     public function scopeSearch($query, $search)
     {
-        
-          return $query->where('industry', 'like', "%{$search}%");  
-        
-            
+
+          return $query->where('industry', 'like', "%{$search}%");
+
+
     }
 
 }

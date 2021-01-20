@@ -13,8 +13,10 @@ class IndustryTable extends Component
     public $sortField = 'industry';
     public $sortAsc = true;
     public $search ='';
-    public $industry = '';
     public $isOpen = false;
+    public $industry = '';
+    public $industry_id = null;
+    public $confirming = null;
     /**
      * [updatingSearch description]
      *
@@ -67,6 +69,16 @@ class IndustryTable extends Component
          $this->openModal();
 
     }
+
+    public function edit($industry_id)
+    {
+        $industry = Industry::findOrFail($industry_id);
+        $this->industry_id = $industry_id;
+        $this->industry = $industry->industry;
+        $this->openModal();
+
+    }
+
     /**
      * [_resetInputFields description]
      *
@@ -110,7 +122,7 @@ class IndustryTable extends Component
         );
 
         Industry::updateOrCreate(
-            [],
+            ['id' => $this->industry_id],
             [
                 'industry' => $this->industry,
             ]
@@ -118,11 +130,33 @@ class IndustryTable extends Component
 
         session()->flash(
             'message',
-            'Industry Created Successfully.'
+            $this->industry_id ? 'Industry Updated Successfully.' : 'Industry Created Successfully.'
         );
 
         $this->closeModal();
         $this->_resetInputFields();
 
     }
+
+    public function confirmDelete($industry_id)
+    {
+        $this->confirming = $industry_id;
+    }
+
+
+    public function delete($industry_id)
+    {
+        $industry = Industry::findOrFail($industry_id);
+
+            $industry->delete();
+            session()->flash('message', 'Industry Deleted Successfully.');
+
+
+    }
+
+    public function stopDelete($industry_id)
+    {
+        $this->confirming = null;
+    }
+
 }
