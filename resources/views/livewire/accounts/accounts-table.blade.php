@@ -1,8 +1,9 @@
 <div>
 
 
+
     @include('livewire.partials._message')
-    <div class="ml-24 mt-7 mr-24">
+<div class="sm:ml-24 mt-7 sm:mr-24 flex flex-col justify-center items-center sm:block">
 
         <h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
             Accounts
@@ -15,29 +16,29 @@
 
     @endif
 
-   <div class="flex justify-between mt-5 items-center">
-        <div class="flex justify-left items-center">
-            <div class="col m-8">
-                <div class="input-group-prepend">
+   <div class="sm:flex sm:justify-between mt-5 sm:items-center">
+        <div class="">
+            <div class="sm:m-8">
+                <div class="">
                 <!-- <span class="input-group-text"><i class="fas fa-search"></i></span> -->
 
-                    <input wire:model="search" class="p-2 w-96 form-control rounded border border-gray-200" type="text" placeholder="Search accounts...">
+                    <input wire:model="search" class="p-2 sm:w-96 form-control rounded border border-gray-200" type="text" placeholder="Search accounts...">
                 </div>
             </div>
 
 
 
         </div>
-        <div class="mr-8">
+        <div class="sm:mr-8 mt-4 sm:mt-0 flex justify-center items-center">
             <button
                 wire:click="create()"
-                class="border border-gray-300 bg-teal-400 hover:bg-teal-500 text-white font-bold mr-5 mb-5 py-2 px-4 rounded my-3">
+                class="border border-gray-300 bg-teal-400 hover:bg-teal-500 text-white font-bold sm:mr-5 mb-5 py-2 px-4 rounded my-3">
                 Create New Account
             </button>
         </div>
 </div>
-    <div class="p-3 flex text-md border border-gray-200 items-center rounded bg-gray-100 shadow-sm mt-1">
-                <div class="col m-1 form-inline">
+    <div class="p-3 w-full sm:flex sm:justify-between text-md border border-gray-200 sm:items-center rounded bg-gray-100 shadow-sm mt-1">
+                <div class="flex justify-center items-center m-1 form-inline">
                     <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
                     <select wire:model="user_id"
                     class="form-control rounded p-1 appearance-none">
@@ -48,10 +49,10 @@
 
                     </select>
                 </div>
-                <div class="col m-1 form-inline">
+                <div class="flex justify-center items-center m-1 form-inline">
                     <label class="font-bold" for="status">Industry: &nbsp; ↓</label>
                     <select wire:model="industry_id"
-                    class="form-control rounded-sm p-1 appearance-none">
+                    class="form-control rounded-sm p-1 w-48 appearance-none">
                         <option value="All">All</option>
                         @foreach ($industries as $id=>$industry)
                             <option value={{$id}} class="p-3" >{{$industry}}</option>
@@ -59,10 +60,10 @@
 
                     </select>
                 </div>
-                <div class="col m-1 form-inline">
+                <div class="flex justify-center items-center m-1 form-inline">
                     <label class="font-bold" for="status">Type: &nbsp; ↓</label>
                     <select wire:model="account_type_id"
-                    class="form-control rounded-sm p-1 appearance-none">
+                    class="form-control rounded-sm p-1 w-48 appearance-none">
                         <option value="All">All</option>
                         @foreach ($accounttypes as $id=>$type)
                             <option value={{$id}} class="p-3" >{{$type}}</option>
@@ -70,11 +71,15 @@
 
                     </select>
                 </div>
+                <div class="flex justify-center">
                 @include('livewire.partials._perpage')
+                </div>
+
     </div>
 </div>
 
-<div class="w-3/4 m-auto mt-10">
+
+<div class="sm:w-3/4 flex justify-center items-center w-3/5 m-auto mt-10">
       <table class="table-fixed shadow-md">
         <thead class="bg-teal-100">
             <th>
@@ -85,7 +90,7 @@
                             </a>
                 </x-thead>
             </th>
-            <th>
+            <th class="hidden sm:table-cell">
                 <x-thead>
                             <a wire:click.prevent="sortBy('industry_id')" role="button" href="#">
                                 Industry
@@ -93,7 +98,7 @@
                             </a>
                 </x-thead>
             </th>
-            <th>
+            <th class="hidden sm:table-cell">
                 <x-thead>
                     <a wire:click.prevent="sortBy('city')" role="button" href="#">
                         City
@@ -101,7 +106,7 @@
                     </a>
                 </x-thead>
             </th>
-            <th>
+            <th  class="hidden sm:table-cell">
                 <x-thead>
                     <a wire:click.prevent="sortBy('state')" role="button" href="#">
                         State
@@ -109,7 +114,7 @@
                     </a>
                 </x-thead>
             </th>
-            <th>
+            <th class="hidden sm:table-cell">
                  <x-thead>
                     <a wire:click.prevent="sortBy('owner')" role="button" href="#">
                             Owner
@@ -117,7 +122,7 @@
                     </a>
                  </x-thead>
             </th>
-            <th>
+            <th class="hidden sm:table-cell">
                 <x-thead>
                     <a wire:click.prevent="sortBy('contacts_count')" role="button" href="#">
                         No. of Contacts
@@ -125,7 +130,7 @@
                     </a>
                 </x-thead>
             </th>
-            <th>
+            <th class="hidden sm:table-cell">
                 <x-thead>
                     <a wire:click.prevent="sortBy('open_opportunities_count')" role="button" href="#">
                     No. of Open Opportunities
@@ -133,12 +138,12 @@
                     </a>
                 </x-thead>
             </th>
-            <th>
+            <th class="hidden sm:table-cell">
                 <x-thead>
                     Last Activity Date
                 </x-thead>
             </th>
-            <th>
+            <th class="hidden sm:table-cell">
                 <x-thead>
                     <a wire:click.prevent="sortBy('closed_business')" role="button" href="#">
                     Total Business
@@ -158,7 +163,7 @@
                     </a>
                  </x-tbody>
                 </td>
-                <td class="border">
+                <td class="border hidden sm:table-cell">
                  <x-tbody>
                     @if($account->industry)
                         <a href="{{route('industry.show', $account->industry->id)}}"
@@ -168,40 +173,40 @@
                     @endif
                  </x-tbody>
                 </td>
-                <td class="border border-gray-200">
+                <td class="border border-gray-200 hidden sm:table-cell">
                 <x-tbody>
                     {{$account->city}}
                 </x-tbody>
                 </td>
-                <td class="border border-gray-200">
+                <td class="border border-gray-200 hidden sm:table-cell">
                 <x-tbody>
                     {{$account->state}}
                 </x-tbody>
                 </td>
-                <td class="border border-gray-200">
+                <td class="border border-gray-200 hidden sm:table-cell">
                 <x-tbody>
                     {{$account->owner ? $account->owner->name :''}}
                     </x-tbody>
                 </td>
 
-                <td class="border border-gray-200">
+                <td class="border border-gray-200 hidden sm:table-cell">
                 <x-tbody>
                     {{$account->contacts_count}}
                     </x-tbody>
                 </td>
-                <td class="border border-gray-200">
+                <td class="border border-gray-200 hidden sm:table-cell">
                 <x-tbody>
                     {{$account->open_opportunities_count}}
                     </x-tbody>
                 </td>
-                <td class="border border-gray-200">
+                <td class="border border-gray-200 hidden sm:table-cell">
                 <x-tbody>
                     @if ($account->lastActivity)
                         {{$account->lastActivity->activity_date}}
                     @endif
                     </x-tbody>
                 </td>
-                <td class="border border-gray-200">
+                <td class="border border-gray-200 hidden sm:table-cell">
                 <x-tbody>
                         ${{number_format($account->closed_business,0)}}
                 </x-tbody>
@@ -212,13 +217,16 @@
         </tbody>
     </table>
     </div>
-    <div class="row mt-28">
-            <div class="row-start-4 text-left">
-                {{ $accounts->links() }}
+
+
+        <div class="flex justify-center items-center sm:block">
+
+            <div class="w-40 mt-28">
+                    <div class="row-start-4 text-left">
+                        {{ $accounts->links() }}
+                    </div>
             </div>
+        </div>
 
-
-
-    </div>
 </div>
 

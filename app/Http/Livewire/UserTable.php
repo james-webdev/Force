@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\User;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 
 class UserTable extends Component
@@ -129,7 +131,8 @@ class UserTable extends Component
 
         $this->validate(
             [
-             'name' => 'required',
+             'name' => 'required|string|max:255',
+             'email' => 'required|email|max:255|unique:users,email,' . $this->user_id,
             ]
         );
 
