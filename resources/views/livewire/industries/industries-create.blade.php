@@ -34,7 +34,8 @@
           <!--Header End-->
         </div>
             <form>
-
+                @include('livewire.partials._message')
+                
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 
                     <div class="">

@@ -130,6 +130,7 @@ class UserTable extends Component
         $this->validate(
             [
              'name' => 'required',
+             'email'=>'required|email',
             ]
         );
 
