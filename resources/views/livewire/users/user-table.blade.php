@@ -4,7 +4,7 @@
 <div class="flex justify-between">
 
     <h2 class="text-2xl text-teal-400 p-5 hover:text-teal-500 leading-tight">Users</h2>
-
+    @include('livewire.partials._message')
     @if($isOpen)
 
         @include('livewire.users.users-create')
