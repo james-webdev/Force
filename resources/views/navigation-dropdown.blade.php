@@ -197,6 +197,43 @@
                     </x-jet-responsive-nav-link>
                 @endif
 
+                       <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Pages') }}
+                        </div>
+                  <x-jet-dropdown-link href="{{ route('account.index') }}">
+                        {{ __('Accounts') }}
+                    </x-jet-dropdown-link>
+                    <x-jet-dropdown-link href="{{ route('contact.index') }}">
+                        {{ __('Contacts') }}
+                    </x-jet-dropdown-link>
+                    <x-jet-dropdown-link href="{{ route('opportunity.index') }}" >
+                        {{ __('Opportunities') }}
+                    </x-jet-dropdown-link>
+                    <x-jet-dropdown-link href="{{ route('activity.index') }}" >
+                        {{ __('Activities') }}
+                    </x-jet-dropdown-link>
+
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Admin options') }}
+                        </div>
+                        <x-jet-dropdown-link href="{{ route('accounttype.index') }}">
+                            {{ __('Account Types') }}
+                        </x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="{{ route('stages.index') }}">
+                            {{ __('Sales Stages') }}
+                        </x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="{{ route('activitytype.index') }}">
+                            {{ __('Activity Types') }}
+                        </x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="{{ route('industry.index') }}">
+                            {{ __('Industries') }}
+                        </x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="{{ route('users.index') }}">
+                            {{ __('Users') }}
+                        </x-jet-dropdown-link>
+
+
+
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

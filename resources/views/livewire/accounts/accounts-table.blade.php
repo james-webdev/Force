@@ -36,7 +36,7 @@
                 Create New Account
             </button>
         </div>
-</div>
+ </div>
     <div class="p-3 w-full sm:flex sm:justify-between text-md border border-gray-200 sm:items-center rounded bg-gray-100 shadow-sm mt-1">
                 <div class="flex justify-center items-center m-1 form-inline">
                     <label class="font-bold" for="status">Owner: &nbsp; ↓</label>
@@ -106,7 +106,7 @@
                     </a>
                 </x-thead>
             </th>
-            <th  class="hidden sm:table-cell">
+            <th class="hidden sm:table-cell">
                 <x-thead>
                     <a wire:click.prevent="sortBy('state')" role="button" href="#">
                         State
