@@ -22,7 +22,7 @@
 </div>
 
   <div class="text-sm p-1">
-    @include('livewire.partials._perPage')
+    @include('livewire.partials._perpage')
   </div>
   @include('livewire.partials._search', ['placeholder'=>'Search Users'])
     <table  class="table-fixed mt-2">
