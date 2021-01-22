@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Livewire\withPagination;
+use Livewire\WithPagination;
 use App\Models\Industry;
 
 class IndustryTable extends Component
