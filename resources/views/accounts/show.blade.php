@@ -2,6 +2,16 @@
 @section('content')
 
    <h1 class="mb-8 font-bold pt-10 text-3xl text-teal-400 font-medium">{{ $account->name }}</h1>
+   @if(auth()->user()->id == $account->user_id)
+   <p>
+        <a href="{{route('account.edit', $account->id)}}" 
+            title="Edit {{$account->name}}">
+            Edit {{$account->name}}
+        </a>
+    </p>
+   <p>Delete {{$account->name}}</p>
+   @endif
+
 
     <p class="p-1"><span class=" font-bold  p-1 text-lg text-grey-darkest">Phone:</span>
             {{ $account->phone}}
@@ -27,7 +37,6 @@
     </p>
 
 
-    </p>
     @livewire('contact-table', ['account'=>$account->id])
 
 

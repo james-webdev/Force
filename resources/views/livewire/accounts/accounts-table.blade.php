@@ -1,8 +1,5 @@
 <div>
-
-
-
-    @include('livewire.partials._message')
+@include('livewire.partials._message')
 <div class="sm:ml-24 mt-7 sm:mr-24 flex flex-col justify-center items-center sm:block">
 
         <h2 class="text-4xl text-teal-400 p-5 hover:text-teal-500 leading-tight">
@@ -43,8 +40,8 @@
                     <select wire:model="user_id"
                     class="form-control rounded p-1 appearance-none">
                         <option value="All">All</option>
-                        @foreach ($users as $sf_id=>$user)
-                            <option value={{$sf_id}} class="p-3" >{{$user}}</option>
+                        @foreach ($users as $id=>$user)
+                            <option value="{{$id}}" class="p-3" >{{$user}}</option>
                         @endforeach
 
                     </select>
@@ -55,7 +52,7 @@
                     class="form-control rounded-sm p-1 w-48 appearance-none">
                         <option value="All">All</option>
                         @foreach ($industries as $id=>$industry)
-                            <option value={{$id}} class="p-3" >{{$industry}}</option>
+                            <option value="{{$id}}" class="p-3" >{{$industry}}</option>
                         @endforeach
 
                     </select>
@@ -66,7 +63,7 @@
                     class="form-control rounded-sm p-1 w-48 appearance-none">
                         <option value="All">All</option>
                         @foreach ($accounttypes as $id=>$type)
-                            <option value={{$id}} class="p-3" >{{$type}}</option>
+                            <option value="{{$id}}" class="p-3" >{{$type}}</option>
                         @endforeach
 
                     </select>

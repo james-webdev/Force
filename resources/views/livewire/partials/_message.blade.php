@@ -23,6 +23,17 @@
         </div>
       </div>
 
-
+@elseif (session()->has('warning'))
+  <div class="p-3 bg-yellow-300 text-yellow-800 rounded shadow-sm">
+      
+        <button
+          class="opacity-75 cursor-pointer absolute top-0 right-0 py-2 px-3 hover:opacity-100"
+        >
+          ×
+        </button>
+        <div class="flex items-center">
+           {{ session('warning') }}
+        </div>
+      </div>
 
   @endif

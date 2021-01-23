@@ -7,6 +7,9 @@ use Request;
 use Inertia\Inertia;
 use App\Models\Contact;
 use App\Imports\AccountsImport;
+use App\Models\AccountType;
+use App\Models\Industry;
+use App\Http\Requests\AccountFormRequest;
 use Excel;
 use URL;
 use App\Http\Resources\AccountResource;
@@ -35,8 +38,10 @@ class AccountsController extends Controller
      */
     public function create()
     {
+        $industries = Industry::orderBy('industry')->pluck('industry', 'id')->toArray();
 
-        return Inertia::render('Accounts/Create');
+        $accounttypes  = AccountType::orderBy('type')->pluck('type', 'id')->toArray();
+        return response()->view('accounts.create', compact('industries', 'accounttypes'));
 
     }
 
@@ -46,11 +51,12 @@ class AccountsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AccountFormRequest $request)
     {
-
-        Account::create($request->all());
-        return redirect()->route('account.index');
+        $data = request()->all();
+        $data['user_id'] = auth()->user()->id;
+        $account = Account::create($data);
+        return redirect()->route('account.show', $account->id)->withMessage('Account created');;
     }
 
     /**
@@ -80,16 +86,16 @@ class AccountsController extends Controller
      */
     public function edit(Account $account)
     {
+        
+        if ($account->user_id !== auth()->user()->id) {
+            return redirect()->back()->withWarning("Unauthorized to edit. You are not the owner");
+        }
+        $industries = Industry::orderBy('industry')->pluck('industry', 'id')->toArray();
 
-        $contacts = Account::with('contacts')->get()->where('id', $account->id);
+        $accounttypes  = AccountType::orderBy('type')->pluck('type', 'id')->toArray();
+        //contacts = Account::with('contacts')->get()->where('id', $account->id);
 
-        return Inertia::render(
-            'Accounts/Edit', [
-                'account' => $account,
-                'update_url' => URL::route('account.edit', $account),
-                'contacts' => $contacts,
-            ]
-        );
+        return response()->view('accounts.edit', compact('account', 'industries', 'accounttypes'));
     }
 
     /**
@@ -100,11 +106,11 @@ class AccountsController extends Controller
      *
      * @return [type]           [description]
      */
-    public function update(Account $account, Request $request)
+    public function update(Account $account, AccountFormRequest $request)
     {
 
         $account->update(request()->all());
-        return redirect()->route('account.index');
+        return redirect()->route('account.show', $account->id)->withMessage('Account updated');
     }
 
     /**

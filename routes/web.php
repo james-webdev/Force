@@ -24,7 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])
 
             // Accounts
             Route::get('activity/create/{contact?}', ['as'=>'activity.create', 'uses'=>'ActivitiesController@create']);
-            Route::resource('/account', 'AccountsController')->except('create');
+            Route::resource('/account', 'AccountsController');
             // Activities
             Route::resource('/activity', 'ActivitiesController');
             //Activity Types
@@ -47,6 +47,9 @@ Route::middleware(['auth:sanctum', 'verified'])
             Route::post('import/mapping/{import}', ['as'=>'import.mapping', 'uses'=>'ImportController@mapping']);
 
             Route::resource('/import', 'ImportController');
+
+            Route::resource('role', 'RolePermissionController');
+
             //Route::get('/import', ['as'=>'account.import.create', 'uses'=>'AccountsController@importForm']);
             //Route::post('/import', ['as'=>'account.import.store', 'uses'=>'AccountsController@import']);
         }
