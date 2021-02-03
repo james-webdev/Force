@@ -149,7 +149,22 @@
             @error('account_type_id') <span class="text-red-500"></span>@enderror
 
         </div>
+         <div class="mb-4">
 
+            <label for="Drive"
+             class="block text-gray-700 text-sm font-bold mb-2">Google Drive:</label>
+            <input type="text"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="drive"
+                name="drive"
+                required
+                placeholder="Google Drive"
+                wire:model="drive"
+                value="{{isset($account) ? $account->drive : ''}}">
+
+                @error('drive') <span class="text-red-500"></span>@enderror
+
+        </div>
     </div>
 
 </div>

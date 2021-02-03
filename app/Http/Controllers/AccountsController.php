@@ -108,7 +108,7 @@ class AccountsController extends Controller
      */
     public function update(Account $account, AccountFormRequest $request)
     {
-
+        ray(request()->all());
         $account->update(request()->all());
         return redirect()->route('account.show', $account->id)->withMessage('Account updated');
     }

@@ -1,17 +1,25 @@
 @extends ('layouts.app')
 @section('content')
-
+<div x-data="{showDeleteModal:false}" x-bind:class="{ 'model-open': showDeleteModal }"> 
+    @php $route = route('account.destroy', $account->id) @endphp
+    @include('partials.confirm')
    <h1 class="mb-8 font-bold pt-10 text-3xl text-teal-400 font-medium">{{ $account->name }}</h1>
    @if(auth()->user()->id == $account->user_id)
    <p>
         <a href="{{route('account.edit', $account->id)}}" 
-            title="Edit {{$account->name}}">
+            title="Edit {{$account->name}}"><i class="far fa-edit text-blue-500"></i>
             Edit {{$account->name}}
         </a>
     </p>
-   <p>Delete {{$account->name}}</p>
+    <div class="fas fa-trash-alt text-red-800">
+        <a @click={showDeleteModal=true} class="far fa-trash-open">Delete {{$account->name}}</a>
+    </div>
+   
    @endif
-
+    <p class="p-1">
+        <span class=" font-bold  p-1 text-lg text-grey-darkest">Google Drive:</span>
+            <a href="{{ $account->drive}}" target="_blank">{{$account->drive}}</a>
+    </p>
 
     <p class="p-1"><span class=" font-bold  p-1 text-lg text-grey-darkest">Phone:</span>
             {{ $account->phone}}
@@ -43,4 +51,6 @@
     @livewire('activity-table', ['account'=>$account->id])
 
     @livewire('opportunities-table', ['account_id'=>$account->id])
+</p>
+</div>
 @endsection

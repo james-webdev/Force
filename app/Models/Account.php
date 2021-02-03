@@ -20,7 +20,8 @@ class Account extends Model
         'city',
         'state',
         'country',
-        'postalcode'
+        'postalcode',
+        'drive',
         ];
     /**
      * [contacts description]

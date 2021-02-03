@@ -31,6 +31,7 @@ class AccountsTable extends Component
     public $postalcode;
     public $description;
     public $account_id;
+    public $drive;
 
     /**
      * [updatingSearch description]
@@ -138,6 +139,7 @@ class AccountsTable extends Component
         $this->state = '';
         $this->postalcode = '';
         $this->description = '';
+        $this->drive = '';
 
 
     }
@@ -184,6 +186,7 @@ class AccountsTable extends Component
                 'description' => $this->description,
                 'account_type_id'=>$this->account_type_id,
                 'industry_id' => $this->industry_id,
+                'drive'=>$this->drive,
                 'user_id' => auth()->user()->id
 
             ]
