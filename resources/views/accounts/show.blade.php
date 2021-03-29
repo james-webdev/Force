@@ -8,12 +8,15 @@
    <p>
         <a href="{{route('account.edit', $account->id)}}" 
             title="Edit {{$account->name}}"><i class="far fa-edit text-blue-500"></i>
-            Edit {{$account->name}}
+
         </a>
-    </p>
-    <div class="fas fa-trash-alt text-red-800">
-        <a @click={showDeleteModal=true} class="far fa-trash-open">Delete {{$account->name}}</a>
-    </div>
+        ||
+   
+        <a  class="fas fa-trash-alt text-red-800" 
+        @click={showDeleteModal=true} 
+        title ="Delete {{$account->name}}" 
+        class="far fa-trash-open"></a>
+ 
    
    @endif
     <p class="p-1">
