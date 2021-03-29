@@ -54,7 +54,7 @@
         <div class="mb-4">
 
             <label for="state"
-                class="block text-gray-700 text-sm font-bold mb-2">Street:</label>
+                class="block text-gray-700 text-sm font-bold mb-2">State:</label>
 
             <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -70,7 +70,7 @@
         <div class="mb-4">
 
             <label for="postalcode"
-                class="block text-gray-700 text-sm font-bold mb-2">Post code:</label>
+                class="block text-gray-700 text-sm font-bold mb-2">ZIP Code:</label>
 
             <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -80,7 +80,24 @@
                 name="postalcode"
                 value="{{isset($account) ? $account->postalcode : ''}}">
 
-                @error('street') <span class="text-red-500"></span>@enderror
+                @error('postalcode') <span class="text-red-500"></span>@enderror
+
+        </div>
+
+        <div class="mb-4">
+
+            <label for="phone"
+                class="block text-gray-700 text-sm font-bold mb-2">Phone:</label>
+
+            <input type="text"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="phone"
+                placeholder="Phone #"
+                wire:model="phone"
+                name="postalcode"
+                value="{{isset($account) ? $account->phone : ''}}">
+
+                @error('phone') <span class="text-red-500"></span>@enderror
 
         </div>
 

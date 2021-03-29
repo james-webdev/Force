@@ -29,7 +29,10 @@ class AccountsTable extends Component
     public $city;
     public $state;
     public $postalcode;
+    public $industry;
+    public $phone;
     public $description;
+    public $source;
     public $account_id;
     public $drive;
 
@@ -83,34 +86,34 @@ class AccountsTable extends Component
     public function render()
     {
 
-          return view(
+        return view(
             'livewire.accounts.accounts-table', [
-                'accounts'=>Account::withLastActivityId()
-                    ->withCount('contacts', 'openOpportunities', 'wonOpportunities', 'opportunities')
-                    ->with('owner', 'lastActivity', 'industry', 'type')
-                    ->totalBusiness()
-                    ->search($this->search)
-                    ->when(
-                        $this->user_id != 'All', function ($q) {
-                            $q->where('user_id', $this->user_id);
-                        }
-                    )
-                    ->when(
-                        $this->industry_id != 'All', function ($q) {
-                            $q->where('industry_id', $this->industry_id);
-                        }
-                    )
-                    ->when(
-                        $this->account_type_id != 'All', function ($q) {
-                            $q->where('account_type_id', $this->account_type_id);
-                        }
-                    )
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->paginate($this->perPage),
-                    'industries' => Industry::orderBy('industry')->pluck('industry', 'id')->toArray(),
-                    'accounttypes' => AccountType::orderBy('type')->pluck('type', 'id')->toArray(),
-                    'users' => User::has('accounts')->pluck('name', 'id')->toArray(),
-                ]
+            'accounts'=>Account::withLastActivityId()
+                ->withCount('contacts', 'openOpportunities', 'wonOpportunities', 'opportunities')
+                ->with('owner', 'lastActivity', 'industry', 'type')
+                ->totalBusiness()
+                ->search($this->search)
+                ->when(
+                    $this->user_id != 'All', function ($q) {
+                        $q->where('user_id', $this->user_id);
+                    }
+                )
+                ->when(
+                    $this->industry_id != 'All', function ($q) {
+                        $q->where('industry_id', $this->industry_id);
+                    }
+                )
+                ->when(
+                    $this->account_type_id != 'All', function ($q) {
+                        $q->where('account_type_id', $this->account_type_id);
+                    }
+                )
+                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                ->paginate($this->perPage),
+                'industries' => Industry::orderBy('industry')->pluck('industry', 'id')->toArray(),
+                'accounttypes' => AccountType::orderBy('type')->pluck('type', 'id')->toArray(),
+                'users' => User::has('accounts')->pluck('name', 'id')->toArray(),
+            ]
         );
     }
     /**
@@ -140,6 +143,10 @@ class AccountsTable extends Component
         $this->postalcode = '';
         $this->description = '';
         $this->drive = '';
+        $this->phone = '';
+        $this->industry_id = '';
+        $this->account_type_id = '';
+
 
 
     }
@@ -183,9 +190,11 @@ class AccountsTable extends Component
                 'city'=> $this->city,
                 'state' => $this->state,
                 'postalcode' => $this->postalcode,
+                'phone' => $this->phone,
                 'description' => $this->description,
                 'account_type_id'=>$this->account_type_id,
                 'industry_id' => $this->industry_id,
+                'account_type_id' => $this->account_type_id,
                 'drive'=>$this->drive,
                 'user_id' => auth()->user()->id
 

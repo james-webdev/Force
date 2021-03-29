@@ -86,7 +86,7 @@
                         <div class="mb-4">
 
                             <label for="state"
-                                class="block text-gray-700 text-sm font-bold mb-2">Street:</label>
+                                class="block text-gray-700 text-sm font-bold mb-2">State:</label>
 
                             <input type="text"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -112,6 +112,21 @@
 
                         </div>
 
+                        <div class="mb-4">
+
+                            <label for="phone"
+                                class="block text-gray-700 text-sm font-bold mb-2">Phone:</label>
+
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="phone"
+                                placeholder="phone number"
+                                wire:model="phone">
+
+                                @error('phone') <span class="text-red-500"></span>@enderror
+
+                        </div>
+                        
                         <div class="mb-4">
 
                             <label for="description"
@@ -153,15 +168,15 @@
 
                             <select
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="description"
-                                wire:model="industry"
-                                placeholder="Select industry">
+                                id="account_type_id"
+                                wire:model="account_type_id"
+                                placeholder="Select source">
                                 @foreach ($accounttypes as $id=>$type)
                                 <option value="{{$id}}">{{$type}}</option>
                                 @endforeach
                             </select>
 
-                            @error('description') <span class="text-red-500"></span>@enderror
+                            @error('account_type_id') <span class="text-red-500"></span>@enderror
 
                         </div>
 
