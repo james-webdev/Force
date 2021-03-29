@@ -67,9 +67,11 @@ class OpportunitiesController extends Controller
      */
     public function show(Opportunity $opportunity)
     {
+
         $opportunity->load('owner', 'account');
         $statuses = $this->opportunity->statuses;
-        //dd($statuses);
+        
+
         return response()->view('opportunities.show', compact('opportunity', 'statuses'));
     }
 

@@ -69,6 +69,7 @@ class OpportunitiesTable extends Component
             'livewire.opportunities.opportunities-table', [
                 'opportunities' => Opportunity::
                     join('accounts', 'opportunities.account_id', '=', 'accounts.id')
+                    ->select('opportunities.*', 'accounts.name')
                     ->with('owner')
                     ->search($this->search)
                     ->with(
@@ -183,8 +184,9 @@ class OpportunitiesTable extends Component
                 'description' => $this->description,
                 'owner_id' => auth()->user()->id,
                 'account_id' => $this->account_id,
-                'contact_id' => $this->contact_id
-
+                'contact_id' => $this->contact_id,
+                'close_date'=>$this->close_date,
+                'user_id' => auth()->user()->id,
             ]
         );
 

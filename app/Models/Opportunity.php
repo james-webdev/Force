@@ -23,7 +23,7 @@ class Opportunity extends Model
             'close_date',
             'value',
             'status',
-            'stage',
+            'stage_id',
             'probability',
             'type',
             'next_step',

@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Contact;
 use App\Models\User;
+use App\Models\Account;
 
 class ContactTable extends Component
 {
@@ -30,6 +31,7 @@ class ContactTable extends Component
     public $phone = null;
     public $mobile = null;
     public $description = null;
+    public $accounts;
 
 
 
@@ -51,7 +53,13 @@ class ContactTable extends Component
     public function mount($account = null)
     {
         $this->account_id = $account;
+        if ($this->account_id) {
+             $this->accounts = Account::findOrFail($this->account_id)->pluck('name', 'id');
+        } else {
+             $this->accounts = Account::pluck('name', 'id');
+        }
         $this->user_id = auth()->user()->id;
+        
     }
     public function render()
     {
@@ -83,6 +91,7 @@ class ContactTable extends Component
                     ->paginate($this->perPage),
 
                     'users' => User::has('contacts')->pluck('name', 'id')->toArray(),
+                    
                 ]
         );
     }
@@ -147,6 +156,7 @@ class ContactTable extends Component
              'firstName' => 'required',
              'lastName' => 'required',
              'email' => 'required|email',
+             'account_id'=>'required',
             ]
         );
 
