@@ -101,9 +101,11 @@ class OpportunitiesTable extends Component
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
                     'statuses'=>[0=>'Open', 1=>'Closed Won', 2=> 'Closed Lost'],
-                    'contacts'=>Contact::select('id', 'firstName', 'lastName')
+                    'contacts'=>Contact::selectRaw("id, concat_ws(' ',firstName, lastName) as fullName")
                         ->where('account_id', $this->account_id)
-                        ->get(),
+                        ->orderBy('lastname')
+                        ->pluck('fullName', 'id')
+                        ->toArray(),
                     'accounts'=>Account::orderBy('name')->pluck('name', 'id')->toArray(),
                     'stages'=>SalesStage::all()->pluck('stage', 'id')->toArray(),
                     'users' => User::pluck('name', 'id')->toArray(),
