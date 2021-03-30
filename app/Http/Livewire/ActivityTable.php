@@ -26,13 +26,13 @@ class ActivityTable extends Component
     public $user_id = 'All';
     public $activity_type_id = null;
     public $isOpen = false;
-    public $activity_date = null;
+    public $activity_date;
     public $subject = null;
     public $details = null;
     public $account_id = null;
     public $activity_id = null;
-
-
+    public Activity $activity;
+    public $value;
 
 
     public function updatingSearch()
@@ -74,7 +74,7 @@ class ActivityTable extends Component
         }
         $this->activity_type_id = $activitytype;
         $this->user_id = auth()->user()->id;
-        
+        $this->activity_date = now()->format('m/d/Y');
 
     }
     /**
@@ -118,11 +118,15 @@ class ActivityTable extends Component
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
                     'contacts' =>Contact::where('account_id', $this->account_id)
-                        ->select('id', 'firstName', 'lastName')
-                        ->get(),
-                    'accounts'=>Account::orderBy('name')->pluck('name', 'id')->toArray(),
+                        ->selectRaw("id, concat_ws(' ', firstname, lastname) as fullname")
+                        ->orderBy('lastname')
+                        ->pluck('fullname', 'id')
+                        ->toArray(),
+                    'accounts'=>Account::orderBy('name')->pluck('name', 'id')
+                        ->toArray(),
                     'users' => User::pluck('name', 'id')->toArray(),
-                    'types' => ActivityType::orderBy('activity')->pluck('activity', 'id')->toArray(),
+                    'types' => ActivityType::orderBy('activity')
+                        ->pluck('activity', 'id')->toArray(),
                 ]
         );
     }

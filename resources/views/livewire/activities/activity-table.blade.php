@@ -17,7 +17,7 @@
             <div class="sm:m-8">
                 @component('livewire.partials._search')
                     @slot('placeholder')
-                        Search activities
+                        Search activities 
                     @endslot
                 @endcomponent
             </div>

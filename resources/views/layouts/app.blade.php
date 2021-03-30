@@ -12,12 +12,17 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-       
+        
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+
+
+ 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/gh/maxeckel/alpine-editor@0.3.1/dist/alpine-editor.min.js"></script>
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
     </head>
     <body class="font-sans antialiased">
@@ -38,7 +43,7 @@
         </div>
 
         @stack('modals')
-
+        
         @livewireScripts
         
     </body>

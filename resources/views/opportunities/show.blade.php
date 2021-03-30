@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 @section('content')
-
+   
    <h1 class="mb-2 font-bold text-3xl text-teal-400 font-medium">{{ $opportunity->title }}</h1>
    <h2 class="font-bold text-2xl text-teal-400 font-medium">
         <a href="{{route('account.show', $opportunity->account_id)}}"
