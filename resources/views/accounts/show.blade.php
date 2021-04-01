@@ -51,9 +51,7 @@
     @livewire('contact-table', ['account'=>$account->id])
 
 
-    @livewire('activity-table', ['account'=>$account->id])
-
-    @livewire('opportunities-table', ['account_id'=>$account->id])
+   
 </p>
 </div>
 @endsection
